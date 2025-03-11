@@ -61,7 +61,7 @@ Apple HomeKit).
 nätverksbortfall.
 
 
-## Minimikrav för slutprodukten : 
+## Minimikrav för slutprodukten
 För att slutprodukten ska vara fullt funktionell och användbar bör de minimikrav som ställs inkludera:
 
 - Sensorövervakning av luftkvalitet (CO2, VOC, PM2.5/PM10) samt temperatur och luftfuktighet.
@@ -71,7 +71,7 @@ För att slutprodukten ska vara fullt funktionell och användbar bör de minimik
 - Säker dataöverföring och användarautentisering vid behov.
 - Genom att uppfylla dessa krav kommer er produkt att vara användbar, pålitlig och lättanvänd för att mäta och övervaka luftkvaliteten i hemmet eller på kontoret.
 
-## Tidsplan och milstolpar :
+## Tidsplan och milstolpar
 - Vecka 1: Planering, krav och design.
 - Vecka 2: Hårdvaruuppbyggnad och prototyp.
 - Vecka 3: Mjukvaruutveckling (app/webb).
