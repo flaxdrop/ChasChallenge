@@ -24,7 +24,7 @@ Denna produktplan beskriver de tekniska specifikationerna, användarflödet och 
 - IoT – Sensorer, Mikrokontroller och Kommunikation : Arduino
 - Databas- och API-struktur : MongoDB, PostgreSQL.
 
-## Teamstruktur och ansvarsområden: Mål och funktioner per klass
+## Teamstruktur och ansvarsområden. Mål och funktioner per klass
 Frontend (Frontendutvecklare)
 ● Mobilapp för användare
 ○ Dashboard som visar realtidsdata om luftkvalitet, temperatur och luftfuktighet.
@@ -81,7 +81,7 @@ För att slutprodukten ska vara fullt funktionell och användbar bör de minimik
 - Vecka 7: Marknadsföring och presentation.
 - Vecka 8: Dokumentation och avslutning.
 
-## Problemhantering :
+## Problemhantering
 Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast.
 
 
