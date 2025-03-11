@@ -27,37 +27,37 @@ Denna produktplan beskriver de tekniska specifikationerna, användarflödet och 
 ## Teamstruktur och ansvarsområden.
 Frontend (Frontendutvecklare)
 ● Mobilapp för användare
-○ Dashboard som visar realtidsdata om luftkvalitet, temperatur och luftfuktighet.
-○ Notifikationer vid dålig luftkvalitet eller hög luftfuktighet (ex. risk för mögel).
-○ Manuell styrning av ventilationen och val av önskade luftkvalitetsinställningar.
-○ Historisk data och trendanalys för att identifiera luftkvalitetsmönster.
-○ Integrering med smarta hem-system (ex. Google Home, Home Assistant).
+● Dashboard som visar realtidsdata om luftkvalitet, temperatur och luftfuktighet.
+● Notifikationer vid dålig luftkvalitet eller hög luftfuktighet (ex. risk för mögel).
+● Manuell styrning av ventilationen och val av önskade luftkvalitetsinställningar.
+● Historisk data och trendanalys för att identifiera luftkvalitetsmönster.
+● Integrering med smarta hem-system (ex. Google Home, Home Assistant).
 
 Backend (Fullstackutvecklare)
 ● Datainsamling och analys:
-○ Insamling av data från IoT-sensorer som mäter luftkvalitet och
+● Insamling av data från IoT-sensorer som mäter luftkvalitet och
 klimatparametrar.
-○ Algoritmer för att analysera luftkvalitet och generera rekommendationer.
-○ Lagring av historiska mätvärden för att analysera luftkvalitetsförändringar.
-○ Realtidsuppdateringar via WebSockets för smidig dataöverföring till appen.
+● Algoritmer för att analysera luftkvalitet och generera rekommendationer.
+● Lagring av historiska mätvärden för att analysera luftkvalitetsförändringar.
+● Realtidsuppdateringar via WebSockets för smidig dataöverföring till appen.
 ● Säkerhet och systemintegration
-○ Autentisering av användare för personlig konfiguration.
-○ API för att styra smart ventilation baserat på användarens inställningar.
-○ Integration med externa system såsom väderdata för att justera ventilation vid
+● Autentisering av användare för personlig konfiguration.
+● API för att styra smart ventilation baserat på användarens inställningar.
+● Integration med externa system såsom väderdata för att justera ventilation vid
 externt höga föroreningar.
 
 Inbyggda system (Systemutvecklare)
 ● IoT-sensorer och smart kommunikation:
-○ Sensorer för luftkvalitet (CO2, partiklar, VOC), temperatur och luftfuktighet.
-○ Kommunikation via WiFi, Bluetooth eller Zigbee för att interagera med
+● Sensorer för luftkvalitet (CO2, partiklar, VOC), temperatur och luftfuktighet.
+● Kommunikation via WiFi, Bluetooth eller Zigbee för att interagera med
 mobilappen.
-○ Möjlighet att koppla till befintliga smarta hem-system (ex. Google Home,
+● Möjlighet att koppla till befintliga smarta hem-system (ex. Google Home,
 Apple HomeKit).
-○ Låg strömförbrukning och energieffektiv design för batteridriven drift.
+● Låg strömförbrukning och energieffektiv design för batteridriven drift.
 ● Automatiserad ventilationskontroll:
-○ Luftflödereglering baserat på sensordata.
-○ Integration med ventilationen i hemmet för att förbättra luftflödet.
-○ Failsafe-lösning för att säkerställa att systemet fungerar även vid
+● Luftflödereglering baserat på sensordata.
+● Integration med ventilationen i hemmet för att förbättra luftflödet.
+● Failsafe-lösning för att säkerställa att systemet fungerar även vid
 nätverksbortfall.
 
 
