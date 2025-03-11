@@ -18,13 +18,13 @@ Vår produkt kommer att vara enkel att använda och installera, och syftet är a
 
 Denna produktplan beskriver de tekniska specifikationerna, användarflödet och de resurser som krävs för att utveckla vår luftkvalitetsmonitor, från sensorval och hårdvarudesign till apputveckling och marknadsföring.
 
-## Val av teknologi och arkitektur: (exempel)
+## Val av teknologi och arkitektur
 - Frontend – Användargränssnitt Mobilapp : React Native
 - Backend – Server och API : Node.js
 - IoT – Sensorer, Mikrokontroller och Kommunikation : Arduino
 - Databas- och API-struktur : MongoDB, PostgreSQL.
 
-## Teamstruktur och ansvarsområden. Mål och funktioner per klass
+## Teamstruktur och ansvarsområden.
 Frontend (Frontendutvecklare)
 ● Mobilapp för användare
 ○ Dashboard som visar realtidsdata om luftkvalitet, temperatur och luftfuktighet.
