@@ -11,14 +11,14 @@ Vår produkt kommer att vara enkel att använda och installera, och syftet är a
 Denna produktplan beskriver de tekniska specifikationerna, användarflödet och de resurser som krävs för att utveckla vår luftkvalitetsmonitor, från sensorval och hårdvarudesign till apputveckling och marknadsföring.
 
 ### Tidsplan och milstolpar :
-Vecka 1: Planering, krav och design.
-Vecka 2: Hårdvaruuppbyggnad och prototyp.
-Vecka 3: Mjukvaruutveckling (app/webb).
-Vecka 4: Integration och testning.
-Vecka 5: Förbättringar och felsökning.
-Vecka 6: Sluttestning och optimering.
-Vecka 7: Marknadsföring och presentation.
-Vecka 8: Dokumentation och avslutning.
+- Vecka 1: Planering, krav och design.
+- Vecka 2: Hårdvaruuppbyggnad och prototyp.
+- Vecka 3: Mjukvaruutveckling (app/webb).
+- Vecka 4: Integration och testning.
+- Vecka 5: Förbättringar och felsökning.
+- Vecka 6: Sluttestning och optimering.
+- Vecka 7: Marknadsföring och presentation.
+- Vecka 8: Dokumentation och avslutning.
 
 ### Problemhantering : Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast.
 
