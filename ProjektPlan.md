@@ -97,6 +97,6 @@ Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att för
 9. Ljudsensormodul
 10. GY-68 BMP180 barometer- och temperatursensormodul
 
-# Teknologi är framförallt Arudino.
+# Teknologi är framförallt Arduino.
 
 # Verktyg kommer framförallt vara : Discord, Github, Slack, TinkerCAD, VS Code.
