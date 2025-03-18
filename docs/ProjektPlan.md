@@ -23,6 +23,7 @@ Denna produktplan beskriver de tekniska specifikationerna, användarflödet och 
 - Backend – Server och API : Node.js
 - IoT – Sensorer, Mikrokontroller och Kommunikation : Arduino
 - Databas- och API-struktur : MongoDB, PostgreSQL.
+- Arduino 
 
 ## Teamstruktur och ansvarsområden.
 Frontend (Frontendutvecklare)
@@ -97,6 +98,6 @@ Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att för
 9. Ljudsensormodul
 10. GY-68 BMP180 barometer- och temperatursensormodul
 
-# Teknologi är framförallt Arduino.
 
-# Verktyg kommer framförallt vara : Discord, Github, Slack, TinkerCAD, VS Code.
+# Verktyg för kommunication
+kommer framförallt vara : Discord, Github, Slack, TinkerCAD, VS Code.
