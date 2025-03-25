@@ -2,7 +2,7 @@
 
 ## Deltagare
 **Systemutveckling**\
-[Alexander Arvedson](TODO)\
+[Alexander Arvedson](https://github.com/alexanderchasacademy)\
 [John Collinder](https://github.com/flaxdrop)\
 [Robert Bagunda](https://github.com/robag1137)\
 [Emanuela Aseidu](https://github.com/ema-asi)
