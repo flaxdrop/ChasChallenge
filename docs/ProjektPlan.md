@@ -8,7 +8,7 @@
 [Emanuela Aseidu](https://github.com/ema-asi)
 
 **Frontend**\
-[Jesper Olsson](TODO)\
+[Jesper Olsson](https://github.com/jesperolsson89)\
 [Erik Torres Puente](https://github.com/ErikTP)
 
 **Fullstack**\
