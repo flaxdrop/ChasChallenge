@@ -1,5 +1,24 @@
 ## Gruppnamn : SyntaxSquad
-## Deltagare : 1. Alexander Arvidson 2. John Collinder 3. Robert Bagunda 4. Jesper Olsson 5. Benjamin Stenlund 6. Emanuela Aseidu 7. Erik Torres Puente
+
+## Deltagare
+**Systemutveckling**\
+[Alexander Arvedson](TODO)\
+[John Collinder](https://github.com/flaxdrop)\
+[Robert Bagunda](https://github.com/robag1137)\
+[Emanuela Aseidu](https://github.com/ema-asi)
+
+**Frontend**\
+[Jesper Olsson](TODO)\
+[Erik Torres Puente](https://github.com/ErikTP)
+
+**Fullstack**\
+[Benjamin Stenlund](https://github.com/benjamin762)\
+[Idris Ahmed](https://github.com/derainted)\
+[Anthon Athley](https://github.com/AntonAthley)\
+[Abbas Al-Naema](https://github.com/Abbaln)\
+[Jonas Fakhro](https://github.com/Jonas262901)
+
+
 ## Kodnamn för produkten : AirAware
 
 - [Introduktion](#introduktion)
