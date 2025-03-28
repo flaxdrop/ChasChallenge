@@ -43,7 +43,7 @@ Denna produktplan beskriver de tekniska specifikationerna, användarflödet och 
 - Frontend – Användargränssnitt Mobilapp : React Native
 - Backend – Server och API : Node.js
 - IoT – Sensorer, Mikrokontroller och Kommunikation : Arduino
-- Databas- och API-struktur : MongoDB, PostgreSQL.
+- Databas- och API-struktur : PostgreSQL.
 - Arduino 
 
 ## Teamstruktur och ansvarsområden.
