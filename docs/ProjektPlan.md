@@ -33,6 +33,8 @@
 
 Vårt projekt syftar till att utveckla en smart produkt som kontinuerligt övervakar luftkvaliteten och ger användaren realtidsinformation om olika miljöfaktorer, såsom koldioxidnivåer, flyktiga organiska föreningar (VOC), partikelkoncentrationer (PM2.5 och PM10), temperatur och luftfuktighet. Genom att använda en kombination av sensorer och en användarvänlig app, kan användaren få detaljerad insikt i den inomhusluft de andas och vidta åtgärder för att förbättra miljön när det behövs.
 
+Vi väljer att skapa en tillhörande app då man snabbt och enkelt kan få fram informationen som man vill ha. En hemsida skulle inte ge mycket värde mot vad en välproducerad och specialiserad app kan ge.
+
 Vår produkt kommer att vara enkel att använda och installera, och syftet är att skapa en hälsosammare och mer produktiv inomhusmiljö. Vi tror att detta verktyg kan hjälpa både privatpersoner och kontor att ta kontroll över sin inomhusmiljö, vilket leder till bättre luftkvalitet, ökad trivsel och hälsa.
 
 Denna produktplan beskriver de tekniska specifikationerna, användarflödet och de resurser som krävs för att utveckla vår luftkvalitetsmonitor, från sensorval och hårdvarudesign till apputveckling och marknadsföring.
@@ -102,7 +104,7 @@ För att slutprodukten ska vara fullt funktionell och användbar bör de minimik
 - Vecka 8: Dokumentation och avslutning.
 
 ## Problemhantering
-Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast.
+Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast. Vi kommer lösa problem genom att vara öppna med varandra och tala så mycket öppet språk mellan varandra som möjligt. Om man inte pratar med varandra kan de snabbt bildas dålig stämning och det vill vi undvika till aldra högsta grad.
 
 
 ## Lista av hårdvara som kan behövas, Framförallt sensorer.
