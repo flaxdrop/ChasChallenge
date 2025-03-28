@@ -106,6 +106,7 @@ För att slutprodukten ska vara fullt funktionell och användbar bör de minimik
 ## Problemhantering
 Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast. Vi kommer lösa problem genom att vara öppna med varandra och tala så mycket öppet språk mellan varandra som möjligt. Om man inte pratar med varandra kan de snabbt bildas dålig stämning och det vill vi undvika till aldra högsta grad.
 
+För mer information om problemhantering och spelregler kan du hitta vårt [Gruppkontrakt genom att klicka här](https://docs.google.com/document/d/1EWehsIZdjVD1zrrV2AYrWF8tX78TgLg2jFfP-Z-giwM/edit?usp=sharing).
 
 ## Lista av hårdvara som kan behövas, Framförallt sensorer.
 1. CO2-sensor – För att mäta koldioxidkoncentration.
