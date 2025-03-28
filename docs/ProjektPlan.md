@@ -31,7 +31,7 @@
 
 ### Introduktion : I dagens samhälle blir luftkvalitet en allt viktigare aspekt av vår hälsa och välmående. Dålig inomhusluft kan påverka vår koncentration, produktivitet och långsiktiga hälsa, och därför är det av stor vikt att vi har möjlighet att mäta och övervaka luftkvaliteten där vi spenderar mest tid – i hemmet och på kontoret.
 
-Vårt projekt syftar till att utveckla en smart produkt som kontinuerligt övervakar luftkvaliteten och ger användaren realtidsinformation om olika miljöfaktorer, såsom koldioxidnivåer, flyktiga organiska föreningar (VOC), partikelkoncentrationer (PM2.5 och PM10), temperatur och luftfuktighet. Genom att använda en kombination av sensorer och en användarvänlig app eller webbgränssnitt, kan användaren få detaljerad insikt i den inomhusluft de andas och vidta åtgärder för att förbättra miljön när det behövs.
+Vårt projekt syftar till att utveckla en smart produkt som kontinuerligt övervakar luftkvaliteten och ger användaren realtidsinformation om olika miljöfaktorer, såsom koldioxidnivåer, flyktiga organiska föreningar (VOC), partikelkoncentrationer (PM2.5 och PM10), temperatur och luftfuktighet. Genom att använda en kombination av sensorer och en användarvänlig app, kan användaren få detaljerad insikt i den inomhusluft de andas och vidta åtgärder för att förbättra miljön när det behövs.
 
 Vår produkt kommer att vara enkel att använda och installera, och syftet är att skapa en hälsosammare och mer produktiv inomhusmiljö. Vi tror att detta verktyg kan hjälpa både privatpersoner och kontor att ta kontroll över sin inomhusmiljö, vilket leder till bättre luftkvalitet, ökad trivsel och hälsa.
 
@@ -85,7 +85,7 @@ nätverksbortfall.
 För att slutprodukten ska vara fullt funktionell och användbar bör de minimikrav som ställs inkludera:
 
 - Sensorövervakning av luftkvalitet (CO2, VOC, PM2.5/PM10) samt temperatur och luftfuktighet.
-- Real-time datauppdatering och visning via en användarvänlig webb- eller mobilapp.
+- Real-time datauppdatering och visning via en användarvänlig mobilapp.
 - Larmfunktioner och varningar baserat på användardefinierade tröskelvärden.
 - Databaslagring och historik för att visa data över tid.
 - Säker dataöverföring och användarautentisering vid behov.
