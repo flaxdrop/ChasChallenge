@@ -113,12 +113,9 @@ För mer information om problemhantering och spelregler kan du hitta vårt [Grup
 2. VOC-sensor – För att mäta flyktiga organiska föreningar.
 3. PM-sensor – För att mäta partiklar i luften (PM2.5 och PM10).
 4. Temperatur- och fuktighetssensor – För att mäta och ge kontext till luftens fysiska egenskaper.
-5. Ozon-sensor – För att mäta ozon (O₃) koncentration.
-6. Lufttryckssensor – För att mäta trycket, vilket kan påverka ventilationen.
-7. NO2-sensor – För att mäta kvävedioxid i luften.
-8. DHT11 temperatur- och fuktighetssensormodul
-9. Ljudsensormodul
-10. GY-68 BMP180 barometer- och temperatursensormodul
+5. Lufttryckssensor – För att mäta trycket, vilket kan påverka ventilationen.
+6. DHT11 temperatur- och fuktighetssensormodul
+7. GY-68 BMP180 barometer- och temperatursensormodul
 
 
 # Verktyg för kommunication
