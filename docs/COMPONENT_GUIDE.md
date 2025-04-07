@@ -4,6 +4,23 @@ Här kan du hitta korta beskrivningar och länkar till resurser över viktiga va
 
 ## BME280
 
+## Funktioner
+
+Detta bibliotek gör det möjligt för användaren att:
+
+- Läsa av tryck i Pa  
+- Läsa av temperatur i °C  
+- Läsa av luftfuktighet i %RH  
+
+### Matematiska funktioner
+
+Biblioteket innehåller även följande matematiska funktioner baserade på ovanstående:
+
+- Läsa av temperatur i °F  
+- Läsa av höjd i meter  
+- Läsa av höjd i fot
+
+
 
 ## ENS160
 
