@@ -42,7 +42,24 @@ Biblioteket innehåller även följande matematiska funktioner baserade på ovan
 
 
 ## SPS30
+Sensorhårdvara (SPS30)
 
+SPS är en finpartikelsenor från sensirion som använder laserspridning för att mäta PM1.0, PM2.5, PM4 och PM10 i realtid.
+
+- Sensorkomponenter och Funktioner
+
+Komponent / Funktion	Beskrivning
+- start_measurement()	Startar en aktiv mätcykel
+- stop_measurement()	Stoppar mätningen
+- read_data()	Hämtar partikeldata från sensorn
+- get_serial_number()	Returnerar unikt serienummer
+- perform_fan_cleaning()	Initierar rengöring av sensorfläkten
+- heck_data_ready()	Kontrollerar om ny data finns tillgänglig
+
+### Informationskällor
+- SPS30 - Datablad (PDF) https://eu.mouser.com/datasheet/2/682/Sensirion_PM_Sensors_Datasheet_SPS30-3539491.pdf
+
+- SPS30 - bibliotek https://github.com/Sensirion/arduino-sps
 
 ## MQ2
 
