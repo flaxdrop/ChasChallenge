@@ -27,6 +27,19 @@ Biblioteket innehåller även följande matematiska funktioner baserade på ovan
 
 ## ENS160
 
+### Funktioner 
+
+- Läsa av luftkvaliteten och ge den ett värde utifrån *AQI* skalan.
+- Få fram ett *TVOC* värde i form av PPB.
+- Får fram ett *eCO2* värde utifrån TVOC.
+- Få fram rå värden i *ohms (Ω)*.
+
+### Informationkällor
+
+- [ENS160 - Datablad (PDF)](https://github.com/sparkfun/SparkFun_Indoor_Air_Quality_Sensor-ENS160_Arduino_Library/blob/main/Documentation/SC-001224-DS-7-ENS160-Datasheet.pdf)
+- [SparkFun ENS160 Arduino-bibliotek (GitHub)](https://github.com/sparkfun/SparkFun_Environmental_Combo_Breakout_ENS160_BME280_QWIIC)
+- [ENS160 Testkit Quick Start Guide](https://www.sciosense.com/wp-content/uploads/2023/12/ENS160-Dashboard-Quick-Start-Guide.pdf)
+
 
 ## SPS30
 
