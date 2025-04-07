@@ -33,4 +33,20 @@ Biblioteket innehåller även följande matematiska funktioner baserade på ovan
 
 ## MQ2
 
+### Intro 
+
+MQ2 gas sensorn upptäcker:
+- LPG
+- Rök
+- Alkohol
+- Propan
+- Väte
+- Metan
+- Koldioxid 
+
+
+### informationkällor
+- [MQ2 - Getting Startet](https://arduinogetstarted.com/tutorials/arduino-gas-sensor)
+- [MQ2- Project hub](https://projecthub.arduino.cc/m_karim02/arduino-and-mq2-gas-sensor-f3ae33)
+
 
