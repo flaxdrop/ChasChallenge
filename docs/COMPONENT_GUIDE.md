@@ -20,7 +20,10 @@ Biblioteket innehåller även följande matematiska funktioner baserade på ovan
 - Läsa av höjd i meter  
 - Läsa av höjd i fot
 
+### Informationskällor
 
+- [BME280 - Datablad (PDF)](https://www.electrokit.com/upload/product/41020/41020823/BST-BME280_DS001-10.pdf)  
+- [SparkFun BME280 Arduino-bibliotek (GitHub)](https://github.com/sparkfun/SparkFun_BME280_Arduino_Library)
 
 ## ENS160
 
