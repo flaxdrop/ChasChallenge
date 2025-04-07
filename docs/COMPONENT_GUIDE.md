@@ -4,7 +4,7 @@ Här kan du hitta korta beskrivningar och länkar till resurser över viktiga va
 
 ## BME280
 
-## Funktioner
+### Funktioner
 
 Detta bibliotek gör det möjligt för användaren att:
 
