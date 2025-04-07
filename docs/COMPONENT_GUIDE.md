@@ -13,4 +13,3 @@ Här kan du hitta korta beskrivningar och länkar till resurser över viktiga va
 
 ## MQ2
 
-
