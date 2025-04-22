@@ -3,6 +3,7 @@
 import express from "express";
 import { loadMockData } from "../utils/dataLoader.js";
 import { formatMeasurement } from "../utils/formatters.js";
+import { findById } from "../utils/findById.js";
 
 const router = express.Router();
 
@@ -64,6 +65,35 @@ router.get("/pressure", async (req, res) => {
       details: err.message,
     });
   }
+});
+
+// Hämta hela dataposten för ett visst ID (t.ex. /measurements/3)
+router.get("/:id", findById, (req, res) => {
+  const { id, timestamp, temperature, humidity, pressure } = req.measurement;
+
+  res.json({
+    id,
+    timestamp,
+    temperature,
+    humidity,
+    pressure,
+  });
+});
+
+// Hämta ett specifikt värde (t.ex. /measurements/temperature/3)
+router.get("/:type/:id", findById, (req, res) => {
+  const { type } = req.params;
+  const validTypes = ["temperature", "humidity", "pressure"];
+
+  if (!validTypes.includes(type)) {
+    return res.status(400).json({ error: `Ogiltig typ: ${type}` });
+  }
+
+  res.json({
+    id: req.measurement.id,
+    timestamp: req.measurement.timestamp,
+    [type]: req.measurement[type],
+  });
 });
 
 export default router;

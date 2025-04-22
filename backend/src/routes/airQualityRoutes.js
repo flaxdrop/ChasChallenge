@@ -3,6 +3,7 @@
 import express from "express";
 import { loadMockData } from "../utils/dataLoader.js";
 import { formatMeasurement } from "../utils/formatters.js";
+import { findById } from "../utils/findById.js";
 
 const router = express.Router();
 
@@ -64,6 +65,42 @@ router.get("/eco2", async (req, res) => {
       details: err.message,
     });
   }
+});
+
+// Hämta hela air quality-posten för ett visst ID (t.ex. /airquality/3)
+router.get("/:id", findById, (req, res) => {
+  const { id, timestamp, airQuality } = req.measurement;
+
+  if (!airQuality) {
+    return res
+      .status(404)
+      .json({ error: `Ingen air quality-data för ID ${id}` });
+  }
+
+  res.json({
+    id,
+    timestamp,
+    aqi: airQuality.aqi,
+    tvoc: airQuality.tvoc,
+    eco2: airQuality.eco2,
+  });
+});
+
+// Hämta ett specifikt AQ-värde (t.ex. /airquality/aqi/4)
+router.get("/:type/:id", findById, (req, res) => {
+  const { type } = req.params;
+  const validTypes = ["aqi", "tvoc", "eco2"];
+
+  if (!validTypes.includes(type)) {
+    return res.status(400).json({ error: `Ogiltig AQ-typ: ${type}` });
+  }
+
+  const value = req.measurement.airQuality?.[type];
+  res.json({
+    id: req.measurement.id,
+    timestamp: req.measurement.timestamp,
+    [type]: value,
+  });
 });
 
 export default router;
