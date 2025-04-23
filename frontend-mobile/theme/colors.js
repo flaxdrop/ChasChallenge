@@ -1,7 +1,7 @@
 export const lightTheme = {
   primary: "#F5F5F5", //First color of component gradient
   secondary: "#CCCCCC", // Second color of component gradient
-  accent: "#3B3B3B",
+  accent: "#175B00",
 
   backgroundPrimary: "#C7C7C7", //First color of background gradient
   backgroundSecondary: "#B7B7B7", // Second color of background gradient
@@ -13,16 +13,17 @@ export const lightTheme = {
   notification: "#D25406", // Alert color
 
   tabBar: "#CCCCCC",
-  tabBarIcon: "#3B3B3B",
+  tabBarIcon: "#000711",
+  tabBarIconActive: "#007ba8",
   infoIcon: "#4A4A4A", // Custom color for component info icon
-  headerBackground: "#CCCCCC",
+  headerBackground: "#000711",
 
   themeButton: "#7c3d7c",
 };
 
 export const darkTheme = {
-  primary: "#1A1A1A",
-  secondary: "#121212",
+  primary: "#282828",
+  secondary: "#252323",
   accent: "#40FD00",
   backgroundPrimary: "#1A1A1A",
   backgroundSecondary: "#121212",
@@ -34,7 +35,8 @@ export const darkTheme = {
   notification: "#D25406",
 
   tabBar: "#161616",
-  tabBarIcon: "#40FD00",
+  tabBarIcon: "#00BAFF",
+  tabBarIconActive: "#40FD00",
   infoIcon: "#676767",
   headerBackground: "#282828",
 
