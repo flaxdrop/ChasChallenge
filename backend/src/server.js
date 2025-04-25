@@ -25,6 +25,10 @@ const swaggerOptions = {
       description: "Lokal utvecklingsserver"
     }
   ],
+  tags: [
+    {name: "App", descrition: "Endpoints för appen."},
+    {name: "Sensor", description: "Endpoints för sensor."}
+  ],
   components: {
     schemas: {}
   },

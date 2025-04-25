@@ -6,6 +6,17 @@ import { findById } from "../utils/findById.js";
 const router = express.Router();
 
 // Route för att hämta alla värden från båda sensorerna
+/**
+ * @swagger
+ * /all:
+ *  get:
+ *    summary: Route för att hämta alla värden från båda sensorerna
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -21,6 +32,17 @@ router.get("/", async (req, res) => {
 });
 
 // Hämta all sensordata för ett specifikt ID
+/**
+ * @swagger
+ * /all/:id:
+ *  get:
+ *    summary: Hämta all sensordata för ett specifikt ID
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/:id", findById, (req, res) => {
   const m = req.measurement;
 

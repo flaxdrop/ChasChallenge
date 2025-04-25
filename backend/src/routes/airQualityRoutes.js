@@ -8,6 +8,17 @@ import { findById } from "../utils/findById.js";
 const router = express.Router();
 
 // Route för att hämta alla luftkvalitetsvärden
+/**
+ * @swagger
+ * /airquality:
+ *  get:
+ *    summary: Route för att hämta alla luftkvalitetsvärden
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -23,6 +34,17 @@ router.get("/", async (req, res) => {
 });
 
 // Route för att hämta AQI (Air Quality Index)
+/**
+ * @swagger
+ * /airquality/aqi:
+ *  get:
+ *    summary: Route för att hämta AQI (Air Quality Index)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/aqi", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -38,6 +60,17 @@ router.get("/aqi", async (req, res) => {
 });
 
 // Route för att hämta TVOC (Total Volatile Organic Compounds)
+/**
+ * @swagger
+ * /airquality/tvoc:
+ *  get:
+ *    summary: Route för att hämta TVOC (Total Volatile Organic Compounds)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/tvoc", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -53,6 +86,17 @@ router.get("/tvoc", async (req, res) => {
 });
 
 // Route för att hämta eCO2 (equivalent CO2)
+/**
+ * @swagger
+ * /airquality/eco2:
+ *  get:
+ *    summary: Route för att hämta eCO2 (equivalent CO2)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/eco2", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -68,6 +112,17 @@ router.get("/eco2", async (req, res) => {
 });
 
 // Hämta hela air quality-posten för ett visst ID (t.ex. /airquality/3)
+/**
+ * @swagger
+ * /airquality/:id:
+ *  get:
+ *    summary: Hämta hela air quality-posten för ett visst ID (t.ex. /airquality/3)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/:id", findById, (req, res) => {
   const { id, timestamp, airQuality } = req.measurement;
 
@@ -87,6 +142,18 @@ router.get("/:id", findById, (req, res) => {
 });
 
 // Hämta ett specifikt AQ-värde (t.ex. /airquality/aqi/4)
+/**
+ * @swagger
+ * /airquality/:type/:id:
+ *  get:
+ *    summary: Hämta ett specifikt AQ-värde (t.ex. /airquality/aqi/4)
+ *    description: Hämta ett specifikt AQ-värde (t.ex. /airquality/aqi/4)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/:type/:id", findById, (req, res) => {
   const { type } = req.params;
   const validTypes = ["aqi", "tvoc", "eco2"];
