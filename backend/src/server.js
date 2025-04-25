@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Swagger-dokumentation
 const swaggerOptions = {
-  swaggerDefinition: {
+  definition: {
     openapi: "3.0.0",
     info: {
       title: "AirAware API",
@@ -19,7 +19,16 @@ const swaggerOptions = {
       version: "1.0.0"
     }
   },
-  apis: ["./routes/*.js"]
+  servers: [
+    {
+      url: "http://localhost:3000",
+      description: "Lokal utvecklingsserver"
+    }
+  ],
+  components: {
+    schemas: {}
+  },
+  apis: ["./src/routes/*.js"],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
