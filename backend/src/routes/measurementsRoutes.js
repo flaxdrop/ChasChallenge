@@ -8,6 +8,18 @@ import { findById } from "../utils/findById.js";
 const router = express.Router();
 
 // Route för att hämta alla mätningar
+/**
+ * @swagger
+ * /measurements:
+ *  get:
+ *    summary: Alla mätningar.
+ *    description: Route för att hämta alla mätningar
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -23,6 +35,17 @@ router.get("/", async (req, res) => {
 });
 
 // Route för att hämta temperaturvärden
+/**
+ * @swagger
+ * /measurements/temperature:
+ *  get:
+ *    summary: Route för att hämta temperaturvärden
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/temperature", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -38,6 +61,17 @@ router.get("/temperature", async (req, res) => {
 });
 
 // Route för att hämta luftfuktighetsvärden
+/**
+ * @swagger
+ * /measurements/humidity:
+ *  get:
+ *    summary: Route för att hämta luftfuktighetsvärden
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/humidity", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -53,6 +87,17 @@ router.get("/humidity", async (req, res) => {
 });
 
 // Route för att hämta tryckvärden
+/**
+ * @swagger
+ * /measurements/pressure:
+ *  get:
+ *    summary: Route för att hämta tryckvärden
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/pressure", async (req, res) => {
   try {
     const data = await loadMockData();
@@ -68,6 +113,17 @@ router.get("/pressure", async (req, res) => {
 });
 
 // Hämta hela dataposten för ett visst ID (t.ex. /measurements/3)
+/**
+ * @swagger
+ * /measurements/:id:
+ *  get:
+ *    summary: Hämta hela dataposten för ett visst ID (t.ex. /measurements/3)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/:id", findById, (req, res) => {
   const { id, timestamp, temperature, humidity, pressure } = req.measurement;
 
@@ -81,6 +137,17 @@ router.get("/:id", findById, (req, res) => {
 });
 
 // Hämta ett specifikt värde (t.ex. /measurements/temperature/3)
+/**
+ * @swagger
+ * /measurements/:type/:id:
+ *  get:
+ *    summary: Hämta ett specifikt värde (t.ex. /measurements/temperature/3)
+ *    tags:
+ *      - app
+ *    responses:
+ *      200:
+ *        description: Alla mätningar.
+ */
 router.get("/:type/:id", findById, (req, res) => {
   const { type } = req.params;
   const validTypes = ["temperature", "humidity", "pressure"];
