@@ -1,14 +1,23 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { useTheme } from "../theme/ThemeContext";
+import Background from "../components/Background";
+import AqiDisplay from "../components/AqiDisplay";
 
 const AQI = () => {
   return (
-    <View>
-      <Text>AQI</Text>
-    </View>
-  )
-}
+    <Background>
 
-export default AQI
+        <View>
+          <AqiDisplay>
+            <Text>Hej</Text>
+          </AqiDisplay>
+        </View>
 
-const styles = StyleSheet.create({})
+    </Background>
+  );
+};
+
+export default AQI;
+
+const styles = StyleSheet.create({});
