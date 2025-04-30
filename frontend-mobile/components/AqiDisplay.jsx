@@ -1,13 +1,37 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
 import ContainerGradient from "./ContainerGradient";
+
 
 const AqiDisplay = ({ title }) => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
+  const [lastAQIValue, setLastAQIValue] = useState();
+
+  const fetchAQI = async () => {
+
+    try {
+      const response = await fetch('http://213.238.214.246:3000/airquality/3');
+        if (!response.ok) throw new Error("Something went wrong while fetching AQI values");
+        const data = await response.json();
+        console.log(data);
+        setLastAQIValue(data.aqi);
+        return data;
+
+    } catch (error) {
+        console.error("Couldn't fetch AQI values");
+        return null;        
+    }
+  }
+
+  useEffect(() => {
+    fetchAQI();
+  }, [])
+ 
+  
+
   return (
     <>
       <ContainerGradient>
@@ -21,7 +45,7 @@ const AqiDisplay = ({ title }) => {
           
         </View>
         <View style={styles.AQIValueContainer}>
-          <Text style={styles.AQIValue}>200</Text>
+          <Text style={styles.AQIValue}>{lastAQIValue ? JSON.stringify(lastAQIValue) : "Loading..."}</Text>
           <Text style={styles.AQIWarningText}>Hazardous</Text>
           <View style={styles.adviceText}>
           <Text style={styles.text}>Sensitive groups: Avoid all outdoor physical activities</Text>
