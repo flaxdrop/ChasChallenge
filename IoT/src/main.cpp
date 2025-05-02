@@ -122,13 +122,13 @@ void loop()
   Serial.print(" Pressure: ");
   Serial.print(mySensor.readFloatPressure(), 0);
 
-  Serial.print(" Alt: ");
-  // Serial.print(mySensor.readFloatAltitudeMeters(), 1);
-  Serial.print(mySensor.readFloatAltitudeFeet(), 1);
+  Serial.print(" Altitude in meters: ");
+  Serial.print(mySensor.readFloatAltitudeMeters(), 1);
+  //Serial.print(mySensor.readFloatAltitudeFeet(), 1);
 
-  Serial.print(" Temp: ");
-  // Serial.print(mySensor.readTempC(), 2);
-  Serial.print(mySensor.readTempF(), 2);
+  Serial.print(" Temp in Celsius: ");
+  Serial.print(mySensor.readTempC(), 2);
+  // Serial.print(mySensor.readTempF(), 2);
 
   Serial.println();
 
