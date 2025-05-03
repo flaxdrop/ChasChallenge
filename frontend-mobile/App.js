@@ -16,6 +16,6 @@ export default function App() {
 const styles = StyleSheet.create({
   SafeArea: {
     flex: 1,
-    marginTop: 30,
+    marginTop: 25,
   }
 });

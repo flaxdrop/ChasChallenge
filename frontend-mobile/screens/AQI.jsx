@@ -1,18 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import Background from "../components/Background";
-import AqiDisplay from "../components/AqiDisplay";
+import ContainerGradient from "../components/ContainerGradient";
+import AqiChart from "../components/AqiChart";
+import CurrentAQI from "../components/CurrentAQI";
+
 
 const AQI = () => {
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
   return (
     <Background>
 
-        <View>
-          <AqiDisplay>
-            <Text>Hej</Text>
-          </AqiDisplay>
-        </View>
+        <ContainerGradient>
+       
+            <Text style={styles.text}>Air Quality Index</Text>
+            <AqiChart/>
+            <CurrentAQI title={"Current AQI"}/>
+          
+        </ContainerGradient>
 
     </Background>
   );
@@ -20,4 +27,8 @@ const AQI = () => {
 
 export default AQI;
 
-const styles = StyleSheet.create({});
+const createStyles = (theme) => StyleSheet.create({
+  text: {
+    color: theme.textPrimary,
+  }
+});

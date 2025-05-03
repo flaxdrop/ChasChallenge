@@ -23,7 +23,7 @@ const createStyles = (theme) =>
     container: {
       flex: 1,
       alignItems: "center",
-      marginTop: 10,
+      margin: 10,
       width: "95%",
       padding: 10,
       borderRadius: 10,

@@ -5,6 +5,9 @@ export const lightTheme = {
 
   backgroundPrimary: "#C7C7C7", //First color of background gradient
   backgroundSecondary: "#B7B7B7", // Second color of background gradient
+  graphFrom: "#F5F5F5",
+  graphTo: "#EBEBEB",
+  graphPoint: "#00BAFF",
 
   textPrimary: "#2A2A2A",
   textSecondary: "#134A00",
@@ -27,6 +30,9 @@ export const darkTheme = {
   accent: "#40FD00",
   backgroundPrimary: "#1A1A1A",
   backgroundSecondary: "#121212",
+  graphFrom: "#4D4D4D",
+  graphTo: "#383838",
+  graphPoint: "#00BAFF",
 
   textPrimary: "#FFFFFF",
   textSecondary: "#40FD00",
