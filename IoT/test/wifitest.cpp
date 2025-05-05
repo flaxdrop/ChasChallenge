@@ -129,14 +129,9 @@ void loop()
     json += "\"aqi\":" + String(aqi) + ",";
     json += "\"tvoc\":" + String(tvoc) + ",";
     json += "\"eco2\":" + String(eco2);
-
-    if (sps30_data_available)
-    {
-        json += ",\"pm1\":" + String(particulates.mc_1p0, 2);
-        json += ",\"pm2_5\":" + String(particulates.mc_2p5, 2);
-        json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
-    }
-
+    json += ",\"pm1\":" + String(particulates.mc_1p0, 2);
+    json += ",\"pm2_5\":" + String(particulates.mc_2p5, 2);
+    json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
     json += "}";
 
     if (WiFi.status() == WL_CONNECTED)
