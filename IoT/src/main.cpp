@@ -1,240 +1,122 @@
-#include "Arduino.h"
+#include <WiFiS3.h>
+#include <WiFiSSLClient.h>
+#include <ArduinoHttpClient.h>
+#include <Wire.h>
 #include <sps30.h>
 #include <SparkFunBME280.h>
 #include <SparkFun_ENS160.h>
-#include "Wire.h"
-// prev combined_sensors_test.cpp
+
+// Ditt WiFi-nätverk
+const char* ssid = "Chas Academy";
+const char* password = "EverythingLouderThanEverythingElse";
+
+// Serverinställningar
+const char* serverHost = "yourdomain.com";  // Ersätt med din server IP
+const int serverPort = 443;
+const char* serverPath = "/add-data";
+
 BME280 mySensor;
-
 SparkFun_ENS160 myENS;
-
-int ensStatus;
-
-// Example arduino sketch, based on
-// https://github.com/Sensirion/embedded-sps/blob/master/sps30-i2c/sps30_example_usage.c
-
-// uncomment the next line to use the serial plotter
-// #define PLOTTER_FORMAT
+WiFiSSLClient wifi;
+HttpClient client = HttpClient(wifi, serverHost, serverPort);
 
 void setup()
 {
+    Serial.begin(115200);
+    Wire1.begin();
 
-  Serial.begin(115200);
+    // Anslut till WiFi
+    Serial.print("Ansluter till WiFi...");
+    while (WiFi.begin(ssid, password) != WL_CONNECTED)
+    {
+        delay(1000);
+        Serial.print(".");
+    }
+    Serial.println("\nWiFi ansluten!");
 
-  Serial.println("Reading basic values from BME280");
+    if (!mySensor.beginI2C(Wire1))
+    {
+        Serial.println("BME280 anslöt inte.");
+        while (1);
+    }
 
-  Wire1.begin();
+    if (!myENS.begin(Wire1))
+    {
+        Serial.println("ENS160 anslöt inte.");
+        while (1);
+    }
 
-  if (mySensor.beginI2C(Wire1) == false) // Begin communication over I2C
-  {
-    Serial.println("The sensor did not respond. Please check wiring.");
-    while (1)
-      ; // Freeze
-  }
+    myENS.setOperatingMode(SFE_ENS160_STANDARD);
 
-  delay(1000); // end of BME
-
-  if (!myENS.begin(Wire1))
-  {
-    Serial.println("Could not communicate with the ENS160, check wiring.");
-    while (1)
-      ;
-  }
-
-  Serial.println("Example 1 Basic Example.");
-
-  // Reset the indoor air quality sensor's settings.
-  if (myENS.setOperatingMode(SFE_ENS160_RESET))
-    Serial.println("Ready.");
-
-  delay(100);
-
-  // Device needs to be set to idle to apply any settings.
-  // myENS.setOperatingMode(SFE_ENS160_IDLE);
-
-  // Set to standard operation
-  // Others include SFE_ENS160_DEEP_SLEEP and SFE_ENS160_IDLE
-  myENS.setOperatingMode(SFE_ENS160_STANDARD);
-
-  // There are four values here:
-  // 0 - Operating ok: Standard Operation
-  // 1 - Warm-up: occurs for 3 minutes after power-on.
-  // 2 - Initial Start-up: Occurs for the first hour of operation.
-  //												and only once in sensor's lifetime.
-  // 3 - No Valid Output
-  ensStatus = myENS.getFlags();
-  Serial.print("Gas Sensor Status Flag (0 - Standard, 1 - Warm up, 2 - Initial Start Up): ");
-  Serial.println(ensStatus);
-
-  delay(1000); // end of ENS
-
-  int16_t ret;
-  uint8_t auto_clean_days = 4;
-  uint32_t auto_clean;
-
-  sensirion_i2c_init();
-
-  while (sps30_probe() != 0)
-  {
-    Serial.print("SPS sensor probing failed\n");
-    delay(500);
-  }
-
-#ifndef PLOTTER_FORMAT
-  Serial.print("SPS sensor probing successful\n");
-#endif /* PLOTTER_FORMAT */
-
-  ret = sps30_set_fan_auto_cleaning_interval_days(auto_clean_days);
-  if (ret)
-  {
-    Serial.print("error setting the auto-clean interval: ");
-    Serial.println(ret);
-  }
-
-  ret = sps30_start_measurement();
-  if (ret < 0)
-  {
-    Serial.print("error starting measurement\n");
-  }
-
-#ifndef PLOTTER_FORMAT
-  Serial.print("measurements started\n");
-#endif /* PLOTTER_FORMAT */
-
-#ifdef SPS30_LIMITED_I2C_BUFFER_SIZE
-  Serial.print("Your Arduino hardware has a limitation that only\n");
-  Serial.print("  allows reading the mass concentrations. For more\n");
-  Serial.print("  information, please check\n");
-  Serial.print("  https://github.com/Sensirion/arduino-sps#esp8266-partial-legacy-support\n");
-  Serial.print("\n");
-  delay(2000);
-#endif
-
-  delay(1000);
+    sensirion_i2c_init();
+    if (sps30_probe() != 0 || sps30_start_measurement() < 0)
+    {
+        Serial.println("SPS30 kunde inte starta.");
+        while (1);
+    }
 }
 
 void loop()
 {
+    float temperature = mySensor.readTempC();
+    float humidity = mySensor.readFloatHumidity();
+    float pressure = mySensor.readFloatPressure();
 
-  Serial.print("Humidity: ");
-  Serial.print(mySensor.readFloatHumidity(), 0);
+    myENS.setTempCompensation(temperature);
+    //(får error från raden) myENS.setHumidityCompensation(humidity);
 
-  Serial.print(" Pressure: ");
-  Serial.print(mySensor.readFloatPressure(), 0);
+    int aqi = myENS.getAQI();
+    int tvoc = myENS.getTVOC();
+    int eco2 = myENS.getECO2();
 
-  Serial.print(" Altitude: ");
-  Serial.print(mySensor.readFloatAltitudeMeters(), 1);
-  // Serial.print(mySensor.readFloatAltitudeFeet(), 1);
-
-  Serial.print(" Temperature: ");
-  Serial.print(mySensor.readTempC(), 2);
-  // Serial.print(mySensor.readTempF(), 2);
-
-  Serial.println();
-
-  delay(1000); // end of BME
-
-  if (myENS.checkDataStatus())
-  {
-    Serial.print("Air Quality Index (1-5) : ");
-    Serial.println(myENS.getAQI());
-
-    Serial.print("Total Volatile Organic Compounds: ");
-    Serial.print(myENS.getTVOC());
-    Serial.println("ppb");
-
-    Serial.print("CO2 concentration: ");
-    Serial.print(myENS.getECO2());
-    Serial.println("ppm");
-
-    Serial.print("Gas Sensor Status Flag (0 - Standard, 1 - Warm up, 2 - Initial Start Up): ");
-    Serial.println(myENS.getFlags());
-
-    Serial.println();
-    Serial.println();
-
-    delay(1000); // end of ENS
-
-    struct sps30_measurement m;
-    char serial[SPS30_MAX_SERIAL_LEN];
+    struct sps30_measurement particulates;
     uint16_t data_ready;
-    int16_t ret;
+    bool sps30_data_available = false;
 
-    do
+    if (sps30_read_data_ready(&data_ready) == 0 && data_ready)
     {
-      ret = sps30_read_data_ready(&data_ready);
-      if (ret < 0)
-      {
-        Serial.print("error reading data-ready flag: ");
-        Serial.println(ret);
-      }
-      else if (!data_ready)
-        Serial.print("data not ready, no new measurement available\n");
-      else
-        break;
-      delay(100); /* retry in 100ms */
-    } while (1);
-
-    ret = sps30_read_measurement(&m);
-    if (ret < 0)
-    {
-      Serial.print("error reading measurement\n");
-    }
-    else
-    {
-
-#ifndef PLOTTER_FORMAT
-      Serial.print("PM  1.0: ");
-      Serial.println(m.mc_1p0);
-      Serial.print("PM  2.5: ");
-      Serial.println(m.mc_2p5);
-      Serial.print("PM  4.0: ");
-      Serial.println(m.mc_4p0);
-      Serial.print("PM 10.0: ");
-      Serial.println(m.mc_10p0);
-
-#ifndef SPS30_LIMITED_I2C_BUFFER_SIZE
-      Serial.print("NC  0.5: ");
-      Serial.println(m.nc_0p5);
-      Serial.print("NC  1.0: ");
-      Serial.println(m.nc_1p0);
-      Serial.print("NC  2.5: ");
-      Serial.println(m.nc_2p5);
-      Serial.print("NC  4.0: ");
-      Serial.println(m.nc_4p0);
-      Serial.print("NC 10.0: ");
-      Serial.println(m.nc_10p0);
-
-      Serial.print("Typical particle size: ");
-      Serial.println(m.typical_particle_size);
-#endif
-
-      Serial.println();
-
-#else
-      // since all values include particles smaller than X, if we want to create buckets we
-      // need to subtract the smaller particle count.
-      // This will create buckets (all values in micro meters):
-      // - particles        <= 0,5
-      // - particles > 0.5, <= 1
-      // - particles > 1,   <= 2.5
-      // - particles > 2.5, <= 4
-      // - particles > 4,   <= 10
-
-      Serial.print(m.nc_0p5);
-      Serial.print(" ");
-      Serial.print(m.nc_1p0 - m.nc_0p5);
-      Serial.print(" ");
-      Serial.print(m.nc_2p5 - m.nc_1p0);
-      Serial.print(" ");
-      Serial.print(m.nc_4p0 - m.nc_2p5);
-      Serial.print(" ");
-      Serial.print(m.nc_10p0 - m.nc_4p0);
-      Serial.println();
-
-#endif /* PLOTTER_FORMAT */
+        if (sps30_read_measurement(&particulates) == 0)
+        {
+            sps30_data_available = true;
+        }
+        else
+        {
+            Serial.println("Kunde inte läsa SPS30-data.");
+        }
     }
 
-    delay(1000);
-  }
+    String json = "{";
+    json += "\"timestamp\":" + String(millis()) + ",";
+    json += "\"temperature\":" + String(temperature, 2) + ",";
+    json += "\"humidity\":" + String(humidity, 2) + ",";
+    json += "\"pressure\":" + String(pressure, 2) + ",";
+    json += "\"aqi\":" + String(aqi) + ",";
+    json += "\"tvoc\":" + String(tvoc) + ",";
+    json += "\"eco2\":" + String(eco2);
+    if (sps30_data_available)
+    {
+        json += ",\"pm1\":" + String(particulates.mc_1p0, 2);
+        json += ",\"pm2_5\":" + String(particulates.mc_2p5, 2);
+        json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
+    }
+    json += "}";
+
+    // Skicka POST-request
+    Serial.println("Skickar data till server...");
+    client.beginRequest();
+    client.post(serverPath);
+    client.sendHeader("Content-Type", "application/json");
+    client.sendHeader("Content-Length", json.length());
+    client.beginBody();
+    client.print(json);
+    client.endRequest();
+
+    int statusCode = client.responseStatusCode();
+    String response = client.responseBody();
+
+    Serial.print("Svar från server: ");
+    Serial.println(statusCode);
+    Serial.println(response);
+
+    delay(10000); // Vänta 10 sekunder
 }
