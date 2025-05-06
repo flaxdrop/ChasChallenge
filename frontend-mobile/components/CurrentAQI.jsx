@@ -30,7 +30,7 @@ const CurrentAQI = ({ title }) => {
   useEffect(() => {
     const fetchCurrentAQI = async () => {
       try {
-        const response = await fetch("http://213.238.214.246:3000/airquality/");
+        const response = await fetch("http://192.168.1.53:3000/airquality/");
         const json = await response.json();
         // console.log("CURRENT AQI:", json);
 

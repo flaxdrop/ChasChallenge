@@ -5,6 +5,7 @@ import Background from "../components/Background";
 import ContainerGradient from "../components/ContainerGradient";
 import AqiChart from "../components/AqiChart";
 import CurrentAQI from "../components/CurrentAQI";
+import ReusableChart from "../components/ReusableChart";
 
 
 const AQI = () => {
@@ -15,8 +16,7 @@ const AQI = () => {
 
         <ContainerGradient>
        
-            <Text style={styles.text}>Air Quality Index</Text>
-            <AqiChart/>
+            <ReusableChart valuePath={"airquality"} value={"aqi"} title={"Air Quality Index"}/>
             <CurrentAQI title={"Current AQI"}/>
           
         </ContainerGradient>

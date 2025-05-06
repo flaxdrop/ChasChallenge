@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import ReusableChart from '../components/ReusableChart'
 
 const Humidity = () => {
   return (
     <View>
-      <Text>Humidity</Text>
+      <ReusableChart valuePath={"measurements/humidity"}
+      value={"humidity"} title={"Humidity"}/>
     </View>
   )
 }

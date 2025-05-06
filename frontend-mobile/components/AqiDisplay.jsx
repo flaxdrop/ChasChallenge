@@ -13,7 +13,7 @@ const AqiDisplay = ({ title }) => {
   const fetchAQI = async () => {
 
     try {
-      const response = await fetch('http://213.238.214.246:3000/airquality/3');
+      const response = await fetch('http://192.168.1.53:3000/airquality/3');
         if (!response.ok) throw new Error("Something went wrong while fetching AQI values");
         const data = await response.json();
         // console.log(data);
