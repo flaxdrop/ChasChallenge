@@ -1,166 +1,118 @@
-// Mätvärden från BME280
-
 import express from "express";
-import { loadMockData } from "../utils/dataLoader.js";
-import { formatMeasurement } from "../utils/formatters.js";
-import { findById } from "../utils/findById.js";
+import { getAllMeasurements } from "../utils/measurementsService.js";
 
 const router = express.Router();
 
-// Route för att hämta alla mätningar
+// Route för att hämta alla värden från båda sensorerna
 /**
  * @swagger
- * /measurements:
+ * /all:
  *  get:
- *    summary: Alla mätningar.
- *    description: Route för att hämta alla mätningar
+ *    summary: Route för att hämta alla värden från båda sensorerna
  *    tags:
  *      - app
+ *    parameters:
+ *      - in: query
+ *        name: limit
+ *        schema:
+ *          type: integer
+ *        description: Antal mätningar att returnera
  *    responses:
  *      200:
  *        description: Alla mätningar.
  */
 router.get("/", async (req, res) => {
   try {
-    const data = await loadMockData();
-    const measurements = formatMeasurement("measurements", data);
-    res.json(measurements);
+    const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
+    const allMeasurements = await getAllMeasurements(limit);
+    res.json(allMeasurements);
   } catch (err) {
-    console.error("Fel vid läsning av alla mätningar:", err);
+    console.error("Fel vid läsning av alla sensorvärden:", err);
     res.status(500).json({
-      error: "Kunde inte läsa mätdata",
+      error: "Kunde inte läsa sensordata",
       details: err.message,
     });
   }
 });
 
-// Route för att hämta temperaturvärden
 /**
  * @swagger
- * /measurements/temperature:
+ * /all/{types}:
  *  get:
- *    summary: Route för att hämta temperaturvärden
+ *    summary: Hämta specifika typer av mätningar
  *    tags:
  *      - app
+ *    parameters:
+ *      - in: path
+ *        name: types
+ *        required: true
+ *        schema:
+ *          type: string
+ *        description: Kommaseparerade typer av mätningar (t.ex. temperature,humidity,aqi)
+ *      - in: query
+ *        name: limit
+ *        schema:
+ *          type: integer
+ *        description: Antal mätningar att returnera
  *    responses:
  *      200:
- *        description: Alla mätningar.
+ *        description: Filtrerade mätningar
+ *      400:
+ *        description: Ogiltig typ av mätning
  */
-router.get("/temperature", async (req, res) => {
+router.get("/:types", async (req, res) => {
+  const { types } = req.params;
+  // Lista över giltiga mätningstyper
+  const validTypes = [
+    "temperature",
+    "humidity",
+    "pressure",
+    "aqi",
+    "tvoc",
+    "eco2",
+  ];
+
+  // Dela upp types-strängen i en array och validera varje typ
+  const requestedTypes = types.split(",");
+  const invalidTypes = requestedTypes.filter(
+    (type) => !validTypes.includes(type)
+  );
+
+  if (invalidTypes.length > 0) {
+    return res.status(400).json({
+      error: "Ogiltiga typer av mätningar",
+      invalidTypes,
+    });
+  }
+
   try {
-    const data = await loadMockData();
-    const temperatures = formatMeasurement("temperature", data);
-    res.json(temperatures);
+    const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
+    const measurements = await getAllMeasurements(limit);
+
+    // Filtrera mätningarna för att endast inkludera efterfrågade typer
+    const filtered = measurements.map((m) => {
+      const filteredMeasurement = {
+        id: m.id,
+        timestamp: m.timestamp,
+      };
+
+      requestedTypes.forEach((type) => {
+        if (m[type] !== undefined) {
+          filteredMeasurement[type] = m[type];
+        }
+      });
+
+      return filteredMeasurement;
+    });
+
+    res.json(filtered);
   } catch (err) {
-    console.error("Fel vid läsning av temperaturdata:", err);
+    console.error("Fel vid läsning av filtrerade sensorvärden:", err);
     res.status(500).json({
-      error: "Kunde inte läsa temperaturvärden",
+      error: "Kunde inte läsa filtrerad sensordata",
       details: err.message,
     });
   }
-});
-
-// Route för att hämta luftfuktighetsvärden
-/**
- * @swagger
- * /measurements/humidity:
- *  get:
- *    summary: Route för att hämta luftfuktighetsvärden
- *    tags:
- *      - app
- *    responses:
- *      200:
- *        description: Alla mätningar.
- */
-router.get("/humidity", async (req, res) => {
-  try {
-    const data = await loadMockData();
-    const humidities = formatMeasurement("humidity", data);
-    res.json(humidities);
-  } catch (err) {
-    console.error("Fel vid läsning av luftfuktighetsdata:", err);
-    res.status(500).json({
-      error: "Kunde inte läsa luftfuktighetsvärden",
-      details: err.message,
-    });
-  }
-});
-
-// Route för att hämta tryckvärden
-/**
- * @swagger
- * /measurements/pressure:
- *  get:
- *    summary: Route för att hämta tryckvärden
- *    tags:
- *      - app
- *    responses:
- *      200:
- *        description: Alla mätningar.
- */
-router.get("/pressure", async (req, res) => {
-  try {
-    const data = await loadMockData();
-    const pressures = formatMeasurement("pressure", data);
-    res.json(pressures);
-  } catch (err) {
-    console.error("Fel vid läsning av tryckdata:", err);
-    res.status(500).json({
-      error: "Kunde inte läsa tryckvärden",
-      details: err.message,
-    });
-  }
-});
-
-// Hämta hela dataposten för ett visst ID (t.ex. /measurements/3)
-/**
- * @swagger
- * /measurements/:id:
- *  get:
- *    summary: Hämta hela dataposten för ett visst ID (t.ex. /measurements/3)
- *    tags:
- *      - app
- *    responses:
- *      200:
- *        description: Alla mätningar.
- */
-router.get("/:id", findById, (req, res) => {
-  const { id, timestamp, temperature, humidity, pressure } = req.measurement;
-
-  res.json({
-    id,
-    timestamp,
-    temperature,
-    humidity,
-    pressure,
-  });
-});
-
-// Hämta ett specifikt värde (t.ex. /measurements/temperature/3)
-/**
- * @swagger
- * /measurements/:type/:id:
- *  get:
- *    summary: Hämta ett specifikt värde (t.ex. /measurements/temperature/3)
- *    tags:
- *      - app
- *    responses:
- *      200:
- *        description: Alla mätningar.
- */
-router.get("/:type/:id", findById, (req, res) => {
-  const { type } = req.params;
-  const validTypes = ["temperature", "humidity", "pressure"];
-
-  if (!validTypes.includes(type)) {
-    return res.status(400).json({ error: `Ogiltig typ: ${type}` });
-  }
-
-  res.json({
-    id: req.measurement.id,
-    timestamp: req.measurement.timestamp,
-    [type]: req.measurement[type],
-  });
 });
 
 export default router;
