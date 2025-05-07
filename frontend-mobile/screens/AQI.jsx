@@ -16,7 +16,7 @@ const AQI = () => {
 
         <ContainerGradient>
        
-            <ReusableChart valuePath={"airquality"} value={"aqi"} title={"Air Quality Index"}/>
+            <ReusableChart valuePath={"airquality"} value={"aqi"} title={"Air Quality Index (AQI)"}/>
             <CurrentAQI title={"Current AQI"}/>
           
         </ContainerGradient>

@@ -43,7 +43,7 @@ const ReusableChart = ({title, valuePath, value}) => {
     if (loading) return <ActivityIndicator size="large"/>
   return (
     <View>
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.header}>{title}</Text>
       <LineChart
       data={chartData}
       width={screenWidth - 36}
@@ -76,5 +76,10 @@ const createStyles = (theme) => StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         elevation: 4,
+    },
+    header: {
+        color: theme.textPrimary,
+        fontSize: 20,
+        textAlign: "center"
     }
 })

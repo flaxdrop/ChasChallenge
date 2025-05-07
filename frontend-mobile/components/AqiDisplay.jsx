@@ -4,8 +4,8 @@ import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ContainerGradient from "./ContainerGradient";
 
-
 const AqiDisplay = ({ title }) => {
+  const apiURL = process.env.EXPO_PUBLIC_API_URL;
   const { theme } = useTheme();
   const styles = createStyles(theme);
   const [lastAQIValue, setLastAQIValue] = useState();
@@ -13,7 +13,7 @@ const AqiDisplay = ({ title }) => {
   const fetchAQI = async () => {
 
     try {
-      const response = await fetch('http://192.168.1.53:3000/airquality/3');
+      const response = await fetch(`${apiURL}/airquality/3`);
         if (!response.ok) throw new Error("Something went wrong while fetching AQI values");
         const data = await response.json();
         // console.log(data);
