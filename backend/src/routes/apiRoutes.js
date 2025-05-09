@@ -1,7 +1,8 @@
 import express from "express";
-import measurementsRoutes from "./measurementsRoutes.js";
-import airQualityRoutes from "./airQualityRoutes.js";
-import allDataRoutes from "./allDataRoutes.js";
+import bme280Routes from "./bme280Routes.js";
+import ens160Routes from "./ens160Routes.js";
+import measurements from "./measurementsRoutes.js";
+import addDataRoutes from "./addDataRoutes.js";
 
 const router = express.Router();
 
@@ -23,8 +24,9 @@ router.get("/", (req, res) => {
 });
 
 // Routes för de olika endpointsen
-router.use("/all", allDataRoutes);
-router.use("/measurements", measurementsRoutes);
-router.use("/airquality", airQualityRoutes);
+router.use("/measurements", measurements);
+router.use("/bme280", bme280Routes);
+router.use("/ens160", ens160Routes);
+router.use("/add-data", addDataRoutes);
 
 export default router;
