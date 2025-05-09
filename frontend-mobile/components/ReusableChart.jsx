@@ -40,6 +40,9 @@ const ReusableChart = ({title, valuePath, value}) => {
         fetchData();
     }, [valuePath, value]);
 
+    if (loading) return <ActivityIndicator size="large" />;
+if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen data tillgänglig</Text>;
+
     if (loading) return <ActivityIndicator size="large"/>
   return (
     <View>

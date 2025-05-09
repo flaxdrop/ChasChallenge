@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import Background from "../components/Background";
 import ContainerGradient from "../components/ContainerGradient";
-import AqiChart from "../components/AqiChart";
 import CurrentAQI from "../components/CurrentAQI";
 import ReusableChart from "../components/ReusableChart";
 
