@@ -6,7 +6,7 @@ const router = express.Router();
 // Route för att hämta alla värden från båda sensorerna
 /**
  * @swagger
- * /all:
+ * /measurements:
  *  get:
  *    summary: Route för att hämta alla värden från båda sensorerna
  *    tags:
@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
 
 /**
  * @swagger
- * /all/{types}:
+ * /measurements/{types}:
  *  get:
  *    summary: Hämta specifika typer av mätningar
  *    tags:
