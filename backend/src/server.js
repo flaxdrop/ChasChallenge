@@ -18,17 +18,17 @@ const swaggerOptions = {
       description: "API-dokumentation för AirAwares API.",
       version: "1.0.0",
     },
+    servers: [
+      {
+        url: "http://localhost:3000",
+        description: "Lokal utvecklingsserver",
+      },
+    ],
+    tags: [
+      { name: "app", descrition: "Endpoints för appen." },
+      { name: "sensor", description: "Endpoints för sensor." },
+    ],
   },
-  servers: [
-    {
-      url: "http://localhost:3000",
-      description: "Lokal utvecklingsserver",
-    },
-  ],
-  tags: [
-    { name: "App", descrition: "Endpoints för appen." },
-    { name: "Sensor", description: "Endpoints för sensor." },
-  ],
   components: {
     schemas: {},
   },
