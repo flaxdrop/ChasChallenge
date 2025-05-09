@@ -148,7 +148,7 @@ router.get("/:types", async (req, res) => {
  *                 example: 101325
  *               aqi:
  *                 type: integer
- *                 example: 42
+ *                 example: 4
  *               tvoc:
  *                 type: number
  *                 example: 150
@@ -160,7 +160,7 @@ router.get("/:types", async (req, res) => {
  *             temperature: 22.5
  *             humidity: 55.2
  *             pressure: 101325
- *             aqi: 42
+ *             aqi: 4
  *             tvoc: 150
  *             eco2: 400
  *     responses:
@@ -174,7 +174,7 @@ router.get("/:types", async (req, res) => {
  *               temperature: 22.5
  *               humidity: 55.2
  *               pressure: 101325
- *               aqi: 42
+ *               aqi: 4
  *               tvoc: 150
  *               eco2: 400
  *       400:
