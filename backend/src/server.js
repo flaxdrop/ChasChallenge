@@ -23,6 +23,10 @@ const swaggerOptions = {
         url: "http://localhost:3000",
         description: "Lokal utvecklingsserver",
       },
+      {
+        url: "www",
+        description: "Live server på render med databas på neon."
+      }
     ],
     tags: [
       { name: "app", descrition: "Endpoints för appen." },
