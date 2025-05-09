@@ -17,7 +17,9 @@
 [Idris Ahmed](https://github.com/derainted)\
 [Anton Athley](https://github.com/AntonAthley)\
 [Abbas Al-Naema](https://github.com/Abbaln)\
-[Jonas Fakhro](https://github.com/Jonas262901)
+[Jonas Fakhro](https://github.com/Jonas262901)\
+[Rebecca Lindman](https://github.com/rebeccalindman)
+
 
 ## Kodnamn för produkten : AirAware
 
