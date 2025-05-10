@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useTheme } from '../theme/ThemeContext'
 import {LineChart} from 'react-native-chart-kit'
 
-const ReusableChart = ({title, valuePath, value}) => {
-    const apiURL = process.env.EXPO_PUBLIC_API_URL;
+const ReusableChart = ({title, valuePath, value, limit}) => {
+    const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
     const { theme } = useTheme();
     const styles = createStyles(theme);
     const screenWidth = Dimensions.get('window').width;
@@ -14,14 +14,13 @@ const ReusableChart = ({title, valuePath, value}) => {
     useEffect(() => {      
         const fetchData = async () => {            
             try {
-                const response = await fetch(`${apiURL}/${valuePath}/`); //measurements/humidity, measurements/temperature, measurements/pressure
+                const response = await fetch(`${apiURL}/${valuePath}/${value}?limit=${limit}`); //measurements/humidity, measurements/temperature, measurements/pressure
                 const json = await response.json();
-                // console.log("Fetched data:", json);
-                
+               
                 const labels = json.map(item => 
                     new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
                 );
-
+                
                 const data = json.map(item => item[value]);
 
                 setChartData({
@@ -59,11 +58,18 @@ if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen da
         decimalPlaces: 0,
         color: (opacity = 1) => theme.graphPoint,
         labelColor: (opacity = 1) => theme.accent,
-        style: { borderRadius: 10},
+        style: { borderRadius: 10
+         },
         propsForDots: {
             r: '3',
             strokeWidth: '2',
             stroke: theme.graphPoint,
+        },
+        propsForLabels: {
+            fontSize: 10,
+        },
+        propsForBackgroundLines: {
+            strokeWidth: 0.2,
         }
       }}
       bezier/>
