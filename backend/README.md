@@ -16,6 +16,8 @@ Backend for our Chas Challenge
 
 API:t körs nu på: http://localhost:3000
 
+### API även på: https://chaschallenge-backend.onrender.com/
+
 ### Tillgängliga endpoints
 
 Alla endpoints stödjer query parameter `?limit=INT` för att begränsa antalet returnerade mätningar.
@@ -60,6 +62,7 @@ Alla endpoints stödjer query parameter `?limit=INT` för att begränsa antalet 
 - `ens160Routes.js` - Hanterar ENS160-sensorn (luftkvalitet)
 - `addDataRoutes.js` - Hanterar datainsamling
 - `apiRoutes.js` - Huvudrutter för API:et
+- `api-docs` - API dokumentation
 
 #### utils/:
 
