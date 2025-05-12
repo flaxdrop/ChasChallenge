@@ -25,18 +25,18 @@ const router = express.Router();
  */
 router.get("/", async (req, res) => {
   try {
-    const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
+    const limit = req.query.limit ? parseInt(req.query.limit, 10) : 1; //gets 1 by default
     const measurements = await getAllMeasurements(limit);
     // Plocka ut endast id, timestamp, temperature, humidity och pressure
     const filtered = measurements.map(
       ({ id, timestamp, temperature, humidity, pressure }) => ({
         id,
-        timestamp,
-        temperature,
-        humidity,
-        pressure,
+        timestamp
       })
     );
+
+    const sensors = await getSensorDetails();
+    
     res.json(filtered);
   } catch (err) {
     console.error("Fel vid läsning av alla mätningar:", err);
