@@ -1,6 +1,4 @@
 import express from "express";
-import bme280Routes from "./bme280Routes.js";
-import ens160Routes from "./ens160Routes.js";
 import { getAllSensors, createSensor, updateSensorDetails, patchSensorDetails, getOneSensor} from "../controllers/sensorsController.js";
 
 const router = express.Router();

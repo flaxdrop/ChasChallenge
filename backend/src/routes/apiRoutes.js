@@ -2,7 +2,7 @@ import express from "express";
 import bme280Routes from "./bme280Routes.js";
 import ens160Routes from "./ens160Routes.js";
 import measurements from "./measurementsRoutes.js";
-import addDataRoutes from "./addDataRoutes.js";
+/* import addDataRoutes from "./addDataRoutes.js"; */
 import sensorsRoutes from "./sensors.js"; 
 
 const router = express.Router();
