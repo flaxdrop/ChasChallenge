@@ -2,13 +2,13 @@
 
 Backend for our Chas Challenge
 
-## För frontend
+## Installation
 
 ### Miljövariabel
 
-- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000
+- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000, samt URL för databas.
 
-- Kör i en separat terminal från frontend:
+- Kör i en separat terminal:
 
 1. cd .\backend
 2. npm install
@@ -16,82 +16,59 @@ Backend for our Chas Challenge
 
 API:t körs nu på: http://localhost:3000
 
+### API även på: https://chaschallenge-backend.onrender.com/
+
 ### Tillgängliga endpoints
 
-#### GET /all
-
-- Hämtar samtliga mätvärden.
-
-#### GET /all/:id
-
-- Hämtar ett mätvärde med angivet ID.
+Alla endpoints stödjer query parameter `?limit=INT` för att begränsa antalet returnerade mätningar.
 
 #### GET /measurements
 
-- Hämtar temperatur, luftfuktighet och tryck.
+- Hämtar samtliga mätvärden
 
-#### GET /measurements/:id
+#### GET /measurements/:types
 
-- Hämtar mätvärden för ett specifikt ID.
+- Hämtar specifika typer av mätningar
+- Parametrar:
+  - `types`: kommaseparerade typer (t.ex. temperature,humidity,aqi)
+- Tillgängliga typer:
+  - temperature
+  - humidity
+  - pressure
+  - aqi
+  - tvoc
+  - eco2
 
-#### GET /measurements/temperature
+#### GET /BME280
 
-- Endast temperaturvärden.
+- Hämtar temperatur, luftfuktighet och tryck
 
-#### GET /measurements/humidity
+#### GET /ENS160
 
-- Endast luftfuktighetsvärden.
-
-#### GET /measurements/pressure
-
-- Endast tryckvärden.
-
-#### GET /measurements/:type/:id
-
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
-
-#### GET /airquality
-
-- Hämtar alla luftkvalitetsvärden (AQI, TVOC, eCO2).
-
-#### GET /airquality/:id
-
-- Hämtar luftkvalitetsdata för ett specifikt ID.
-
-#### GET /airquality/aqi
-
-- Endast AQI-värden.
-
-#### GET /airquality/tvoc
-
-- Endast TVOC-värden.
-
-#### GET /airquality/eco2
-
-- Endast eCO2-värden.
-
-#### GET /airquality/:type/:id
-
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
+- Hämtar alla luftkvalitetsvärden (AQI, TVOC, eCO2)
 
 ## Mappstruktur
 
-### config/:
+### src/:
 
-- Här placerar vi konfigurationsfiler, som hanterar miljövariabler och andra inställningar.
+#### config/:
 
-### data/:
+- `index.js` - Hanterar miljövariabler och konfiguration
 
-- Här placerar vi databas, för tillfället mockData.
+#### routes/:
 
-### routes/:
+- `measurementsRoutes.js` - Hanterar alla mätvärden
+- `bme280Routes.js` - Hanterar BME280-sensorn (temperatur, luftfuktighet, tryck)
+- `ens160Routes.js` - Hanterar ENS160-sensorn (luftkvalitet)
+- `addDataRoutes.js` - Hanterar datainsamling
+- `apiRoutes.js` - Huvudrutter för API:et
+- `api-docs` - API dokumentation
 
-- Här definierar vi API-rutter. Varje fil kan representera en specifik resurs (t.ex. co2).
+#### utils/:
 
-### utils/:
+- `measurementsService.js` - Service för att hantera mätvärden
+- `db.js` - Databashantering
 
-- Helpers och återanvändbara funktioner.
+#### server.js:
 
-### server.js:
-
-- Huvudfilen för att starta servern och definiera middleware och rutter.
+- Huvudfilen för att starta servern och definiera middleware och rutter

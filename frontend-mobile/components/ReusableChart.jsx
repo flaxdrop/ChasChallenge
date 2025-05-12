@@ -3,25 +3,25 @@ import React, { useEffect, useState } from 'react'
 import { useTheme } from '../theme/ThemeContext'
 import {LineChart} from 'react-native-chart-kit'
 
-const AqiChart = ({title}) => {
+const ReusableChart = ({title, valuePath, value, limit}) => {
+    const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
     const { theme } = useTheme();
     const styles = createStyles(theme);
     const screenWidth = Dimensions.get('window').width;
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchData = async () => {
+    useEffect(() => {      
+        const fetchData = async () => {            
             try {
-                const response = await fetch('http://192.168.1.53:3000/airquality/');
+                const response = await fetch(`${apiURL}/${valuePath}/${value}?limit=${limit}`); //measurements/humidity, measurements/temperature, measurements/pressure
                 const json = await response.json();
-                // console.log("Fetched data:", json);
-                
+               
                 const labels = json.map(item => 
                     new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
                 );
-
-                const data = json.map(item => item.aqi);
+                
+                const data = json.map(item => item[value]);
 
                 setChartData({
                     labels, 
@@ -29,7 +29,7 @@ const AqiChart = ({title}) => {
                 });
             
             } catch (error) {
-                console.error("Error fetching AQI data", error);
+                console.error(`Error fetching ${value} data`, error);
                 
             } finally {
                 setLoading(false);
@@ -37,11 +37,15 @@ const AqiChart = ({title}) => {
         };
 
         fetchData();
-    }, []);
+    }, [valuePath, value]);
+
+    if (loading) return <ActivityIndicator size="large" />;
+if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen data tillgänglig</Text>;
 
     if (loading) return <ActivityIndicator size="large"/>
   return (
     <View>
+        <Text style={styles.header}>{title}</Text>
       <LineChart
       data={chartData}
       width={screenWidth - 36}
@@ -54,11 +58,18 @@ const AqiChart = ({title}) => {
         decimalPlaces: 0,
         color: (opacity = 1) => theme.graphPoint,
         labelColor: (opacity = 1) => theme.accent,
-        style: { borderRadius: 10},
+        style: { borderRadius: 10
+         },
         propsForDots: {
             r: '3',
             strokeWidth: '2',
             stroke: theme.graphPoint,
+        },
+        propsForLabels: {
+            fontSize: 10,
+        },
+        propsForBackgroundLines: {
+            strokeWidth: 0.2,
         }
       }}
       bezier/>
@@ -66,7 +77,7 @@ const AqiChart = ({title}) => {
   )
 }
 
-export default AqiChart
+export default ReusableChart
 
 const createStyles = (theme) => StyleSheet.create({
     chartContainer: {
@@ -74,5 +85,10 @@ const createStyles = (theme) => StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         elevation: 4,
+    },
+    header: {
+        color: theme.textPrimary,
+        fontSize: 20,
+        textAlign: "center"
     }
 })
