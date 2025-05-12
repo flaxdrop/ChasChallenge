@@ -11,6 +11,11 @@ export const getSensorDetails = async (limit = null) => {
   return result.rows;
 };
 
+export const getSensorById = async (id) => {
+  const result = await pool.query("SELECT * FROM sensors WHERE id = $1", [id]);
+  return result.rows[0];
+};
+
 // Funktion för att skapa en ny mätning
 export const addSensor = async (sensor) => {
     try {

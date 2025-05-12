@@ -154,6 +154,20 @@ router.put("/:id", updateSensorDetails);  // Full update
  *        description: Sensor updated
  *      400:
  *        description: Bad request - Missing required keys / Something went wrong
+ *        content:
+ *          application/json:
+ *            example:
+ *              error: "Missing required keys: model, statuscode"
+ *      404:
+ *        description: Sensor not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                message:
+ *                  type: string
+ *                  example: Sensor hittades inte
  *      500:
  *        description: Failed to update sensor
  * 
