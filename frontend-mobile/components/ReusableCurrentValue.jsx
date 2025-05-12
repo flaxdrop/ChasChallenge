@@ -17,9 +17,12 @@ const ReusableCurrentValue = ({ title, valuePath, value }) => {
         const json = await response.json();
 
         const data = json.map((item) => item[value]);
-        const lastIndex = data.length - 1;
+        const lastIndex = data.length - data.length;
 
-        setCurrentValue(data[lastIndex]);
+        console.log(data[lastIndex]);
+        
+
+        setCurrentValue(data[lastIndex].toFixed(1));
       } catch (error) {
         console.log(`Couldnt fetch ${value} from API`, error);
       } finally {
