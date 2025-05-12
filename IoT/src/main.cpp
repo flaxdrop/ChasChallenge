@@ -1,5 +1,5 @@
 #include <WiFiS3.h>
-#include <WiFiClient.h>
+//#include <WiFiClient.h>
 #include <WiFiSSLClient.h>
 #include <ArduinoHttpClient.h>
 #include <Wire.h>
@@ -12,13 +12,13 @@ const char* ssid = "Chas Academy";
 const char* password = "EverythingLouderThanEverythingElse";
 
 // Serverinställningar
-const char* serverHost = "172.20.32.1";  // Ersätt med din server IP
-const int serverPort = 3000;
-const char* serverPath = "/add-data";
+const char* serverHost = "chaschallenge-backend.onrender.com";  // Ersätt med din server IP
+const int serverPort = 443;
+const char* serverPath = "/measurements";
 
 BME280 mySensor;
 SparkFun_ENS160 myENS;
-WiFiClient wifi;
+WiFiSSLClient wifi;
 HttpClient client = HttpClient(wifi, serverHost, serverPort);
 
 void setup()
@@ -87,10 +87,10 @@ void loop()
     }
 
     String json = "{";
-    json += "\"timestamp\":" + String(millis()) + ",";
+    //json += "\"timestamp\":" + String(millis()) + ",";
     json += "\"temperature\":" + String(temperature, 2) + ",";
     json += "\"humidity\":" + String(humidity, 2) + ",";
-    json += "\"pressure\":" + String(pressure, 2) + ",";
+    json += "\"pressure\":" + String((int)pressure) + ",";
     json += "\"aqi\":" + String(aqi) + ",";
     json += "\"tvoc\":" + String(tvoc) + ",";
     json += "\"eco2\":" + String(eco2);
@@ -101,6 +101,9 @@ void loop()
         json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
     }
     json += "}";
+
+    Serial.println("Payload som skickas:");
+    Serial.println(json);
 
     // Skicka POST-request
     Serial.println("Skickar data till server...");
