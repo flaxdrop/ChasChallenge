@@ -29,6 +29,5 @@ router.use("/measurements", measurements);
 router.use("/sensors", sensorsRoutes);
 router.use("/bme280", bme280Routes);
 router.use("/ens160", ens160Routes);
-router.use("/add-data", addDataRoutes);
 
 export default router;
