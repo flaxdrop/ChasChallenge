@@ -50,6 +50,8 @@ router.get("/", getAllSensors);
  *        description: Bad request - Missing required keys / Something went wrong
  *      500:
  *        description: Failed to create sensor
+ * 
+ */
 router.post("/", createSensor);
 router.get("/:id", getOneSensor);
 router.put("/:id", updateSensorDetails);  // Full update
