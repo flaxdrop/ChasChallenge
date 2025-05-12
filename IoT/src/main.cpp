@@ -1,4 +1,5 @@
 #include <WiFiS3.h>
+#include <WiFiClient.h>
 #include <WiFiSSLClient.h>
 #include <ArduinoHttpClient.h>
 #include <Wire.h>
@@ -11,13 +12,13 @@ const char* ssid = "Chas Academy";
 const char* password = "EverythingLouderThanEverythingElse";
 
 // Serverinställningar
-const char* serverHost = "yourdomain.com";  // Ersätt med din server IP
-const int serverPort = 443;
+const char* serverHost = "172.20.32.1";  // Ersätt med din server IP
+const int serverPort = 3000;
 const char* serverPath = "/add-data";
 
 BME280 mySensor;
 SparkFun_ENS160 myENS;
-WiFiSSLClient wifi;
+WiFiClient wifi;
 HttpClient client = HttpClient(wifi, serverHost, serverPort);
 
 void setup()
