@@ -8,6 +8,7 @@ export const getAllSensors = async (req, res) => {
     res.json({ message: "Fetched all sensors successfully", sensors });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch sensors" });
+    res.status(400).json({ error: error.message || "Something went wrong" });
   }
 };
 

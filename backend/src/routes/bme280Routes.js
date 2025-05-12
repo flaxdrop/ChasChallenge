@@ -6,7 +6,7 @@ import { getAllMeasurements } from "../utils/measurementsService.js";
 const router = express.Router();
 
 /**
- * @swagger
+ * @ swagger
  * /bme280:
  *  get:
  *    summary: Mätningar från BME280.

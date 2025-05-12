@@ -6,7 +6,7 @@ import { getAllMeasurements } from "../utils/measurementsService.js";
 const router = express.Router();
 
 /**
- * @swagger
+ * @ swagger
  * /ens160:
  *  get:
  *    summary: Mätningar från ENS160.
