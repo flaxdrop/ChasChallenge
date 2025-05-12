@@ -20,8 +20,10 @@ const ReusableChart = ({title, valuePath, value, limit}) => {
                 const labels = json.map(item => 
                     new Date(item.timestamp).toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'})
                 );
+                labels.reverse(); //reverses time to display properly in graph
                 
                 const data = json.map(item => item[value]);
+                data.reverse(); //reverses data to correspond to timestamps
 
                 setChartData({
                     labels, 

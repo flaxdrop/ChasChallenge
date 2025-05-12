@@ -28,7 +28,7 @@ const CurrentAQI = ({ title }) => {
         const json = await response.json();
 
         const data = json.map((item) => item.aqi);
-        const lastIndex = data.length - 1;
+        const lastIndex = data.length - data.length;
 
         setCurrentAQI(data[lastIndex]);
       } catch (error) {
@@ -58,13 +58,13 @@ const CurrentAQI = ({ title }) => {
       >
         <Text style={styles.title}>{title}</Text>
         <View style={styles.AQIValueContainer}>
-          {/* <Text style={styles.AQIValue}>
+          <Text style={styles.AQIValue}>
             {currentAQI}
-          </Text> */}
-          <ReusableCurrentValue
+          </Text>
+          {/* <ReusableCurrentValue
           valuePath={"measurements"}
           value={"aqi"}
-          />
+          /> */}
           <Text style={[styles.AQIWarningText, { color: warningColor}]}>{aqiInfo.warning}</Text>
           <View style={styles.adviceContainer}>
           <Text style={styles.headerText}>Advice:</Text><Text style={styles.text}>{aqiInfo.advice}</Text>
