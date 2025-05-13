@@ -9,7 +9,7 @@ const router = express.Router();
  *  get:
  *    summary: Hämta en lista på alla tillagda sensorer
  *    tags:
- *      - sensor
+ *      - app
  *    responses:
  *      200:
  *        description: All sensors
@@ -26,7 +26,7 @@ router.get("/", getAllSensors);
  *  post:
  *    summary: Skapa en ny sensor
  *    tags:
- *      - sensor
+ *      - app
  *    requestBody:
  *      required: true
  *      content:
@@ -60,7 +60,7 @@ router.post("/", createSensor);
  *  get:
  *    summary: Hitta en sensor genom id
  *    tags:
- *      - sensor
+ *      - app
  *    parameters:
  *      - in: path
  *        name: id
@@ -84,7 +84,7 @@ router.get("/:id", getOneSensor);
  *  put:
  *    summary: Ersätt all sensorinformation genom id
  *    tags:
- *      - sensor
+ *      - app
  *    parameters:
  *      - in: path
  *        name: id
@@ -123,7 +123,7 @@ router.put("/:id", updateSensorDetails);  // Full update
  * @swagger
  * /sensors/{id}:
  *  patch:
- *    summary: Ersätt en del av sensorinformation genom id
+ *    summary: Ersätt en del av sensorinformation genom id, t.ex. statuscode
  *    tags:
  *      - sensor
  *    parameters:
