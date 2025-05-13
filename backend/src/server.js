@@ -28,7 +28,7 @@ const swaggerOptions = {
         description: "Lokal utvecklingsserver",
       },
       {
-        url: "www",
+        url: "https://chaschallenge-backend.onrender.com/",
         description: "Live server på render med databas på neon."
       }
     ],
