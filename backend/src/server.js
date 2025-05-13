@@ -3,11 +3,15 @@ import { PORT } from "./config/index.js";
 import apiRoutes from "./routes/apiRoutes.js"; // Importera routes
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import CORS from "cors";
 
 const app = express();
 
 // Middleware för att hantera JSON-data
 app.use(express.json());
+
+// Fixa CORS-error
+app.use(CORS())
 
 // Swagger-dokumentation
 const swaggerOptions = {
