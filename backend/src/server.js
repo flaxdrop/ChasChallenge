@@ -24,13 +24,13 @@ const swaggerOptions = {
     },
     servers: [
       {
+        url: "https://chaschallenge-backend.onrender.com/",
+        description: "Live server på render med databas på neon."
+      },
+      {
         url: "http://localhost:3000",
         description: "Lokal utvecklingsserver",
       },
-      {
-        url: "https://chaschallenge-backend.onrender.com/",
-        description: "Live server på render med databas på neon."
-      }
     ],
     tags: [
       { name: "app", descrition: "Endpoints för appen." },
