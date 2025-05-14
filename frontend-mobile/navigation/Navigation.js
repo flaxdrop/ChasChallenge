@@ -5,13 +5,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import Home from "../screens/Home";
+import Overview from "../screens/Overview";
 import Settings from "../screens/Settings";
 import AQI from "../screens/AQI";
 import Humidity from "../screens/Humidity";
 import Temperature from "../screens/Temperature";
-import Onboarding from "../screens/Onboarding";
-import Overview from "../screens/Overview";
+import OnboardingScreen from "../screens/OnboardingScreen";
+import SplashScreen from "../screens/SplashScreen";
 
 import { useTheme } from "../theme/ThemeContext";
 import Dashboard from "../screens/Dashboard";
@@ -114,17 +114,23 @@ const Navigation = () => {
     };
     checkOnboarding();
   }, []);
-
-  if (showOnboarding === null) return null; // valfritt: visar loading-indikator
+  
+  if (showOnboarding === null) return null; 
 
   return (
     <NavigationContainer theme={customTheme}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {showOnboarding && (
-          <Stack.Screen name="Onboarding" component={Onboarding} />
-        )}
-        <Stack.Screen name="MainApp" component={Tabs} />
-      </Stack.Navigator>
+<Stack.Navigator screenOptions={{ headerShown: false }}>
+  {showOnboarding !== null && (
+    <>
+      <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      {showOnboarding && (
+        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+      )}
+      <Stack.Screen name="MainApp" component={Tabs} />
+    </>
+  )}
+</Stack.Navigator>
+
     </NavigationContainer>
   );
 };
