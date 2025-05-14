@@ -42,7 +42,7 @@ const ReusableCurrentValue = ({
   }, []);
 
   const handlePress = () => {
-  console.log(`${value}`);
+  // console.log(`${value}`);
   setModalVisible(true);
   }
 
