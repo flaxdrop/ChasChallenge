@@ -11,6 +11,7 @@ import AQI from "../screens/AQI";
 import Humidity from "../screens/Humidity";
 import Temperature from "../screens/Temperature";
 import Onboarding from "../screens/Onboarding";
+import Overview from "../screens/Overview";
 
 import { useTheme } from "../theme/ThemeContext";
 import Dashboard from "../screens/Dashboard";
@@ -42,11 +43,11 @@ const Tabs = () => {
       />
       
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="Overview"
+        component={Overview}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="view-list" color={color} size={size} />
           ),
         }}
       />

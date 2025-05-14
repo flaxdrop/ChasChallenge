@@ -109,7 +109,8 @@ const createStyles = (theme) =>
     },
     AQIValue: {
       fontWeight: 800,
-      fontSize: 70
+      fontSize: 70,
+      color: theme.textPrimary,
     },
     AQIWarningText: {
       fontSize: 30,

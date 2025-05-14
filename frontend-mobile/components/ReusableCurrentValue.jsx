@@ -1,14 +1,24 @@
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, Modal } from "react-native";
 import React, { useEffect, useState } from "react";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
+import ValueInfoModal from "./ValueInfoModal";
 
-const ReusableCurrentValue = ({ title, valuePath, value }) => {
+const ReusableCurrentValue = ({
+  title,
+  valuePath,
+  value,
+  valueSize,
+  textSize,
+}) => {
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
   const { theme } = useTheme();
-  const styles = createStyles(theme);
+  const styles = createStyles(theme, valueSize, textSize);
 
   const [currentValue, setCurrentValue] = useState();
   const [loading, setLoading] = useState(true);
+
+  const [modalVisible, setModalVisible] = useState(false);
   // console.log(apiURL); // loggar adress för felsökning
   useEffect(() => {
     const fetchCurrentValue = async () => {
@@ -20,7 +30,6 @@ const ReusableCurrentValue = ({ title, valuePath, value }) => {
         const lastIndex = data.length - data.length;
 
         console.log(data[lastIndex]);
-        
 
         setCurrentValue(data[lastIndex].toFixed(1));
       } catch (error) {
@@ -32,29 +41,54 @@ const ReusableCurrentValue = ({ title, valuePath, value }) => {
     fetchCurrentValue();
   }, []);
 
+  const handlePress = () => {
+  console.log(`${value}`);
+  setModalVisible(true);
+  }
+
   if (loading) return <ActivityIndicator size="large" />;
 
   return (
     <View>
+      <View style={styles.header}>
       <Text style={styles.title}>{title}</Text>
+      <MaterialCommunityIcons
+                  name="information-outline"
+                  size={30}
+                  style={styles.infoIcon}
+                  onPress={handlePress}
+                />
+      </View>
       <Text style={styles.currentValue}>{currentValue}</Text>
+      <ValueInfoModal
+      value={value}
+      visible={modalVisible}
+      onClose={() => setModalVisible(false)}/>
     </View>
   );
 };
 
 export default ReusableCurrentValue;
 
-const createStyles = (theme) =>
+const createStyles = (theme, valueSize, textSize) =>
   StyleSheet.create({
     currentValue: {
       fontWeight: 800,
-      fontSize: 70,
+      fontSize: valueSize || 70,
       color: theme.textPrimary,
-      alignSelf: "center"
+      alignSelf: "center",
     },
     title: {
-    color: theme.textPrimary,
+      color: theme.textPrimary,
       padding: 10,
-      fontSize: 20,
-      justifyContent: "center",}
+      fontSize: textSize || 20,
+      justifyContent: "center",
+    },
+    infoIcon: {
+      padding: 10
+    },
+    header: {
+      flexDirection: "row",
+      justifyContent: "space-between"
+    }
   });
