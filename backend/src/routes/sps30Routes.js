@@ -6,7 +6,7 @@ import { getAllMeasurements } from "../utils/measurementsService.js";
 const router = express.Router();
 
 /**
- * @swagger
+//  * @swagger
  * /sps30:
  *  get:
  *    summary: Mätningar från SPS30 partikelsensor.
