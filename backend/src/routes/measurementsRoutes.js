@@ -70,6 +70,16 @@ router.get("/:types", async (req, res) => {
     "aqi",
     "tvoc",
     "eco2",
+    "pm1_0",
+    "pm2_5",
+    "pm4_0",
+    "pm10_0",
+    "nc0_5",
+    "nc1_0",
+    "nc2_5",
+    "nc4_0",
+    "nc10_0",
+    "typical_particle_size",
   ];
 
   // Dela upp types-strängen i en array och validera varje typ
