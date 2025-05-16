@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useTheme } from "../theme/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { aqiDescriptions } from "../data/warningData"; //Warning label, advice and colors
+import ReusableCurrentValue from "./ReusableCurrentValue";
 
 const CurrentAQI = ({ title }) => {
-  const apiURL = process.env.EXPO_PUBLIC_API_URL;
+  const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
 
   const { theme } = useTheme();
   const styles = createStyles(theme);
@@ -23,11 +24,11 @@ const CurrentAQI = ({ title }) => {
   useEffect(() => {
     const fetchCurrentAQI = async () => {
       try {
-        const response = await fetch(`${apiURL}/airquality/`);
+        const response = await fetch(`${apiURL}/measurements/aqi`);
         const json = await response.json();
 
         const data = json.map((item) => item.aqi);
-        const lastIndex = data.length - 1;
+        const lastIndex = data.length - data.length;
 
         setCurrentAQI(data[lastIndex]);
       } catch (error) {
@@ -60,6 +61,10 @@ const CurrentAQI = ({ title }) => {
           <Text style={styles.AQIValue}>
             {currentAQI}
           </Text>
+          {/* <ReusableCurrentValue
+          valuePath={"measurements"}
+          value={"aqi"}
+          /> */}
           <Text style={[styles.AQIWarningText, { color: warningColor}]}>{aqiInfo.warning}</Text>
           <View style={styles.adviceContainer}>
           <Text style={styles.headerText}>Advice:</Text><Text style={styles.text}>{aqiInfo.advice}</Text>
@@ -101,7 +106,6 @@ const createStyles = (theme) =>
     AQIValueContainer: {
       alignItems: "center",
       justifyContent: "center",
-      paddingBottom: 20,
     },
     AQIValue: {
       fontWeight: 800,
