@@ -1,14 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import ReusableChart from "../components/ReusableChart";
+import ReusableCurrentValue from "../components/ReusableCurrentValue";
+import ContainerGradient from "../components/ContainerGradient";
+import Background from "../components/Background";
 
 const Temperature = () => {
   return (
-    <View>
-      <Text>Temperature</Text>
-    </View>
-  )
-}
+    <Background>
+      <ContainerGradient>
+        <ReusableChart
+          valuePath={"measurements/temperature"}
+          value={"temperature"}
+          title={"Temperature"}
+        />
 
-export default Temperature
+        <ReusableCurrentValue
+          valuePath={"measurements/temperature"}
+          value={"temperature"}
+          title={"Current Temperature"}
+        />
+      </ContainerGradient>
+    </Background>
+  );
+};
 
-const styles = StyleSheet.create({})
+export default Temperature;
+
+const styles = StyleSheet.create({});

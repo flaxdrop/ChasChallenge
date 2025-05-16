@@ -3,11 +3,15 @@ import { PORT } from "./config/index.js";
 import apiRoutes from "./routes/apiRoutes.js"; // Importera routes
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
+import CORS from "cors";
 
 const app = express();
 
 // Middleware för att hantera JSON-data
 app.use(express.json());
+
+// Fixa CORS-error
+app.use(CORS())
 
 // Swagger-dokumentation
 const swaggerOptions = {
@@ -18,17 +22,21 @@ const swaggerOptions = {
       description: "API-dokumentation för AirAwares API.",
       version: "1.0.0",
     },
+    servers: [
+      {
+        url: "https://chaschallenge-backend.onrender.com/",
+        description: "Live server på render med databas på neon."
+      },
+      {
+        url: "http://localhost:3000",
+        description: "Lokal utvecklingsserver",
+      },
+    ],
+    tags: [
+      { name: "app", descrition: "Endpoints för appen." },
+      { name: "sensor", description: "Endpoints för sensor." },
+    ],
   },
-  servers: [
-    {
-      url: "http://localhost:3000",
-      description: "Lokal utvecklingsserver",
-    },
-  ],
-  tags: [
-    { name: "App", descrition: "Endpoints för appen." },
-    { name: "Sensor", description: "Endpoints för sensor." },
-  ],
   components: {
     schemas: {},
   },

@@ -1,14 +1,33 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { useTheme } from "../theme/ThemeContext";
+import Background from "../components/Background";
+import ContainerGradient from "../components/ContainerGradient";
+import CurrentAQI from "../components/CurrentAQI";
+import ReusableChart from "../components/ReusableChart";
+
 
 const AQI = () => {
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
   return (
-    <View>
-      <Text>AQI</Text>
-    </View>
-  )
-}
+    <Background>
 
-export default AQI
+        <ContainerGradient>
+       
+            <ReusableChart valuePath={"airquality"} value={"aqi"} title={"Air Quality Index (AQI)"}/>
+            <CurrentAQI title={"Current AQI"}/>
+          
+        </ContainerGradient>
 
-const styles = StyleSheet.create({})
+    </Background>
+  );
+};
+
+export default AQI;
+
+const createStyles = (theme) => StyleSheet.create({
+  text: {
+    color: theme.textPrimary,
+  }
+});
