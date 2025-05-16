@@ -1,6 +1,7 @@
 import express from "express";
 import measurements from "./measurementsRoutes.js";
 import sensorsRoutes from "./sensors.js"; 
+import usersRoutes from "./userRoutes.js";
 
 const router = express.Router();
 
@@ -24,5 +25,6 @@ router.get("/", (req, res) => {
 // Routes för de olika endpointsen
 router.use("/measurements", measurements);
 router.use("/sensors", sensorsRoutes);
+router.use("/users", usersRoutes);
 
 export default router;
