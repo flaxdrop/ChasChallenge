@@ -2,7 +2,7 @@ import express from "express";
 import {
   getAllMeasurements,
   createMeasurement,
-  removeMeasurements,
+  deleteMeasurements,
 } from "../utils/measurementsService.js";
 
 const router = express.Router();
@@ -109,7 +109,7 @@ router.post("/", async (req, res) => {
 });
 
 // Route för att ta bort mätningar baserat på tidsintervall
-router.post("/remove", async (req, res) => {
+router.post("/delete", async (req, res) => {
   const { startTime, endTime } = req.body;
 
   // Validera tidsintervall
@@ -136,7 +136,7 @@ router.post("/remove", async (req, res) => {
       });
     }
 
-    const deletedCount = await removeMeasurements(start, end);
+    const deletedCount = await deleteMeasurements(start, end);
 
     res.json({
       deletedCount,

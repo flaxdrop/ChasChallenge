@@ -69,7 +69,7 @@ export const createMeasurement = async (measurement) => {
 };
 
 // Funktion för att ta bort mätningar inom ett tidsintervall
-export const removeMeasurements = async (startTime, endTime) => {
+export const deleteMeasurements = async (startTime, endTime) => {
   const result = await pool.query(
     "DELETE FROM measurements WHERE timestamp BETWEEN $1 AND $2 RETURNING id",
     [startTime, endTime]
