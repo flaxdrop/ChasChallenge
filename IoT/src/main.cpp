@@ -100,6 +100,7 @@ void loop()
         json += ",\"pm2_5\":" + String(particulates.mc_2p5, 2);
         json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
     }
+    
     json += "}";
 
     Serial.println("Payload som skickas:");
