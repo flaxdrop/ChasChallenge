@@ -124,6 +124,36 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *               eco2:
  *                 type: number
  *                 example: 400
+ *               pm1:
+ *                 type: number
+ *                 example: 10.5
+ *               pm2_5:
+ *                 type: number
+ *                 example: 20.3
+ *               pm4:
+ *                 type: number
+ *                 example: 35.1
+ *               pm10:
+ *                 type: number
+ *                 example: 50.7
+ *               nc_0_5:
+ *                 type: number
+ *                 example: 100.2
+ *               nc_1_0:
+ *                 type: number
+ *                 example: 150.8
+ *               nc_2_5:
+ *                 type: number
+ *                 example: 220.4
+ *               nc_4_0:
+ *                 type: number
+ *                 example: 300.9
+ *               nc_10_0:
+ *                 type: number
+ *                 example: 450.6
+ *               typical_particle_size:
+ *                 type: number
+ *                 example: 5.0
  *     responses:
  *       200:
  *         description: Nya mätvärden har lagrats.
