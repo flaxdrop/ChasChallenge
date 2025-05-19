@@ -1,6 +1,5 @@
 import pool from "./db.js"; // Importera databasen
-import formatInTimeZone from "date-fns-tz";
-import utcToZonedTime from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 
 // Funktion för att hämta alla mätningar med valfri begränsning
 export const getAllMeasurements = async (limit = null) => {
