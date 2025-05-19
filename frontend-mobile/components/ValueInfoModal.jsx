@@ -2,8 +2,11 @@ import { StyleSheet, Text, View, Modal, Button } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { infoData } from "../data/infoData";
+import { useTheme } from "../theme/ThemeContext";
 
 const ValueInfoModal = ({ visible, onClose, value }) => {
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
   const info = infoData[value];
   const title = info.title;
   const description = info.info;
@@ -18,16 +21,16 @@ const ValueInfoModal = ({ visible, onClose, value }) => {
       <View style={styles.backdrop}>
         <View style={styles.container}>
           <View style={styles.header}>
-            <Text>Information about {title}</Text>
+            <Text style={styles.headerText}>{title}</Text>
             <MaterialCommunityIcons
               name="window-close"
-              size={30}
-              style={styles.infoIcon}
+              size={20}
+              style={styles.icon}
               onPress={onClose}
             />
           </View>
 
-          <Text>{description}</Text>
+          <Text style={styles.infoText}>{description}</Text>
         </View>
       </View>
     </Modal>
@@ -36,7 +39,7 @@ const ValueInfoModal = ({ visible, onClose, value }) => {
 
 export default ValueInfoModal;
 
-const styles = StyleSheet.create({
+const createStyles = (theme) => StyleSheet.create({
   backdrop: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.3)",
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
-    backgroundColor: "white",
+    backgroundColor: theme.modalBackground,
     margin: 25,
     borderRadius: 10,
     padding: 20,
@@ -56,4 +59,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 30,
   },
+  headerText: {
+    color: theme.textPrimary
+  },
+  infoText: {
+    color: theme.textPrimary,
+    lineHeight: 20
+  },
+  icon: {
+    color: theme.infoIcon
+  }
 });
