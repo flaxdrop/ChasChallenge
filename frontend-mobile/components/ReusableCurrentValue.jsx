@@ -54,7 +54,7 @@ const ReusableCurrentValue = ({
       <Text style={styles.title}>{title}</Text>
       <MaterialCommunityIcons
                   name="information-outline"
-                  size={30}
+                  size={20}
                   style={styles.infoIcon}
                   onPress={handlePress}
                 />
@@ -85,7 +85,8 @@ const createStyles = (theme, valueSize, textSize) =>
       justifyContent: "center",
     },
     infoIcon: {
-      padding: 10
+      padding: 10,
+      color: theme.accent
     },
     header: {
       flexDirection: "row",

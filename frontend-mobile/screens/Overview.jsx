@@ -4,8 +4,11 @@ import ReusableCurrentValue from "../components/ReusableCurrentValue";
 import ContainerGradient from "../components/ContainerGradient";
 import Background from "../components/Background";
 import BoxGradient from "../components/BoxGradient";
+import { useTheme } from "../theme/ThemeContext";
 
 const Overview = () => {
+    const {theme} = useTheme();
+    const styles = createStyles(theme);
   return (
     <Background>
       <ContainerGradient>
@@ -71,4 +74,4 @@ const Overview = () => {
 
 export default Overview;
 
-const styles = StyleSheet.create({});
+const createStyles = (theme) => StyleSheet.create({});
