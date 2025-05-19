@@ -1,7 +1,7 @@
 import express from "express";
-import { createUser } from "../utils/users";
+import { createUser } from "../utils/users.js";
 import bcrypt from "bcrypt";
-
+import pool from "../utils/db.js";
 const router = express.Router();
 
 // Homepage
