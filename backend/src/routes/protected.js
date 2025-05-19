@@ -1,13 +1,15 @@
 import express from "express";
-import measurements from "./measurementsRoutes.js";
-import sensorsRoutes from "./sensors.js"; 
+import measurementsRouter from "./measurementsRoutes.js";
+import sensorsRouter from "./sensors.js"; 
+import authorize from "../middleware/authorize.js";
 
 const router = express.Router();
 
-// todo add jwt check with middleware
+// Protect all routes in file.
+router.use(authorize);
 
 // Routes för de olika endpointsen
-router.use("/measurements", measurements); // TODO Flytta authorize till server.js.
-router.use("/sensors", sensorsRoutes);
+router.use("/measurements", measurementsRouter);
+router.use("/sensors", sensorsRouter);
 
 export default router;

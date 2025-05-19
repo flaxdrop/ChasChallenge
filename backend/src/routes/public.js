@@ -58,7 +58,9 @@ router.post("/register", async (req, res) => {
 
 // Login and generate JWT-token
 router.post("/login", (req, res) => {
-    res.send('Login not yet possible.')
+  // TODO
+  console.log("Login requested", {body: req.body});
+  res.status(500).json({error: 'Login not yet possible.'});
 })
 
 export default router;
