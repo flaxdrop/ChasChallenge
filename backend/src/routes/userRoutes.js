@@ -1,26 +1,27 @@
 import express from "express";
+import { v4 as uuidv4 } from 'uuid';
+import { getUserDetails, getAllUsers } from "../utils/users";
+
 
 const router = express.Router();
 
-//GET all users
+//GET all users //todo potentially move to Admin.routes.js
 router.get("/", (req, res) => {
-    res.send("Hello from user routes!");
+    getAllUsers().then((users) => {
+        res.json(users);
+    });
 });
 
-//GET one user
-router.get("/:id", (req, res) => {
-    res.send("Hello from user routes!");
-});
+// todo admin allowed to delete other users ?
 
-// POST new user
-router.post("/", (req, res) => {
-    res.send("Hello from user routes!");
-});
+// routes/User.routes.js
+router.get("/me", async (req, res) => {
+    // View profile (authenticated)
+  });
+  
+router.delete("/me", async (req, res) => {
+    // Delete account (authenticated)
+  });
 
-
-// DELETE one user
-router.delete("/:id", (req, res) => {
-    res.send("Hello from user routes!");
-});
 
 export default router;
