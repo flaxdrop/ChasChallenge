@@ -1,4 +1,6 @@
 import pool from "./db.js"; // Importera databasen
+import formatInTimeZone from "date-fns-tz";
+import utcToZonedTime from "date-fns";
 
 // Funktion för att hämta alla mätningar med valfri begränsning
 export const getAllMeasurements = async (limit = null) => {
@@ -12,8 +14,19 @@ export const getAllMeasurements = async (limit = null) => {
 
 // Funktion för att skapa en ny mätning
 export const createMeasurement = async (measurement) => {
+  // Använd svensk tidszon
+  const swedishTimeZone = "Europe/Stockholm";
+  const nowUtc = new Date();
+  const nowSwedishTime = utcToZonedTime(nowUtc, swedishTimeZone);
+  const timestamp =
+    measurement.timestamp ||
+    formatInTimeZone(
+      nowSwedishTime,
+      swedishTimeZone,
+      "yyyy-MM-dd'T'HH:mm:ssXXX"
+    );
+
   const {
-    timestamp,
     temperature,
     humidity,
     pressure,
