@@ -1,10 +1,8 @@
 import express from "express";
-import measurements from "./measurementsRoutes.js";
-import sensorsRoutes from "./sensors.js"; 
-import usersRoutes from "./userRoutes.js";
 
 const router = express.Router();
 
+// Homepage
 router.get("/", (req, res) => {
   res.send(`<!DOCTYPE html>
     <title>AirAware API</title>
@@ -22,9 +20,14 @@ router.get("/", (req, res) => {
     <a href=api-docs>Dokumentation</a>`);
 });
 
-// Routes för de olika endpointsen
-router.use("/measurements", measurements);
-router.use("/sensors", sensorsRoutes);
-router.use("/users", usersRoutes);
+// Create user
+router.post("/users", (req, res) => {
+    res.send('User to be created here.');
+})
+
+// Login and generate JWT-token
+router.post("/login", (req, res) => {
+    res.send('Login not yet possible.')
+})
 
 export default router;

@@ -1,9 +1,11 @@
 import express from "express";
 import { PORT } from "./config/index.js";
-import apiRoutes from "./routes/apiRoutes.js"; // Importera routes
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import CORS from "cors";
+import publicRouter from "./routes/public.js";
+import protectedRouter from "./routes/protected.js";
+import authorize from "./utils/authorize.js";
 
 const app = express();
 
@@ -47,8 +49,10 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Använd routes
-app.use("/", apiRoutes); // Använd routes
+// Public routes
+app.use("/", publicRouter);
+// Protected routes authorized by middleware
+app.use("/", authorize, protectedRouter);
 
 // Starta servern
 app.listen(PORT, () => {
