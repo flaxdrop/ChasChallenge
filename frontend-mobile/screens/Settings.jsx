@@ -52,6 +52,22 @@ const Settings = () => {
           /> */}
 
         </View>
+         <Pressable style={styles.toggleButton}
+                    title={isDark ? "Light theme" : "Dark theme"}
+                    onPress={toggleTheme}
+                  >
+                    {isDark ? (
+                      <Text style={styles.text}>Toggle light mode:</Text>
+                    ) : (
+                      <Text style={styles.text}>Toggle dark mode:</Text>
+                    )}
+                    <MaterialCommunityIcons
+                      name={isDark ? "white-balance-sunny" : "weather-night"}
+                      color={theme.themeButton}
+                      size={50}
+                    />
+                  </Pressable>
+        
       </ContainerGradient>
     </Background>
   );
