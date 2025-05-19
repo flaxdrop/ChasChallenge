@@ -64,7 +64,7 @@ void loop()
     float pressure = mySensor.readFloatPressure();
 
     myENS.setTempCompensation(temperature);
-    //(får error från raden) myENS.setHumidityCompensation(humidity);
+    // myENS.setHumidityCompensation(humidity); // Kommenterad om funktionen ger error
 
     int aqi = myENS.getAQI();
     int tvoc = myENS.getTVOC();
@@ -87,20 +87,29 @@ void loop()
     }
 
     String json = "{";
-    //json += "\"timestamp\":" + String(millis()) + ",";
     json += "\"temperature\":" + String(temperature, 2) + ",";
     json += "\"humidity\":" + String(humidity, 2) + ",";
     json += "\"pressure\":" + String((int)pressure) + ",";
     json += "\"aqi\":" + String(aqi) + ",";
     json += "\"tvoc\":" + String(tvoc) + ",";
     json += "\"eco2\":" + String(eco2);
+
     if (sps30_data_available)
     {
         json += ",\"pm1\":" + String(particulates.mc_1p0, 2);
         json += ",\"pm2_5\":" + String(particulates.mc_2p5, 2);
+        json += ",\"pm4\":" + String(particulates.mc_4p0, 2);
         json += ",\"pm10\":" + String(particulates.mc_10p0, 2);
+
+        json += ",\"nc_0_5\":" + String(particulates.nc_0p5, 2);
+        json += ",\"nc_1_0\":" + String(particulates.nc_1p0, 2);
+        json += ",\"nc_2_5\":" + String(particulates.nc_2p5, 2);
+        json += ",\"nc_4_0\":" + String(particulates.nc_4p0, 2);
+        json += ",\"nc_10_0\":" + String(particulates.nc_10p0, 2);
+
+        json += ",\"typical_particle_size\":" + String(particulates.typical_particle_size, 2);
     }
-    
+
     json += "}";
 
     Serial.println("Payload som skickas:");
@@ -125,3 +134,4 @@ void loop()
 
     delay(10000); // Vänta 10 sekunder
 }
+
