@@ -1,6 +1,5 @@
 import pool from "./db.js"; // Importera databasen
-import formatInTimeZone from "date-fns-tz";
-import utcToZonedTime from "date-fns";
+import { formatInTimeZone } from "date-fns-tz";
 
 // Funktion för att hämta alla mätningar med valfri begränsning
 export const getAllMeasurements = async (limit = null) => {
@@ -17,14 +16,9 @@ export const createMeasurement = async (measurement) => {
   // Använd svensk tidszon
   const swedishTimeZone = "Europe/Stockholm";
   const nowUtc = new Date();
-  const nowSwedishTime = utcToZonedTime(nowUtc, swedishTimeZone);
   const timestamp =
     measurement.timestamp ||
-    formatInTimeZone(
-      nowSwedishTime,
-      swedishTimeZone,
-      "yyyy-MM-dd'T'HH:mm:ssXXX"
-    );
+    formatInTimeZone(nowUtc, swedishTimeZone, "yyyy-MM-dd'T'HH:mm:ssXXX");
 
   const {
     temperature,
