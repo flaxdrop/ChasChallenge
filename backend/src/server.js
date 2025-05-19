@@ -5,7 +5,6 @@ import swaggerUi from "swagger-ui-express";
 import CORS from "cors";
 import publicRouter from "./routes/public.js";
 import protectedRouter from "./routes/protected.js";
-import authorize from "./utils/authorize.js";
 
 const app = express();
 
@@ -52,7 +51,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 // Public routes
 app.use("/", publicRouter);
 // Protected routes authorized by middleware
-app.use("/", authorize, protectedRouter);
+app.use("/", protectedRouter);
 
 // Starta servern
 app.listen(PORT, () => {
