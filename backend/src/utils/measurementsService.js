@@ -17,14 +17,9 @@ export const createMeasurement = async (measurement) => {
   // Använd svensk tidszon
   const swedishTimeZone = "Europe/Stockholm";
   const nowUtc = new Date();
-  const nowSwedishTime = utcToZonedTime(nowUtc, swedishTimeZone);
   const timestamp =
     measurement.timestamp ||
-    formatInTimeZone(
-      nowSwedishTime,
-      swedishTimeZone,
-      "yyyy-MM-dd'T'HH:mm:ssXXX"
-    );
+    formatInTimeZone(nowUtc, swedishTimeZone, "yyyy-MM-dd'T'HH:mm:ssXXX");
 
   const {
     temperature,
