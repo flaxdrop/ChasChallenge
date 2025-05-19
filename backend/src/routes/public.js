@@ -22,12 +22,16 @@ router.get("/", (req, res) => {
 
 // Create user
 router.post("/users", (req, res) => {
-    res.send('User to be created here.');
+  // TODO
+  console.log("User creation requested", {body: req.body});
+  res.status(500).json({error: 'User creation not yet possible.'});
 })
 
 // Login and generate JWT-token
 router.post("/login", (req, res) => {
-    res.send('Login not yet possible.')
+  // TODO
+  console.log("Login requested", {body: req.body});
+  res.status(500).json({error: 'Login not yet possible.'});
 })
 
 export default router;

@@ -1,6 +1,6 @@
 function authorize (req, res, next) {
-    // Replace this function with proper middleware.
-    console.log('Authorizing... ACCESS GRANTED.');
+    // TODO Replace this function with proper middleware.
+    console.warn('WARNING: Not yet authorizing, always granting access.');
     next();
 }
 
