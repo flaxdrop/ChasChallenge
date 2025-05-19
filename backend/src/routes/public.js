@@ -1,7 +1,8 @@
 import express from "express";
 import { createUser } from "../utils/users.js";
 import bcrypt from "bcrypt";
-import pool from "../utils/db.js";
+import checkUserExists from "../middleware/checkUserExists.js";
+import validateRegisterInput from "../middleware/validateRegisterInput.js";
 const router = express.Router();
 
 // Homepage
@@ -28,33 +29,29 @@ router.get("/about", (req, res) => {
   res.send("About page");
 });
 
-// Create user
-router.post("/register", async (req, res) => {
-  // Create new user (unauthenticated)
-  try {
-    const { username, password, role } = req.body;
+// Register route
+router.post(
+  "/register",
+  validateRegisterInput,
+  checkUserExists,
+  async (req, res) => {
+    try {
+      const { username, password, role = "user" } = req.body;
 
-    if (!username || !password) {
-      return res.status(400).json({ error: "Username and password are required" });
-    }
-
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-    const existsCheck = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
-    
-    if (existsCheck.rows.length > 0) {
-        return res.status(409).json({ error: "Username already exists." });
+      const hashedPassword = await bcrypt.hash(password, 10);
+      
+      const validRoles = ["user", "admin"];
+      if (!validRoles.includes(role)) {
+        return res.status(400).json({ error: "Invalid role" });
       }
-
-    const user = await createUser({ username, hashedPassword, role });
-
-    res.status(201).json({ message: "User created successfully", user});
-  } catch (err) {
-    console.error("Error in /register:", err.message);
-    res.status(500).json({ error: "Server error: Failed to create user" });
+      const user = await createUser({ username, hashedPassword, role });
+      res.status(201).json({ message: "User created successfully", user });
+    } catch (err) {
+      console.error("Error in /register:", err.message);
+      res.status(500).json({ error: "Server error: Failed to create user" });
+    }
   }
-});
+);
 
 // Login and generate JWT-token
 router.post("/login", (req, res) => {

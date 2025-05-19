@@ -18,7 +18,7 @@ export const getAllUsers = async () => {
 }
 
 
-export const createUser = async ({ username, hashedPassword, role = "user" }) => {
+export const createUser = async ({ username, hashedPassword, role}) => {
     console.log("createUser function called with username:", username);
     const id = uuidv4();
     const createdAt = new Date();
