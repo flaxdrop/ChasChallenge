@@ -1,7 +1,8 @@
 export const lightTheme = {
   primary: "#F5F5F5", //First color of component gradient
   secondary: "#CCCCCC", // Second color of component gradient
-  accent: "#175B00",
+  accent: "#676767",
+  timestamp: "#676767",
 
   backgroundPrimary: "#C7C7C7", //First color of background gradient
   backgroundSecondary: "#B7B7B7", // Second color of background gradient
@@ -29,6 +30,8 @@ export const darkTheme = {
   primary: "#282828",
   secondary: "#252323",
   accent: "#40FD00",
+  timestamp: "#676767",
+  
   backgroundPrimary: "#1A1A1A",
   backgroundSecondary: "#121212",
   graphFrom: "#4D4D4D",

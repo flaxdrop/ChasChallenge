@@ -16,6 +16,8 @@ const ReusableCurrentValue = ({
   const styles = createStyles(theme, valueSize, textSize);
 
   const [currentValue, setCurrentValue] = useState();
+  const [timestamp, setTimestamp] = useState();
+
   const [loading, setLoading] = useState(true);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -27,11 +29,22 @@ const ReusableCurrentValue = ({
         const json = await response.json();
 
         const data = json.map((item) => item[value]);
-        const lastIndex = data.length - data.length;
+        const timedata = json.map((item) => item["timestamp"]);
 
+        const lastIndex = data.length - data.length;               
+        
         // console.log(data[lastIndex]);
-
+        const formattedTime = new Date(timedata[lastIndex]).toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        
+        
         setCurrentValue(data[lastIndex].toFixed(1));
+        setTimestamp(formattedTime);
       } catch (error) {
         console.log(`Couldnt fetch ${value} from API`, error);
       } finally {
@@ -60,6 +73,7 @@ const ReusableCurrentValue = ({
                 />
       </View>
       <Text style={styles.currentValue}>{currentValue}</Text>
+      <Text style={styles.timestamp}>Updated: {timestamp}</Text>
       <ValueInfoModal
       value={value}
       visible={modalVisible}
@@ -92,5 +106,12 @@ const createStyles = (theme, valueSize, textSize) =>
     header: {
       flexDirection: "row",
       justifyContent: "space-between"
+    },
+    timestamp: {
+      justifyContent: "center",
+      alignSelf: "center",
+      fontSize: 12,
+      marginBottom: 5,
+      color: theme.timestamp,
     }
   });
