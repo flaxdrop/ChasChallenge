@@ -29,7 +29,7 @@ const ReusableCurrentValue = ({
         const data = json.map((item) => item[value]);
         const lastIndex = data.length - data.length;
 
-        console.log(data[lastIndex]);
+        // console.log(data[lastIndex]);
 
         setCurrentValue(data[lastIndex].toFixed(1));
       } catch (error) {
@@ -77,6 +77,7 @@ const createStyles = (theme, valueSize, textSize) =>
       fontSize: valueSize || 70,
       color: theme.textPrimary,
       alignSelf: "center",
+      paddingBottom: 10
     },
     title: {
       color: theme.textPrimary,
