@@ -3,6 +3,9 @@ import { createUser } from "../utils/users.js";
 import bcrypt from "bcrypt";
 import checkUserExists from "../middleware/checkUserExists.js";
 import validateRegisterInput from "../middleware/validateRegisterInput.js";
+import validateUserLogin from "../middleware/auth/validateUserLogin.js";
+import jwt from "jsonwebtoken";
+
 const router = express.Router();
 
 // Homepage
@@ -54,10 +57,22 @@ router.post(
 );
 
 // Login and generate JWT-token
-router.post("/login", (req, res) => {
-  // TODO
-  console.log("Login requested", {body: req.body});
-  res.status(500).json({error: 'Login not yet possible.'});
+router.post("/login", validateUserLogin, async (req, res) => {
+  const { password } = req.body;
+  const user = req.user;
+
+  const match = await bcrypt.compare(password, user.hashedpassword);
+  if (!match) {
+    return res.status(401).json({ error: "Invalid credentials." });
+  }
+
+  // Generate JWT token
+  const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+
+  res.status(200).json({ message: "Login successful", token });
+  
 })
 
 export default router;

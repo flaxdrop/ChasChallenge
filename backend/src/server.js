@@ -4,6 +4,9 @@ import apiDocs from "./routes/apiDocs.js"; // Importera API docs
 import CORS from "cors";
 import publicRouter from "./routes/Public.routes.js";
 import protectedRouter from "./routes/Protected.routes.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 

@@ -6,7 +6,7 @@ Backend for our Chas Challenge
 
 ### Miljövariabel
 
-- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000, samt URL för databas.
+- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000, samt URL för databas, samt JWT_SECRET.
 
 - Kör i en separat terminal:
 
@@ -72,3 +72,6 @@ Alla endpoints stödjer query parameter `?limit=INT` för att begränsa antalet 
 #### server.js:
 
 - Huvudfilen för att starta servern och definiera middleware och rutter
+
+
+
