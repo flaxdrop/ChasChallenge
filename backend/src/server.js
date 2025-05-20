@@ -2,8 +2,8 @@ import express from "express";
 import { PORT } from "./config/index.js";
 import apiDocs from "./routes/apiDocs.js"; // Importera API docs
 import CORS from "cors";
-import publicRouter from "./routes/public.js";
-import protectedRouter from "./routes/protected.js";
+import publicRouter from "./routes/Public.routes.js";
+import protectedRouter from "./routes/Protected.routes.js";
 
 const app = express();
 
