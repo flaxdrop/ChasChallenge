@@ -2,6 +2,10 @@ import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from 'react-nat
 import React, { useEffect, useState } from 'react'
 import { useTheme } from '../theme/ThemeContext'
 import {LineChart} from 'react-native-chart-kit'
+import useRefresh from '../hooks/useRefresh'
+import RefreshButton from './RefreshButton'
+import useManualRefresh from '../hooks/useManualRefresh'
+
 
 const ReusableChart = ({title, valuePath, value, limit}) => {
     const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
@@ -10,9 +14,11 @@ const ReusableChart = ({title, valuePath, value, limit}) => {
     const screenWidth = Dimensions.get('window').width;
     const [chartData, setChartData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const refresh = useRefresh();
+    const [manualRefresh, triggerRefresh] = useManualRefresh();
 
     useEffect(() => {      
-        const fetchData = async () => {            
+        const fetchData = async () => {       
             try {
                 const response = await fetch(`${apiURL}/${valuePath}/${value}?limit=${limit}`); //measurements/humidity, measurements/temperature, measurements/pressure
                 const json = await response.json();
@@ -39,7 +45,7 @@ const ReusableChart = ({title, valuePath, value, limit}) => {
         };
 
         fetchData();
-    }, [valuePath, value]);
+    }, [valuePath, value, refresh]);
 
     if (loading) return <ActivityIndicator size="large" />;
 if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen data tillgänglig</Text>;
@@ -47,7 +53,7 @@ if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen da
     if (loading) return <ActivityIndicator size="large"/>
   return (
     <View>
-        <Text style={styles.header}>{title}</Text>
+        <View style={styles.header}><Text style={styles.header}>{title}</Text><RefreshButton onRefresh={triggerRefresh}/></View>
       <LineChart
       data={chartData}
       width={screenWidth - 36}
@@ -91,6 +97,8 @@ const createStyles = (theme) => StyleSheet.create({
     header: {
         color: theme.textPrimary,
         fontSize: 20,
-        textAlign: "center"
+        textAlign: "center",
+        flexDirection: "row",
+        justifyContent: "space-between"
     }
 })
