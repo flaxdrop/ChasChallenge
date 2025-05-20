@@ -56,6 +56,7 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *         name: limit
  *         schema:
  *           type: integer
+ *           example: 10
  *         description: Antal mätningar att returnera
  *     responses:
  *       200:
@@ -76,12 +77,14 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *         required: true
  *         schema:
  *           type: string
- *         description: Kommaseparerade typer av mätningar (t.ex. temperature,humidity,aqi)
+ *         description: Kommaseparerade typer av mätningar
+ *         example: temperature,humidity,aqi
  *       - in: query
  *         name: limit
  *         schema:
  *           type: integer
  *         description: Antal mätningar att returnera
+ *         example: 10
  *     responses:
  *       200:
  *         description: Filtrerade mätningar
