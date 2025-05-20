@@ -7,7 +7,7 @@ const useRefresh = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setRefresh(prev => !prev);
-            console.log("triggered automatic refresh");
+            // console.log("triggered automatic refresh");
             
         }, 30000);        
 

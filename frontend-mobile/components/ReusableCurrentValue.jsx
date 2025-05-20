@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 import ValueInfoModal from "./ValueInfoModal";
+import useRefresh from "../hooks/useRefresh";
 
 const ReusableCurrentValue = ({
   title,
@@ -19,6 +20,7 @@ const ReusableCurrentValue = ({
   const [timestamp, setTimestamp] = useState();
 
   const [loading, setLoading] = useState(true);
+  const refresh = useRefresh();
 
   const [modalVisible, setModalVisible] = useState(false);
   // console.log(apiURL); // loggar adress för felsökning
@@ -52,7 +54,7 @@ const ReusableCurrentValue = ({
       }
     };
     fetchCurrentValue();
-  }, []);
+  }, [refresh]);
 
   const handlePress = () => {
   // console.log(`${value}`);
