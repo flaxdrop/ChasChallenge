@@ -27,15 +27,15 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
-  primary: "#000E21",
-  secondary: "#000916",
+  primary: "#282828",
+  secondary: "#252323",
   accent: "#40FD00",
   timestamp: "#676767",
   
-  backgroundPrimary: "#000000",
-  backgroundSecondary: "#000000",
-  graphFrom: "#001D45",
-  graphTo: "#001A3F",
+  backgroundPrimary: "#1A1A1A",
+  backgroundSecondary: "#121212",
+  graphFrom: "#4D4D4D",
+  graphTo: "#383838",
   graphPoint: "#00BAFF",
 
   textPrimary: "#FFFFFF",
@@ -44,11 +44,11 @@ export const darkTheme = {
 
   notification: "#D25406",
 
-  tabBar: "#000E21",
+  tabBar: "#161616",
   tabBarIcon: "#00BAFF",
   tabBarIconActive: "#40FD00",
   infoIcon: "#676767",
-  headerBackground: "#000000",
+  headerBackground: "#282828",
 
   themeButton: "#f9f089",
   modalBackground: "black",

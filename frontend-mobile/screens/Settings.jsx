@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ContainerGradient from "../components/ContainerGradient";
 import Background from "../components/Background";
 import CustomSwitch from "../components/CustomSwitch";
+import BoxGradient from "../components/BoxGradient";
 
 const Settings = () => {
   const { theme, isDark, toggleTheme } = useTheme();
@@ -25,6 +26,7 @@ const Settings = () => {
   return (
     <Background>
       <ContainerGradient>
+        <BoxGradient>
         <View>
           <View style={styles.option}>
             <Text style={styles.text}>Notifications:</Text>
@@ -44,7 +46,7 @@ const Settings = () => {
             onIcon={"weather-night"}
             offIcon={"weather-sunny"}
           /></View>
-        </View>
+        </View></BoxGradient>
         <Pressable
           style={styles.toggleButton}
           title={isDark ? "Light theme" : "Dark theme"}
@@ -83,7 +85,7 @@ const createStyles = (theme) =>
     option: {
       flexDirection: "row",
       alignItems: "center",
-      width: "90%",
+      width: "100%",
       justifyContent: "space-between",
       padding: 10
     }
