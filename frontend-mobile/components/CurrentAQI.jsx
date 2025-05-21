@@ -4,10 +4,11 @@ import { useTheme } from "../theme/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { aqiDescriptions } from "../data/warningData"; //Warning label, advice and colors
 import ReusableCurrentValue from "./ReusableCurrentValue";
+import useRefresh from "../hooks/useRefresh";
 
 const CurrentAQI = ({ title }) => {
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
-
+  const refresh = useRefresh();
   const { theme } = useTheme();
   const styles = createStyles(theme);
 
@@ -38,7 +39,7 @@ const CurrentAQI = ({ title }) => {
       }
     };
     fetchCurrentAQI(); 
-  }, []);
+  }, [refresh]);
 
   useEffect(() => {
     if (currentAQI !== null) {
