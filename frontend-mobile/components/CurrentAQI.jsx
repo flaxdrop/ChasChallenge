@@ -38,14 +38,14 @@ const CurrentAQI = ({ title }) => {
         setLoading(false);
       }
     };
-    fetchCurrentAQI(); 
+    fetchCurrentAQI();
   }, [refresh]);
 
   useEffect(() => {
     if (currentAQI !== null) {
       const newColor = aqiDescriptions[currentAQI]?.color || "black";
       setWarningColor(newColor);
-      console.log("New color: ", newColor);     
+      console.log("New color: ", newColor);
     }
   }, [currentAQI]);
 
@@ -59,17 +59,19 @@ const CurrentAQI = ({ title }) => {
       >
         <Text style={styles.title}>{title}</Text>
         <View style={styles.AQIValueContainer}>
-          <Text style={styles.AQIValue}>
-            {currentAQI}
-          </Text>
+          <Text style={styles.AQIValue}>{currentAQI}</Text>
           {/* <ReusableCurrentValue
           valuePath={"measurements"}
           value={"aqi"}
           /> */}
-          <Text style={[styles.AQIWarningText, { color: warningColor}]}>{aqiInfo.warning}</Text>
+          <Text style={[styles.AQIWarningText, { color: warningColor }]}>
+            {aqiInfo.warning}
+          </Text>
           <View style={styles.adviceContainer}>
-          <Text style={styles.headerText}>Advice:</Text><Text style={styles.text}>{aqiInfo.advice}</Text>
-        </View></View>
+            <Text style={styles.headerText}>Advice:</Text>
+            <Text style={styles.text}>{aqiInfo.advice}</Text>
+          </View>
+        </View>
       </LinearGradient>
     </View>
   );
@@ -91,12 +93,17 @@ const createStyles = (theme) =>
       marginVertical: 8,
       elevation: 4,
     },
-    adviceContainer:{
+    adviceContainer: {
       backgroundColor: theme.primary,
-      elevation: 1,
+      elevation: 4,
       padding: 10,
       margin: 10,
       borderRadius: 10,
+      //iphone shadow
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
     },
     title: {
       color: theme.textPrimary,
@@ -117,13 +124,13 @@ const createStyles = (theme) =>
       fontSize: 30,
       fontWeight: 600,
       color: theme.notification,
-      padding: 10
+      padding: 10,
     },
     headerText: {
       fontWeight: 600,
       textAlign: "center",
       fontSize: 20,
-      color: theme.textPrimary
+      color: theme.textPrimary,
     },
     text: {
       color: theme.textPrimary,
@@ -131,6 +138,6 @@ const createStyles = (theme) =>
       paddingLeft: 20,
       paddingRight: 20,
       paddingTop: 10,
-      fontSize: 14
+      fontSize: 14,
     },
   });
