@@ -12,7 +12,7 @@ const Overview = () => {
   return (
     <Background>
       <ContainerGradient>
-        <Text>Overview of latest sensor data</Text>
+        <Text style={styles.header}>Overview of latest sensor data</Text>
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={{ paddingBottom: 15 }}
@@ -186,4 +186,7 @@ const createStyles = (theme) =>
       padding: 10,
       marginBottom: 10,
     },
+    header: {
+      color: theme.textPrimary
+    }
   });
