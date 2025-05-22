@@ -6,10 +6,11 @@
 #include <sps30.h>
 #include <SparkFunBME280.h>
 #include <SparkFun_ENS160.h>
+#include <secret.h>
 
 // Ditt WiFi-nätverk
-const char* ssid = "Chas Academy";
-const char* password = "EverythingLouderThanEverythingElse";
+const char* ssid = hidden_ssid;
+const char* password = hidden_password;
 
 // Serverinställningar
 const char* serverHost = "chaschallenge-backend.onrender.com";  // Ersätt med din server IP
