@@ -1,7 +1,5 @@
+// routes/Admin.routes.js
 import express from "express";
-/* import measurementsRouter from "./measurementsRoutes.js";
-import sensorsRouter from "./sensors.js";  */
-import authenticateJWT from "../middleware/auth/authenticateJWT.js";
 import { getAllUsers, updateUserRole } from "../controllers/usersController.js";
 
 const router = express.Router();
