@@ -12,26 +12,22 @@ import {
 import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import data from "../data/dashboardData";
 
-// Skärmbredd
 const { width } = Dimensions.get("window");
 
-// AQI-nivåer
-const AQI_LEVELS = [
-  { color: "#00E400", range: "0 - 50", text: "Air quality is satisfactory, and air pollution poses little or no risk." },
-  { color: "#FFFF00", range: "51 - 100", text: "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution." },
-  { color: "#FF7E00", range: "101 - 150", text: "Members of sensitive groups may experience health effects. The general public is less likely to be affected." },
-  { color: "#FF0000", range: "151 - 200", text: "Some members of the general public may experience health effects; members of sensitive groups may experience more serious health effects." },
-  { color: "#8F3F97", range: "201 - 300", text: "Health alert: The risk of health effects is increased for everyone." },
-  { color: "#7E0023", range: "301+", text: "Health warning of emergency conditions: everyone is more likely to be affected." },
-];
+const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = data;
 
-// INFO_ITEMS
-const INFO_ITEMS = [
-  { type: "temperature", label: "Temperature", icon: "thermometer", color: "#FF3B30" },
-  { type: "humidity", label: "Humidity", icon: "cloud", color: "#00FF1A" },
-  { type: "pressure", label: "Air Pressure", icon: "gauge", color: "#00BAFF" },
-];
+const getAqiLevelIndex = (aqi) => {
+  if (aqi <= 50) return 0;
+  if (aqi <= 100) return 1;
+  if (aqi <= 150) return 2;
+  if (aqi <= 200) return 3;
+  if (aqi <= 300) return 4;
+  return 5;
+};
+
+const getAqiLabel = (index) => AQI_LABELS[index];
 
 const Dashboard = () => {
   const { theme } = useTheme();
@@ -42,8 +38,13 @@ const Dashboard = () => {
   const [selectedInfo, setSelectedInfo] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const [sensorData, setSensorData] = useState({ temperature: null, humidity: null, pressure: null });
+  const [sensorData, setSensorData] = useState({
+    temperature: null,
+    humidity: null,
+    pressure: null,
+  });
   const [loadingData, setLoadingData] = useState(false);
+  const [aqiValue, setAqiValue] = useState(null);
 
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
 
@@ -57,20 +58,24 @@ const Dashboard = () => {
     try {
       setLoadingData(true);
 
-      const [tempRes, humRes, presRes] = await Promise.all([
+      const [tempRes, humRes, presRes, aqiRes] = await Promise.all([
         fetch(`${apiURL}/measurements/temperature`),
         fetch(`${apiURL}/measurements/humidity`),
-        fetch(`${apiURL}/measurements/pressure`)
+        fetch(`${apiURL}/measurements/pressure`),
+        fetch(`${apiURL}/measurements/aqi`),
       ]);
 
       const tempData = await tempRes.json();
       const humData = await humRes.json();
       const presData = await presRes.json();
+      const aqiData = await aqiRes.json();
+
+      setAqiValue(aqiData[0]?.aqi ?? null);
 
       setSensorData({
         temperature: tempData[0]?.temperature?.toFixed(1) + "°C" || "N/A",
         humidity: humData[0]?.humidity?.toFixed(1) + "%" || "N/A",
-        pressure: presData[0]?.pressure?.toFixed(1) + " Pa" || "N/A"
+        pressure: presData[0]?.pressure?.toFixed(1) + " Pa" || "N/A",
       });
     } catch (error) {
       console.log("Failed to fetch sensor data", error);
@@ -86,10 +91,9 @@ const Dashboard = () => {
   };
 
   const getPrecautionText = () => {
-    if (selectedAqi === null) {
-      return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
-    }
-    return AQI_LEVELS[selectedAqi];
+    if (selectedAqi !== null) return AQI_LEVELS[selectedAqi];
+    if (!isOn && aqiValue !== null) return AQI_LEVELS[getAqiLevelIndex(aqiValue)];
+    return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
   };
 
   const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
@@ -104,17 +108,27 @@ const Dashboard = () => {
       {/* AQI BAR */}
       <View style={styles.aqiBar}>
         <View style={styles.aqiLevelContainer}>
-          {AQI_LEVELS.map((level, index) => (
-            <Pressable
-              key={index}
-              style={[
-                styles.aqiLevel,
-                { backgroundColor: level.color },
-                selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
-              ]}
-              onPress={() => isOn && setSelectedAqi(index === selectedAqi ? null : index)}
-            />
-          ))}
+          {isOn ? (
+            AQI_LEVELS.map((level, index) => (
+              <Pressable
+                key={index}
+                style={[
+                  styles.aqiLevel,
+                  { backgroundColor: level.color },
+                  selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
+                ]}
+                onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
+              />
+            ))
+          ) : loadingData ? (
+            <View style={[styles.aqiLevel, styles.centered]}>
+              <Text style={styles.loadingText}>Loading AQI</Text>
+            </View>
+          ) : aqiValue !== null ? (
+            <View style={[styles.aqiLevel, { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color }, styles.centered]}>
+              <Text style={styles.aqiText}>{getAqiLabel(getAqiLevelIndex(aqiValue))}</Text>
+            </View>
+          ) : null}
         </View>
       </View>
 
@@ -122,12 +136,12 @@ const Dashboard = () => {
       <View style={styles.slideContainer}>
         {slideIndex === 0 ? (
           <View style={styles.slideContent}>
-            {/* POWER BUTTON */}
+            {/* Inlined PowerButton */}
             <View style={styles.circleWrapper}>
               <View style={styles.circleShadow}>
                 <Pressable
                   onPress={togglePower}
-                  style={[styles.circleButton, { backgroundColor: "rgba(217, 217, 217, 0.1)", borderColor: "#000" }]}
+                  style={styles.circleButton}
                 >
                   <MaterialCommunityIcons
                     name="power"
@@ -138,7 +152,7 @@ const Dashboard = () => {
               </View>
             </View>
 
-            {/* AQI PRECAUTIONS */}
+            {/* Inlined PrecautionBox */}
             <View style={[styles.precautionBox, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
               <Text style={styles.precautionTitle}>PRECAUTION:</Text>
               <Text style={[styles.precautionRange, { color }]}>{range}</Text>
@@ -172,7 +186,7 @@ const Dashboard = () => {
         </Pressable>
       </LinearGradient>
 
-      {/* SENSOR CIRCLES */}
+      {/* Inlined SensorInfoCircles */}
       <View style={styles.iconRow}>
         {INFO_ITEMS.map((item) => {
           const showValue = !isOn;
@@ -194,14 +208,18 @@ const Dashboard = () => {
                       name={item.icon}
                       color={item.color}
                       size={32}
-                      style={{ position: "absolute", opacity: 0.2, zIndex: 0 }}
+                      style={styles.iconBackground}
                     />
-                    <Text style={[styles.valueText, { zIndex: 1 }]}>
+                    <Text style={styles.valueText}>
                       {sensorData[item.type] || "N/A"}
                     </Text>
                   </>
                 ) : (
-                  <MaterialCommunityIcons name={item.icon} color={item.color} size={32} />
+                  <MaterialCommunityIcons
+                    name={item.icon}
+                    color={item.color}
+                    size={32}
+                  />
                 )}
               </Pressable>
             </View>
@@ -212,7 +230,6 @@ const Dashboard = () => {
   );
 };
 
-// STILAR
 const createStyles = (theme) =>
   StyleSheet.create({
     container: {
@@ -235,6 +252,21 @@ const createStyles = (theme) =>
     },
     aqiLevel: {
       flex: 1,
+    },
+    centered: {
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    loadingText: {
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: 12,
+    },
+    aqiText: {
+      color: "#fff",
+      fontWeight: "bold",
+      textAlign: "center",
+      fontSize: 12,
     },
     slideContainer: {
       height: 280,
@@ -263,6 +295,8 @@ const createStyles = (theme) =>
       borderWidth: 4,
       justifyContent: "center",
       alignItems: "center",
+      backgroundColor: "rgba(217, 217, 217, 0.1)",
+      borderColor: "#000",
     },
     precautionBox: {
       borderRadius: 30,
@@ -333,10 +367,16 @@ const createStyles = (theme) =>
       shadowOpacity: 1,
       shadowRadius: 30,
     },
+    iconBackground: {
+      position: "absolute",
+      opacity: 0.2,
+      zIndex: 0,
+    },
     valueText: {
       color: "#fff",
       fontWeight: "bold",
       fontSize: 16,
+      zIndex: 1,
     },
     emptySlide: {
       padding: 40,
