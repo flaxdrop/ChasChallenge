@@ -1,19 +1,30 @@
 import * as userUtils from "../utils/users.js";
 
 export const getAllUsers = async (req, res) => {
-    try {
-      const users = await userUtils.fetchAllUsers();
-      res.json(users);
-    } catch (error) {
-      console.error("Error fetching all users:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  };
+  try {
+    const users = await userUtils.fetchAllUsers();
+    const filteredUsers = users.map(({ id, username, role, created_at }) => ({
+      id,
+      username,
+      role,
+      created_at,
+    }));
+    res.json(filteredUsers);
+  } catch (error) {
+    console.error("Error fetching all users:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
 export const getUserDetails = async (req, res) => {
   try {
     const user = await userUtils.getUserDetailsFromDB(req.user.id);
-    res.json(user);
+    res.json({
+      id: user.id,
+      username: user.username,
+      role: user.role,
+      created_at: user.created_at,
+    });
   } catch (error) {
     console.error("Error getting user details:", error);
     if (error.message === "User not found") {
@@ -38,10 +49,16 @@ export const deleteUser = async (req, res) => {
   };
   
 
+  import { validate as isUuid } from "uuid";
+
   export const updateUserRole = async (req, res) => {
     const { id } = req.params;
     const { role } = req.body;
     const validRoles = ["user", "admin"];
+  
+    if (!isUuid(id)) {
+      return res.status(400).json({ error: "Invalid user ID format" });
+    }
   
     if (!role) {
       return res.status(400).json({ error: "Missing 'role' in request body" });
@@ -62,5 +79,4 @@ export const deleteUser = async (req, res) => {
       res.status(500).json({ error: "Internal server error" });
     }
   };
-  
   

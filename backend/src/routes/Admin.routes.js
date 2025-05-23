@@ -29,6 +29,8 @@ router.get("/users", getAllUsers);
  *    summary: Update user role to 'admin' or 'user'
  *    tags:
  *      - admin
+ *    security:
+ *      - bearerAuth: []
  *    parameters:
  *      - in: path
  *        name: id
@@ -50,10 +52,49 @@ router.get("/users", getAllUsers);
  *        description: User updated
  *      400:
  *        description: Bad request
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *      401:
+ *        description: Unauthorized – Token missing or invalid
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *      403:
+ *        description: Forbidden – You do not have permission
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
  *      404:
  *        description: User not found
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
  *      500:
  *        description: Server error
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
  */
 router.patch("/users/:id/role", updateUserRole);
 

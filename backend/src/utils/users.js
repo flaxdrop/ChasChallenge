@@ -39,6 +39,11 @@ export const deleteUserFromDB = async (id) => {
 }
 
 export const updateUserRoleInDB = async (id, role) => {
-    const result = await pool.query("UPDATE users SET role = $2 WHERE id = $1 RETURNING *", [id, role]);
-    return result.rows[0];
-}
+    try {
+      const result = await pool.query("UPDATE users SET role = $2 WHERE id = $1 RETURNING *", [id, role]);
+      return result.rows[0];
+    } catch (error) {
+      console.error("DB error in updateUserRoleInDB:", error);
+      throw error;
+    }
+  };

@@ -23,12 +23,17 @@ const swaggerOptions = {
         description: "Lokal utvecklingsserver",
       },
     ],
-    tags: [
-      { name: "app", description: "Endpoints för appen." },
-      { name: "sensor", description: "Endpoints för sensor." },
-    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
-  apis: ["./src/routes/*.js"], // API docs
+  apis: ["./src/routes/*.js"],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
@@ -43,6 +48,12 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *     description: All application-related endpoints
  *   - name: sensor
  *     description: Sensor-related endpoints
+ *   - name: admin
+ *     description: Admin-related endpoints, requires admin role
+ *   - name: user
+ *     description: User-related endpoints, requires user or admin role
+ *   - name: auth
+ *     description: Authentication-related endpoints
  */
 
 /**

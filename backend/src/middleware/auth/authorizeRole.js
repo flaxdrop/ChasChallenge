@@ -1,15 +1,15 @@
-function authorize(role) {
+function authorize(allowedRoles) {
     return (req, res, next) => {
-        const userRole = req.user.role;
-
-        if (userRole === role) {
-            next();
-        } else {
-            res.status(403).json({ error: 'Access denied' });
-        }
+      if (!req.user) {
+        return res.status(401).json({ error: 'Unauthorized: no user info' });
+      }
+      if (allowedRoles.includes(req.user.role)) {
+        return next();
+      }
+      return res.status(403).json({ error: 'Access denied' });
     };
-}
-
-export const authorizeAdmin = authorize('admin');
-export const authorizeUser = authorize('user');
-
+  }
+  
+  // Usage:
+  export const authorizeAdmin = authorize(['admin']);
+  export const authorizeUserOrAdmin = authorize(['user', 'admin']);
