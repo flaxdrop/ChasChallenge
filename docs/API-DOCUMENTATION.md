@@ -6,8 +6,7 @@
 
 ```
 PORT=3000
-DATABASE_URL='postgresql://airaware_db_owner:npg_uctWa2dzqyX0@ep-aged-sound-a2n9vio3-pooler.eu-central-1.aws.neon.tech/airaware_db?sslmode=require'
-JWT_SECRET='superSECRETkey!'
+DATABASE_URL='[postgress-db-urlhere]'
 NODE_ENV=dev
 UNSAFE_ALLOW_MISSING_AUTHENTICATION=YES
 ```
