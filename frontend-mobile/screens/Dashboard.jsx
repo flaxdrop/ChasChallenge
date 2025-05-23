@@ -1,103 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
   View,
   Text,
-  StyleSheet,
   Pressable,
-  Dimensions,
-  StatusBar,
-  SafeAreaView,
   ActivityIndicator,
+  Dimensions,
 } from "react-native";
-import { useTheme } from "../theme/ThemeContext";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import data from "../data/dashboardData";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useTheme } from "../theme/ThemeContext";
+import useDashboardLogic from "../hooks/useDashboardLogic";
+import dashboardData from "../data/dashboardData";
+import getAqiLevelIndex from "../utils/aqiUtils";
 
-const { width } = Dimensions.get("window");
-
-const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = data;
-
-const getAqiLevelIndex = (aqi) => {
-  if (aqi <= 50) return 0;
-  if (aqi <= 100) return 1;
-  if (aqi <= 150) return 2;
-  if (aqi <= 200) return 3;
-  if (aqi <= 300) return 4;
-  return 5;
-};
-
-const getAqiLabel = (index) => AQI_LABELS[index];
+const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = dashboardData;
 
 const Dashboard = () => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
 
-  const [isOn, setIsOn] = useState(true);
-  const [selectedAqi, setSelectedAqi] = useState(null);
-  const [selectedInfo, setSelectedInfo] = useState(null);
-  const [slideIndex, setSlideIndex] = useState(0);
-
-  const [sensorData, setSensorData] = useState({
-    temperature: null,
-    humidity: null,
-    pressure: null,
-  });
-  const [loadingData, setLoadingData] = useState(false);
-  const [aqiValue, setAqiValue] = useState(null);
-
-  const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
-
-  useEffect(() => {
-    if (!isOn) {
-      fetchSensorData();
-    }
-  }, [isOn]);
-
-  const fetchSensorData = async () => {
-    try {
-      setLoadingData(true);
-
-      const [tempRes, humRes, presRes, aqiRes] = await Promise.all([
-        fetch(`${apiURL}/measurements/temperature`),
-        fetch(`${apiURL}/measurements/humidity`),
-        fetch(`${apiURL}/measurements/pressure`),
-        fetch(`${apiURL}/measurements/aqi`),
-      ]);
-
-      const tempData = await tempRes.json();
-      const humData = await humRes.json();
-      const presData = await presRes.json();
-      const aqiData = await aqiRes.json();
-
-      setAqiValue(aqiData[0]?.aqi ?? null);
-
-      setSensorData({
-        temperature: tempData[0]?.temperature?.toFixed(1) + "°C" || "N/A",
-        humidity: humData[0]?.humidity?.toFixed(1) + "%" || "N/A",
-        pressure: presData[0]?.pressure?.toFixed(1) + " Pa" || "N/A",
-      });
-    } catch (error) {
-      console.log("Failed to fetch sensor data", error);
-    } finally {
-      setLoadingData(false);
-    }
-  };
-
-  const togglePower = () => {
-    setIsOn(!isOn);
-    setSelectedAqi(null);
-    setSelectedInfo(null);
-  };
-
-  const getPrecautionText = () => {
-    if (selectedAqi !== null) return AQI_LEVELS[selectedAqi];
-    if (!isOn && aqiValue !== null) return AQI_LEVELS[getAqiLevelIndex(aqiValue)];
-    return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
-  };
-
-  const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
-  const prevSlide = () => setSlideIndex((slideIndex - 1 + 2) % 2);
+  const {
+    isOn,
+    selectedAqi,
+    selectedInfo,
+    slideIndex,
+    sensorData,
+    loadingData,
+    aqiValue,
+    togglePower,
+    getPrecautionText,
+    nextSlide,
+    prevSlide,
+    setSelectedAqi,
+    setSelectedInfo,
+  } = useDashboardLogic(process.env.EXPO_PUBLIC_RENDER_URL);
 
   const { range, color, text } = getPrecautionText();
 
@@ -125,8 +64,16 @@ const Dashboard = () => {
               <Text style={styles.loadingText}>Loading AQI</Text>
             </View>
           ) : aqiValue !== null ? (
-            <View style={[styles.aqiLevel, { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color }, styles.centered]}>
-              <Text style={styles.aqiText}>{getAqiLabel(getAqiLevelIndex(aqiValue))}</Text>
+            <View
+              style={[
+                styles.aqiLevel,
+                { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color },
+                styles.centered,
+              ]}
+            >
+              <Text style={styles.aqiText}>
+                {AQI_LABELS[getAqiLevelIndex(aqiValue)]}
+              </Text>
             </View>
           ) : null}
         </View>
@@ -136,13 +83,10 @@ const Dashboard = () => {
       <View style={styles.slideContainer}>
         {slideIndex === 0 ? (
           <View style={styles.slideContent}>
-            {/* Inlined PowerButton */}
+            {/* POWER BUTTON */}
             <View style={styles.circleWrapper}>
               <View style={styles.circleShadow}>
-                <Pressable
-                  onPress={togglePower}
-                  style={styles.circleButton}
-                >
+                <Pressable onPress={togglePower} style={styles.circleButton}>
                   <MaterialCommunityIcons
                     name="power"
                     size={60}
@@ -152,10 +96,10 @@ const Dashboard = () => {
               </View>
             </View>
 
-            {/* Inlined PrecautionBox */}
-            <View style={[styles.precautionBox, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
-              <Text style={styles.precautionTitle}>PRECAUTION:</Text>
-              <Text style={[styles.precautionRange, { color }]}>{range}</Text>
+            {/* PRECAUTION BOX */}
+            <View style={[styles.box, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
+              <Text style={styles.title}>PRECAUTION:</Text>
+              <Text style={[styles.range, { color }]}>{range}</Text>
               <Text style={styles.precautionText}>{text}</Text>
             </View>
           </View>
@@ -186,19 +130,19 @@ const Dashboard = () => {
         </Pressable>
       </LinearGradient>
 
-      {/* Inlined SensorInfoCircles */}
-      <View style={styles.iconRow}>
+      {/* SENSOR INFO CIRCLES */}
+      <View style={styles.sensorRow}>
         {INFO_ITEMS.map((item) => {
           const showValue = !isOn;
           const isSelected = selectedInfo === item.type;
 
           return (
-            <View key={item.type} style={styles.infoBlock}>
-              <Text style={styles.infoLabel}>{item.label}</Text>
+            <View key={item.type} style={styles.sensorBlock}>
+              <Text style={styles.label}>{item.label}</Text>
               <Pressable
                 disabled={isOn}
                 onPress={() => setSelectedInfo(isSelected ? null : item.type)}
-                style={styles.infoCircle}
+                style={styles.circle}
               >
                 {loadingData && showValue ? (
                   <ActivityIndicator size="small" color="#fff" />
@@ -277,6 +221,13 @@ const createStyles = (theme) =>
       width: "100%",
       alignItems: "center",
     },
+    emptySlide: {
+      padding: 40,
+    },
+    historicalText: {
+      color: "#fff",
+      fontSize: 16,
+    },
     circleWrapper: {
       alignItems: "center",
       marginBottom: 20,
@@ -298,7 +249,7 @@ const createStyles = (theme) =>
       backgroundColor: "rgba(217, 217, 217, 0.1)",
       borderColor: "#000",
     },
-    precautionBox: {
+    box: {
       borderRadius: 30,
       padding: 15,
       marginTop: 10,
@@ -307,13 +258,13 @@ const createStyles = (theme) =>
       height: 120,
       justifyContent: "center",
     },
-    precautionTitle: {
+    title: {
       color: "#fff",
       fontWeight: "bold",
       fontSize: 20,
       marginBottom: 2,
     },
-    precautionRange: {
+    range: {
       fontWeight: "bold",
       fontSize: 16,
     },
@@ -338,22 +289,22 @@ const createStyles = (theme) =>
       fontWeight: "bold",
       fontSize: 18,
     },
-    iconRow: {
+    sensorRow: {
       flexDirection: "row",
       justifyContent: "space-between",
       marginBottom: 30,
     },
-    infoBlock: {
+    sensorBlock: {
       alignItems: "center",
       width: 90,
     },
-    infoLabel: {
+    label: {
       color: "#fff",
       marginBottom: 8,
       fontSize: 13,
       fontWeight: "600",
     },
-    infoCircle: {
+    circle: {
       width: 80,
       height: 80,
       borderRadius: 40,
@@ -377,13 +328,6 @@ const createStyles = (theme) =>
       fontWeight: "bold",
       fontSize: 16,
       zIndex: 1,
-    },
-    emptySlide: {
-      padding: 40,
-    },
-    historicalText: {
-      color: "#fff",
-      fontSize: 16,
     },
   });
 
