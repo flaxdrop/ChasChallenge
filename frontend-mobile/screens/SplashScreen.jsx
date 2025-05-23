@@ -6,20 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const SplashScreen = ({ navigation }) => {
   const animationRef = useRef();
 
-  useEffect(() => {
-    const checkOnboardingStatus = async () => {
-      const seen = await AsyncStorage.getItem('hasSeenOnboarding');
-      setTimeout(() => {
-        if (seen === 'true') {
-          navigation.replace('MainApp');
-        } else {
-          navigation.replace('OnboardingScreen');
-        }
-      }, 2000); 
-    };
-
-    checkOnboardingStatus();
-  }, []);
 
   return (
     <View style={styles.container}>
@@ -30,6 +16,9 @@ const SplashScreen = ({ navigation }) => {
         loop={false}
         speed={0.5}
         style={styles.animation}
+        onAnimationFinish={() => {
+        navigation.replace('OnboardingScreen'); 
+        }}
       />
     </View>
   );

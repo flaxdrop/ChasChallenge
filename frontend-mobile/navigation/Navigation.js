@@ -104,31 +104,18 @@ const Tabs = () => {
 };
 
 const Navigation = () => {
-  const [showOnboarding, setShowOnboarding] = useState(null);
   const { customTheme } = useTheme();
 
-  useEffect(() => {
-    const checkOnboarding = async () => {
-      const seen = await AsyncStorage.getItem("hasSeenOnboarding");
-      setShowOnboarding(seen !== "true");
-    };
-    checkOnboarding();
-  }, []);
-  
-  if (showOnboarding === null) return null; 
-
- return (
+  return (
     <NavigationContainer theme={customTheme}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* Temporarily disabled splash and onboarding screens */}
-        {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
-        {/* {showOnboarding && (
-          <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
-        )} */}
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
         <Stack.Screen name="MainApp" component={Tabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
+
 
 export default Navigation;

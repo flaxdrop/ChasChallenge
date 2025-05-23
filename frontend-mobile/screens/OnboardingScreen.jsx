@@ -11,7 +11,6 @@ const OnboardingScreen = ({ navigation }) => {
   const { theme } = useTheme();
 
   const finishOnboarding = async () => {
-    await AsyncStorage.setItem("hasSeenOnboarding", "true");
     navigation.replace("MainApp");
   };
 
