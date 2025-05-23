@@ -39,6 +39,7 @@ router.get("/about", (req, res) => {
  *   post:
  *     summary: Create a new user
  *     description: Creates a new user
+ *     security: []
  *     tags:
  *       - user
  *     requestBody:
@@ -125,6 +126,7 @@ router.post(
  *   post:
  *     summary: Login and receive a JWT token
  *     description: Validate user credentials and return a JWT token
+ *     security: []
  *     tags:
  *       - auth
  *     requestBody:

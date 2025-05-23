@@ -27,6 +27,20 @@ const swaggerOptions = {
       { name: "app", description: "Endpoints för appen." },
       { name: "sensor", description: "Endpoints för sensor." },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+    },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   },
   apis: ["./src/routes/*.js"], // API docs
 };
