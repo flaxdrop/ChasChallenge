@@ -1,32 +1,81 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import { useTheme } from "../theme/ThemeContext";
+import data from "../data/dashboardData";
+import getAqiLevelIndex from "../utils/aqiUtils";
 
-const AqiBar = () => (
-  <View style={styles.aqiBar}>
-    <View style={styles.aqiLevelContainer}>
-      <View style={[styles.aqiLevel, { backgroundColor: "#00E400" }]} />
-      <View style={[styles.aqiLevel, { backgroundColor: "#FFFF00" }]} />
-      <View style={[styles.aqiLevel, { backgroundColor: "#FF7E00" }]} />
-      <View style={[styles.aqiLevel, { backgroundColor: "#FF0000" }]} />
+const { AQI_LEVELS, AQI_LABELS } = data;
+
+const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) => {
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
+
+  return (
+    <View style={styles.aqiBar}>
+      <View style={styles.aqiLevelContainer}>
+        {isOn ? (
+          AQI_LEVELS.map((level, index) => (
+            <Pressable
+              key={index}
+              style={[
+                styles.aqiLevel,
+                { backgroundColor: level.color },
+                selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
+              ]}
+              onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
+            />
+          ))
+        ) : loadingData ? (
+          <View style={[styles.aqiLevel, styles.centered]}>
+            <Text style={styles.loadingText}>Loading AQI</Text>
+          </View>
+        ) : aqiValue !== null ? (
+          <View
+            style={[
+              styles.aqiLevel,
+              { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color },
+              styles.centered,
+            ]}
+          >
+            <Text style={styles.aqiText}>{AQI_LABELS[getAqiLevelIndex(aqiValue)]}</Text>
+          </View>
+        ) : null}
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
-const styles = StyleSheet.create({
-  aqiBar: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  aqiLevelContainer: {
-    flexDirection: "row",
-    borderRadius: 40,
-    overflow: "hidden",
-    width: "70%",
-    height: 30,
-  },
-  aqiLevel: {
-    flex: 1,
-  },
-});
+const createStyles = (theme) =>
+  StyleSheet.create({
+    aqiBar: {
+      alignItems: "center",
+      marginBottom: 20,
+    },
+    aqiLevelContainer: {
+      flexDirection: "row",
+      borderRadius: 40,
+      overflow: "hidden",
+      width: "100%",
+      height: 30,
+    },
+    aqiLevel: {
+      flex: 1,
+    },
+    centered: {
+      justifyContent: "center",
+      alignItems: "center",
+    },
+    loadingText: {
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: 12,
+    },
+    aqiText: {
+      color: "#fff",
+      fontWeight: "bold",
+      textAlign: "center",
+      fontSize: 12,
+    },
+  });
 
 export default AqiBar;

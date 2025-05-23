@@ -14,7 +14,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
 import dashboardData from "../data/dashboardData";
-import getAqiLevelIndex from "../utils/aqiUtils";
+import AqiBar from "../components/AqiBar";
 
 const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = dashboardData;
 
@@ -45,39 +45,13 @@ const Dashboard = () => {
       <StatusBar barStyle="light-content" />
 
       {/* AQI BAR */}
-      <View style={styles.aqiBar}>
-        <View style={styles.aqiLevelContainer}>
-          {isOn ? (
-            AQI_LEVELS.map((level, index) => (
-              <Pressable
-                key={index}
-                style={[
-                  styles.aqiLevel,
-                  { backgroundColor: level.color },
-                  selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
-                ]}
-                onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
-              />
-            ))
-          ) : loadingData ? (
-            <View style={[styles.aqiLevel, styles.centered]}>
-              <Text style={styles.loadingText}>Loading AQI</Text>
-            </View>
-          ) : aqiValue !== null ? (
-            <View
-              style={[
-                styles.aqiLevel,
-                { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color },
-                styles.centered,
-              ]}
-            >
-              <Text style={styles.aqiText}>
-                {AQI_LABELS[getAqiLevelIndex(aqiValue)]}
-              </Text>
-            </View>
-          ) : null}
-        </View>
-      </View>
+      <AqiBar
+        isOn={isOn}
+        selectedAqi={selectedAqi}
+        setSelectedAqi={setSelectedAqi}
+        aqiValue={aqiValue}
+        loadingData={loadingData}
+      />
 
       {/* SLIDE CONTENT */}
       <View style={styles.slideContainer}>
