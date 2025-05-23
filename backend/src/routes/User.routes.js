@@ -1,4 +1,5 @@
 // routes/User.routes.js
+//* Authorized user routes, requires JWT token -- see Protected.routes.js
 
 import express from "express";
 import { getUserDetails, deleteUser } from "../controllers/usersController.js";
@@ -20,7 +21,7 @@ const router = express.Router();
  *       401:
  *         description: Unauthorized
  */
-router.get("/", authenticateJWT, getUserDetails);
+router.get("/", getUserDetails);
 
 /**
  * @swagger
@@ -36,6 +37,6 @@ router.get("/", authenticateJWT, getUserDetails);
  *       401:
  *         description: Unauthorized
  */
-router.delete("/delete", authenticateJWT, deleteUser);
+router.delete("/delete", deleteUser);
 
 export default router;
