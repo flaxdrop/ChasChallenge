@@ -2,12 +2,15 @@
 
 ### Miljövariabel
 
-- Skapa filen ".env" i /backend/_här_, lägg till texten: 
+- Skapa filen ".env" i /backend/_här_, lägg till texten:
+
+```
 PORT=3000
 DATABASE_URL='postgresql://airaware_db_owner:npg_uctWa2dzqyX0@ep-aged-sound-a2n9vio3-pooler.eu-central-1.aws.neon.tech/airaware_db?sslmode=require'
 JWT_SECRET='superSECRETkey!'
 NODE_ENV=dev
 UNSAFE_ALLOW_MISSING_AUTHENTICATION=YES
+```
 
 - Kör i en separat terminal från frontend:
 
@@ -19,4 +22,4 @@ API:t körs nu på: http://localhost:3000
 
 ### Available endpoints on Swagger
 
-When the server is running, navigate to: http://localhost:3000/api-docs/
+When the server is running, navigate to url /api-docs
