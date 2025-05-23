@@ -36,7 +36,7 @@ const Dashboard = () => {
   const [isOn, setIsOn] = useState(true);
   const [selectedAqi, setSelectedAqi] = useState(null);
   const [selectedInfo, setSelectedInfo] = useState(null);
-  const [slideIndex, setSlideIndex] = useState(0); // 0 = Analyze AQI, 1 = Historical Graph
+  const [slideIndex, setSlideIndex] = useState(0);
 
   const togglePower = () => {
     setIsOn(!isOn);
@@ -45,19 +45,21 @@ const Dashboard = () => {
   };
 
   const getPrecautionText = () => {
-    if (selectedAqi === null) return "None: Everyone enjoy\noutdoor activities";
-    const { range, text } = AQI_LEVELS[selectedAqi];
-    return `${range}: ${text}`;
+    if (selectedAqi === null)
+      return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
+    const { range, text, color } = AQI_LEVELS[selectedAqi];
+    return { range, color, text };
   };
 
   const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
   const prevSlide = () => setSlideIndex((slideIndex - 1 + 2) % 2);
 
+  const { range, color, text } = getPrecautionText();
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {/* AQI BAR */}
       <View style={styles.aqiBar}>
         <View style={styles.aqiLevelContainer}>
           {AQI_LEVELS.map((level, index) => (
@@ -74,11 +76,9 @@ const Dashboard = () => {
         </View>
       </View>
 
-      {/* SLIDES */}
       <View style={styles.slideContainer}>
         {slideIndex === 0 && (
-          <>
-            {/* Power Button */}
+          <View style={styles.slideContent}>
             <View style={styles.circleWrapper}>
               <View style={styles.circleShadow}>
                 <Pressable
@@ -94,26 +94,27 @@ const Dashboard = () => {
               </View>
             </View>
 
-            {/* Precaution Box */}
             <View style={[styles.precautionBox, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
               <Text style={styles.precautionTitle}>PRECAUTION:</Text>
-              <Text style={styles.precautionText}>{getPrecautionText()}</Text>
+              <Text style={[styles.precautionRange, { color }]}>{range}</Text>
+              <Text style={styles.precautionText}>{text}</Text>
             </View>
-          </>
+          </View>
         )}
 
         {slideIndex === 1 && (
-          <View style={styles.emptySlide}>
-            <Text style={styles.historicalText}>Historical Graph will go here.</Text>
+          <View style={styles.slideContent}>
+            <View style={styles.emptySlide}>
+              <Text style={styles.historicalText}>Historical Graph will go here.</Text>
+            </View>
           </View>
         )}
       </View>
 
-      {/* SLIDE BOX BUTTONS */}
       <LinearGradient
         colors={["#001BA3", "#00BAFF"]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 0, y: 0 }}
         style={styles.slideBox}
       >
         <Pressable onPress={prevSlide}>
@@ -127,7 +128,6 @@ const Dashboard = () => {
         </Pressable>
       </LinearGradient>
 
-      {/* INFO CIRCLES */}
       <View style={styles.iconRow}>
         {INFO_ITEMS.map((item) => {
           const showValue = !isOn;
@@ -186,6 +186,12 @@ const createStyles = (theme) =>
       flex: 1,
     },
     slideContainer: {
+      height: 280,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    slideContent: {
+      width: "100%",
       alignItems: "center",
     },
     circleWrapper: {
@@ -212,18 +218,26 @@ const createStyles = (theme) =>
       padding: 15,
       marginTop: 10,
       alignItems: "center",
+      width: "100%",
+      height: 120,
+      justifyContent: "center",
     },
     precautionTitle: {
       color: "#fff",
       fontWeight: "bold",
       fontSize: 20,
-      marginBottom: 5,
+      marginBottom: 2,
+    },
+    precautionRange: {
+      fontWeight: "bold",
+      fontSize: 16,
     },
     precautionText: {
       color: "#fff",
       textAlign: "center",
       fontSize: 14,
       fontWeight: "600",
+      marginTop: 4,
     },
     slideBox: {
       flexDirection: "row",
