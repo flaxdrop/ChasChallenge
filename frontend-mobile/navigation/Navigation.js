@@ -117,20 +117,16 @@ const Navigation = () => {
   
   if (showOnboarding === null) return null; 
 
-  return (
+ return (
     <NavigationContainer theme={customTheme}>
-<Stack.Navigator screenOptions={{ headerShown: false }}>
-  {showOnboarding !== null && (
-    <>
-      <Stack.Screen name="SplashScreen" component={SplashScreen} />
-      {showOnboarding && (
-        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
-      )}
-      <Stack.Screen name="MainApp" component={Tabs} />
-    </>
-  )}
-</Stack.Navigator>
-
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* Temporarily disabled splash and onboarding screens */}
+        {/* <Stack.Screen name="SplashScreen" component={SplashScreen} /> */}
+        {/* {showOnboarding && (
+          <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+        )} */}
+        <Stack.Screen name="MainApp" component={Tabs} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
