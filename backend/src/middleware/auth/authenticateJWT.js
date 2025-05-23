@@ -4,7 +4,6 @@ import { NODE_ENV, UNSAFE_ALLOW_MISSING_AUTHENTICATION } from '../../config/inde
 
 const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
-  console.log("Authorization header:", authHeader);
 
   // Bypass auth in dev mode if allowed (for sensors or apps not sending token yet)
   if (!authHeader && NODE_ENV === 'dev' && UNSAFE_ALLOW_MISSING_AUTHENTICATION) {
@@ -22,6 +21,7 @@ const authenticateJWT = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // Set both req.user and res.locals.user for compatibility with your middlewares
+    console.log("Authorization header:", authHeader);
     req.user = decoded;
     res.locals.user = decoded;
     console.log("Decoded JWT user:", decoded);
