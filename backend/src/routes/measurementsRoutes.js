@@ -1,3 +1,4 @@
+// routes/measurementsRoutes.js
 import express from "express";
 import {
   getAllMeasurements,
@@ -154,7 +155,7 @@ router.post("/delete", authenticateJWT, authorizeAdmin, async (req, res) => {
   }
 });
 
-
+// Swagger documentation
 /**
  * @swagger
  * /measurements:
