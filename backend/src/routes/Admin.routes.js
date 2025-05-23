@@ -98,6 +98,8 @@ router.get("/users", getAllUsers);
  */
 router.patch("/users/:id/role", updateUserRole);
 
+
+
 // todo admin allowed to delete other users ?
 
 export default router;

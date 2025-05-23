@@ -5,6 +5,7 @@ import checkUserExists from "../middleware/checkUserExists.js";
 import validateRegisterInput from "../middleware/validateRegisterInput.js";
 import validateUserLogin from "../middleware/auth/validateUserLogin.js";
 import jwt from "jsonwebtoken";
+import measurementsRouter from "./measurementsRoutes.js";
 
 const router = express.Router();
 
@@ -25,6 +26,9 @@ router.get("/", (req, res) => {
     <p>Välkommen till SyntaxSquad's API!</p>
     <a href=api-docs>Dokumentation</a>`);
 });
+
+// Routes to access sensor measurement data
+router.use("/measurements", measurementsRouter);
 
 // About page // todo add swagger 
 //todo add DB logic

@@ -5,6 +5,7 @@ import CORS from "cors";
 import publicRouter from "./routes/Public.routes.js";
 import protectedRouter from "./routes/Protected.routes.js";
 import dotenv from "dotenv";
+import sensorsRouter from "./routes/sensors.js"; 
 
 dotenv.config();
 
@@ -19,8 +20,12 @@ app.use(CORS());
 // Använd API-dokumentation
 app.use("/", apiDocs); // API routes
 
+// Sensor routes (mixed access routes)
+app.use("/sensors", sensorsRouter);
+
 // Public routes
 app.use("/", publicRouter);
+
 // Protected routes authorized by middleware
 app.use("/", protectedRouter);
 
