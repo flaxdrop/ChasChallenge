@@ -26,7 +26,7 @@ router.get("/users", getAllUsers);
  * @swagger
  * /admin/users/{id}/role:
  *  patch:
- *    summary: Update user role to admin
+ *    summary: Update user role to 'admin' or 'user'
  *    tags:
  *      - admin
  *    parameters:
@@ -50,6 +50,8 @@ router.get("/users", getAllUsers);
  *        description: User updated
  *      400:
  *        description: Bad request
+ *      404:
+ *        description: User not found
  *      500:
  *        description: Server error
  */
