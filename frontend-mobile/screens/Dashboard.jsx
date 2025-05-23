@@ -15,6 +15,7 @@ import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
 import dashboardData from "../data/dashboardData";
 import AqiBar from "../components/AqiBar";
+import SlideContent from "../components/SlideContent";
 
 const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = dashboardData;
 
@@ -54,37 +55,14 @@ const Dashboard = () => {
       />
 
       {/* SLIDE CONTENT */}
-      <View style={styles.slideContainer}>
-        {slideIndex === 0 ? (
-          <View style={styles.slideContent}>
-            {/* POWER BUTTON */}
-            <View style={styles.circleWrapper}>
-              <View style={styles.circleShadow}>
-                <Pressable onPress={togglePower} style={styles.circleButton}>
-                  <MaterialCommunityIcons
-                    name="power"
-                    size={60}
-                    color={isOn ? "#00FF1A" : "#FF0000"}
-                  />
-                </Pressable>
-              </View>
-            </View>
-
-            {/* PRECAUTION BOX */}
-            <View style={[styles.box, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
-              <Text style={styles.title}>PRECAUTION:</Text>
-              <Text style={[styles.range, { color }]}>{range}</Text>
-              <Text style={styles.precautionText}>{text}</Text>
-            </View>
-          </View>
-        ) : (
-          <View style={styles.slideContent}>
-            <View style={styles.emptySlide}>
-              <Text style={styles.historicalText}>Historical Graph will go here.</Text>
-            </View>
-          </View>
-        )}
-      </View>
+      <SlideContent
+        slideIndex={slideIndex}
+        isOn={isOn}
+        togglePower={togglePower}
+        range={range}
+        color={color}
+        text={text}
+      />
 
       {/* SLIDE CONTROLS */}
       <LinearGradient

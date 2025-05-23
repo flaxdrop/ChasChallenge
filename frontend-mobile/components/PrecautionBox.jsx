@@ -1,32 +1,42 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const PrecautionBox = () => (
-  <View style={styles.precautionBox}>
-    <Text style={styles.precautionTitle}>PRECAUTION:</Text>
-    <Text style={styles.precautionText}>None: Everyone enjoy{"\n"}outdoor activities</Text>
-  </View>
-);
+const PrecautionBox = ({ color, range, text }) => {
+  return (
+    <View style={[styles.box, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
+      <Text style={styles.title}>PRECAUTION:</Text>
+      <Text style={[styles.range, { color }]}>{range}</Text>
+      <Text style={styles.text}>{text}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-  precautionBox: {
+  box: {
     borderRadius: 30,
     padding: 15,
-    marginTop: 20,
+    marginTop: 10,
     alignItems: "center",
-    backgroundColor: "rgba(0, 186, 255, 0.1)",
+    width: "100%",
+    height: 120,
+    justifyContent: "center",
   },
-  precautionTitle: {
+  title: {
     color: "#fff",
     fontWeight: "bold",
     fontSize: 20,
-    marginBottom: 5,
+    marginBottom: 2,
   },
-  precautionText: {
+  range: {
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  text: {
     color: "#fff",
     textAlign: "center",
     fontSize: 14,
     fontWeight: "600",
+    marginTop: 4,
   },
 });
 
