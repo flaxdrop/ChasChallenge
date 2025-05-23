@@ -61,8 +61,6 @@ router.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
  *     description: Admin-related endpoints, requires admin role
  *   - name: user
  *     description: User-related endpoints, requires user or admin role
- *   - name: auth
- *     description: Authentication-related endpoints
  */
 
 /**

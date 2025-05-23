@@ -41,7 +41,7 @@ router.get("/about", (req, res) => {
  *     description: Creates a new user
  *     security: []
  *     tags:
- *       - user
+ *       - public
  *     requestBody:
  *       required: true
  *       content:
@@ -128,7 +128,7 @@ router.post(
  *     description: Validate user credentials and return a JWT token
  *     security: []
  *     tags:
- *       - auth
+ *       - public
  *     requestBody:
  *       required: true
  *       content:
@@ -179,3 +179,4 @@ router.post("/login", validateUserLogin, async (req, res) => {
 })
 
 export default router;
+
