@@ -2,7 +2,12 @@
 
 ### Miljövariabel
 
-- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000
+- Skapa filen ".env" i /backend/_här_, lägg till texten: 
+PORT=3000
+DATABASE_URL='postgresql://airaware_db_owner:npg_uctWa2dzqyX0@ep-aged-sound-a2n9vio3-pooler.eu-central-1.aws.neon.tech/airaware_db?sslmode=require'
+JWT_SECRET='superSECRETkey!'
+NODE_ENV=dev
+UNSAFE_ALLOW_MISSING_AUTHENTICATION=YES
 
 - Kör i en separat terminal från frontend:
 
@@ -12,60 +17,6 @@
 
 API:t körs nu på: http://localhost:3000
 
-### Tillgängliga endpoints
+### Available endpoints on Swagger
 
-#### GET /all
-
-- Hämtar samtliga mätvärden.
-
-#### GET /all/:id
-
-- Hämtar ett mätvärde med angivet ID.
-
-#### GET /measurements
-
-- Hämtar temperatur, luftfuktighet och tryck.
-
-#### GET /measurements/:id
-
-- Hämtar mätvärden för ett specifikt ID.
-
-#### GET /measurements/temperature
-
-- Endast temperaturvärden.
-
-#### GET /measurements/humidity
-
-- Endast luftfuktighetsvärden.
-
-#### GET /measurements/pressure
-
-- Endast tryckvärden.
-
-#### GET /measurements/:type/:id
-
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
-
-#### GET /airquality
-
-- Hämtar alla luftkvalitetsvärden (AQI, TVOC, eCO2).
-
-#### GET /airquality/:id
-
-- Hämtar luftkvalitetsdata för ett specifikt ID.
-
-#### GET /airquality/aqi
-
-- Endast AQI-värden.
-
-#### GET /airquality/tvoc
-
-- Endast TVOC-värden.
-
-#### GET /airquality/eco2
-
-- Endast eCO2-värden.
-
-#### GET /airquality/:type/:id
-
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
+When the server is running, navigate to: http://localhost:3000/api-docs/
