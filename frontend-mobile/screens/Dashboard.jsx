@@ -9,13 +9,13 @@ import {
   ActivityIndicator,
   Dimensions,
 } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
 import dashboardData from "../data/dashboardData";
 import AqiBar from "../components/AqiBar";
 import SlideContent from "../components/SlideContent";
+import SlideControls from "../components/SlideControls";
 
 const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = dashboardData;
 
@@ -65,22 +65,11 @@ const Dashboard = () => {
       />
 
       {/* SLIDE CONTROLS */}
-      <LinearGradient
-        colors={["#001BA3", "#00BAFF"]}
-        start={{ x: 0, y: 1 }}
-        end={{ x: 0, y: 0 }}
-        style={styles.slideBox}
-      >
-        <Pressable onPress={prevSlide}>
-          <MaterialCommunityIcons name="chevron-left" color="#fff" size={28} />
-        </Pressable>
-        <Text style={styles.slideText}>
-          {slideIndex === 0 ? "ANALYZE AQI" : "HISTORICAL GRAPH"}
-        </Text>
-        <Pressable onPress={nextSlide}>
-          <MaterialCommunityIcons name="chevron-right" color="#fff" size={28} />
-        </Pressable>
-      </LinearGradient>
+      <SlideControls
+        slideIndex={slideIndex}
+        nextSlide={nextSlide}
+        prevSlide={prevSlide}
+      />
 
       {/* SENSOR INFO CIRCLES */}
       <View style={styles.sensorRow}>
