@@ -1,9 +1,12 @@
+// routes/measurementsRoutes.js
 import express from "express";
 import {
   getAllMeasurements,
   createMeasurement,
   deleteMeasurements,
 } from "../utils/measurementsService.js";
+import authenticateJWT from "../middleware/auth/authenticateJWT.js";
+import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
 
 const router = express.Router();
 
@@ -109,7 +112,8 @@ router.post("/", async (req, res) => {
 });
 
 // Route för att ta bort mätningar baserat på tidsintervall
-router.post("/delete", async (req, res) => {
+//* ADMIN ONLY
+router.post("/delete", authenticateJWT, authorizeAdmin, async (req, res) => {
   const { startTime, endTime } = req.body;
 
   // Validera tidsintervall
@@ -150,5 +154,156 @@ router.post("/delete", async (req, res) => {
     });
   }
 });
+
+// Swagger documentation
+/**
+ * @swagger
+ * /measurements:
+ *   get:
+ *     summary: Route för att hämta alla värden från båda sensorerna
+ *     tags: [public]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           example: 10
+ *         description: Antal mätningar att returnera
+ *     responses:
+ *       200:
+ *         description: Alla mätningar.
+ *       500:
+ *         description: Fel vid läsning av alla sensorvärden
+ */
+
+/**
+ * @swagger
+ * /measurements/{types}:
+ *   get:
+ *     summary: Hämta specifika typer av mätningar
+ *     tags: [public]
+ *     parameters:
+ *       - in: path
+ *         name: types
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Kommaseparerade typer av mätningar
+ *         example: temperature,humidity,aqi
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Antal mätningar att returnera
+ *         example: 10
+ *     responses:
+ *       200:
+ *         description: Filtrerade mätningar
+ *       400:
+ *         description: Ogiltig typ av mätning
+ */
+
+/**
+ * @swagger
+ * /measurements:
+ *   post:
+ *     summary: Ladda upp en uppsättning mätvärden från sensor.
+ *     tags: [sensor]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *                 description: ISO 8601-tidsstämpel (valfri)
+ *               temperature:
+ *                 type: number
+ *                 example: 22.5
+ *               humidity:
+ *                 type: number
+ *                 example: 55.2
+ *               pressure:
+ *                 type: number
+ *                 example: 101325
+ *               aqi:
+ *                 type: integer
+ *                 example: 4
+ *               tvoc:
+ *                 type: number
+ *                 example: 150
+ *               eco2:
+ *                 type: number
+ *                 example: 400
+ *               pm1:
+ *                 type: number
+ *                 example: 10.5
+ *               pm2_5:
+ *                 type: number
+ *                 example: 20.3
+ *               pm4:
+ *                 type: number
+ *                 example: 35.1
+ *               pm10:
+ *                 type: number
+ *                 example: 50.7
+ *               nc_0_5:
+ *                 type: number
+ *                 example: 100.2
+ *               nc_1_0:
+ *                 type: number
+ *                 example: 150.8
+ *               nc_2_5:
+ *                 type: number
+ *                 example: 220.4
+ *               nc_4_0:
+ *                 type: number
+ *                 example: 300.9
+ *               nc_10_0:
+ *                 type: number
+ *                 example: 450.6
+ *               typical_particle_size:
+ *                 type: number
+ *                 example: 5.0
+ *     responses:
+ *       200:
+ *         description: Nya mätvärden har lagrats.
+ *       400:
+ *         description: Fel i datan (t.ex. saknade eller ogiltiga fält).
+ */
+
+/**
+ * @swagger
+ * /measurements/delete:
+ *   post:
+ *     summary: Ta bort mätningar baserat på tidsintervall
+ *     tags: [admin]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               startTime:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Starttid för intervallet (ISO 8601)
+ *               endTime:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Sluttid för intervallet (ISO 8601)
+ *     responses:
+ *       200:
+ *         description: Mätningar har tagits bort
+ *       400:
+ *         description: Ogiltigt tidsintervall
+ *       500:
+ *         description: Serverfel vid borttagning
+ */
+
 
 export default router;

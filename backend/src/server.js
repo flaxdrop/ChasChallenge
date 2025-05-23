@@ -1,8 +1,13 @@
 import express from "express";
 import { PORT } from "./config/index.js";
-import apiRoutes from "./routes/apiRoutes.js"; // Importera routes
 import apiDocs from "./routes/apiDocs.js"; // Importera API docs
 import CORS from "cors";
+import publicRouter from "./routes/Public.routes.js";
+import protectedRouter from "./routes/Protected.routes.js";
+import dotenv from "dotenv";
+import sensorsRouter from "./routes/sensors.js"; 
+
+dotenv.config();
 
 const app = express();
 
@@ -15,8 +20,14 @@ app.use(CORS());
 // Använd API-dokumentation
 app.use("/", apiDocs); // API routes
 
-// Använd routes
-app.use("/", apiRoutes); // Använd routes
+// Sensor routes (mixed access routes)
+app.use("/sensors", sensorsRouter);
+
+// Public routes
+app.use("/", publicRouter);
+
+// Protected routes authorized by middleware
+app.use("/", protectedRouter);
 
 // Starta servern
 app.listen(PORT, () => {
