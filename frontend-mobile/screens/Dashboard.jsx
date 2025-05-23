@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,13 +7,16 @@ import {
   Dimensions,
   StatusBar,
   SafeAreaView,
+  ActivityIndicator,
 } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 
+// Skärmbredd
 const { width } = Dimensions.get("window");
 
+// AQI-nivåer
 const AQI_LEVELS = [
   { color: "#00E400", range: "0 - 50", text: "Air quality is satisfactory, and air pollution poses little or no risk." },
   { color: "#FFFF00", range: "51 - 100", text: "Air quality is acceptable. However, there may be a risk for some people, particularly those who are unusually sensitive to air pollution." },
@@ -23,10 +26,11 @@ const AQI_LEVELS = [
   { color: "#7E0023", range: "301+", text: "Health warning of emergency conditions: everyone is more likely to be affected." },
 ];
 
+// INFO_ITEMS
 const INFO_ITEMS = [
-  { type: "temperature", label: "Temperature", icon: "thermometer", color: "#FF3B30", value: "21°C" },
-  { type: "humidity", label: "Humidity", icon: "cloud", color: "#00FF1A", value: "48%" },
-  { type: "pressure", label: "Air Pressure", icon: "gauge", color: "#00BAFF", value: "460 Pa" },
+  { type: "temperature", label: "Temperature", icon: "thermometer", color: "#FF3B30" },
+  { type: "humidity", label: "Humidity", icon: "cloud", color: "#00FF1A" },
+  { type: "pressure", label: "Air Pressure", icon: "gauge", color: "#00BAFF" },
 ];
 
 const Dashboard = () => {
@@ -38,6 +42,43 @@ const Dashboard = () => {
   const [selectedInfo, setSelectedInfo] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
 
+  const [sensorData, setSensorData] = useState({ temperature: null, humidity: null, pressure: null });
+  const [loadingData, setLoadingData] = useState(false);
+
+  const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
+
+  useEffect(() => {
+    if (!isOn) {
+      fetchSensorData();
+    }
+  }, [isOn]);
+
+  const fetchSensorData = async () => {
+    try {
+      setLoadingData(true);
+
+      const [tempRes, humRes, presRes] = await Promise.all([
+        fetch(`${apiURL}/measurements/temperature`),
+        fetch(`${apiURL}/measurements/humidity`),
+        fetch(`${apiURL}/measurements/pressure`)
+      ]);
+
+      const tempData = await tempRes.json();
+      const humData = await humRes.json();
+      const presData = await presRes.json();
+
+      setSensorData({
+        temperature: tempData[0]?.temperature?.toFixed(1) + "°C" || "N/A",
+        humidity: humData[0]?.humidity?.toFixed(1) + "%" || "N/A",
+        pressure: presData[0]?.pressure?.toFixed(1) + " Pa" || "N/A"
+      });
+    } catch (error) {
+      console.log("Failed to fetch sensor data", error);
+    } finally {
+      setLoadingData(false);
+    }
+  };
+
   const togglePower = () => {
     setIsOn(!isOn);
     setSelectedAqi(null);
@@ -45,10 +86,10 @@ const Dashboard = () => {
   };
 
   const getPrecautionText = () => {
-    if (selectedAqi === null)
+    if (selectedAqi === null) {
       return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
-    const { range, text, color } = AQI_LEVELS[selectedAqi];
-    return { range, color, text };
+    }
+    return AQI_LEVELS[selectedAqi];
   };
 
   const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
@@ -60,6 +101,7 @@ const Dashboard = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
+      {/* AQI BAR */}
       <View style={styles.aqiBar}>
         <View style={styles.aqiLevelContainer}>
           {AQI_LEVELS.map((level, index) => (
@@ -76,9 +118,11 @@ const Dashboard = () => {
         </View>
       </View>
 
+      {/* SLIDE CONTENT */}
       <View style={styles.slideContainer}>
-        {slideIndex === 0 && (
+        {slideIndex === 0 ? (
           <View style={styles.slideContent}>
+            {/* POWER BUTTON */}
             <View style={styles.circleWrapper}>
               <View style={styles.circleShadow}>
                 <Pressable
@@ -94,15 +138,14 @@ const Dashboard = () => {
               </View>
             </View>
 
+            {/* AQI PRECAUTIONS */}
             <View style={[styles.precautionBox, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
               <Text style={styles.precautionTitle}>PRECAUTION:</Text>
               <Text style={[styles.precautionRange, { color }]}>{range}</Text>
               <Text style={styles.precautionText}>{text}</Text>
             </View>
           </View>
-        )}
-
-        {slideIndex === 1 && (
+        ) : (
           <View style={styles.slideContent}>
             <View style={styles.emptySlide}>
               <Text style={styles.historicalText}>Historical Graph will go here.</Text>
@@ -111,6 +154,7 @@ const Dashboard = () => {
         )}
       </View>
 
+      {/* SLIDE CONTROLS */}
       <LinearGradient
         colors={["#001BA3", "#00BAFF"]}
         start={{ x: 0, y: 1 }}
@@ -128,19 +172,23 @@ const Dashboard = () => {
         </Pressable>
       </LinearGradient>
 
+      {/* SENSOR CIRCLES */}
       <View style={styles.iconRow}>
         {INFO_ITEMS.map((item) => {
           const showValue = !isOn;
           const isSelected = selectedInfo === item.type;
+
           return (
             <View key={item.type} style={styles.infoBlock}>
               <Text style={styles.infoLabel}>{item.label}</Text>
               <Pressable
-                disabled={!isOn}
+                disabled={isOn}
                 onPress={() => setSelectedInfo(isSelected ? null : item.type)}
                 style={styles.infoCircle}
               >
-                {showValue ? (
+                {loadingData && showValue ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : showValue ? (
                   <>
                     <MaterialCommunityIcons
                       name={item.icon}
@@ -148,7 +196,9 @@ const Dashboard = () => {
                       size={32}
                       style={{ position: "absolute", opacity: 0.2, zIndex: 0 }}
                     />
-                    <Text style={[styles.valueText, { zIndex: 1 }]}>{item.value}</Text>
+                    <Text style={[styles.valueText, { zIndex: 1 }]}>
+                      {sensorData[item.type] || "N/A"}
+                    </Text>
                   </>
                 ) : (
                   <MaterialCommunityIcons name={item.icon} color={item.color} size={32} />
@@ -162,6 +212,7 @@ const Dashboard = () => {
   );
 };
 
+// STILAR
 const createStyles = (theme) =>
   StyleSheet.create({
     container: {
