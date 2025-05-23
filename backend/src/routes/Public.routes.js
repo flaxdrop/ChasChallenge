@@ -1,5 +1,5 @@
 import express from "express";
-import { createUser } from "../utils/users.js";
+import { addUserToDB } from "../utils/users.js";
 import bcrypt from "bcrypt";
 import checkUserExists from "../middleware/checkUserExists.js";
 import validateRegisterInput from "../middleware/validateRegisterInput.js";
@@ -109,7 +109,7 @@ router.post(
       if (!validRoles.includes(role)) {
         return res.status(400).json({ error: "Invalid role" });
       }
-      const user = await createUser({ username, hashedPassword, role });
+      const user = await addUserToDB({ username, hashedPassword, role });
       res.status(201).json({ message: "User created successfully", user });
     } catch (err) {
       console.error("Error in /register:", err.message);

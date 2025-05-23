@@ -4,6 +4,8 @@ import apiDocs from "./routes/apiDocs.js"; // Importera API docs
 import CORS from "cors";
 import publicRouter from "./routes/Public.routes.js";
 import protectedRouter from "./routes/Protected.routes.js";
+import adminRouter from "./routes/Admin.routes.js";
+import userRouter from "./routes/User.routes.js";
 import dotenv from "dotenv";
 
 dotenv.config();

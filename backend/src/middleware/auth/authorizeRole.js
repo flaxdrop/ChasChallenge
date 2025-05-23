@@ -1,7 +1,15 @@
-function authorize (req, res, next) {
-    // TODO Replace this function with proper middleware.
-    console.warn('WARNING: Not yet authorizing role, always granting access to all users.');
-    next();
+function authorize(role) {
+    return (req, res, next) => {
+        const userRole = req.user.role;
+
+        if (userRole === role) {
+            next();
+        } else {
+            res.status(403).json({ error: 'Access denied' });
+        }
+    };
 }
 
-export default authorize;
+export const authorizeAdmin = authorize('admin');
+export const authorizeUser = authorize('user');
+
