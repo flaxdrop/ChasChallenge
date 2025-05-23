@@ -23,15 +23,24 @@ const swaggerOptions = {
         description: "Lokal utvecklingsserver",
       },
     ],
+    tags: [
+      { name: "app", description: "Endpoints för appen." },
+      { name: "sensor", description: "Endpoints för sensor." },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
-      },
     },
+  },
+  security: [
+    {
+      bearerAuth: [],
+    },
+  ],
   },
   apis: ["./src/routes/*.js"],
 };
