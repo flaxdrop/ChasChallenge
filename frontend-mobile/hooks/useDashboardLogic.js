@@ -43,7 +43,10 @@ const useDashboardLogic = (apiURL) => {
       setSensorData({
         temperature: tempData[0]?.temperature?.toFixed(1) + "°C" || "N/A",
         humidity: humData[0]?.humidity?.toFixed(1) + "%" || "N/A",
-        pressure: presData[0]?.pressure?.toFixed(1) + " Pa" || "N/A",
+        pressure:
+          presData[0]?.pressure != null
+            ? (presData[0].pressure / 1000).toFixed(1) + " kPa"
+            : "N/A",
       });
     } catch (error) {
       console.log("Failed to fetch sensor data", error);

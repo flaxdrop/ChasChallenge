@@ -32,6 +32,8 @@ const createStyles = (theme) =>
       height: 280,
       alignItems: "center",
       justifyContent: "center",
+      marginTop: 30,
+      marginBottom: 50,
     },
     slideContent: {
       width: "100%",

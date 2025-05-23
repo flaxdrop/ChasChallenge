@@ -55,7 +55,7 @@ const createStyles = (theme) =>
       flexDirection: "row",
       borderRadius: 40,
       overflow: "hidden",
-      width: "100%",
+      width: "85%",
       height: 30,
     },
     aqiLevel: {
@@ -68,13 +68,16 @@ const createStyles = (theme) =>
     loadingText: {
       color: "#fff",
       fontWeight: "bold",
-      fontSize: 12,
+      fontSize: 20,
     },
     aqiText: {
       color: "#fff",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 12,
+      fontSize: 20,
+      textShadowColor: 'black',
+      textShadowOffset: { width: 3, height: 3 },
+      textShadowRadius: 0,
     },
   });
 

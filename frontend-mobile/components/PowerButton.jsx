@@ -24,6 +24,7 @@ const PowerButton = ({ isOn, togglePower }) => {
 const styles = StyleSheet.create({
   circleWrapper: {
     alignItems: "center",
+    marginTop: 20,
     marginBottom: 20,
   },
   circleShadow: {

@@ -15,11 +15,14 @@ const styles = StyleSheet.create({
   box: {
     borderRadius: 30,
     padding: 15,
-    marginTop: 10,
+    marginTop: 20,
     alignItems: "center",
     width: "100%",
-    height: 120,
+    height: 160,
     justifyContent: "center",
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: "#00FF66",
   },
   title: {
     color: "#fff",
@@ -34,7 +37,7 @@ const styles = StyleSheet.create({
   text: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "600",
     marginTop: 4,
   },

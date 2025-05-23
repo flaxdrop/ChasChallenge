@@ -9,15 +9,12 @@ import {
   ActivityIndicator,
   Dimensions,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
-import dashboardData from "../data/dashboardData";
 import AqiBar from "../components/AqiBar";
 import SlideContent from "../components/SlideContent";
 import SlideControls from "../components/SlideControls";
-
-const { AQI_LEVELS, AQI_LABELS, INFO_ITEMS } = dashboardData;
+import SensorInfoCircles from "../components/SensorInfoCircles";
 
 const Dashboard = () => {
   const { theme } = useTheme();
@@ -72,45 +69,14 @@ const Dashboard = () => {
       />
 
       {/* SENSOR INFO CIRCLES */}
-      <View style={styles.sensorRow}>
-        {INFO_ITEMS.map((item) => {
-          const showValue = !isOn;
-          const isSelected = selectedInfo === item.type;
+      <SensorInfoCircles
+        isOn={isOn}
+        loadingData={loadingData}
+        sensorData={sensorData}
+        selectedInfo={selectedInfo}
+        setSelectedInfo={setSelectedInfo}
+      />
 
-          return (
-            <View key={item.type} style={styles.sensorBlock}>
-              <Text style={styles.label}>{item.label}</Text>
-              <Pressable
-                disabled={isOn}
-                onPress={() => setSelectedInfo(isSelected ? null : item.type)}
-                style={styles.circle}
-              >
-                {loadingData && showValue ? (
-                  <ActivityIndicator size="small" color="#fff" />
-                ) : showValue ? (
-                  <>
-                    <MaterialCommunityIcons
-                      name={item.icon}
-                      color={item.color}
-                      size={32}
-                      style={styles.iconBackground}
-                    />
-                    <Text style={styles.valueText}>
-                      {sensorData[item.type] || "N/A"}
-                    </Text>
-                  </>
-                ) : (
-                  <MaterialCommunityIcons
-                    name={item.icon}
-                    color={item.color}
-                    size={32}
-                  />
-                )}
-              </Pressable>
-            </View>
-          );
-        })}
-      </View>
     </SafeAreaView>
   );
 };
