@@ -106,7 +106,7 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
             stroke: theme.graphPoint,
         },
         propsForLabels: {
-            fontSize: 15,
+            fontSize: 18,
         },
         propsForBackgroundLines: {
             strokeWidth: 0.2,
