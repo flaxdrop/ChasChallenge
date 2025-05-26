@@ -35,45 +35,51 @@ export const addSensor = async (sensor) => {
   }
 };
 
-export const updateSensor = async (id, sensor) => {
-  try {
-    const normalized = normalizeSensorData(sensor, true);
-    const result = await pool.query(
-      "UPDATE sensors SET model = $2, statuscode = $3, measurement_types = $4 WHERE id = $1 RETURNING *",
-      [
-        id,
-        normalized.model,
-        normalized.statuscode,
-        JSON.stringify(normalized.measurementTypes),
-      ]
-    );
-    return result.rows[0];
-  } catch (error) {
-    console.error("Error adding sensor:", error);
-    throw error; // Let controller handle the response
-  }
-};
+  export const updateSensor = async (id, sensor) => {
+    try {
+        const normalized = normalizeSensorData(sensor, true);
+        const result = await pool.query(
+        "UPDATE sensors SET model = $2, statuscode = $3, measurement_types = $4 WHERE id = $1 RETURNING *",
+        [id, normalized.model, normalized.statuscode, JSON.stringify(normalized.measurementTypes)]
+        );
+        return result.rows[0];
+    } catch (error) {
+        console.error("Error adding sensor:", error);
+        throw error; // Let controller handle the response
+    }
+  };
+  
+  export const patchSensor = async (id, sensor) => {
+    try {
+      // Step 1: Normalize the sensor data
+      const normalized = normalizeSensorData(sensor, false);
+      
+      // Step 2: Use buildPatchQuery to create the query
+      const { query, values } = buildPatchQuery("sensors", id, normalized, {
+        keyMap: { measurementTypes: "measurement_types" }, // Mapping to match database field names
+        jsonKeys: ["measurementTypes"], // Define which fields are JSON
+      });
+  
+      // Step 3: Execute the query
+      const result = await pool.query(query, values);
+      return result.rows[0]; // Return the updated sensor data
+    } catch (error) {
+      console.error("Error updating sensor:", error);
+      throw error; // Let the controller handle the response
+    }
+  };
 
-export const patchSensor = async (id, sensor) => {
-  try {
-    // Step 1: Normalize the sensor data
-    const normalized = normalizeSensorData(sensor, false);
+export const deleteSensorFromDB = async (id) => {
+    try {
+      const result = await pool.query("DELETE FROM sensors WHERE id = $1 RETURNING *", [id]);
+      return result.rows[0];
+    } catch (error) {
+      console.error("DB error in deleteSensorFromDB:", error);
+      throw error;
+    }
+  };
 
-    // Step 2: Use buildPatchQuery to create the query
-    const { query, values } = buildPatchQuery("sensors", id, normalized, {
-      keyMap: { measurementTypes: "measurement_types" }, // Mapping to match database field names
-      jsonKeys: ["measurementTypes"], // Define which fields are JSON
-    });
-
-    // Step 3: Execute the query
-    const result = await pool.query(query, values);
-    return result.rows[0]; // Return the updated sensor data
-  } catch (error) {
-    console.error("Error updating sensor:", error);
-    throw error; // Let the controller handle the response
-  }
-};
-// --- helper function ---
+  //* --- helper function ---
 
 const normalizeSensorData = (data, requireAllFields = true) => {
   const { model, statuscode, measurementTypes, measurement_types } = data;
