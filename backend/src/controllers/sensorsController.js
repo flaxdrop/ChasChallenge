@@ -1,4 +1,4 @@
-import { getSensorDetails, addSensor, updateSensor, patchSensor, getSensorById } from "../utils/sensors.js";
+import { getSensorDetails, addSensor, updateSensor, patchSensor, getSensorById, deleteSensorFromDB } from "../utils/sensors.js";
 
 // Function to handle fetching all sensor details
 export const getAllSensors = async (req, res) => {
@@ -77,3 +77,17 @@ export const patchSensorDetails = async (req, res) => {
     res.status(500).json({ error: error.message || "Failed to update sensor" });
   }
 };
+
+export const deleteSensor = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedSensor = await deleteSensorFromDB(id);
+    if (!deletedSensor) {
+      return res.status(404).json({ error: "Sensor not found" });
+    }
+    res.json({ message: "Deleted sensor successfully", deletedSensor });
+  } catch (error) {
+    console.error("Error deleting sensor:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+}

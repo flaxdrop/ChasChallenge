@@ -1,9 +1,9 @@
-import pool from "./db.js"; // Importera databasen
+import pool from "./db.js"; // Import the database
 import { buildPatchQuery } from "./sqlHelpers.js";
 
-// Funktion för att hämta alla mätningar med valfri begränsning
+// Function to fetch all sensors with optional limit
 export const getSensorDetails = async (limit = null) => {
-    const query = limit
+  const query = limit
     ? "SELECT * FROM sensors LIMIT $1"
     : "SELECT * FROM sensors";
   const params = limit ? [limit] : [];
@@ -16,20 +16,24 @@ export const getSensorById = async (id) => {
   return result.rows[0];
 };
 
-// Funktion för att skapa en ny mätning
+// Function to create a new sensor
 export const addSensor = async (sensor) => {
-    try {
-      const normalized = normalizeSensorData(sensor, true);
-      const result = await pool.query(
-        "INSERT INTO sensors (model, statuscode, measurement_types) VALUES ($1, $2, $3) RETURNING *",
-        [normalized.model, normalized.statuscode, JSON.stringify(normalized.measurementTypes)]
-      );
-      return result.rows[0];
-    } catch (error) {
-        console.error("Error adding sensor:", error);
-        throw error; // Let controller handle the response
-    }
-  };
+  try {
+    const normalized = normalizeSensorData(sensor, true);
+    const result = await pool.query(
+      "INSERT INTO sensors (model, statuscode, measurement_types) VALUES ($1, $2, $3) RETURNING *",
+      [
+        normalized.model,
+        normalized.statuscode,
+        JSON.stringify(normalized.measurementTypes),
+      ]
+    );
+    return result.rows[0];
+  } catch (error) {
+    console.error("Error adding sensor:", error);
+    throw error; // Let controller handle the response
+  }
+};
 
   export const updateSensor = async (id, sensor) => {
     try {
@@ -64,31 +68,37 @@ export const addSensor = async (sensor) => {
       throw error; // Let the controller handle the response
     }
   };
-  // --- helper function ---
+
+export const deleteSensorFromDB = async (id) => {
+    try {
+      const result = await pool.query("DELETE FROM sensors WHERE id = $1 RETURNING *", [id]);
+      return result.rows[0];
+    } catch (error) {
+      console.error("DB error in deleteSensorFromDB:", error);
+      throw error;
+    }
+  };
+
+  //* --- helper function ---
 
 const normalizeSensorData = (data, requireAllFields = true) => {
-    const {
-      model,
-      statuscode,
-      measurementTypes,
-      measurement_types
-    } = data;
-  
-    const normalized = {
-      model,
-      statuscode,
-      measurementTypes: measurementTypes || measurement_types
-    };
-  
-    if (requireAllFields) {
-      const missing = Object.entries(normalized)
-        .filter(([, value]) => value === undefined)
-        .map(([key]) => key);
-  
-      if (missing.length > 0) {
-        throw new Error(`Missing required fields: ${missing.join(", ")}`);
-      }
-    }
-  
-    return normalized;
+  const { model, statuscode, measurementTypes, measurement_types } = data;
+
+  const normalized = {
+    model,
+    statuscode,
+    measurementTypes: measurementTypes || measurement_types,
   };
+
+  if (requireAllFields) {
+    const missing = Object.entries(normalized)
+      .filter(([, value]) => value === undefined)
+      .map(([key]) => key);
+
+    if (missing.length > 0) {
+      throw new Error(`Missing required fields: ${missing.join(", ")}`);
+    }
+  }
+
+  return normalized;
+};

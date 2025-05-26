@@ -1,7 +1,7 @@
-import pool from "./db.js"; // Importera databasen
+import pool from "./db.js"; // Import the database
 import { formatInTimeZone } from "date-fns-tz";
 
-// Funktion för att hämta alla mätningar med valfri begränsning
+// Function to fetch all measurements with optional limit
 export const getAllMeasurements = async (limit = null) => {
   const query = limit
     ? "SELECT * FROM measurements ORDER BY timestamp DESC LIMIT $1"
@@ -11,9 +11,9 @@ export const getAllMeasurements = async (limit = null) => {
   return result.rows;
 };
 
-// Funktion för att skapa en ny mätning
+// Function to create a new measurement
 export const createMeasurement = async (measurement) => {
-  // Använd svensk tidszon
+  // Use Swedish time zone
   const swedishTimeZone = "Europe/Stockholm";
   const nowUtc = new Date();
   const timestamp =
@@ -72,10 +72,10 @@ export const createMeasurement = async (measurement) => {
     ]
   );
 
-  return result.rows[0]; // Returnera den skapade posten
+  return result.rows[0]; // Return the created record
 };
 
-// Funktion för att ta bort mätningar inom ett tidsintervall
+// Function to delete measurements within a time interval
 export const deleteMeasurements = async (startTime, endTime) => {
   const result = await pool.query(
     "DELETE FROM measurements WHERE timestamp BETWEEN $1 AND $2 RETURNING id",
