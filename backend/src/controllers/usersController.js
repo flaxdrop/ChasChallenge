@@ -39,14 +39,15 @@ export const getUserDetails = async (req, res) => {
 
 // Controller to delete the currently authenticated user
 export const deleteUser = async (req, res) => {
+  const { id } = req.params;
   try {
-    const deletedUser = await userUtils.deleteUserFromDB(req.user.id);
+    const deletedUser = await userUtils.deleteUserFromDB(id);
     if (!deletedUser) {
       return res.status(404).json({ error: "User not found" });
     }
-    res.json({ message: "Deleted user successfully", deletedUser });
+    res.json({ message: "User deleted successfully", deletedUser });
   } catch (error) {
-    console.error("Error deleting user:", error);
+    console.error("Error deleting user by id:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
