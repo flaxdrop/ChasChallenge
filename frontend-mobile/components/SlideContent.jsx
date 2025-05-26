@@ -13,6 +13,9 @@ const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text, showI
       {slideIndex === 0 ? (
         <View style={styles.slideContent}>
           <PowerButton isOn={isOn} togglePower={togglePower} />
+          <Text style={styles.powerStatusText}>
+          {isOn ? "Powerbutton is OFF" : "Powerbutton is ON"}
+          </Text>
           <PrecautionBox color={color} range={range} text={text} showInstruction={showInstruction} />
         </View>
       ) : (
@@ -46,6 +49,11 @@ const createStyles = (theme) =>
       color: "#fff",
       fontSize: 16,
     },
+    powerStatusText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+
   });
 
 export default SlideContent;
