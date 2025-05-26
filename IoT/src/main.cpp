@@ -17,6 +17,9 @@ const char* serverHost = "chaschallenge-backend.onrender.com";  // Ersätt med d
 const int serverPort = 443;
 const char* serverPath = "/measurements";
 
+const int redLedPin = 5;    
+const int yellowLedPin = 6; 
+const int greenLedPin = 7;  
 BME280 mySensor;
 SparkFun_ENS160 myENS;
 WiFiSSLClient wifi;
@@ -26,6 +29,14 @@ void setup()
 {
     Serial.begin(115200);
     Wire1.begin();
+
+    pinMode(redLedPin, OUTPUT);
+    pinMode(yellowLedPin, OUTPUT);
+    pinMode(greenLedPin, OUTPUT);
+
+    digitalWrite(redLedPin, LOW);
+    digitalWrite(yellowLedPin, LOW);
+    digitalWrite(greenLedPin, LOW);
 
     // Anslut till WiFi
     Serial.print("Ansluter till WiFi...");
@@ -70,6 +81,28 @@ void loop()
     int aqi = myENS.getAQI();
     int tvoc = myENS.getTVOC();
     int eco2 = myENS.getECO2();
+
+    if (aqi <= 2)
+    {
+        // Good air quality
+        digitalWrite(greenLedPin, HIGH);
+        digitalWrite(yellowLedPin, LOW);
+        digitalWrite(redLedPin, LOW);
+    }
+    else if (aqi = 3)
+    {
+        // Moderate air quality
+        digitalWrite(greenLedPin, LOW);
+        digitalWrite(yellowLedPin, HIGH);
+        digitalWrite(redLedPin, LOW);
+    }
+    else
+    {
+        // Poor air quality
+        digitalWrite(greenLedPin, LOW);
+        digitalWrite(yellowLedPin, LOW);
+        digitalWrite(redLedPin, HIGH);
+    }
 
     struct sps30_measurement particulates;
     uint16_t data_ready;
