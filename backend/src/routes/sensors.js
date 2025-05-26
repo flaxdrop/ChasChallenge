@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllSensors, createSensor, updateSensorDetails, patchSensorDetails, getOneSensor} from "../controllers/sensorsController.js";
+import { getAllSensors, createSensor, updateSensorDetails, patchSensorDetails, getOneSensor, deleteSensor} from "../controllers/sensorsController.js";
 import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
 import authenticateJWT from "../middleware/auth/authenticateJWT.js";
 
@@ -181,6 +181,40 @@ router.post("/", authenticateJWT,authorizeAdmin, createSensor);
  */
 router.put("/:id", authenticateJWT,authorizeAdmin, updateSensorDetails);  // Full update
 
+
+/**
+ * @swagger
+ * /sensors/{id}:
+ *  delete:
+ *    summary: Radera en sensor genom id
+ *    tags:
+ *      - admin
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The sensor ID
+ *    responses:
+ *      200:        
+ *        description: Sensor deleted
+ *      400:
+ *        description: Bad request - Something went wrong
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                error:
+ *                  type: string
+ *      404:
+ *        description: Sensor not found
+ *      500:
+ *        description: Failed to delete sensor
+ * 
+ */
+router.delete("/:id", authenticateJWT, authorizeAdmin, deleteSensor);
 
 
 /* router.use("/bme280", bme280Routes); //? if needed for sensor-specific logic, e.g. get the latest calibration for bme280

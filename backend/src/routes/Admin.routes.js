@@ -1,4 +1,5 @@
 // routes/Admin.routes.js
+//* Admin routes protected by authorization middleware
 import express from "express";
 import { getAllUsers, updateUserRole } from "../controllers/usersController.js";
 

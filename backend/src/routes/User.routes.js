@@ -3,7 +3,6 @@
 
 import express from "express";
 import { getUserDetails, deleteUser } from "../controllers/usersController.js";
-import authenticateJWT from "../middleware/auth/authenticateJWT.js";
 
 const router = express.Router();
 

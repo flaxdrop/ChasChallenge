@@ -64,7 +64,18 @@ export const addSensor = async (sensor) => {
       throw error; // Let the controller handle the response
     }
   };
-  // --- helper function ---
+
+export const deleteSensorFromDB = async (id) => {
+    try {
+      const result = await pool.query("DELETE FROM sensors WHERE id = $1 RETURNING *", [id]);
+      return result.rows[0];
+    } catch (error) {
+      console.error("DB error in deleteSensorFromDB:", error);
+      throw error;
+    }
+  };
+
+  //* --- helper function ---
 
 const normalizeSensorData = (data, requireAllFields = true) => {
     const {
