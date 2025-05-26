@@ -12,6 +12,7 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
 
   return (
     <View style={styles.aqiBar}>
+      <Text style={styles.title}>AQI</Text>
       <View style={styles.aqiLevelContainer}>
         {isOn ? (
           AQI_LEVELS.map((level, index) => (
@@ -21,9 +22,12 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
                 styles.aqiLevel,
                 { backgroundColor: level.color },
                 selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
+                styles.centered,
               ]}
               onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
-            />
+            >
+              <Text style={styles.rangeText}>{level.range}</Text>
+            </Pressable>
           ))
         ) : loadingData ? (
           <View style={[styles.aqiLevel, styles.centered]}>
@@ -40,6 +44,7 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
             <Text style={styles.aqiText}>{AQI_LABELS[getAqiLevelIndex(aqiValue)]}</Text>
           </View>
         ) : null}
+
       </View>
     </View>
   );
@@ -50,6 +55,12 @@ const createStyles = (theme) =>
     aqiBar: {
       alignItems: "center",
       marginBottom: 20,
+    },
+    title: {
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: 25,
+      marginBottom: 15,
     },
     aqiLevelContainer: {
       flexDirection: "row",
@@ -79,6 +90,13 @@ const createStyles = (theme) =>
       textShadowOffset: { width: 2, height: 2 },
       textShadowRadius: 0,
     },
+    rangeText: {
+    color: "#000000",
+    fontWeight: 900,
+    fontSize: 10,
+    textAlign: "center",
+  },
+
   });
 
 export default AqiBar;
