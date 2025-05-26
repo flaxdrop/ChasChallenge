@@ -36,7 +36,7 @@ The IoT system is built around an Arduino-based microcontroller and various envi
 ## Getting Started
 
 1. Clone this repository.
-2. Set up the hardware as described in the [HARDWARE.md](../docs/HARDWARE.md) file.
+2. Set up the hardware as described in the [HARDWARE.md](../docs/HARDWARE.md) file, visit the [SCHEMATIC_AND_WIRING.md](../docs/SCHEMATIC_AND_WIRING.md) for the wiring process.
 3. Upload the Arduino code from the `/src` directory to the microcontroller.
 4. Ensure the backend is running and accessible.
 5. Power on the system and monitor the serial output for data transmission logs.
