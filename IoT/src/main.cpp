@@ -17,11 +17,9 @@ const char* serverHost = "chaschallenge-backend.onrender.com";  // Ersätt med d
 const int serverPort = 443;
 const char* serverPath = "/measurements";
 
-// Add pin definitions for the LEDs
-const int redLedPin = 5;    // Connect the red LED to digital pin 5
-const int yellowLedPin = 6; // Connect the yellow LED to digital pin 6
-const int greenLedPin = 7;  // Connect the green LED to digital pin 7
-
+const int redLedPin = 5;    
+const int yellowLedPin = 6; 
+const int greenLedPin = 7;  
 BME280 mySensor;
 SparkFun_ENS160 myENS;
 WiFiSSLClient wifi;
@@ -32,12 +30,10 @@ void setup()
     Serial.begin(115200);
     Wire1.begin();
 
-    // Initialize LED pins as outputs
     pinMode(redLedPin, OUTPUT);
     pinMode(yellowLedPin, OUTPUT);
     pinMode(greenLedPin, OUTPUT);
 
-    // Turn off all LEDs initially
     digitalWrite(redLedPin, LOW);
     digitalWrite(yellowLedPin, LOW);
     digitalWrite(greenLedPin, LOW);
@@ -86,7 +82,6 @@ void loop()
     int tvoc = myENS.getTVOC();
     int eco2 = myENS.getECO2();
 
-    // Control LEDs based on AQI value
     if (aqi <= 2)
     {
         // Good air quality
