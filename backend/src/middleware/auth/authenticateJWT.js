@@ -8,13 +8,9 @@ const authenticateJWT = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   // Bypass auth in dev mode if allowed (for sensors or apps not sending token yet)
-  if (
-    !authHeader &&
-    NODE_ENV === "dev" &&
-    UNSAFE_ALLOW_MISSING_AUTHENTICATION
-  ) {
-    // Set res.locals.user so later middleware can read user info (role = admin)
-    res.locals.user = { role: "admin" };
+  if (!authHeader && NODE_ENV === 'dev' && UNSAFE_ALLOW_MISSING_AUTHENTICATION) {
+    // Set req.user so later middleware can read user info (role = admin)
+    req.user = { role: 'admin' };
     return next();
   }
 
@@ -28,10 +24,9 @@ const authenticateJWT = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    // Set both req.user and res.locals.user for compatibility with your middlewares
     console.log("Authorization header:", authHeader);
+    // Set req.user so later middleware can read user info
     req.user = decoded;
-    res.locals.user = decoded;
     console.log("Decoded JWT user:", decoded);
     next();
   } catch (err) {

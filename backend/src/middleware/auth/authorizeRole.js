@@ -1,12 +1,7 @@
 function authorize(allowedRoles) {
   return (req, res, next) => {
-    // Try to get user role from req.user (set by authenticateJWT)
+    // Get user role from req.user (set by authenticateJWT)
     let role = req.user?.role;
-
-    // Fallback to res.locals.user.role if req.user not present
-    if (!role && res.locals.user) {
-      role = res.locals.user.role;
-    }
 
     console.log("User role (authorize):", role);
 
