@@ -61,6 +61,8 @@ const useDashboardLogic = (apiURL) => {
     setSelectedInfo(null);
   };
 
+  const showInstruction = isOn && selectedAqi === null;
+
   const getPrecautionText = () => {
     if (selectedAqi !== null) return AQI_LEVELS[selectedAqi];
     if (!isOn && aqiValue !== null) return AQI_LEVELS[getAqiLevelIndex(aqiValue)];
@@ -84,6 +86,7 @@ const useDashboardLogic = (apiURL) => {
     prevSlide,
     setSelectedAqi,
     setSelectedInfo,
+    showInstruction
   };
 };
 

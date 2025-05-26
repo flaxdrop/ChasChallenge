@@ -4,7 +4,7 @@ import { useTheme } from "../theme/ThemeContext";
 import PowerButton from "./PowerButton";
 import PrecautionBox from "./PrecautionBox";
 
-const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text }) => {
+const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text, showInstruction, }) => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
 
@@ -13,7 +13,7 @@ const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text }) => 
       {slideIndex === 0 ? (
         <View style={styles.slideContent}>
           <PowerButton isOn={isOn} togglePower={togglePower} />
-          <PrecautionBox color={color} range={range} text={text} />
+          <PrecautionBox color={color} range={range} text={text} showInstruction={showInstruction} />
         </View>
       ) : (
         <View style={styles.slideContent}>

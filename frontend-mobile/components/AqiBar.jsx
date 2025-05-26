@@ -56,7 +56,7 @@ const createStyles = (theme) =>
       borderRadius: 40,
       overflow: "hidden",
       width: "85%",
-      height: 30,
+      height: 40,
     },
     aqiLevel: {
       flex: 1,
@@ -74,9 +74,9 @@ const createStyles = (theme) =>
       color: "#fff",
       fontWeight: "bold",
       textAlign: "center",
-      fontSize: 20,
+      fontSize: 30,
       textShadowColor: 'black',
-      textShadowOffset: { width: 3, height: 3 },
+      textShadowOffset: { width: 2, height: 2 },
       textShadowRadius: 0,
     },
   });

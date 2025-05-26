@@ -34,6 +34,7 @@ const Dashboard = () => {
     prevSlide,
     setSelectedAqi,
     setSelectedInfo,
+    showInstruction,
   } = useDashboardLogic(process.env.EXPO_PUBLIC_RENDER_URL);
 
   const { range, color, text } = getPrecautionText();
@@ -59,6 +60,7 @@ const Dashboard = () => {
         range={range}
         color={color}
         text={text}
+        showInstruction={showInstruction}
       />
 
       {/* SLIDE CONTROLS */}
