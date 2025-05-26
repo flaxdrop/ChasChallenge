@@ -1,5 +1,12 @@
 import express from "express";
-import { getAllSensors, createSensor, updateSensorDetails, patchSensorDetails, getOneSensor, deleteSensor} from "../controllers/sensorsController.js";
+import {
+  getAllSensors,
+  createSensor,
+  updateSensorDetails,
+  patchSensorDetails,
+  getOneSensor,
+  deleteSensor
+} from "../controllers/sensorsController.js";
 import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
 import authenticateJWT from "../middleware/auth/authenticateJWT.js";
 
@@ -10,7 +17,7 @@ const router = express.Router();
  * @swagger
  * /sensors:
  *  get:
- *    summary: Hämta en lista på alla tillagda sensorer
+ *    summary: Get a list of all added sensors
  *    tags:
  *      - public
  *    responses:
@@ -26,7 +33,7 @@ router.get("/", getAllSensors);
  * @swagger
  * /sensors/{id}:
  *  get:
- *    summary: Hitta en sensor genom id
+ *    summary: Find a sensor by id
  *    tags:
  *      - public
  *    parameters:
@@ -46,14 +53,14 @@ router.get("/", getAllSensors);
  */
 router.get("/:id", getOneSensor);
 
-//* SENSOR ONLY ROUTES 
+//* SENSOR ONLY ROUTES
 //! Currently not protected
 // //todo authorize sensor so that only sensors can patch their own details
 /**
  * @swagger
  * /sensors/{id}:
  *  patch:
- *    summary: Ersätt en del av sensorinformation genom id, t.ex. statuscode
+ *    summary: Replace part of the sensor information by id, e.g. statuscode
  *    tags:
  *      - sensor
  *    parameters:
@@ -69,18 +76,18 @@ router.get("/:id", getOneSensor);
  *        application/json:
  *          schema:
  *            type: object
- *            properties:    
+ *            properties:
  *              model:
  *                type: string
  *                example: bme280
- *              statuscode: 
+ *              statuscode:
  *                type: number
  *                example: 100
  *              measurementTypes:
  *                type: array
  *                example: ["temperature", "humidity", "pressure"]
  *    responses:
- *      200:        
+ *      200:
  *        description: Sensor updated
  *      400:
  *        description: Bad request - Missing required keys / Something went wrong
@@ -97,20 +104,19 @@ router.get("/:id", getOneSensor);
  *              properties:
  *                message:
  *                  type: string
- *                  example: Sensor hittades inte
+ *                  example: Sensor not found
  *      500:
  *        description: Failed to update sensor
- * 
+ *
  */
-router.patch("/:id", patchSensorDetails);  // Partial update 
-
+router.patch("/:id", patchSensorDetails); // Partial update
 
 //* ADMIN ONLY ROUTES
 /**
  * @swagger
  * /sensors:
  *  post:
- *    summary: Skapa en ny sensor
+ *    summary: Create a new sensor
  *    tags:
  *      - admin
  *    requestBody:
@@ -119,7 +125,7 @@ router.patch("/:id", patchSensorDetails);  // Partial update
  *        application/json:
  *          schema:
  *            type: object
- *            properties:    
+ *            properties:
  *              model:
  *                type: string
  *                example: bme280
@@ -130,21 +136,21 @@ router.patch("/:id", patchSensorDetails);  // Partial update
  *                type: array
  *                example: ["temperature", "humidity", "pressure"]
  *    responses:
- *      200:        
+ *      200:
  *        description: New sensor created
  *      400:
  *        description: Bad request - Missing required keys / Something went wrong
  *      500:
  *        description: Failed to create sensor
- * 
+ *
  */
-router.post("/", authenticateJWT,authorizeAdmin, createSensor);
+router.post("/", authenticateJWT, authorizeAdmin, createSensor);
 
 /**
  * @swagger
  * /sensors/{id}:
  *  put:
- *    summary: Ersätt all sensorinformation genom id
+ *    summary: Replace all sensor information by id
  *    tags:
  *      - admin
  *    parameters:
@@ -160,7 +166,7 @@ router.post("/", authenticateJWT,authorizeAdmin, createSensor);
  *        application/json:
  *          schema:
  *            type: object
- *            properties:    
+ *            properties:
  *              model:
  *                type: string
  *                example: bme280
@@ -171,13 +177,13 @@ router.post("/", authenticateJWT,authorizeAdmin, createSensor);
  *                type: array
  *                example: ["temperature", "humidity", "pressure"]
  *    responses:
- *      200:        
+ *      200:
  *        description: Sensor updated
  *      400:
  *        description: Bad request - Missing required keys / Something went wrong
  *      500:
  *        description: Failed to update sensor
- * 
+ *
  */
 router.put("/:id", authenticateJWT,authorizeAdmin, updateSensorDetails);  // Full update
 
