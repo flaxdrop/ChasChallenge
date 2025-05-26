@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'rea
 import React from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "../theme/ThemeContext";
+import { LinearGradient } from 'expo-linear-gradient'; 
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 
@@ -9,33 +10,55 @@ const { width } = Dimensions.get('window');
 
 const OnboardingScreen = ({ navigation }) => {
   const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   const finishOnboarding = async () => {
     navigation.replace("MainApp");
   };
 
-  // Skip-knapp
-  const Skip = ({ ...props }) => (
-    <TouchableOpacity style={styles.skipButton} {...props}>
+// Skip-knapp
+const Skip = ({ ...props }) => (
+  <LinearGradient
+    colors={["#001BA3", "#00BAFF"]}
+    start={{ x: 0, y: 1 }}
+    end={{ x: 0, y: 0 }}
+    style={styles.gradientButton}
+  >
+    <TouchableOpacity style={styles.buttonInner} {...props}>
       <Text style={styles.skipText}>Skip</Text>
     </TouchableOpacity>
-  );
+  </LinearGradient>
+);
 
-  // Nästa-knapp
-  const Next = ({ ...props }) => (
-    <TouchableOpacity style={styles.nextButton} {...props}>
-      <Text style={styles.nextText}>Next ➤</Text>
+// Next-knapp
+const Next = ({ ...props }) => (
+  <LinearGradient
+    colors={["#001BA3", "#00BAFF"]}
+    start={{ x: 0, y: 1 }}
+    end={{ x: 0, y: 0 }}
+    style={styles.gradientButton}
+  >
+    <TouchableOpacity style={styles.buttonInner} {...props}>
+      <Text style={styles.nextText}>Next</Text>
     </TouchableOpacity>
-  );
+  </LinearGradient>
+);
 
-  // Klar-knapp (sista sidan)
-  const Done = ({ ...props }) => (
-    <TouchableOpacity style={styles.nextButton} {...props}>
+// Done-knapp
+const Done = ({ ...props }) => (
+  <LinearGradient
+    colors={["#001BA3", "#00BAFF"]}
+    start={{ x: 0, y: 1 }}
+    end={{ x: 0, y: 0 }}
+    style={styles.gradientButton}
+  >
+    <TouchableOpacity style={styles.buttonInner} {...props}>
       <Text style={styles.nextText}>Done</Text>
     </TouchableOpacity>
-  );
+  </LinearGradient>
+);
 
-  // Anpassad slidepunkt (indikator)
+
   const Dots = ({ selected }) => {
     return (
       <View
@@ -93,10 +116,8 @@ const OnboardingScreen = ({ navigation }) => {
             ),
             subtitle: (
               <Text style={styles.description}>
-                Real-time monitoring: provides
-                accurate and real-time monitoring
-                of PM2.5 concentration,
-                temperature, and humidity
+                Real-time monitoring for accurate measurements of temperature, humidity, air pressure, and more, providing an overview of air quality
+
               </Text>
             ),
           },
@@ -130,7 +151,7 @@ const OnboardingScreen = ({ navigation }) => {
             ),
             subtitle: (
               <Text style={styles.description}>
-                AQI data cloud storage eases the accessibility of the monitor's airquality data remotely through the app on your smartphone
+                AQI database integrated via API server, eases the accessibility of the monitor's airquality data remotely through the app on your smartphone
               </Text>
             ),
           },
@@ -157,14 +178,14 @@ const OnboardingScreen = ({ navigation }) => {
               <View style={styles.titleBlock}>
                 <Text style={styles.caption}>Innovation in every wave</Text>
                 <Text style={styles.title}>
-                  <Text style={styles.titleBlue}>Pollution </Text>
-                  <Text style={styles.titleGreen}>Maps</Text>
+                  <Text style={styles.titleBlue}>Precaution </Text>
+                  <Text style={styles.titleGreen}>Alert</Text>
                 </Text>
               </View>
             ),
             subtitle: (
               <Text style={styles.description}>
-                Real-time health advice and personalized notifications based on current polluted areas and your underlying health conditions
+                Real-time precautions and personalized notifications based on current AQI values to preserve your health and well-being safely
               </Text>
             ),
           },
@@ -176,7 +197,8 @@ const OnboardingScreen = ({ navigation }) => {
 
 export default OnboardingScreen;
 
-const styles = StyleSheet.create({
+const createStyles = (theme) =>
+  StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000711',
@@ -214,6 +236,17 @@ backgroundImage: {
   borderRadius: 150,
   position: 'absolute',
 },
+gradientButton: {
+  borderRadius: 40 * 0.41,
+  paddingVertical: 12,
+  paddingHorizontal: 30,
+  alignSelf: 'center',
+},
+
+buttonInner: {
+  alignItems: 'center',
+},
+
 
   skipButton: {
     backgroundColor: '#5DD3FF',
@@ -224,19 +257,19 @@ backgroundImage: {
   },
   
   skipText: {
-    color: '#000',
+    color: '#fff',
     fontWeight: 'bold',
     fontSize: 20,
   },
   nextButton: {
     backgroundColor: '#5DD3FF',
     paddingVertical: 12,
-    paddingHorizontal: 25,
+    paddingHorizontal: 30,
     borderRadius: 40 * 0.41,
     alignSelf: 'center',
   },
   nextText: {
-    color: '#000',
+    color: '#fff',
     fontWeight: '600',
     fontSize: 20,
   },
