@@ -1,4 +1,3 @@
-// routes/Admin.routes.js
 import express from "express";
 import { getAllUsers, updateUserRole } from "../controllers/usersController.js";
 
@@ -95,8 +94,6 @@ router.get("/users", getAllUsers);
  *                  type: string
  */
 router.patch("/users/:id/role", updateUserRole);
-
-
 
 // todo admin allowed to delete other users ?
 

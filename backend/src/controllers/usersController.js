@@ -1,8 +1,10 @@
 import * as userUtils from "../utils/users.js";
 
+// Controller to fetch all users (returns filtered user info)
 export const getAllUsers = async (req, res) => {
   try {
     const users = await userUtils.fetchAllUsers();
+    // Only return selected fields for each user
     const filteredUsers = users.map(({ id, username, role, created_at }) => ({
       id,
       username,
@@ -16,6 +18,7 @@ export const getAllUsers = async (req, res) => {
   }
 };
 
+// Controller to fetch details for the currently authenticated user
 export const getUserDetails = async (req, res) => {
   try {
     const user = await userUtils.getUserDetailsFromDB(req.user.id);
@@ -34,49 +37,54 @@ export const getUserDetails = async (req, res) => {
   }
 };
 
-
+// Controller to delete the currently authenticated user
 export const deleteUser = async (req, res) => {
-    try {
-      const deletedUser = await userUtils.deleteUserFromDB(req.user.id);
-      if (!deletedUser) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.json({ message: "Deleted user successfully", deletedUser });
-    } catch (error) {
-      console.error("Error deleting user:", error);
-      res.status(500).json({ error: "Internal server error" });
+  try {
+    const deletedUser = await userUtils.deleteUserFromDB(req.user.id);
+    if (!deletedUser) {
+      return res.status(404).json({ error: "User not found" });
     }
-  };
-  
+    res.json({ message: "Deleted user successfully", deletedUser });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
 
-  import { validate as isUuid } from "uuid";
+import { validate as isUuid } from "uuid";
 
-  export const updateUserRole = async (req, res) => {
-    const { id } = req.params;
-    const { role } = req.body;
-    const validRoles = ["user", "admin"];
-  
-    if (!isUuid(id)) {
-      return res.status(400).json({ error: "Invalid user ID format" });
+// Controller to update a user's role (admin/user)
+export const updateUserRole = async (req, res) => {
+  const { id } = req.params;
+  const { role } = req.body;
+  const validRoles = ["user", "admin"];
+
+  // Validate user ID format
+  if (!isUuid(id)) {
+    return res.status(400).json({ error: "Invalid user ID format" });
+  }
+
+  // Check if role is provided
+  if (!role) {
+    return res.status(400).json({ error: "Missing 'role' in request body" });
+  }
+
+  // Validate role value
+  if (!validRoles.includes(role)) {
+    return res.status(400).json({
+      error: `Invalid role. Valid roles are: ${validRoles.join(", ")}`,
+    });
+  }
+
+  try {
+    // Update user role in the database
+    const updatedUser = await userUtils.updateUserRoleInDB(id, role);
+    if (!updatedUser) {
+      return res.status(404).json({ error: "User not found" });
     }
-  
-    if (!role) {
-      return res.status(400).json({ error: "Missing 'role' in request body" });
-    }
-  
-    if (!validRoles.includes(role)) {
-      return res.status(400).json({ error: `Invalid role. Valid roles are: ${validRoles.join(", ")}` });
-    }
-  
-    try {
-      const updatedUser = await userUtils.updateUserRoleInDB(id, role);
-      if (!updatedUser) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      res.json({ message: "User role updated successfully", user: updatedUser });
-    } catch (error) {
-      console.error("Error updating user role:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
-  };
-  
+    res.json({ message: "User role updated successfully", user: updatedUser });
+  } catch (error) {
+    console.error("Error updating user role:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
