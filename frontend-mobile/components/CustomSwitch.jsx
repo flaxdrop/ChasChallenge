@@ -3,11 +3,8 @@ import React from 'react'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 
-//Två värden, på eller av
-//Vad händer vid toggle
-
-const CustomSwitch = ({onToggle, isOn}) => {
-      const { theme, isDark, toggleTheme } = useTheme();
+const CustomSwitch = ({onToggle, isOn, onIcon, offIcon }) => {
+      const { theme, isDark } = useTheme();
       const styles = createStyles(theme);
   return (
     <Pressable
@@ -17,9 +14,9 @@ const CustomSwitch = ({onToggle, isOn}) => {
         <View style={[ styles.track, isOn && styles.trackOn ]}>
             <View style={[ styles.thumb, isOn && styles.thumbOn ]}>
                 <MaterialCommunityIcons
-                name={isOn ? "bell" : "bell-off"}
+                name={isOn ? onIcon : offIcon}
                 size={20}
-                color={theme.textPrimary}/>
+                color={isDark ? theme.primary : theme.secondary}/>
             </View>
 
         </View>
@@ -43,7 +40,8 @@ const createStyles = (theme) => StyleSheet.create({
         borderRadius: 30,
         borderWidth: 1,
         padding: 2,
-        justifyContent: "center"
+        justifyContent: "center",
+        borderColor: theme.accent
 
     },
     trackOn: {
@@ -52,7 +50,7 @@ const createStyles = (theme) => StyleSheet.create({
     thumb: {
         width: 30,
         height: 30,
-        backgroundColor: theme.secondary,
+        backgroundColor: theme.textAccent,
         borderRadius: 30,
         justifyContent: "center",
         alignSelf: "flex-start",
@@ -60,6 +58,6 @@ const createStyles = (theme) => StyleSheet.create({
     },
     thumbOn: {
         alignSelf: "flex-end",
-        backgroundColor: theme.primary
+        backgroundColor: theme.tabBarIconActive
     }
 })

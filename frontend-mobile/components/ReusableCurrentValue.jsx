@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, ActivityIndicator, Modal } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 import ValueInfoModal from "./ValueInfoModal";
+import useRefresh from "../hooks/useRefresh";
 
 const ReusableCurrentValue = ({
   title,
@@ -10,13 +11,17 @@ const ReusableCurrentValue = ({
   value,
   valueSize,
   textSize,
+  affix
 }) => {
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
   const { theme } = useTheme();
   const styles = createStyles(theme, valueSize, textSize);
 
   const [currentValue, setCurrentValue] = useState();
+  const [timestamp, setTimestamp] = useState();
+
   const [loading, setLoading] = useState(true);
+  const refresh = useRefresh();
 
   const [modalVisible, setModalVisible] = useState(false);
   // console.log(apiURL); // loggar adress för felsökning
@@ -27,11 +32,22 @@ const ReusableCurrentValue = ({
         const json = await response.json();
 
         const data = json.map((item) => item[value]);
-        const lastIndex = data.length - data.length;
+        const timedata = json.map((item) => item["timestamp"]);
 
-        console.log(data[lastIndex]);
-
+        const lastIndex = data.length - data.length;               
+        
+        // console.log(data[lastIndex]);
+        const formattedTime = new Date(timedata[lastIndex]).toLocaleString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+        });
+        
+        
         setCurrentValue(data[lastIndex].toFixed(1));
+        setTimestamp(formattedTime);
       } catch (error) {
         console.log(`Couldnt fetch ${value} from API`, error);
       } finally {
@@ -39,7 +55,7 @@ const ReusableCurrentValue = ({
       }
     };
     fetchCurrentValue();
-  }, []);
+  }, [refresh]);
 
   const handlePress = () => {
   // console.log(`${value}`);
@@ -59,7 +75,8 @@ const ReusableCurrentValue = ({
                   onPress={handlePress}
                 />
       </View>
-      <Text style={styles.currentValue}>{currentValue}</Text>
+      <Text style={styles.currentValue}>{currentValue}{affix}</Text>
+      <Text style={styles.timestamp}>Updated: {timestamp}</Text>
       <ValueInfoModal
       value={value}
       visible={modalVisible}
@@ -77,6 +94,7 @@ const createStyles = (theme, valueSize, textSize) =>
       fontSize: valueSize || 70,
       color: theme.textPrimary,
       alignSelf: "center",
+      paddingBottom: 10
     },
     title: {
       color: theme.textPrimary,
@@ -91,5 +109,12 @@ const createStyles = (theme, valueSize, textSize) =>
     header: {
       flexDirection: "row",
       justifyContent: "space-between"
+    },
+    timestamp: {
+      justifyContent: "center",
+      alignSelf: "center",
+      fontSize: 12,
+      marginBottom: 5,
+      color: theme.timestamp,
     }
   });

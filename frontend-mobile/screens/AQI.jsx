@@ -5,6 +5,7 @@ import Background from "../components/Background";
 import ContainerGradient from "../components/ContainerGradient";
 import CurrentAQI from "../components/CurrentAQI";
 import ReusableChart from "../components/ReusableChart";
+import WeeklyAverageChart from "../components/WeeklyAverageChart";
 
 const AQI = () => {
   const { theme } = useTheme();

@@ -21,6 +21,7 @@ const Temperature = () => {
           valuePath={"measurements/temperature"}
           value={"temperature"}
           title={"Current Temperature"}
+          affix={"°"}
           
         /></BoxGradient>
       </ContainerGradient>
