@@ -59,8 +59,13 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
         });
 
         setChartData({
-          labels,
-          datasets: [{ data, strokeWidth: 2 }],
+          labels: ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Mon"],
+          datasets: [{
+          data: [4, 1, 1, 1.2, 1.1, 2, 0],
+          strokeWidth: 2,
+        },
+        ],
+        legend: ["AQI"],
         });
       } catch (error) {
         console.error(`Error fetching ${value} data`, error);
@@ -73,7 +78,7 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
     }, [valuePath, value, refresh]);
 
     if (loading) return <ActivityIndicator size="large" />;
-if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen data tillgänglig</Text>;
+    if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen data tillgänglig</Text>;
 
     if (loading) return <ActivityIndicator size="large"/>
   return (
@@ -81,7 +86,10 @@ if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen da
       <LineChart
       data={chartData}
       width={screenWidth - 36}
-      height={220}
+      height={300}
+      yAxisInterval={1}
+      yLabelsOffset={20}
+      xLabelsOffset={10}
       style={styles.chartContainer}
       chartConfig={{
         backgroundColor: '#FFFFFF',
@@ -93,18 +101,19 @@ if (!chartData || !chartData.labels) return <Text style={styles.header}>Ingen da
         style: { borderRadius: 10
          },
         propsForDots: {
-            r: '3',
-            strokeWidth: '2',
+            r: '5',
+            strokeWidth: '5',
             stroke: theme.graphPoint,
         },
         propsForLabels: {
-            fontSize: 10,
+            fontSize: 15,
         },
         propsForBackgroundLines: {
             strokeWidth: 0.2,
         }
       }}
-      bezier/>
+      bezier
+      />
     </View>
   )
 }
@@ -117,6 +126,7 @@ const createStyles = (theme) => StyleSheet.create({
         borderRadius: 10,
         overflow: 'hidden',
         elevation: 4,
+        marginTop: 40,
     },
     header: {
         color: theme.textPrimary,
@@ -124,5 +134,6 @@ const createStyles = (theme) => StyleSheet.create({
         textAlign: "center",
         flexDirection: "row",
         justifyContent: "space-between",
-    }
+    },
+
 })

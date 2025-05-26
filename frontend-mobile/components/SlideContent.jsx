@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import PowerButton from "./PowerButton";
 import PrecautionBox from "./PrecautionBox";
+import WeeklyAverageChart from "./WeeklyAverageChart";
 
 const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text, showInstruction, }) => {
   const { theme } = useTheme();
@@ -20,9 +21,12 @@ const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text, showI
         </View>
       ) : (
         <View style={styles.slideContent}>
-          <View style={styles.emptySlide}>
-            <Text style={styles.historicalText}>Historical Graph will go here.</Text>
-          </View>
+        <WeeklyAverageChart
+          title="Weekly Average AQI"
+          valuePath="measurements"
+          value="aqi"
+          limit={100}
+        />
         </View>
       )}
     </View>
