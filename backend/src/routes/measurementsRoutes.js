@@ -1,31 +1,34 @@
+// routes/measurementsRoutes.js
 import express from "express";
 import {
   getAllMeasurements,
   createMeasurement,
   deleteMeasurements,
 } from "../utils/measurementsService.js";
+import authenticateJWT from "../middleware/auth/authenticateJWT.js";
+import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
 
 const router = express.Router();
 
-// Route för att hämta alla värden från båda sensorerna
+// Route to fetch all values from both sensors
 router.get("/", async (req, res) => {
   try {
     const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
     const allMeasurements = await getAllMeasurements(limit);
     res.json(allMeasurements);
   } catch (err) {
-    console.error("Fel vid läsning av alla sensorvärden:", err);
+    console.error("Error reading all sensor values:", err);
     res.status(500).json({
-      error: "Kunde inte läsa sensordata",
+      error: "Could not read sensor data",
       details: err.message,
     });
   }
 });
 
-// Route för att hämta specifika typer av mätningar
+// Route to fetch specific types of measurements
 router.get("/:types", async (req, res) => {
   const { types } = req.params;
-  // Lista över giltiga mätningstyper
+  // List of valid measurement types
   const validTypes = [
     "temperature",
     "humidity",
@@ -45,7 +48,7 @@ router.get("/:types", async (req, res) => {
     "typical_particle_size",
   ];
 
-  // Dela upp types-strängen i en array och validera varje typ
+  // Split the types string into an array and validate each type
   const requestedTypes = types.split(",");
   const invalidTypes = requestedTypes.filter(
     (type) => !validTypes.includes(type)
@@ -53,7 +56,7 @@ router.get("/:types", async (req, res) => {
 
   if (invalidTypes.length > 0) {
     return res.status(400).json({
-      error: "Ogiltiga typer av mätningar",
+      error: "Invalid types of measurements",
       invalidTypes,
     });
   }
@@ -62,7 +65,7 @@ router.get("/:types", async (req, res) => {
     const limit = req.query.limit ? parseInt(req.query.limit, 10) : null;
     const measurements = await getAllMeasurements(limit);
 
-    // Filtrera mätningarna för att endast inkludera efterfrågade typer
+    // Filter the measurements to only include requested types
     const filtered = measurements.map((m) => {
       const filteredMeasurement = {
         id: m.id,
@@ -80,42 +83,38 @@ router.get("/:types", async (req, res) => {
 
     res.json(filtered);
   } catch (err) {
-    console.error("Fel vid läsning av filtrerade sensorvärden:", err);
+    console.error("Error reading filtered sensor values:", err);
     res.status(500).json({
-      error: "Kunde inte läsa filtrerad sensordata",
+      error: "Could not read filtered sensor data",
       details: err.message,
     });
   }
 });
 
-// Route för att ta emot data från hårdvaran
+// Route to receive data from hardware
 router.post("/", async (req, res) => {
   const measurement = req.body;
   try {
-    // Lägg till tidsstämpel om den inte finns
-    if (!measurement.timestamp) {
-      measurement.timestamp = new Date().toISOString();
-    }
-
     const newMeasurement = await createMeasurement(measurement);
-    res.status(201).json(newMeasurement); // Skicka tillbaka den skapade mätningen
+    res.status(201).json(newMeasurement); // Return the created measurement
   } catch (err) {
-    console.error("Fel vid insättning av mätning:", err);
+    console.error("Error inserting measurement:", err);
     res.status(500).json({
-      error: "Kunde inte spara mätdata",
+      error: "Could not save measurement data",
       details: err.message,
     });
   }
 });
 
-// Route för att ta bort mätningar baserat på tidsintervall
-router.post("/delete", async (req, res) => {
+// Route to delete measurements based on time interval
+//* ADMIN ONLY
+router.post("/delete", authenticateJWT, authorizeAdmin, async (req, res) => {
   const { startTime, endTime } = req.body;
 
-  // Validera tidsintervall
+  // Validate time interval
   if (!startTime || !endTime) {
     return res.status(400).json({
-      error: "Både startTime och endTime måste anges",
+      error: "Both startTime and endTime must be provided",
     });
   }
 
@@ -125,14 +124,13 @@ router.post("/delete", async (req, res) => {
 
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
       return res.status(400).json({
-        error:
-          "Ogiltigt datumformat. Använd ISO 8601 (t.ex. 2023-01-01T00:00:00Z)",
+        error: "Invalid date format. Use ISO 8601 (e.g. 2023-01-01T00:00:00Z)",
       });
     }
 
     if (start > end) {
       return res.status(400).json({
-        error: "startTime måste vara tidigare än endTime",
+        error: "startTime must be earlier than endTime",
       });
     }
 
@@ -140,15 +138,165 @@ router.post("/delete", async (req, res) => {
 
     res.json({
       deletedCount,
-      message: `Mätningar mellan ${startTime} och ${endTime} har tagits bort`,
+      message: `Measurements between ${startTime} and ${endTime} have been deleted`,
     });
   } catch (err) {
-    console.error("Fel vid borttagning av mätningar:", err);
+    console.error("Error deleting measurements:", err);
     res.status(500).json({
-      error: "Kunde inte ta bort mätningar",
+      error: "Could not delete measurements",
       details: err.message,
     });
   }
 });
+
+// Swagger documentation
+/**
+ * @swagger
+ * /measurements:
+ *   get:
+ *     summary: Route to fetch all values from both sensors
+ *     tags: [public]
+ *     parameters:
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *           example: 10
+ *         description: Number of measurements to return
+ *     responses:
+ *       200:
+ *         description: All measurements.
+ *       500:
+ *         description: Error reading all sensor values
+ */
+
+/**
+ * @swagger
+ * /measurements/{types}:
+ *   get:
+ *     summary: Fetch specific types of measurements
+ *     tags: [public]
+ *     parameters:
+ *       - in: path
+ *         name: types
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Comma-separated types of measurements
+ *         example: temperature,humidity,aqi
+ *       - in: query
+ *         name: limit
+ *         schema:
+ *           type: integer
+ *         description: Number of measurements to return
+ *         example: 10
+ *     responses:
+ *       200:
+ *         description: Filtered measurements
+ *       400:
+ *         description: Invalid type of measurement
+ */
+
+/**
+ * @swagger
+ * /measurements:
+ *   post:
+ *     summary: Upload a set of measurement values from sensor.
+ *     tags: [sensor]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               timestamp:
+ *                 type: string
+ *                 format: date-time
+ *                 description: ISO 8601 timestamp (optional)
+ *               temperature:
+ *                 type: number
+ *                 example: 22.5
+ *               humidity:
+ *                 type: number
+ *                 example: 55.2
+ *               pressure:
+ *                 type: number
+ *                 example: 101325
+ *               aqi:
+ *                 type: integer
+ *                 example: 4
+ *               tvoc:
+ *                 type: number
+ *                 example: 150
+ *               eco2:
+ *                 type: number
+ *                 example: 400
+ *               pm1:
+ *                 type: number
+ *                 example: 10.5
+ *               pm2_5:
+ *                 type: number
+ *                 example: 20.3
+ *               pm4:
+ *                 type: number
+ *                 example: 35.1
+ *               pm10:
+ *                 type: number
+ *                 example: 50.7
+ *               nc_0_5:
+ *                 type: number
+ *                 example: 100.2
+ *               nc_1_0:
+ *                 type: number
+ *                 example: 150.8
+ *               nc_2_5:
+ *                 type: number
+ *                 example: 220.4
+ *               nc_4_0:
+ *                 type: number
+ *                 example: 300.9
+ *               nc_10_0:
+ *                 type: number
+ *                 example: 450.6
+ *               typical_particle_size:
+ *                 type: number
+ *                 example: 5.0
+ *     responses:
+ *       200:
+ *         description: New measurement values have been stored.
+ *       400:
+ *         description: Data error (e.g. missing or invalid fields).
+ */
+
+/**
+ * @swagger
+ * /measurements/delete:
+ *   post:
+ *     summary: Delete measurements based on time interval
+ *     tags: [admin]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               startTime:
+ *                 type: string
+ *                 format: date-time
+ *                 description: Start time for the interval (ISO 8601)
+ *               endTime:
+ *                 type: string
+ *                 format: date-time
+ *                 description: End time for the interval (ISO 8601)
+ *     responses:
+ *       200:
+ *         description: Measurements have been deleted
+ *       400:
+ *         description: Invalid time interval
+ *       500:
+ *         description: Server error during deletion
+ */
 
 export default router;

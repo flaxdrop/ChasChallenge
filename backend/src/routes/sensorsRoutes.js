@@ -1,15 +1,24 @@
 import express from "express";
-import { getAllSensors, createSensor, updateSensorDetails, patchSensorDetails, getOneSensor} from "../controllers/sensorsController.js";
+import {
+  getAllSensors,
+  createSensor,
+  updateSensorDetails,
+  patchSensorDetails,
+  getOneSensor,
+} from "../controllers/sensorsController.js";
+import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
+import authenticateJWT from "../middleware/auth/authenticateJWT.js";
 
 const router = express.Router();
 
+//* PUBLIC ROUTES
 /**
  * @swagger
  * /sensors:
  *  get:
- *    summary: Hämta en lista på alla tillagda sensorer
+ *    summary: Get a list of all added sensors
  *    tags:
- *      - app
+ *      - public
  *    responses:
  *      200:
  *        description: All sensors
@@ -19,48 +28,13 @@ const router = express.Router();
  *        description: Failed to fetch sensors
  */
 router.get("/", getAllSensors);
-
-/**
- * @swagger
- * /sensors:
- *  post:
- *    summary: Skapa en ny sensor
- *    tags:
- *      - app
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:    
- *              model:
- *                type: string
- *                example: bme280
- *              statuscode:
- *                type: number
- *                example: 100
- *              measurementTypes:
- *                type: array
- *                example: ["temperature", "humidity", "pressure"]
- *    responses:
- *      200:        
- *        description: New sensor created
- *      400:
- *        description: Bad request - Missing required keys / Something went wrong
- *      500:
- *        description: Failed to create sensor
- * 
- */
-router.post("/", createSensor);
-
 /**
  * @swagger
  * /sensors/{id}:
  *  get:
- *    summary: Hitta en sensor genom id
+ *    summary: Find a sensor by id
  *    tags:
- *      - app
+ *      - public
  *    parameters:
  *      - in: path
  *        name: id
@@ -78,52 +52,14 @@ router.post("/", createSensor);
  */
 router.get("/:id", getOneSensor);
 
-/**
- * @swagger
- * /sensors/{id}:
- *  put:
- *    summary: Ersätt all sensorinformation genom id
- *    tags:
- *      - app
- *    parameters:
- *      - in: path
- *        name: id
- *        schema:
- *          type: string
- *        required: true
- *        description: The sensor ID
- *    requestBody:
- *      required: true
- *      content:
- *        application/json:
- *          schema:
- *            type: object
- *            properties:    
- *              model:
- *                type: string
- *                example: bme280
- *              statuscode:
- *                type: number
- *                example: 100
- *              measurementTypes:
- *                type: array
- *                example: ["temperature", "humidity", "pressure"]
- *    responses:
- *      200:        
- *        description: Sensor updated
- *      400:
- *        description: Bad request - Missing required keys / Something went wrong
- *      500:
- *        description: Failed to update sensor
- * 
- */
-router.put("/:id", updateSensorDetails);  // Full update
-
+//* SENSOR ONLY ROUTES
+//! Currently not protected
+// //todo authorize sensor so that only sensors can patch their own details
 /**
  * @swagger
  * /sensors/{id}:
  *  patch:
- *    summary: Ersätt en del av sensorinformation genom id, t.ex. statuscode
+ *    summary: Replace part of the sensor information by id, e.g. statuscode
  *    tags:
  *      - sensor
  *    parameters:
@@ -139,18 +75,18 @@ router.put("/:id", updateSensorDetails);  // Full update
  *        application/json:
  *          schema:
  *            type: object
- *            properties:    
+ *            properties:
  *              model:
  *                type: string
  *                example: bme280
- *              statuscode: 
+ *              statuscode:
  *                type: number
  *                example: 100
  *              measurementTypes:
  *                type: array
  *                example: ["temperature", "humidity", "pressure"]
  *    responses:
- *      200:        
+ *      200:
  *        description: Sensor updated
  *      400:
  *        description: Bad request - Missing required keys / Something went wrong
@@ -167,13 +103,88 @@ router.put("/:id", updateSensorDetails);  // Full update
  *              properties:
  *                message:
  *                  type: string
- *                  example: Sensor hittades inte
+ *                  example: Sensor not found
  *      500:
  *        description: Failed to update sensor
- * 
+ *
  */
-router.patch("/:id", patchSensorDetails);  // Partial update
+router.patch("/:id", patchSensorDetails); // Partial update
 
+//* ADMIN ONLY ROUTES
+/**
+ * @swagger
+ * /sensors:
+ *  post:
+ *    summary: Create a new sensor
+ *    tags:
+ *      - admin
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              model:
+ *                type: string
+ *                example: bme280
+ *              statuscode:
+ *                type: number
+ *                example: 100
+ *              measurementTypes:
+ *                type: array
+ *                example: ["temperature", "humidity", "pressure"]
+ *    responses:
+ *      200:
+ *        description: New sensor created
+ *      400:
+ *        description: Bad request - Missing required keys / Something went wrong
+ *      500:
+ *        description: Failed to create sensor
+ *
+ */
+router.post("/", authenticateJWT, authorizeAdmin, createSensor);
+
+/**
+ * @swagger
+ * /sensors/{id}:
+ *  put:
+ *    summary: Replace all sensor information by id
+ *    tags:
+ *      - admin
+ *    parameters:
+ *      - in: path
+ *        name: id
+ *        schema:
+ *          type: string
+ *        required: true
+ *        description: The sensor ID
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              model:
+ *                type: string
+ *                example: bme280
+ *              statuscode:
+ *                type: number
+ *                example: 100
+ *              measurementTypes:
+ *                type: array
+ *                example: ["temperature", "humidity", "pressure"]
+ *    responses:
+ *      200:
+ *        description: Sensor updated
+ *      400:
+ *        description: Bad request - Missing required keys / Something went wrong
+ *      500:
+ *        description: Failed to update sensor
+ *
+ */
+router.put("/:id", authenticateJWT, authorizeAdmin, updateSensorDetails); // Full update
 
 /* router.use("/bme280", bme280Routes); //? if needed for sensor-specific logic, e.g. get the latest calibration for bme280
 router.use("/ens160", ens160Routes); */
