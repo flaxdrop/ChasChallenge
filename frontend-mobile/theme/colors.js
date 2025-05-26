@@ -22,6 +22,7 @@ export const lightTheme = {
   headerBackground: "#000711",
 
   themeButton: "#7c3d7c",
+  modalBackground: "white",
 };
 
 export const darkTheme = {
@@ -47,4 +48,5 @@ export const darkTheme = {
   headerBackground: "#282828",
 
   themeButton: "#f9f089",
+  modalBackground: "black",
 };
