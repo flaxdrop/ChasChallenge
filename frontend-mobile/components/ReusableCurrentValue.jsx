@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ActivityIndicator, Modal } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
@@ -11,6 +11,7 @@ const ReusableCurrentValue = ({
   value,
   valueSize,
   textSize,
+  affix
 }) => {
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
   const { theme } = useTheme();
@@ -74,7 +75,7 @@ const ReusableCurrentValue = ({
                   onPress={handlePress}
                 />
       </View>
-      <Text style={styles.currentValue}>{currentValue}</Text>
+      <Text style={styles.currentValue}>{currentValue}{affix}</Text>
       <Text style={styles.timestamp}>Updated: {timestamp}</Text>
       <ValueInfoModal
       value={value}

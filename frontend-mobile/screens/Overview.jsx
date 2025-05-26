@@ -31,6 +31,7 @@ const Overview = () => {
               valuePath={"measurements/humidity"}
               value={"humidity"}
               title={"Humidity"}
+              affix={"%"}
               valueSize={16}
               textSize={16}
             />
@@ -42,6 +43,7 @@ const Overview = () => {
               title={"Temperature"}
               valueSize={16}
               textSize={16}
+              affix={"°"}
             />
           </BoxGradient>
           <BoxGradient>
