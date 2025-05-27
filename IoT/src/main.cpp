@@ -94,7 +94,7 @@ void loop()
         digitalWrite(yellowLedPin, LOW);
         digitalWrite(redLedPin, LOW);
     }
-    else if (aqi = 3)
+    else if (aqi == 3)
     {
         // Moderate air quality
         digitalWrite(greenLedPin, LOW);
