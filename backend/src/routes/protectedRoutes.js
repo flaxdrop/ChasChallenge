@@ -5,6 +5,7 @@ import usersRouter from "./userRoutes.js";
 import adminRouter from "./adminRoutes.js";
 import { authorizeAdmin } from "../middleware/auth/authorizeRole.js";
 import { refreshToken } from "../controllers/tokenController.js";
+import { signOut } from "../middleware/auth/signOut.js";
 
 
 const router = express.Router();
@@ -44,5 +45,24 @@ router.use("/profile", usersRouter);
  *         description: Server error
  */
 router.use("/refresh-token", refreshToken);
+
+// Sign out
+/**
+ * @swagger
+ * /logout:
+ *   post:
+ *     summary: Sign out user
+ *     description: Signs user out and adds token to blacklist
+ *     tags:
+ *       - protected
+ *     responses:
+ *       200:
+ *         description: Logged out successfully
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Server error
+ */
+router.use("/logout", signOut);
 
 export default router;

@@ -6,6 +6,7 @@ import validateRegisterInput from "../middleware/validateRegisterInput.js";
 import validateUserLogin from "../middleware/auth/validateUserLogin.js";
 import jwt from "jsonwebtoken";
 import measurementsRouter from "./measurementsRoutes.js";
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
@@ -174,9 +175,17 @@ router.post("/login", validateUserLogin, async (req, res) => {
   }
 
   // Generate JWT token
-  const token = jwt.sign({ id: user.id, role: user.role, tokenType: "login" }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
+  const jti = uuidv4(); // unique ID for this specific token
+  const token = jwt.sign(
+    {
+      id: user.id,
+      role: user.role,
+      tokenType: "login",
+      jti, // ✅ Include the unique token ID
+    },
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" }
+  );
 
   res.status(200).json({ message: "Login successful", token });
   
