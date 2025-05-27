@@ -1,3 +1,33 @@
+```
+IoT/
+├── .pio/
+│   ├── build/
+│   └── libdeps/
+├── .vscode/                  
+│   ├── c_cpp_properties.json
+│   ├── extensions.json
+│   └── launch.json
+├── fritzing/                  
+│   └── Chas_challenge_G8.fzz
+├── include/
+│   ├── README
+│   ├── secret.h
+│   └── trafficlight.h       
+├── lib/                      
+│   ├── SparkFun_BME280_Arduino_Library-master/
+│   ├── SparkFun_Indoor_Air_Quality_Sensor-ENS160_Arduino_Library-main
+│   └── README
+├── src/                      
+│   └── main.cpp              
+├── test/
+│   ├── README
+│   ├── sensortests.cpp
+│   ├── test.cpp
+│   └── test2.cpp
+├── platformio.ini               
+└── README.md           
+```
+
 # IoT System for Air Quality Monitoring
 
 This project is part of the **Chas Challenge** and focuses on the IoT system responsible for collecting air quality data using sensors and sending it to the backend for processing and storage.
