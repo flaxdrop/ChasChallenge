@@ -6,6 +6,7 @@ import publicRouter from "./routes/publicRoutes.js";
 import protectedRouter from "./routes/protectedRoutes.js";
 import dotenv from "dotenv";
 import sensorsRouter from "./routes/sensorsRoutes.js";
+import "./jobs/blacklistCleanup.js";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/", publicRouter);
 
 // Protected routes authorized by middleware
 app.use("/", protectedRouter);
+
 
 // Start the server
 app.listen(PORT, () => {
