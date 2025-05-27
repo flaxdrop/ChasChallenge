@@ -16,48 +16,23 @@ const OnboardingScreen = ({ navigation }) => {
     navigation.replace("MainApp");
   };
 
-// Skip-knapp
 const Skip = ({ ...props }) => (
-  <LinearGradient
-    colors={["#001BA3", "#00BAFF"]}
-    start={{ x: 0, y: 1 }}
-    end={{ x: 0, y: 0 }}
-    style={styles.gradientButton}
-  >
-    <TouchableOpacity style={styles.buttonInner} {...props}>
-      <Text style={styles.skipText}>Skip</Text>
-    </TouchableOpacity>
-  </LinearGradient>
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Skip</Text>
+  </TouchableOpacity>
 );
 
-// Next-knapp
 const Next = ({ ...props }) => (
-  <LinearGradient
-    colors={["#001BA3", "#00BAFF"]}
-    start={{ x: 0, y: 1 }}
-    end={{ x: 0, y: 0 }}
-    style={styles.gradientButton}
-  >
-    <TouchableOpacity style={styles.buttonInner} {...props}>
-      <Text style={styles.nextText}>Next</Text>
-    </TouchableOpacity>
-  </LinearGradient>
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Next</Text>
+  </TouchableOpacity>
 );
 
-// Done-knapp
 const Done = ({ ...props }) => (
-  <LinearGradient
-    colors={["#001BA3", "#00BAFF"]}
-    start={{ x: 0, y: 1 }}
-    end={{ x: 0, y: 0 }}
-    style={styles.gradientButton}
-  >
-    <TouchableOpacity style={styles.buttonInner} {...props}>
-      <Text style={styles.nextText}>Done</Text>
-    </TouchableOpacity>
-  </LinearGradient>
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Done</Text>
+  </TouchableOpacity>
 );
-
 
   const Dots = ({ selected }) => {
     return (
@@ -212,67 +187,46 @@ const createStyles = (theme) =>
     alignItems: 'center',
   },
   
-imageWrapper: {
-  width: 240,
-  height: 240,
-  alignItems: 'center',
-  justifyContent: 'center',
-  shadowColor: '#00BAFF',
-  shadowOffset: { width: 0, height: 0 },
-  shadowOpacity: 1,
-  shadowRadius: 100,
-  elevation: 20,
-},
+  imageWrapper: {
+    width: 240,
+    height: 240,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#00BAFF',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 100,
+    elevation: 20,
+  },
 
-lottie: {
-  width: 300,
-  height: 300,
-  position: 'absolute', 
-},
+  lottie: {
+    width: 300,
+    height: 300,
+    position: 'absolute', 
+  },
 
-backgroundImage: {
-  width: 300,
-  height: 300,
-  borderRadius: 150,
-  position: 'absolute',
-},
-gradientButton: {
-  borderRadius: 40 * 0.41,
-  paddingVertical: 12,
-  paddingHorizontal: 30,
-  alignSelf: 'center',
-},
+  backgroundImage: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    position: 'absolute',
+  },
 
-buttonInner: {
-  alignItems: 'center',
-},
-
-
-  skipButton: {
+  flatButton: {
     backgroundColor: '#5DD3FF',
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 40 * 0.41,
     alignSelf: 'center',
+    alignItems: 'center',
   },
-  
-  skipText: {
-    color: '#fff',
+
+  flatButtonText: {
+    color: '#000',
     fontWeight: 'bold',
     fontSize: 20,
   },
-  nextButton: {
-    backgroundColor: '#5DD3FF',
-    paddingVertical: 12,
-    paddingHorizontal: 30,
-    borderRadius: 40 * 0.41,
-    alignSelf: 'center',
-  },
-  nextText: {
-    color: '#fff',
-    fontWeight: '600',
-    fontSize: 20,
-  },
+
   caption: {
     color: '#5DD3FF',
     fontSize: 16,
