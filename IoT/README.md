@@ -1,3 +1,33 @@
+```
+IoT/
+├── .pio/
+│   ├── build/
+│   └── libdeps/
+├── .vscode/                  
+│   ├── c_cpp_properties.json
+│   ├── extensions.json
+│   └── launch.json
+├── fritzing/                  
+│   └── Chas_challenge_G8.fzz
+├── include/
+│   ├── README
+│   ├── secret.h
+│   └── trafficlight.h       
+├── lib/                      
+│   ├── SparkFun_BME280_Arduino_Library-master/
+│   ├── SparkFun_Indoor_Air_Quality_Sensor-ENS160_Arduino_Library-main
+│   └── README
+├── src/                      
+│   └── main.cpp              
+├── test/
+│   ├── README
+│   ├── sensortests.cpp
+│   ├── test.cpp
+│   └── test2.cpp
+├── platformio.ini               
+└── README.md           
+```
+
 # IoT System for Air Quality Monitoring
 
 This project is part of the **Chas Challenge** and focuses on the IoT system responsible for collecting air quality data using sensors and sending it to the backend for processing and storage.
@@ -36,7 +66,7 @@ The IoT system is built around an Arduino-based microcontroller and various envi
 ## Getting Started
 
 1. Clone this repository.
-2. Set up the hardware as described in the [HARDWARE.md](../docs/HARDWARE.md) file.
+2. Set up the hardware as described in the [HARDWARE.md](../docs/HARDWARE.md) file, visit the [SCHEMATIC_AND_WIRING.md](../docs/SCHEMATIC_AND_WIRING.md) for the wiring process.
 3. Upload the Arduino code from the `/src` directory to the microcontroller.
 4. Ensure the backend is running and accessible.
 5. Power on the system and monitor the serial output for data transmission logs.
