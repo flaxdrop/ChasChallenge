@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bf49d27f-3645-4d08-be30-3985e6c79026"
+      }
+    },
+    "owner": "jesperolsson89"
   }
 }

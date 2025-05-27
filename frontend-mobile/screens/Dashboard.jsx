@@ -3,11 +3,6 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
-  View,
-  Text,
-  Pressable,
-  ActivityIndicator,
-  Dimensions,
 } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
