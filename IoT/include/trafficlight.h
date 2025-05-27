@@ -1,5 +1,5 @@
-#ifndef TRAFICLIGHT_H
-#define TRAFICLIGHT_H
+#ifndef TRAFFICLIGHT_H
+#define TRAFFICLIGHT_H
 #include <Arduino.h>
 
 #define MQ2_PIN A0    // MQ-2 sensor på analog pin A0
