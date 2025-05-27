@@ -25,6 +25,7 @@ const Humidity = () => {
             valuePath={"measurements/humidity"}
             value={"humidity"}
             title={"Current Humidity"}
+            affix={"%"}
           />
         </BoxGradient>
       </ContainerGradient>

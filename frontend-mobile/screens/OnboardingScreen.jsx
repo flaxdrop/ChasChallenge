@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'rea
 import React from 'react';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "../theme/ThemeContext";
+import { LinearGradient } from 'expo-linear-gradient'; 
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 
@@ -9,34 +10,30 @@ const { width } = Dimensions.get('window');
 
 const OnboardingScreen = ({ navigation }) => {
   const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   const finishOnboarding = async () => {
-    await AsyncStorage.setItem("hasSeenOnboarding", "true");
     navigation.replace("MainApp");
   };
 
-  // Skip-knapp
-  const Skip = ({ ...props }) => (
-    <TouchableOpacity style={styles.skipButton} {...props}>
-      <Text style={styles.skipText}>Skip</Text>
-    </TouchableOpacity>
-  );
+const Skip = ({ ...props }) => (
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Skip</Text>
+  </TouchableOpacity>
+);
 
-  // Nästa-knapp
-  const Next = ({ ...props }) => (
-    <TouchableOpacity style={styles.nextButton} {...props}>
-      <Text style={styles.nextText}>Next ➤</Text>
-    </TouchableOpacity>
-  );
+const Next = ({ ...props }) => (
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Next</Text>
+  </TouchableOpacity>
+);
 
-  // Klar-knapp (sista sidan)
-  const Done = ({ ...props }) => (
-    <TouchableOpacity style={styles.nextButton} {...props}>
-      <Text style={styles.nextText}>Done</Text>
-    </TouchableOpacity>
-  );
+const Done = ({ ...props }) => (
+  <TouchableOpacity style={styles.flatButton} {...props}>
+    <Text style={styles.flatButtonText}>Done</Text>
+  </TouchableOpacity>
+);
 
-  // Anpassad slidepunkt (indikator)
   const Dots = ({ selected }) => {
     return (
       <View
@@ -94,10 +91,8 @@ const OnboardingScreen = ({ navigation }) => {
             ),
             subtitle: (
               <Text style={styles.description}>
-                Real-time monitoring: provides
-                accurate and real-time monitoring
-                of PM2.5 concentration,
-                temperature, and humidity
+                Real-time monitoring for accurate measurements of temperature, humidity, air pressure, and more, providing an overview of air quality
+
               </Text>
             ),
           },
@@ -131,7 +126,7 @@ const OnboardingScreen = ({ navigation }) => {
             ),
             subtitle: (
               <Text style={styles.description}>
-                AQI data cloud storage eases the accessibility of the monitor's airquality data remotely through the app on your smartphone
+                AQI database integrated via API server, eases the accessibility of the monitor's airquality data remotely through the app on your smartphone
               </Text>
             ),
           },
@@ -158,14 +153,14 @@ const OnboardingScreen = ({ navigation }) => {
               <View style={styles.titleBlock}>
                 <Text style={styles.caption}>Innovation in every wave</Text>
                 <Text style={styles.title}>
-                  <Text style={styles.titleBlue}>Pollution </Text>
-                  <Text style={styles.titleGreen}>Maps</Text>
+                  <Text style={styles.titleBlue}>Precaution </Text>
+                  <Text style={styles.titleGreen}>Alert</Text>
                 </Text>
               </View>
             ),
             subtitle: (
               <Text style={styles.description}>
-                Real-time health advice and personalized notifications based on current polluted areas and your underlying health conditions
+                Real-time precautions and personalized notifications based on current AQI values to preserve your health and well-being safely
               </Text>
             ),
           },
@@ -177,7 +172,8 @@ const OnboardingScreen = ({ navigation }) => {
 
 export default OnboardingScreen;
 
-const styles = StyleSheet.create({
+const createStyles = (theme) =>
+  StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#000711',
@@ -191,56 +187,46 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   
-imageWrapper: {
-  width: 240,
-  height: 240,
-  alignItems: 'center',
-  justifyContent: 'center',
-  shadowColor: '#00BAFF',
-  shadowOffset: { width: 0, height: 0 },
-  shadowOpacity: 1,
-  shadowRadius: 100,
-  elevation: 20,
-},
+  imageWrapper: {
+    width: 240,
+    height: 240,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#00BAFF',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+    shadowRadius: 100,
+    elevation: 20,
+  },
 
-lottie: {
-  width: 300,
-  height: 300,
-  position: 'absolute', 
-},
+  lottie: {
+    width: 300,
+    height: 300,
+    position: 'absolute', 
+  },
 
-backgroundImage: {
-  width: 300,
-  height: 300,
-  borderRadius: 150,
-  position: 'absolute',
-},
+  backgroundImage: {
+    width: 300,
+    height: 300,
+    borderRadius: 150,
+    position: 'absolute',
+  },
 
-  skipButton: {
+  flatButton: {
     backgroundColor: '#5DD3FF',
     paddingVertical: 12,
     paddingHorizontal: 30,
     borderRadius: 40 * 0.41,
     alignSelf: 'center',
+    alignItems: 'center',
   },
-  
-  skipText: {
+
+  flatButtonText: {
     color: '#000',
     fontWeight: 'bold',
     fontSize: 20,
   },
-  nextButton: {
-    backgroundColor: '#5DD3FF',
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 40 * 0.41,
-    alignSelf: 'center',
-  },
-  nextText: {
-    color: '#000',
-    fontWeight: '600',
-    fontSize: 20,
-  },
+
   caption: {
     color: '#5DD3FF',
     fontSize: 16,
