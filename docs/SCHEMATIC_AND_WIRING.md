@@ -22,3 +22,7 @@ De olika färgerna i kopplingsschemat representerar olika egenskaper och vad de 
 
 *Note: SPS30 i denna bild är enbart en mock-up för att visa kopplingen.*
 ![Prototype_physical_wiring.png](../images/Prototype_physical_wiring.png)
+
+Ni kan hitta .fzz filen för projektet i [Iot/Fritzing](../IoT/Fritzing/), ifall ni skulle vilja ta en närmare titt. 
+
+*Note: Då SPS30 komponenten är en mock-up har den ett par logiska kopplingar som inte är tänkt att finnas. Det är bara att ignorera luftledningerna/airwires som finns i .fzz.*
