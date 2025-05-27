@@ -219,6 +219,7 @@ const createStyles = (theme) =>
     borderRadius: 40 * 0.41,
     alignSelf: 'center',
     alignItems: 'center',
+    marginBottom: 50,
   },
 
   flatButtonText: {
@@ -260,7 +261,8 @@ const createStyles = (theme) =>
     marginHorizontal: 4,
     borderWidth: 2,
     borderColor: '#000',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 50,
   },
   activeDot: {
     width: 30,

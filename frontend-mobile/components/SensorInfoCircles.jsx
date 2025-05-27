@@ -7,21 +7,9 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import Svg, { Polygon } from "react-native-svg";
 import dashboardData from "../data/dashboardData";
 
 const { INFO_ITEMS } = dashboardData;
-
-const Hexagon = () => (
-  <Svg width={90} height={90} viewBox="0 0 90 90">
-    <Polygon
-      points="45,0 90,22.5 90,67.5 45,90 0,67.5 0,22.5"
-      fill="rgba(217,217,217,0.1)"
-      stroke="#000"
-      strokeWidth="4"
-    />
-  </Svg>
-);
 
 const SensorInfoCircles = ({
   isOn,
@@ -30,7 +18,6 @@ const SensorInfoCircles = ({
   selectedInfo,
   setSelectedInfo,
 }) => {
-
   const styles = createStyles();
 
   return (
@@ -46,9 +33,8 @@ const SensorInfoCircles = ({
               disabled={isOn}
               onPress={() => setSelectedInfo(isSelected ? null : item.type)}
             >
-              <View style={styles.hexContainer}>
-                <Hexagon />
-                <View style={styles.hexContent}>
+              <View style={styles.circleContainer}>
+                <View style={styles.circleContent}>
                   {loadingData && showValue ? (
                     <ActivityIndicator size="small" color="#fff" />
                   ) : showValue ? (
@@ -56,7 +42,7 @@ const SensorInfoCircles = ({
                       <MaterialCommunityIcons
                         name={item.icon}
                         color={item.color}
-                        size={32}
+                        size={52}
                         style={styles.iconBackground}
                       />
                       <Text style={styles.valueText}>
@@ -67,7 +53,7 @@ const SensorInfoCircles = ({
                     <MaterialCommunityIcons
                       name={item.icon}
                       color={item.color}
-                      size={42}
+                      size={45}
                     />
                   )}
                 </View>
@@ -97,29 +83,31 @@ const createStyles = (theme) =>
       color: "#fff",
       marginBottom: 15,
       fontSize: 14,
-      fontWeight: "600",
+      fontWeight: "700",
       textAlign: "center",
     },
-    hexContainer: {
+    circleContainer: {
       width: 95,
       height: 95,
-      justifyContent: "center",
-      alignItems: "center",
-      position: "relative",
-    },
-    hexContent: {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
+      borderRadius: 47.5,
       justifyContent: "center",
       alignItems: "center",
       shadowColor: "#00BAFF",
       shadowOffset: { width: 0, height: 0 },
-      shadowOpacity: 1,
+      shadowOpacity: 0.8,
       shadowRadius: 30,
-      elevation: 20, 
+      elevation: 20,
+      borderRadius: 100,
+      backgroundColor: "rgba(217, 217, 217, 0.1)",
+      borderWidth: 4,
+      borderColor: "#000",
+    },
+    circleContent: {
+      width: 90,
+      height: 90,
+      borderRadius: 45,
+      justifyContent: "center",
+      alignItems: "center",
     },
     iconBackground: {
       position: "absolute",
@@ -128,8 +116,8 @@ const createStyles = (theme) =>
     },
     valueText: {
       color: "#fff",
-      fontWeight: "bold",
-      fontSize: 17,
+      fontWeight: "900",
+      fontSize: 19.2,
       zIndex: 1,
       textAlign: "center",
       paddingHorizontal: 6,

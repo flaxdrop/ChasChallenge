@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { Animated } from "react-native";
 import getAqiLevelIndex from "../utils/aqiUtils";
 import data from "../data/dashboardData";
 
@@ -16,6 +17,41 @@ const useDashboardLogic = (apiURL) => {
   });
   const [loadingData, setLoadingData] = useState(false);
   const [aqiValue, setAqiValue] = useState(null);
+
+  // Animation references
+  const fadeAnims = [
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+    useRef(new Animated.Value(0)).current,
+  ];
+
+  const translateYAnims = [
+    useRef(new Animated.Value(20)).current,
+    useRef(new Animated.Value(20)).current,
+    useRef(new Animated.Value(20)).current,
+    useRef(new Animated.Value(20)).current,
+  ];
+
+  // Start animations on mount
+  useEffect(() => {
+    const animations = fadeAnims.map((fade, i) =>
+      Animated.parallel([
+        Animated.timing(fade, {
+          toValue: 1,
+          duration: 900,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateYAnims[i], {
+          toValue: 0,
+          duration: 700,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+
+    Animated.stagger(300, animations).start();
+  }, []);
 
   useEffect(() => {
     if (!isOn) {
@@ -41,11 +77,11 @@ const useDashboardLogic = (apiURL) => {
       setAqiValue(aqiData[0]?.aqi ?? null);
 
       setSensorData({
-        temperature: tempData[0]?.temperature?.toFixed(1) + "°C" || "N/A",
-        humidity: humData[0]?.humidity?.toFixed(1) + "%" || "N/A",
+        temperature: tempData[0]?.temperature?.toFixed(0) + "°C" || "N/A",
+        humidity: humData[0]?.humidity?.toFixed(0) + "%" || "N/A",
         pressure:
           presData[0]?.pressure != null
-            ? (presData[0].pressure / 1000).toFixed(1) + " kPa"
+            ? (presData[0].pressure / 1000).toFixed(0) + " kPa"
             : "N/A",
       });
     } catch (error) {
@@ -66,7 +102,11 @@ const useDashboardLogic = (apiURL) => {
   const getPrecautionText = () => {
     if (selectedAqi !== null) return AQI_LEVELS[selectedAqi];
     if (!isOn && aqiValue !== null) return AQI_LEVELS[getAqiLevelIndex(aqiValue)];
-    return { range: "None", color: "#fff", text: "Everyone enjoy\noutdoor activities" };
+    return {
+      range: "None",
+      color: "#fff",
+      text: "Everyone enjoy\noutdoor activities",
+    };
   };
 
   const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
@@ -86,7 +126,9 @@ const useDashboardLogic = (apiURL) => {
     prevSlide,
     setSelectedAqi,
     setSelectedInfo,
-    showInstruction
+    showInstruction,
+    fadeAnims,
+    translateYAnims,
   };
 };
 

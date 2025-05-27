@@ -55,7 +55,8 @@ const createStyles = (theme) =>
     },
     powerStatusText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: 800,
   },
 
   });

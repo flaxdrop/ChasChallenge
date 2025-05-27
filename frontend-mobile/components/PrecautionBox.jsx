@@ -8,7 +8,7 @@ const PrecautionBox = ({ color, range, text, showInstruction }) => {
     <View style={[styles.box, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
       {showInstruction ? (
         <>
-        <Text style={styles.title}><Text style={{ color: '#00BAFF' }}>AIR</Text><Text style={{ color: '#00FF1A' }}>AWARE</Text></Text>
+        <Text style={styles.precautionTitle}><Text style={{ color: '#00BAFF' }}>AIR</Text><Text style={{ color: '#00FF1A' }}>AWARE</Text></Text>
         <Text style={styles.text}>
           Press power button to analyze AQI{'\n'}
           OR{'\n'}
@@ -59,6 +59,12 @@ const createStyles = (theme) =>
       marginTop: 4,
       textAlign: "center",
     },
+    precautionTitle:{
+      color: "#fff",
+      fontWeight: "bold",
+      fontSize: 30,
+      marginBottom: 8,
+    }
 });
 
 export default PrecautionBox;

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
+  Animated,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -30,6 +31,8 @@ const Dashboard = () => {
     setSelectedAqi,
     setSelectedInfo,
     showInstruction,
+    fadeAnims,
+    translateYAnims,
   } = useDashboardLogic(process.env.EXPO_PUBLIC_RENDER_URL);
 
   const { range, color, text } = getPrecautionText();
@@ -38,45 +41,69 @@ const Dashboard = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
-      {/* AQI BAR */}
-      <AqiBar
-        isOn={isOn}
-        selectedAqi={selectedAqi}
-        setSelectedAqi={setSelectedAqi}
-        aqiValue={aqiValue}
-        loadingData={loadingData}
-      />
+      <Animated.View
+        style={{
+          opacity: fadeAnims[3],
+          transform: [{ translateY: translateYAnims[0] }],
+        }}
+      >
+        <AqiBar
+          isOn={isOn}
+          selectedAqi={selectedAqi}
+          setSelectedAqi={setSelectedAqi}
+          aqiValue={aqiValue}
+          loadingData={loadingData}
+        />
+      </Animated.View>
 
-      {/* SLIDE CONTENT */}
-      <SlideContent
-        slideIndex={slideIndex}
-        isOn={isOn}
-        togglePower={togglePower}
-        range={range}
-        color={color}
-        text={text}
-        showInstruction={showInstruction}
-      />
+      <Animated.View
+        style={{
+          opacity: fadeAnims[0],
+          transform: [{ translateY: translateYAnims[1] }],
+        }}
+      >
+        <SlideContent
+          slideIndex={slideIndex}
+          isOn={isOn}
+          togglePower={togglePower}
+          range={range}
+          color={color}
+          text={text}
+          showInstruction={showInstruction}
+        />
+      </Animated.View>
 
-      {/* SLIDE CONTROLS */}
-      <SlideControls
-        slideIndex={slideIndex}
-        nextSlide={nextSlide}
-        prevSlide={prevSlide}
-      />
+      <Animated.View
+        style={{
+          opacity: fadeAnims[1],
+          transform: [{ translateY: translateYAnims[2] }],
+        }}
+      >
+        <SlideControls
+          slideIndex={slideIndex}
+          nextSlide={nextSlide}
+          prevSlide={prevSlide}
+        />
+      </Animated.View>
 
-      {/* SENSOR INFO CIRCLES */}
-      <SensorInfoCircles
-        isOn={isOn}
-        loadingData={loadingData}
-        sensorData={sensorData}
-        selectedInfo={selectedInfo}
-        setSelectedInfo={setSelectedInfo}
-      />
-
+      <Animated.View
+        style={{
+          opacity: fadeAnims[2],
+          transform: [{ translateY: translateYAnims[3] }],
+        }}
+      >
+        <SensorInfoCircles
+          isOn={isOn}
+          loadingData={loadingData}
+          sensorData={sensorData}
+          selectedInfo={selectedInfo}
+          setSelectedInfo={setSelectedInfo}
+        />
+      </Animated.View>
     </SafeAreaView>
   );
 };
+
 
 const createStyles = (theme) =>
   StyleSheet.create({
