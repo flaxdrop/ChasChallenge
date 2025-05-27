@@ -1,5 +1,16 @@
+## 2025-05-27 18:30
+### Backend
+
+#### Added: POST /logout endpoint
+- Users can now sign out via `POST /logout`
+- On sign-out, the JWT token is added to the database blacklist to prevent reuse
+
+#### Updated: JWT authentication now checks blacklist
+- JWT tokens are checked against the `blacklist` table before being accepted
+- Blacklisted tokens are rejected with a 401 Unauthorized error
+
 ## 2025-05-23 
-### [Backend] 
+### Backend 
 #### Authentication & Authorization
 - Implemented user registration and login with password hashing (bcrypt)
 - Added JWT authentication middleware to protect API routes
