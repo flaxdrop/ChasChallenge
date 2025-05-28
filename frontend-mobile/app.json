@@ -1,16 +1,20 @@
 {
   "expo": {
-    "name": "frontend-mobile",
+    "name": "AirAware",
     "slug": "frontend-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/logo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": true,
+      "runtimeVersion": "1.0.0"
     },
     "ios": {
       "supportsTablet": true,
