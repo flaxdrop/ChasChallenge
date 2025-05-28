@@ -1,52 +1,36 @@
 import express from "express";
 import { PORT } from "./config/index.js";
-import apiRoutes from "./routes/apiRoutes.js"; // Importera routes
-import swaggerJSDoc from "swagger-jsdoc";
-import swaggerUi from "swagger-ui-express";
+import apiDocs from "./routes/apiDocs.js";
+import CORS from "cors";
+import publicRouter from "./routes/publicRoutes.js";
+import protectedRouter from "./routes/protectedRoutes.js";
+import dotenv from "dotenv";
+import sensorsRouter from "./routes/sensorsRoutes.js";
+import "./jobs/blacklistCleanup.js";
+
+dotenv.config();
 
 const app = express();
 
-// Middleware för att hantera JSON-data
+// Middleware to handle JSON data
 app.use(express.json());
 
-// Swagger-dokumentation
-const swaggerOptions = {
-  definition: {
-    openapi: "3.0.0",
-    info: {
-      title: "AirAware API",
-      description: "API-dokumentation för AirAwares API.",
-      version: "1.0.0",
-    },
-    servers: [
-      {
-        url: "http://localhost:3000",
-        description: "Lokal utvecklingsserver",
-      },
-      {
-        url: "www",
-        description: "Live server på render med databas på neon."
-      }
-    ],
-    tags: [
-      { name: "app", descrition: "Endpoints för appen." },
-      { name: "sensor", description: "Endpoints för sensor." },
-    ],
-  },
-  components: {
-    schemas: {},
-  },
-  apis: ["./src/routes/*.js"],
-};
+// Fix CORS errors
+app.use(CORS());
 
-const swaggerDocs = swaggerJSDoc(swaggerOptions);
+// Use API documentation
+app.use("/", apiDocs); // API routes
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+// Sensor routes (mixed access routes)
+app.use("/sensors", sensorsRouter);
 
-// Använd routes
-app.use("/", apiRoutes); // Använd routes
+// Public routes
+app.use("/", publicRouter);
 
-// Starta servern
+// Protected routes authorized by middleware
+app.use("/", protectedRouter);
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Servern körs på http://localhost:${PORT}`);
+  console.log(`Server is running at http://localhost:${PORT}`);
 });

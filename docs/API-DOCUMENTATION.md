@@ -1,71 +1,118 @@
-## För frontend
+### Available endpoints
 
-### Miljövariabel
+- When the server is running, navigate to url /api-docs for Swagger docs
 
-- Skapa filen ".env" i /backend/_här_, lägg till texten: PORT=3000
+#### Public Endpoints
 
-- Kör i en separat terminal från frontend:
+##### POST /register
 
-1. cd .\backend
-2. npm install
-3. npm run dev
+- Create a new user
 
-API:t körs nu på: http://localhost:3000
+##### POST /login
 
-### Tillgängliga endpoints
+- Login and receive a JWT token
 
-#### GET /all
+##### GET /measurements
 
-- Hämtar samtliga mätvärden.
+- Retrieves all measurement values
 
-#### GET /all/:id
+  - Parameters:
 
-- Hämtar ett mätvärde med angivet ID.
+    - `types` - comma-separated types. E.g. /temperature, /humidity, /aqi, etc
+    - `?limit=INT` - to limit the number of returned measurements. E.g. /aqi/?limit=10
 
-#### GET /measurements
+##### GET /measurements/{types}
 
-- Hämtar temperatur, luftfuktighet och tryck.
+- Retrieves specific types of measurements (e.g. /measurements /temperature /humidity)
 
-#### GET /measurements/:id
+  - Available types:
+    - temperature
+    - humidity
+    - pressure
+    - aqi
+    - tvoc
+    - eco2
+    - pm1
+    - pm2_5
+    - pm4
+    - pm10
+    - nc_0_5
+    - nc_1_0
+    - nc_2_5
+    - nc_4_0
+    - nc_10_0
+    - typical_particle_size
 
-- Hämtar mätvärden för ett specifikt ID.
+##### GET /sensors
 
-#### GET /measurements/temperature
+- Get a list of all added sensors
 
-- Endast temperaturvärden.
+##### GET /sensors/{id}
 
-#### GET /measurements/humidity
+- Find a sensor by id
 
-- Endast luftfuktighetsvärden.
+##### GET /about
 
-#### GET /measurements/pressure
+- About page
 
-- Endast tryckvärden.
+---
 
-#### GET /measurements/:type/:id
+#### User Endpoints (require authentication)
 
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
+##### GET /profile
 
-#### GET /airquality
+- Get user details (authenticated user)
 
-- Hämtar alla luftkvalitetsvärden (AQI, TVOC, eCO2).
+##### DELETE /profile/delete
 
-#### GET /airquality/:id
+- Delete user account (authenticated user)
 
-- Hämtar luftkvalitetsdata för ett specifikt ID.
+##### POST /logout
 
-#### GET /airquality/aqi
+- Sign out user and blacklist token
 
-- Endast AQI-värden.
+##### POST /refresh-token
 
-#### GET /airquality/tvoc
+- Refresh a JWT token
 
-- Endast TVOC-värden.
+---
 
-#### GET /airquality/eco2
+#### Sensor Endpoints
 
-- Endast eCO2-värden.
+##### PATCH /sensors/{id}
 
-#### GET /airquality/:type/:id
+- Replace part of the sensor information by id (e.g. statuscode)
 
-- Hämtar mätvärden för ett specifikt ID baserat på mättyp.
+---
+
+#### Admin Endpoints (require admin role)
+
+##### GET /admin/users
+
+- Get all users
+
+##### PATCH /admin/users/{id}/role
+
+- Update user role to 'admin' or 'user'
+
+##### DELETE /admin/users/{id}
+
+- Delete a user
+
+##### POST /sensors
+
+- Create a new sensor
+
+##### PUT /sensors/{id}
+
+- Replace all sensor information by id
+
+##### POST /measurements/delete
+
+- Delete measurements based on time interval
+
+##### DELETE /sensors/{id}
+
+- Delete a sensor by id
+
+---
