@@ -1,7 +1,4 @@
-// /scripts/runCleanup.js
 // * Manual script to run the blacklist cleanup job
-// Run it manually in the terminal: npm run run-cleanup
-
 
 import dotenv from "dotenv";
 dotenv.config(); // load .env variables

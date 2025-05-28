@@ -1,4 +1,3 @@
-// jobs/blacklistCleanup.js
 import clearOldBlacklistRecords from "../utils/clearOldBlacklistRecords.js";
 
 const scheduleDailyCleanupAt2AM = () => {
@@ -13,7 +12,9 @@ const scheduleDailyCleanupAt2AM = () => {
   }
 
   const msUntil2AM = next2AM - now;
-  console.log(`Cleanup scheduled in ${Math.round(msUntil2AM / 1000 / 60)} minutes.`);
+  console.log(
+    `Cleanup scheduled in ${Math.round(msUntil2AM / 1000 / 60)} minutes.`
+  );
 
   setTimeout(() => {
     // Run once at 2AM

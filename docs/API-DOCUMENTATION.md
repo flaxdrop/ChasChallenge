@@ -67,6 +67,14 @@
 
 - Delete user account (authenticated user)
 
+##### POST /logout
+
+- Sign out user and blacklist token
+
+##### POST /refresh-token
+
+- Refresh a JWT token
+
 ---
 
 #### Sensor Endpoints
@@ -87,6 +95,10 @@
 
 - Update user role to 'admin' or 'user'
 
+##### DELETE /admin/users/{id}
+
+- Delete a user
+
 ##### POST /sensors
 
 - Create a new sensor
@@ -98,5 +110,9 @@
 ##### POST /measurements/delete
 
 - Delete measurements based on time interval
+
+##### DELETE /sensors/{id}
+
+- Delete a sensor by id
 
 ---
