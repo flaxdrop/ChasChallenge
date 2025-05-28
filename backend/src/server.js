@@ -6,6 +6,7 @@ import publicRouter from "./routes/publicRoutes.js";
 import protectedRouter from "./routes/protectedRoutes.js";
 import dotenv from "dotenv";
 import sensorsRouter from "./routes/sensorsRoutes.js";
+import "./jobs/blacklistCleanup.js";
 
 dotenv.config();
 
