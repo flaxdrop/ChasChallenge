@@ -1,4 +1,4 @@
-import pool from "./db.js"; // Import the database
+import pool from "./db.js"; 
 import { buildPatchQuery } from "./sqlHelpers.js";
 
 // Function to fetch all sensors with optional limit

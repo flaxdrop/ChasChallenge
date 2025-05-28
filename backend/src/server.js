@@ -1,6 +1,6 @@
 import express from "express";
 import { PORT } from "./config/index.js";
-import apiDocs from "./routes/apiDocs.js"; // Import API docs
+import apiDocs from "./routes/apiDocs.js";
 import CORS from "cors";
 import publicRouter from "./routes/publicRoutes.js";
 import protectedRouter from "./routes/protectedRoutes.js";

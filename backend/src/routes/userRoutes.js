@@ -1,4 +1,3 @@
-// routes/User.routes.js
 //* Authorized user routes, requires JWT token -- see Protected.routes.js
 
 import express from "express";

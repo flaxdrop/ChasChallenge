@@ -43,11 +43,19 @@ API also available at: https://chaschallenge-backend.onrender.com/
 
 #### controllers/:
 
-- Controller files for handling business logic (users, sensors, etc.)
+- `usersController.js` - Handles user-related business logic
+- `tokenController.js` - Handles token-related logic
+- `sensorsController.js` - Handles sensor-related business logic
 
 #### middleware/:
 
-- Middleware for authentication and authorization
+- `checkUserExists.js` - Middleware to check if a user exists
+- `validateRegisterInput.js` - Middleware to validate registration input
+- `auth/` - Authentication-related middleware:
+  - `signOut.js` - Handles user sign out
+  - `authenticateJWT.js` - JWT authentication middleware
+  - `authorizeRole.js` - Role-based authorization middleware
+  - `validateUserLogin.js` - Validates user login
 
 #### routes/:
 
@@ -65,6 +73,16 @@ API also available at: https://chaschallenge-backend.onrender.com/
 - `sensors.js` - Service for handling sensor data
 - `db.js` - Database connection and management
 - `sqlHelpers.js` - Helper functions for SQL queries
+- `clearOldBlacklistRecords.js` - Utility to clear old blacklist records
+- `users.js` - Utility functions for users
+
+#### scripts/:
+
+- `runCleanup.js` - Script to run cleanup tasks
+
+#### jobs/:
+
+- `blacklistCleanup.js` - Job for cleaning up blacklist records
 
 #### server.js:
 

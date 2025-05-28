@@ -1,4 +1,3 @@
-// routes/measurementsRoutes.js
 import express from "express";
 import {
   getAllMeasurements,
