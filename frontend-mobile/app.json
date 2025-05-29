@@ -13,8 +13,7 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "enabled": true,
-      "runtimeVersion": "1.0.0"
+      "enabled": true
     },
     "ios": {
       "supportsTablet": true,
