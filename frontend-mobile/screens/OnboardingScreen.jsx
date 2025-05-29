@@ -72,7 +72,7 @@ const Done = ({ ...props }) => (
                     resizeMode="cover"
                   />
                   <LottieView
-                    source={require('../assets/animations/test.json')}
+                    source={require('../assets/animations/Air-Quality-Sensor.json')}
                     autoPlay
                     loop
                     style={styles.lottie}
@@ -141,7 +141,7 @@ const Done = ({ ...props }) => (
                     resizeMode="cover"
                   />
                   <LottieView
-                    source={require('../assets/animations/Pollution-maps.json')}
+                    source={require('../assets/animations/Precaution-Alert.json')}
                     autoPlay
                     loop
                     style={styles.lottie}

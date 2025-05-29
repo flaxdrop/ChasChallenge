@@ -11,10 +11,10 @@ const SplashScreen = ({ navigation }) => {
     <View style={styles.container}>
       <LottieView
         ref={animationRef}
-        source={require('../assets/animations/Logo-Splash.json')} 
+        source={require('../assets/animations/Logo-animation')} 
         autoPlay
         loop={false}
-        speed={0.5}
+        speed={1}
         style={styles.animation}
         onAnimationFinish={() => {
         navigation.replace('OnboardingScreen'); 
