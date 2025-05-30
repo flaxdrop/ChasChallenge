@@ -9,13 +9,13 @@ import { useTheme } from "../theme/ThemeContext";
 import useDashboardLogic from "../hooks/useDashboardLogic";
 import AqiBar from "../components/AqiBar";
 import SlideContent from "../components/SlideContent";
-import SlideControls from "../components/SlideControls";
+import PaginationDots from "../components/PaginationDots";
 import SensorInfoCircles from "../components/SensorInfoCircles";
 
 const Dashboard = () => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
-
+  
   const {
     isOn,
     selectedAqi,
@@ -26,13 +26,13 @@ const Dashboard = () => {
     aqiValue,
     togglePower,
     getPrecautionText,
-    nextSlide,
-    prevSlide,
     setSelectedAqi,
     setSelectedInfo,
     showInstruction,
     fadeAnims,
     translateYAnims,
+    handleSwipe,
+    slideAnim,
   } = useDashboardLogic(process.env.EXPO_PUBLIC_RENDER_URL);
 
   const { range, color, text } = getPrecautionText();
@@ -57,9 +57,12 @@ const Dashboard = () => {
       </Animated.View>
 
       <Animated.View
-        style={{
+          style={{
           opacity: fadeAnims[0],
-          transform: [{ translateY: translateYAnims[1] }],
+          transform: [
+            { translateY: translateYAnims[1] },
+            { translateX: slideAnim },
+          ],
         }}
       >
         <SlideContent
@@ -70,26 +73,17 @@ const Dashboard = () => {
           color={color}
           text={text}
           showInstruction={showInstruction}
+          handleSwipe={handleSwipe}
+          slideAnim={slideAnim}
         />
       </Animated.View>
+
+      <PaginationDots slideIndex={slideIndex} />
 
       <Animated.View
         style={{
           opacity: fadeAnims[1],
           transform: [{ translateY: translateYAnims[2] }],
-        }}
-      >
-        <SlideControls
-          slideIndex={slideIndex}
-          nextSlide={nextSlide}
-          prevSlide={prevSlide}
-        />
-      </Animated.View>
-
-      <Animated.View
-        style={{
-          opacity: fadeAnims[2],
-          transform: [{ translateY: translateYAnims[3] }],
         }}
       >
         <SensorInfoCircles
@@ -100,6 +94,7 @@ const Dashboard = () => {
           setSelectedInfo={setSelectedInfo}
         />
       </Animated.View>
+
     </SafeAreaView>
   );
 };

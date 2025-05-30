@@ -18,7 +18,6 @@ const useDashboardLogic = (apiURL) => {
   const [loadingData, setLoadingData] = useState(false);
   const [aqiValue, setAqiValue] = useState(null);
 
-  // Animation references
   const fadeAnims = [
     useRef(new Animated.Value(0)).current,
     useRef(new Animated.Value(0)).current,
@@ -33,7 +32,8 @@ const useDashboardLogic = (apiURL) => {
     useRef(new Animated.Value(20)).current,
   ];
 
-  // Start animations on mount
+   const slideAnim = useRef(new Animated.Value(0)).current;
+
   useEffect(() => {
     const animations = fadeAnims.map((fade, i) =>
       Animated.parallel([
@@ -109,8 +109,32 @@ const useDashboardLogic = (apiURL) => {
     };
   };
 
-  const nextSlide = () => setSlideIndex((slideIndex + 1) % 2);
-  const prevSlide = () => setSlideIndex((slideIndex - 1 + 2) % 2);
+    const nextSlide = () => {
+    if (slideIndex < 1) {
+      setSlideIndex(slideIndex + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (slideIndex > 0) {
+      setSlideIndex(slideIndex - 1);
+    }
+  };
+
+  const handleSwipe = ({ nativeEvent }) => {
+    if (nativeEvent.translationX > 50 && slideIndex > 0) {
+      setSlideIndex(slideIndex - 1);
+    } else if (nativeEvent.translationX < -50 && slideIndex < 1) {
+      setSlideIndex(slideIndex + 1);
+    }
+  };
+
+    useEffect(() => {
+    Animated.spring(slideAnim, {
+      toValue: -slideIndex, 
+      useNativeDriver: true,
+    }).start();
+  }, [slideIndex]);
 
   return {
     isOn,
@@ -129,6 +153,8 @@ const useDashboardLogic = (apiURL) => {
     showInstruction,
     fadeAnims,
     translateYAnims,
+    handleSwipe,
+    slideAnim,
   };
 };
 
