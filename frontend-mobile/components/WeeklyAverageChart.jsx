@@ -65,7 +65,7 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
           strokeWidth: 2,
         },
         ],
-        legend: ["AQI"],
+        legend: [title],
         });
       } catch (error) {
         console.error(`Error fetching ${value} data`, error);
