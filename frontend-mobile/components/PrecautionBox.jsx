@@ -34,11 +34,11 @@ const createStyles = (theme) =>
       marginTop: 20,
       alignItems: "center",
       width: "105%",
-      height: 160,
+      height: 170,
       justifyContent: "center",
       borderBottomWidth: 1,
       borderTopWidth: 1,
-      borderColor: "#5DD3FF",
+      borderColor: "#000000",
     },
     title: {
       color: "#fff",
