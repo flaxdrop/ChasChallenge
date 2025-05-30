@@ -1,5 +1,5 @@
 #include <WiFiS3.h>
-//#include <WiFiClient.h>
+// #include <WiFiClient.h>
 #include <WiFiSSLClient.h>
 #include <ArduinoHttpClient.h>
 #include <Wire.h>
@@ -8,19 +8,21 @@
 #include <SparkFun_ENS160.h>
 
 // Ditt WiFi-nätverk
-const char* ssid = "Chas Academy";
-const char* password = "EverythingLouderThanEverythingElse";
+const char *ssid = "Chas Academy";
+const char *password = "EverythingLouderThanEverythingElse";
 
 // Serverinställningar
-const char* serverHost = "chaschallenge-backend.onrender.com";  // Ersätt med din server IP
+const char *serverHost = "chaschallenge-backend.onrender.com"; // Ersätt med din server IP
 const int serverPort = 443;
-const char* serverPath = "/measurements";
+const char *serverPath = "/measurements";
 
 BME280 mySensor;
 SparkFun_ENS160 myENS;
 WiFiSSLClient wifi;
 HttpClient client = HttpClient(wifi, serverHost, serverPort);
-
+/**
+ * @brief Initialiserar sensorer och WiFi-anslutning.
+ */
 void setup()
 {
     Serial.begin(115200);
@@ -38,13 +40,15 @@ void setup()
     if (!mySensor.beginI2C(Wire1))
     {
         Serial.println("BME280 anslöt inte.");
-        while (1);
+        while (1)
+            ;
     }
 
     if (!myENS.begin(Wire1))
     {
         Serial.println("ENS160 anslöt inte.");
-        while (1);
+        while (1)
+            ;
     }
 
     myENS.setOperatingMode(SFE_ENS160_STANDARD);
@@ -53,10 +57,13 @@ void setup()
     if (sps30_probe() != 0 || sps30_start_measurement() < 0)
     {
         Serial.println("SPS30 kunde inte starta.");
-        while (1);
+        while (1)
+            ;
     }
 }
-
+/**
+ * @brief Läser sensorvärden och skickar dem till servern via HTTP POST.
+ */
 void loop()
 {
     float temperature = mySensor.readTempC();
@@ -73,7 +80,9 @@ void loop()
     struct sps30_measurement particulates;
     uint16_t data_ready;
     bool sps30_data_available = false;
-
+    /**
+     * @brief Läser av partikelsensorn och verifierar att data finns tillgänglig.
+     */
     if (sps30_read_data_ready(&data_ready) == 0 && data_ready)
     {
         if (sps30_read_measurement(&particulates) == 0)
@@ -87,7 +96,7 @@ void loop()
     }
 
     String json = "{";
-    //json += "\"timestamp\":" + String(millis()) + ",";
+    // json += "\"timestamp\":" + String(millis()) + ",";
     json += "\"temperature\":" + String(temperature, 2) + ",";
     json += "\"humidity\":" + String(humidity, 2) + ",";
     json += "\"pressure\":" + String((int)pressure) + ",";
