@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import {
   Animated,
   SafeAreaView,
@@ -40,70 +40,84 @@ const Dashboard = () => {
 
   return (
     <LinearGradient
-          colors={[theme.primary, theme.secondary]}
-          style={styles.gradientBackground}>
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="light-content" />
+      colors={[theme.primary, theme.secondary]}
+      style={styles.gradientBackground}
+    >
+      <SafeAreaView style={styles.container}>
+        <StatusBar barStyle="light-content" />
 
-      <Animated.View
-        style={{
-          opacity: fadeAnims[3],
-          transform: [{ translateY: translateYAnims[0] }],
-        }}
-      >
-        <AqiBar
-          isOn={isOn}
-          selectedAqi={selectedAqi}
-          setSelectedAqi={setSelectedAqi}
-          aqiValue={aqiValue}
-          loadingData={loadingData}
-        />
-      </Animated.View>
-
-      <Animated.View
+        <Animated.View
           style={{
-          opacity: fadeAnims[0],
-          transform: [
-            { translateY: translateYAnims[1] },
-            { translateX: slideAnim },
-          ],
-        }}
-      >
-        <SlideContent
+            opacity: fadeAnims[3],
+            transform: [{ translateY: translateYAnims[0] }],
+          }}
+          accessible={true}
+          accessibilityLabel="Air quality indicator"
+          accessibilityHint="Shows the current air quality index level"
+        >
+          <AqiBar
+            isOn={isOn}
+            selectedAqi={selectedAqi}
+            setSelectedAqi={setSelectedAqi}
+            aqiValue={aqiValue}
+            loadingData={loadingData}
+          />
+        </Animated.View>
+
+        <Animated.View
+          style={{
+            opacity: fadeAnims[0],
+            transform: [
+              { translateY: translateYAnims[1] },
+              { translateX: slideAnim },
+            ],
+          }}
+          accessible={true}
+          accessibilityLabel="Main control button"
+          accessibilityHint="Use to turn the air quality analysis on or off"
+        >
+          <SlideContent
+            slideIndex={slideIndex}
+            isOn={isOn}
+            togglePower={togglePower}
+            range={range}
+            color={color}
+            text={text}
+            showInstruction={showInstruction}
+            handleSwipe={handleSwipe}
+            slideAnim={slideAnim}
+          />
+        </Animated.View>
+
+        <PaginationDots
           slideIndex={slideIndex}
-          isOn={isOn}
-          togglePower={togglePower}
-          range={range}
-          color={color}
-          text={text}
-          showInstruction={showInstruction}
-          handleSwipe={handleSwipe}
-          slideAnim={slideAnim}
+          accessible={true}
+          accessibilityLabel="Pagination dots"
+          accessibilityHint="Indicates which slide is currently active"
         />
-      </Animated.View>
 
-      <PaginationDots slideIndex={slideIndex} />
+        <Animated.View
+          style={{
+            opacity: fadeAnims[1],
+            transform: [{ translateY: translateYAnims[2] }],
+          }}
+          accessible={true}
+          accessibilityLabel="Sensor information section"
+          accessibilityHint="Displays sensor data for temperature, humidity and air pressure"
+        >
+          <SensorInfoCircles
+            isOn={isOn}
+            loadingData={loadingData}
+            sensorData={sensorData}
+            selectedInfo={selectedInfo}
+            setSelectedInfo={setSelectedInfo}
+          />
+        </Animated.View>
 
-      <Animated.View
-        style={{
-          opacity: fadeAnims[1],
-          transform: [{ translateY: translateYAnims[2] }],
-        }}
-      >
-        <SensorInfoCircles
-          isOn={isOn}
-          loadingData={loadingData}
-          sensorData={sensorData}
-          selectedInfo={selectedInfo}
-          setSelectedInfo={setSelectedInfo}
-        />
-      </Animated.View>
-
-    </SafeAreaView>
+      </SafeAreaView>
     </LinearGradient>
   );
 };
-
 
 const createStyles = (theme) =>
   StyleSheet.create({
@@ -113,9 +127,9 @@ const createStyles = (theme) =>
       paddingHorizontal: 20,
       justifyContent: "space-between",
     },
-    gradientBackground:{
+    gradientBackground: {
       flex: 1,
-    }
+    },
   });
 
 export default Dashboard;

@@ -10,10 +10,15 @@ const PowerButton = ({ isOn, togglePower }) => {
   return (
     <View style={styles.circleWrapper}>
       <View style={styles.circleShadow}>
-        <Pressable 
-          onPress={togglePower} 
+        <Pressable
+          onPress={togglePower}
           style={styles.circleButton}
-          >
+          accessible={true}
+          accessibilityLabel="Power button"
+          accessibilityRole="button"
+          accessibilityState={{ pressed: isOn }}
+          accessibilityHint="Toggles power on or off"
+        >
           <MaterialCommunityIcons
             name="power"
             size={60}

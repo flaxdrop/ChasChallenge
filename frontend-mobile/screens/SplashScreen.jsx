@@ -1,24 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import LottieView from 'lottie-react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SplashScreen = ({ navigation }) => {
   const animationRef = useRef();
 
-
   return (
-    <View style={styles.container}>
+    <View 
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Loading AirAware, please wait"
+    >
       <LottieView
         ref={animationRef}
-        source={require('../assets/animations/Logo-animation')} 
+        source={require('../assets/animations/Logo-animation')}
         autoPlay
         loop={false}
         speed={1}
         style={styles.animation}
         onAnimationFinish={() => {
-        navigation.replace('OnboardingScreen'); 
+          navigation.replace('OnboardingScreen');
         }}
+        accessibilityLabel="AirAware app is starting"
+        accessibilityRole="image"
       />
     </View>
   );
@@ -31,7 +35,7 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000', 
+    backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center',
   },

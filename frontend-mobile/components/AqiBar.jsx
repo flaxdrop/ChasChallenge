@@ -11,8 +11,20 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
   const styles = createStyles(theme);
 
   return (
-    <View style={styles.aqiBar}>
-      <Text style={styles.title}>AQI</Text>
+    <View
+      style={styles.aqiBar}
+      accessible={true}
+      accessibilityLabel="Air Quality Index bar"
+      accessibilityHint="Displays current air quality levels. Tap to select a level for precautions"
+    >
+      <Text
+        style={styles.title}
+        accessibilityRole="header"
+        accessibilityLabel="Air Quality Index"
+      >
+        AQI
+      </Text>
+
       <View style={styles.aqiLevelContainer}>
         {isOn ? (
           AQI_LEVELS.map((level, index) => (
@@ -25,12 +37,21 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
                 styles.centered,
               ]}
               onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={`AQI Level ${level.range}`}
+              accessibilityState={{ selected: selectedAqi === index }}
+              accessibilityHint="Tap to select this air quality range for information"
             >
               <Text style={styles.rangeText}>{level.range}</Text>
             </Pressable>
           ))
         ) : loadingData ? (
-          <View style={[styles.aqiLevel, styles.centered]}>
+          <View
+            style={[styles.aqiLevel, styles.centered]}
+            accessible={true}
+            accessibilityLabel="Loading AQI data"
+          >
             <Text style={styles.loadingText}>Loading AQI</Text>
           </View>
         ) : aqiValue !== null ? (
@@ -40,6 +61,8 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
               { backgroundColor: AQI_LEVELS[getAqiLevelIndex(aqiValue)].color },
               styles.centered,
             ]}
+            accessible={true}
+            accessibilityLabel={`Current AQI is ${AQI_LABELS[getAqiLevelIndex(aqiValue)]}`}
           >
             <Text style={styles.aqiText}>
               {AQI_LABELS[getAqiLevelIndex(aqiValue)]}
@@ -83,8 +106,8 @@ const createStyles = (theme) =>
       borderColor: "#fff",
     },
     loadingText: {
-      backgroundColor: theme.backgroundSecondary,
-      fontWeight: "bold",
+      color: theme.textPrimary,
+      fontWeight: 900,
       fontSize: 20,
     },
     aqiText: {
@@ -93,7 +116,7 @@ const createStyles = (theme) =>
       textAlign: "center",
       fontSize: 30,
       textTransform: 'uppercase',
-      paddingHorizontal: 100,
+      paddingHorizontal: 50,
       textShadowColor: "green",
       textShadowOffset: { width: 2, height: 2 },
       textShadowRadius: 1,

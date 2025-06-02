@@ -34,6 +34,17 @@ const SensorInfoCircles = ({
             <Pressable
               disabled={isOn}
               onPress={() => setSelectedInfo(isSelected ? null : item.type)}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={
+                isOn
+                  ? `${item.label} sensor is inactive`
+                  : `${item.label} value is ${
+                      loadingData ? "loading" : sensorData[item.type] || "not available"
+                    }. Press to ${
+                      isSelected ? "deselect" : "view precautions"
+                    }`
+              }
             >
               <View style={styles.circleContainer}>
                 <View style={styles.circleContent}>
@@ -84,8 +95,8 @@ const createStyles = (theme) =>
     label: {
       color: theme.textPrimary,
       marginBottom: 15,
-      fontSize: 14,
-      fontWeight: "700",
+      fontSize: 13.2,
+      fontWeight: "900",
       textAlign: "center",
     },
     circleContainer: {

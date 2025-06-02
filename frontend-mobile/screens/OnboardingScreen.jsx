@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image } from 'react-native';
 import React from 'react';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "../theme/ThemeContext";
-import { LinearGradient } from 'expo-linear-gradient'; 
 import Onboarding from 'react-native-onboarding-swiper';
 import LottieView from 'lottie-react-native';
 
@@ -12,38 +10,53 @@ const OnboardingScreen = ({ navigation }) => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
 
-  const finishOnboarding = async () => {
+  const finishOnboarding = () => {
     navigation.replace("MainApp");
   };
 
-const Skip = ({ ...props }) => (
-  <TouchableOpacity style={styles.flatButton} {...props}>
-    <Text style={styles.flatButtonText}>Skip</Text>
-  </TouchableOpacity>
-);
+  const Skip = (props) => (
+    <TouchableOpacity
+      style={styles.flatButton}
+      {...props}
+      accessibilityRole="button"
+      accessibilityLabel="Skip Onboarding"
+    >
+      <Text style={styles.flatButtonText}>Skip</Text>
+    </TouchableOpacity>
+  );
 
-const Next = ({ ...props }) => (
-  <TouchableOpacity style={styles.flatButton} {...props}>
-    <Text style={styles.flatButtonText}>Next</Text>
-  </TouchableOpacity>
-);
+  const Next = (props) => (
+    <TouchableOpacity
+      style={styles.flatButton}
+      {...props}
+      accessibilityRole="button"
+      accessibilityLabel="Next Slide"
+    >
+      <Text style={styles.flatButtonText}>Next</Text>
+    </TouchableOpacity>
+  );
 
-const Done = ({ ...props }) => (
-  <TouchableOpacity style={styles.flatButton} {...props}>
-    <Text style={styles.flatButtonText}>Done</Text>
-  </TouchableOpacity>
-);
+  const Done = (props) => (
+    <TouchableOpacity
+      style={styles.flatButton}
+      {...props}
+      accessibilityRole="button"
+      accessibilityLabel="Finish Onboarding"
+    >
+      <Text style={styles.flatButtonText}>Done</Text>
+    </TouchableOpacity>
+  );
 
-  const Dots = ({ selected }) => {
-    return (
-      <View
-        style={[
-          styles.dot,
-          selected ? styles.activeDot : styles.inactiveDot,
-        ]}
-      />
-    );
-  };
+  const Dots = ({ selected }) => (
+    <View
+      style={[
+        styles.dot,
+        selected ? styles.activeDot : styles.inactiveDot,
+      ]}
+      accessibilityElementsHidden={true}
+      importantForAccessibility="no-hide-descendants"
+    />
+  );
 
   return (
     <View style={styles.container}>
@@ -55,7 +68,7 @@ const Done = ({ ...props }) => (
         DoneButtonComponent={Done}
         DotComponent={Dots}
         bottomBarHighlight={false}
-        bottomBarHeight={100} 
+        bottomBarHeight={100}
         showSkip={true}
         showNext={true}
         showDone={true}
@@ -67,15 +80,19 @@ const Done = ({ ...props }) => (
               <View style={styles.contentWrapper}>
                 <View style={styles.imageWrapper}>
                   <Image
-                    source={require('../assets/images/Lines.png')} 
+                    source={require('../assets/images/Lines.png')}
                     style={styles.backgroundImage}
                     resizeMode="cover"
+                    accessible={false}
+                    accessibilityElementsHidden={true}
                   />
                   <LottieView
                     source={require('../assets/animations/Air-Quality-Sensor.json')}
                     autoPlay
                     loop
                     style={styles.lottie}
+                    accessibilityLabel="Air Quality Sensor Animation"
+                    accessibilityRole="image"
                   />
                 </View>
               </View>
@@ -83,16 +100,22 @@ const Done = ({ ...props }) => (
             title: (
               <View style={styles.titleBlock}>
                 <Text style={styles.caption}>Innovation in every wave</Text>
-                <Text style={styles.title}>
+                <Text
+                  style={styles.title}
+                  accessibilityRole="header"
+                  accessibilityLabel="Air Quality Sensor"
+                >
                   <Text style={styles.titleBlue}>Air Quality </Text>
                   <Text style={styles.titleGreen}>Sensor</Text>
                 </Text>
               </View>
             ),
             subtitle: (
-              <Text style={styles.description}>
+              <Text
+                style={styles.description}
+                accessibilityLabel="Real-time monitoring for accurate measurements of temperature, humidity, air pressure, and more, providing an overview of air quality"
+              >
                 Real-time monitoring for accurate measurements of temperature, humidity, air pressure, and more, providing an overview of air quality
-
               </Text>
             ),
           },
@@ -102,15 +125,19 @@ const Done = ({ ...props }) => (
               <View style={styles.contentWrapper}>
                 <View style={styles.imageWrapper}>
                   <Image
-                    source={require('../assets/images/Lines.png')} 
+                    source={require('../assets/images/Lines.png')}
                     style={styles.backgroundImage}
                     resizeMode="cover"
+                    accessible={false}
+                    accessibilityElementsHidden={true}
                   />
                   <LottieView
                     source={require('../assets/animations/Data-Accessibility.json')}
                     autoPlay
                     loop
                     style={styles.lottie}
+                    accessibilityLabel="Data Accessibility Animation"
+                    accessibilityRole="image"
                   />
                 </View>
               </View>
@@ -118,15 +145,22 @@ const Done = ({ ...props }) => (
             title: (
               <View style={styles.titleBlock}>
                 <Text style={styles.caption}>Innovation in every wave</Text>
-                <Text style={styles.title}>
+                <Text
+                  style={styles.title}
+                  accessibilityRole="header"
+                  accessibilityLabel="Data Accessibility"
+                >
                   <Text style={styles.titleBlue}>Data </Text>
-                  <Text style={styles.titleGreen}>Accessibiltity</Text>
+                  <Text style={styles.titleGreen}>Accessibility</Text>
                 </Text>
               </View>
             ),
             subtitle: (
-              <Text style={styles.description}>
-                AQI database integrated via API server, eases the accessibility of the monitor's airquality data remotely through the app on your smartphone
+              <Text
+                style={styles.description}
+                accessibilityLabel="AQI database integrated via API server, eases the accessibility of the monitor's air quality data remotely through the app on your smartphone"
+              >
+                AQI database integrated via API server, eases the accessibility of the monitor's air quality data remotely through the app on your smartphone
               </Text>
             ),
           },
@@ -136,15 +170,19 @@ const Done = ({ ...props }) => (
               <View style={styles.contentWrapper}>
                 <View style={styles.imageWrapper}>
                   <Image
-                    source={require('../assets/images/Lines.png')} 
+                    source={require('../assets/images/Lines.png')}
                     style={styles.backgroundImage}
                     resizeMode="cover"
+                    accessible={false}
+                    accessibilityElementsHidden={true}
                   />
                   <LottieView
                     source={require('../assets/animations/Precaution-Alert.json')}
                     autoPlay
                     loop
                     style={styles.lottie}
+                    accessibilityLabel="Precaution Alert Animation"
+                    accessibilityRole="image"
                   />
                 </View>
               </View>
@@ -152,14 +190,21 @@ const Done = ({ ...props }) => (
             title: (
               <View style={styles.titleBlock}>
                 <Text style={styles.caption}>Innovation in every wave</Text>
-                <Text style={styles.title}>
+                <Text
+                  style={styles.title}
+                  accessibilityRole="header"
+                  accessibilityLabel="Precaution Alert"
+                >
                   <Text style={styles.titleBlue}>Precaution </Text>
                   <Text style={styles.titleGreen}>Alert</Text>
                 </Text>
               </View>
             ),
             subtitle: (
-              <Text style={styles.description}>
+              <Text
+                style={styles.description}
+                accessibilityLabel="Real-time precautions and personalized notifications based on current AQI values to preserve your health and well-being safely"
+              >
                 Real-time precautions and personalized notifications based on current AQI values to preserve your health and well-being safely
               </Text>
             ),

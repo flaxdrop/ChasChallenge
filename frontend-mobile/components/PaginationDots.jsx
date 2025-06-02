@@ -7,7 +7,13 @@ const PaginationDots = ({ slideIndex }) => {
   const styles = createStyles(theme);
 
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel={`Slide pagination. Current slide is ${slideIndex + 1} of 2`}
+      accessibilityRole="adjustable"
+      accessibilityHint="Indicates the current slide position"
+    >
       <View
         style={[
           styles.dot,
@@ -26,17 +32,17 @@ const PaginationDots = ({ slideIndex }) => {
 
 const createStyles = (theme) =>
   StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 10,
-  },
-  dot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginHorizontal: 8,
-  },
-});
+    container: {
+      flexDirection: "row",
+      justifyContent: "center",
+      marginTop: 10,
+    },
+    dot: {
+      width: 12,
+      height: 12,
+      borderRadius: 6,
+      marginHorizontal: 8,
+    },
+  });
 
 export default PaginationDots;

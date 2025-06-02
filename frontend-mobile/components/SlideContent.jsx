@@ -22,12 +22,21 @@ const SlideContent = ({
   const styles = createStyles(theme);
 
   return (
-    <PanGestureHandler onEnded={handleSwipe}>
+    <PanGestureHandler
+      onEnded={handleSwipe}
+      accessible={true}
+      accessibilityLabel="Swipe to change between power control and historical data"
+    >
       <View style={styles.slideContainer}>
         {slideIndex === 0 ? (
           <View style={styles.slideContent}>
             <PowerButton isOn={isOn} togglePower={togglePower} />
-            <Text style={styles.powerStatusText}>
+            <Text
+              style={styles.powerStatusText}
+              accessible={true}
+              accessibilityRole="text"
+              accessibilityLabel={`Power button is currently ${isOn ? "off" : "on"}`}
+            >
               {isOn ? "Powerbutton is OFF" : "Powerbutton is ON"}
             </Text>
             <PrecautionBox

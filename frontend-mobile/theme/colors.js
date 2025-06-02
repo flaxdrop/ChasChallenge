@@ -17,8 +17,8 @@ export const lightTheme = {
   iconAccent: "#3B3B3B",
 
   notification: "#D25406", // Alert color
-  dotPrimary: "#002BFF",
-  dotSecondary: "#008CFF",
+  dotPrimary: "#000000",
+  dotSecondary: "#00000080",
   circleBackground: "#000000A6",
   shadow: "#00D9FF",
   textBox: "#C7F0FF",

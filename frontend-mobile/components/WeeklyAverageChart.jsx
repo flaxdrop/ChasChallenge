@@ -109,7 +109,7 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
             fontSize: 18,
         },
         propsForBackgroundLines: {
-            strokeWidth: 0.2,
+            strokeWidth: 1,
         }
       }}
       bezier
