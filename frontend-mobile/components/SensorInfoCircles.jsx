@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Pressable,
+  Platform,
   ActivityIndicator,
 } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
@@ -105,15 +106,21 @@ const createStyles = (theme) =>
       borderRadius: 47.5,
       justifyContent: "center",
       alignItems: "center",
-      shadowColor: theme.shadow,
-      shadowOffset: { width: 0, height: 0 },
-      shadowOpacity: 0.8,
-      shadowRadius: 30,
-      elevation: 20,
-      borderRadius: 100,
       backgroundColor: theme.circleBackground,
       borderWidth: 4,
       borderColor: "#000000",
+
+      ...Platform.select({
+        ios: {
+          shadowColor: theme.shadow,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.8,
+          shadowRadius: 20,
+        },
+        android: {
+          elevation: 10, 
+        },
+      }),
     },
     circleContent: {
       width: 90,

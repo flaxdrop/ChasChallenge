@@ -54,7 +54,7 @@ const useDashboardLogic = (apiURL) => {
   }, []);
 
   useEffect(() => {
-    if (!isOn) {
+    if (isOn) {
       fetchSensorData();
     }
   }, [isOn]);

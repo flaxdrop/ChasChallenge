@@ -8,7 +8,7 @@ export const lightTheme = {
   backgroundSecondary: "#B7B7B7", // Second color of background gradient
   graphFrom: "#F5F5F5",
   graphTo: "#EBEBEB",
-  graphPoint: "#00BAFF",
+  graphPoint: "#3292FF",
 
   textPrimary: "#000000",
   textSecondary: "#FFFFFF",
