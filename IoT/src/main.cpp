@@ -9,7 +9,6 @@
  *
  */
 #include <WiFiS3.h>
-// #include <WiFiClient.h>
 #include <WiFiSSLClient.h>
 #include <ArduinoHttpClient.h>
 #include <Wire.h>
@@ -25,14 +24,14 @@
  * Värdet "hidden_ssid" som den kopierar hittar man i secret.h
  *
  */
-const char *ssid = hidden_ssid;
+const char* ssid = hidden_ssid;
 /**
  * @brief Lösenordet på Wifi nätverket som programmet försöker ansluta sig till.
  *
  * Värdet "hidden_password" som den kopierar hittar man i secret.h
  *
  */
-const char *password = hidden_password;
+const char* password = hidden_password;
 
 // Serverinställningar
 /**
@@ -41,7 +40,7 @@ const char *password = hidden_password;
  * Detta är adressen som används för att ansluta till Chas Challenge-backend-API:et.
  * Den används av nätverksmodulen för att skicka och ta emot data.
  */
-const char *serverHost = "chaschallenge-backend.onrender.com"; // Ersätt med din server IP
+const char* serverHost = "chaschallenge-backend.onrender.com"; // Ersätt med din server IP
 /**
  * @brief Portnummer som används för att ansluta till backend-servern.
  *
@@ -55,7 +54,7 @@ const int serverPort = 443;
  * Används av klienten för att skicka eller hämta mätvärden via API:et.
  * Kombineras vanligtvis med serverHost och serverPort för att bygga hela URL:en.
  */
-const char *serverPath = "/measurements";
+const char* serverPath = "/measurements";
 /**
  * @brief Pin-nummer för den röda LED:en på trafikljusmodulen.
  *
@@ -74,9 +73,29 @@ const int yellowLedPin = 6;
  * Standard-värde är D7 på mikrokontrollen.
  */
 const int greenLedPin = 7;
+/**
+ * @brief Objekt av BME280-klassen för att läsa temperatur, luftfuktighet och lufttryck.
+ *
+ * Används för att hämta miljödata inomhus.
+ */
 BME280 mySensor;
+/**
+ * @brief ENS160-sensor för luftkvalitetsanalys (AQI, TVOC, eCO2).
+ *
+ * Används för att indikera luftkvalitet och kompensera med temperatur/humidity.
+ */
 SparkFun_ENS160 myENS;
+/**
+ * @brief SSL-krypterad WiFi-klient för HTTPS-kommunikation.
+ *
+ * Används av HttpClient för att säkert kommunicera med backend-servern.
+ */
 WiFiSSLClient wifi;
+/**
+ * @brief HTTP-klient som skickar data till ChasChallenge-backend via POST-request.
+ *
+ * Använder WiFiSSLClient som transportlager och skickar JSON-data till servern.
+ */
 HttpClient client = HttpClient(wifi, serverHost, serverPort);
 /**
  * @brief Initialiserar systemet och ansluter till sensorer och WiFi.
@@ -90,8 +109,8 @@ HttpClient client = HttpClient(wifi, serverHost, serverPort);
  */
 void setup()
 {
-    Serial.begin(115200);
-    Wire1.begin();
+    Serial.begin(115200); //Startar Serial monitor 
+    Wire1.begin(); // Initierar sekundär I2C-buss (Wire1) som används av BME280 och ENS160 
 
     pinMode(redLedPin, OUTPUT);
     pinMode(yellowLedPin, OUTPUT);
