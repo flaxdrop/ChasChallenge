@@ -1,0 +1,14 @@
+<map id="lib/SparkFun_Indoor_Air_Quality_Sensor&#45;ENS160_Arduino_Library&#45;main/src/sfe_ens160.h" name="lib/SparkFun_Indoor_Air_Quality_Sensor&#45;ENS160_Arduino_Library&#45;main/src/sfe_ens160.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="95,5,266,80"/>
+<area shape="rect" id="Node000002" href="$sfe__bus_8h.html" title=" " alt="" coords="12,128,90,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="133,83,82,121,79,116,130,78"/>
+<area shape="rect" id="Node000005" href="$sfe__ens160__regs_8h.html" title=" " alt="" coords="115,128,246,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="183,80,183,112,178,112,178,80"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="208,203,273,229"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="227,79,246,101,260,127,264,143,264,160,256,190,251,188,258,159,259,144,255,129,242,104,223,82"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,203,60,229"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="50,156,42,188,37,187,45,155"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="84,203,144,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="64,153,95,189,91,193,60,157"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="193,154,223,189,219,193,189,157"/>
+</map>

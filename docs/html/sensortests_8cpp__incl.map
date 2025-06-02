@@ -1,0 +1,32 @@
+<map id="test/sensortests.cpp" name="test/sensortests.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="140,5,280,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,82,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,35,88,76,85,71,180,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="106,80,173,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,34,164,71,160,67,196,31"/>
+<area shape="rect" id="Node000004" href="$_spark_fun_b_m_e280_8h.html" title=" " alt="" coords="85,229,223,256"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="210,33,164,215,158,214,204,32"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="254,304,313,331"/>
+<area shape="poly" id="edge18_Node000001_Node000006" title=" " alt="" coords="216,32,279,288,274,290,211,33"/>
+<area shape="rect" id="Node000008" href="$_spark_fun___e_n_s160_8h.html" title=" " alt="" coords="315,80,460,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="242,30,344,71,342,76,240,35"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="107,304,201,331"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="157,257,157,288,152,288,152,257"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="178,254,249,294,246,298,175,259"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="360,304,415,331"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="196,254,346,300,344,305,194,259"/>
+<area shape="poly" id="edge16_Node000008_Node000006" title=" " alt="" coords="384,108,298,291,293,289,379,106"/>
+<area shape="poly" id="edge17_Node000008_Node000007" title=" " alt="" coords="399,105,417,133,435,170,446,213,446,235,441,257,430,277,416,295,412,291,425,274,436,255,440,235,440,214,430,172,412,135,395,108"/>
+<area shape="rect" id="Node000009" href="$sfe__ens160_8h.html" title=" " alt="" coords="500,155,600,181"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="417,105,509,145,507,150,415,110"/>
+<area shape="rect" id="Node000010" href="$sfe__bus_8h.html" title=" " alt="" coords="348,229,427,256"/>
+<area shape="poly" id="edge15_Node000008_Node000010" title=" " alt="" coords="390,107,390,214,385,214,385,107"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="523,184,431,225,429,220,521,179"/>
+<area shape="rect" id="Node000011" href="$sfe__ens160__regs_8h.html" title=" " alt="" coords="570,229,701,256"/>
+<area shape="poly" id="edge12_Node000009_Node000011" title=" " alt="" coords="567,180,611,217,608,221,563,184"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="551,304,616,331"/>
+<area shape="poly" id="edge14_Node000009_Node000012" title=" " alt="" coords="553,182,554,215,561,255,573,289,568,291,556,257,549,216,547,182"/>
+<area shape="poly" id="edge11_Node000010_Node000006" title=" " alt="" coords="371,259,315,297,312,293,368,254"/>
+<area shape="poly" id="edge10_Node000010_Node000007" title=" " alt="" coords="390,257,390,288,385,288,385,257"/>
+<area shape="poly" id="edge13_Node000011_Node000012" title=" " alt="" coords="629,258,603,293,599,290,624,255"/>
+</map>
