@@ -66,7 +66,7 @@ const createStyles = (theme) =>
       alignItems: "center",
     },
     powerStatusText: {
-      color: "#fff",
+      color: theme.textPrimary,
       fontSize: 18,
       fontWeight: "800",
     },

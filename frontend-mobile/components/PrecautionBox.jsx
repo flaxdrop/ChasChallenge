@@ -1,19 +1,24 @@
 import React from "react";
+import { useTheme } from "../theme/ThemeContext";
 import { View, Text, StyleSheet } from "react-native";
 
 const PrecautionBox = ({ color, range, text, showInstruction }) => {
-  const styles = createStyles();
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   return (
-    <View style={[styles.box, { backgroundColor: "rgba(0, 186, 255, 0.1)" }]}>
+    <View style={styles.box}>
       {showInstruction ? (
         <>
-        <Text style={styles.precautionTitle}><Text style={{ color: '#00BAFF' }}>AIR</Text><Text style={{ color: '#00FF1A' }}>AWARE</Text></Text>
-        <Text style={styles.text}>
-          Press power button to analyze AQI{'\n'}
-          OR{'\n'}
-          Press AQI color value for precautions  
-        </Text>
+          <Text style={styles.precautionTitle}>
+            <Text style={styles.airText}>AIR</Text>
+            <Text style={styles.awareText}>AWARE</Text>
+          </Text>
+          <Text style={styles.text}>
+            Press power button to analyze AQI{'\n'}
+            OR{'\n'}
+            Press AQI color value for precautions  
+          </Text>
         </>
       ) : (
         <>
@@ -36,35 +41,55 @@ const createStyles = (theme) =>
       width: "105%",
       height: 170,
       justifyContent: "center",
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
-      borderColor: "#000000",
+      backgroundColor: theme.textBox,
     },
     title: {
-      color: "#fff",
+      color: theme.textPrimary,
       fontWeight: "bold",
       fontSize: 20,
       marginBottom: 8,
     },
     range: {
-      fontWeight: "bold",
+      fontWeight: 900,
       fontSize: 17,
       marginBottom: 5,
+      textShadowColor: "black",
+      textShadowOffset: { width: 0.8, height: 0.8 },
+      textShadowRadius: 1.5,
+      paddingHorizontal: 50,
+      paddingVertical: 5,
+      textTransform: 'uppercase',
     },
     text: {
-      color: "#fff",
+      color: theme.textPrimary,
       textAlign: "center",
       fontSize: 17,
       fontWeight: "600",
       marginTop: 4,
-      textAlign: "center",
     },
-    precautionTitle:{
-      color: "#fff",
-      fontWeight: "bold",
+    precautionTitle: {
+      fontWeight: "900",
       fontSize: 30,
       marginBottom: 8,
-    }
-});
+    },
+    airText: {
+      color: theme.textAccentPrimary,
+      textShadowOffset: { width: 1, height: 1 },
+      textShadowRadius: 1,
+      paddingHorizontal: 50,
+      paddingVertical: 5,
+      textTransform: 'uppercase',
+      fontWeight: "900",
+    },
+    awareText: {
+      color: theme.textAccentSecondary,
+      textShadowOffset: { width: 1, height: 1 },
+      textShadowRadius: 1,
+      paddingHorizontal: 50,
+      paddingVertical: 5,
+      textTransform: 'uppercase',
+      fontWeight: "900",
+    },
+  });
 
 export default PrecautionBox;

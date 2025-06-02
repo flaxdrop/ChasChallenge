@@ -11,13 +11,13 @@ const PaginationDots = ({ slideIndex }) => {
       <View
         style={[
           styles.dot,
-          { backgroundColor: slideIndex === 0 ? "#00FF1A" : "#008F0F" },
+          { backgroundColor: slideIndex === 0 ? theme.dotPrimary : theme.dotSecondary },
         ]}
       />
       <View
         style={[
           styles.dot,
-          { backgroundColor: slideIndex === 1 ? "#00FF1A" : "#008F0F" },
+          { backgroundColor: slideIndex === 1 ? theme.dotPrimary : theme.dotSecondary },
         ]}
       />
     </View>

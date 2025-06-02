@@ -50,7 +50,7 @@ const createStyles = (theme) => StyleSheet.create({
     thumb: {
         width: 30,
         height: 30,
-        backgroundColor: theme.textAccent,
+        backgroundColor: theme.iconAccent,
         borderRadius: 30,
         justifyContent: "center",
         alignSelf: "flex-start",

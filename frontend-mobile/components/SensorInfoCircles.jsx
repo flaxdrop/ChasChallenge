@@ -6,6 +6,7 @@ import {
   Pressable,
   ActivityIndicator,
 } from "react-native";
+import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import dashboardData from "../data/dashboardData";
 
@@ -18,7 +19,8 @@ const SensorInfoCircles = ({
   selectedInfo,
   setSelectedInfo,
 }) => {
-  const styles = createStyles();
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   return (
     <View style={styles.row}>
@@ -80,7 +82,7 @@ const createStyles = (theme) =>
       width: 90,
     },
     label: {
-      color: "#fff",
+      color: theme.textPrimary,
       marginBottom: 15,
       fontSize: 14,
       fontWeight: "700",
@@ -92,15 +94,15 @@ const createStyles = (theme) =>
       borderRadius: 47.5,
       justifyContent: "center",
       alignItems: "center",
-      shadowColor: "#00BAFF",
+      shadowColor: theme.shadow,
       shadowOffset: { width: 0, height: 0 },
       shadowOpacity: 0.8,
       shadowRadius: 30,
       elevation: 20,
       borderRadius: 100,
-      backgroundColor: "rgba(217, 217, 217, 0.1)",
+      backgroundColor: theme.circleBackground,
       borderWidth: 4,
-      borderColor: "#000",
+      borderColor: "#000000",
     },
     circleContent: {
       width: 90,

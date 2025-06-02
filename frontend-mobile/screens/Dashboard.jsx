@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
+import { LinearGradient } from "expo-linear-gradient";
 import useDashboardLogic from "../hooks/useDashboardLogic";
 import AqiBar from "../components/AqiBar";
 import SlideContent from "../components/SlideContent";
@@ -38,6 +39,9 @@ const Dashboard = () => {
   const { range, color, text } = getPrecautionText();
 
   return (
+    <LinearGradient
+          colors={[theme.primary, theme.secondary]}
+          style={styles.gradientBackground}>
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
 
@@ -96,6 +100,7 @@ const Dashboard = () => {
       </Animated.View>
 
     </SafeAreaView>
+    </LinearGradient>
   );
 };
 
@@ -104,11 +109,13 @@ const createStyles = (theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#000711",
-      paddingTop: 60,
+      paddingVertical: 60,
       paddingHorizontal: 20,
       justifyContent: "space-between",
     },
+    gradientBackground:{
+      flex: 1,
+    }
   });
 
 export default Dashboard;

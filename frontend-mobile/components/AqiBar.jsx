@@ -21,7 +21,7 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
               style={[
                 styles.aqiLevel,
                 { backgroundColor: level.color },
-                selectedAqi === index && { borderWidth: 2, borderColor: "#fff" },
+                selectedAqi === index && styles.selectedAqiLevel,
                 styles.centered,
               ]}
               onPress={() => setSelectedAqi(index === selectedAqi ? null : index)}
@@ -41,10 +41,11 @@ const AqiBar = ({ isOn, selectedAqi, setSelectedAqi, aqiValue, loadingData }) =>
               styles.centered,
             ]}
           >
-            <Text style={styles.aqiText}>{AQI_LABELS[getAqiLevelIndex(aqiValue)]}</Text>
+            <Text style={styles.aqiText}>
+              {AQI_LABELS[getAqiLevelIndex(aqiValue)]}
+            </Text>
           </View>
         ) : null}
-
       </View>
     </View>
   );
@@ -57,7 +58,7 @@ const createStyles = (theme) =>
       marginBottom: 20,
     },
     title: {
-      color: "#fff",
+      color: theme.textPrimary,
       fontWeight: "bold",
       fontSize: 25,
       marginBottom: 15,
@@ -66,8 +67,9 @@ const createStyles = (theme) =>
       flexDirection: "row",
       borderRadius: 40,
       overflow: "hidden",
-      width: "85%",
+      width: "85.8%",
       height: 40,
+      boxShadow: "0 0 0 3px black",
     },
     aqiLevel: {
       flex: 1,
@@ -76,27 +78,32 @@ const createStyles = (theme) =>
       justifyContent: "center",
       alignItems: "center",
     },
+    selectedAqiLevel: {
+      borderWidth: 2,
+      borderColor: "#fff",
+    },
     loadingText: {
-      color: "#fff",
+      backgroundColor: theme.backgroundSecondary,
       fontWeight: "bold",
       fontSize: 20,
     },
     aqiText: {
-      color: "#fff",
+      color: theme.textPrimary,
       fontWeight: "bold",
       textAlign: "center",
       fontSize: 30,
-      textShadowColor: 'black',
+      textTransform: 'uppercase',
+      paddingHorizontal: 100,
+      textShadowColor: "green",
       textShadowOffset: { width: 2, height: 2 },
-      textShadowRadius: 0,
+      textShadowRadius: 1,
     },
     rangeText: {
-    color: "#000000",
-    fontWeight: 900,
-    fontSize: 10,
-    textAlign: "center",
-  },
-
+      color: "#000000",
+      fontWeight: "900",
+      fontSize: 9.95,
+      textAlign: "center",
+    },
   });
 
 export default AqiBar;
