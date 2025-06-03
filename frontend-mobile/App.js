@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
   },
   fullScreen: {
     flex: 1,
-    marginTop: Platform.OS === 'android' ? 0 : 50,
+    marginTop: Platform.OS === 'android' ? 0 : 0,
   }
 });

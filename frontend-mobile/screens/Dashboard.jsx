@@ -4,6 +4,7 @@ import {
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Platform,
 } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
@@ -123,7 +124,7 @@ const createStyles = (theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingVertical: 10,
+      marginTop: Platform.OS === 'android' ? 25 : 60,  
       paddingHorizontal: 20,
       justifyContent: "space-between",
     },
