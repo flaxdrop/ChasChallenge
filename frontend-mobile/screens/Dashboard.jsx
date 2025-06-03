@@ -123,7 +123,7 @@ const createStyles = (theme) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      paddingVertical: 60,
+      paddingVertical: 10,
       paddingHorizontal: 20,
       justifyContent: "space-between",
     },
