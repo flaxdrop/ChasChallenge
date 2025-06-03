@@ -37,7 +37,7 @@ const SlideContent = ({
               accessibilityRole="text"
               accessibilityLabel={`Power button is currently ${isOn ? "off" : "on"}`}
             >
-              {isOn ? "Powerbutton is OFF" : "Powerbutton is ON"}
+              {isOn ? "Power button is OFF" : "Power button is ON"}
             </Text>
             <PrecautionBox
               color={color}
