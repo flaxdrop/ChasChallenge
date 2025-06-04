@@ -1,35 +1,63 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { useTheme } from "../theme/ThemeContext";
 import PowerButton from "./PowerButton";
 import PrecautionBox from "./PrecautionBox";
 import WeeklyAverageChart from "./WeeklyAverageChart";
+import { PanGestureHandler } from "react-native-gesture-handler";
 
-const SlideContent = ({ slideIndex, isOn, togglePower, range, color, text, showInstruction, }) => {
+const { width } = Dimensions.get("window");
+
+const SlideContent = ({
+  slideIndex,
+  isOn,
+  togglePower,
+  range,
+  color,
+  text,
+  showInstruction,
+  handleSwipe,
+}) => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
 
   return (
-    <View style={styles.slideContainer}>
-      {slideIndex === 0 ? (
-        <View style={styles.slideContent}>
-          <PowerButton isOn={isOn} togglePower={togglePower} />
-          <Text style={styles.powerStatusText}>
-          {isOn ? "Powerbutton is OFF" : "Powerbutton is ON"}
-          </Text>
-          <PrecautionBox color={color} range={range} text={text} showInstruction={showInstruction} />
-        </View>
-      ) : (
-        <View style={styles.slideContent}>
-        <WeeklyAverageChart
-          title="Weekly Average AQI"
-          valuePath="measurements"
-          value="aqi"
-          limit={100}
-        />
-        </View>
-      )}
-    </View>
+    <PanGestureHandler
+      onEnded={handleSwipe}
+      accessible={true}
+      accessibilityLabel="Swipe to change between power control and historical data"
+    >
+      <View style={styles.slideContainer}>
+        {slideIndex === 0 ? (
+          <View style={styles.slideContent}>
+            <PowerButton isOn={isOn} togglePower={togglePower} />
+            <Text
+              style={styles.powerStatusText}
+              accessible={true}
+              accessibilityRole="text"
+              accessibilityLabel={`Power button is currently ${isOn ? "off" : "on"}`}
+            >
+              {isOn ? "Power button is OFF" : "Power button is ON"}
+            </Text>
+            <PrecautionBox
+              color={color}
+              range={range}
+              text={text}
+              showInstruction={showInstruction}
+            />
+          </View>
+        ) : (
+          <View style={styles.slideContent}>
+            <WeeklyAverageChart
+              title="AQI Historical Data"
+              valuePath="measurements"
+              value="aqi"
+              limit={100}
+            />
+          </View>
+        )}
+      </View>
+    </PanGestureHandler>
   );
 };
 
@@ -43,22 +71,14 @@ const createStyles = (theme) =>
       marginBottom: 50,
     },
     slideContent: {
-      width: "100%",
+      width: width - 40,
       alignItems: "center",
     },
-    emptySlide: {
-      padding: 40,
-    },
-    historicalText: {
-      color: "#fff",
-      fontSize: 16,
-    },
     powerStatusText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: 800,
-  },
-
+      color: theme.textPrimary,
+      fontSize: 18,
+      fontWeight: "800",
+    },
   });
 
 export default SlideContent;

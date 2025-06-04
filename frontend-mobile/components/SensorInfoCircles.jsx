@@ -4,8 +4,10 @@ import {
   Text,
   StyleSheet,
   Pressable,
+  Platform,
   ActivityIndicator,
 } from "react-native";
+import { useTheme } from "../theme/ThemeContext";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import dashboardData from "../data/dashboardData";
 
@@ -18,7 +20,8 @@ const SensorInfoCircles = ({
   selectedInfo,
   setSelectedInfo,
 }) => {
-  const styles = createStyles();
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   return (
     <View style={styles.row}>
@@ -32,6 +35,17 @@ const SensorInfoCircles = ({
             <Pressable
               disabled={isOn}
               onPress={() => setSelectedInfo(isSelected ? null : item.type)}
+              accessible={true}
+              accessibilityRole="button"
+              accessibilityLabel={
+                isOn
+                  ? `${item.label} sensor is inactive`
+                  : `${item.label} value is ${
+                      loadingData ? "loading" : sensorData[item.type] || "not available"
+                    }. Press to ${
+                      isSelected ? "deselect" : "view precautions"
+                    }`
+              }
             >
               <View style={styles.circleContainer}>
                 <View style={styles.circleContent}>
@@ -80,10 +94,10 @@ const createStyles = (theme) =>
       width: 90,
     },
     label: {
-      color: "#fff",
+      color: theme.textPrimary,
       marginBottom: 15,
-      fontSize: 14,
-      fontWeight: "700",
+      fontSize: 13.2,
+      fontWeight: "900",
       textAlign: "center",
     },
     circleContainer: {
@@ -92,15 +106,21 @@ const createStyles = (theme) =>
       borderRadius: 47.5,
       justifyContent: "center",
       alignItems: "center",
-      shadowColor: "#00BAFF",
-      shadowOffset: { width: 0, height: 0 },
-      shadowOpacity: 0.8,
-      shadowRadius: 30,
-      elevation: 20,
-      borderRadius: 100,
-      backgroundColor: "rgba(217, 217, 217, 0.1)",
+      backgroundColor: theme.circleBackground,
       borderWidth: 4,
-      borderColor: "#000",
+      borderColor: "#000000",
+
+      ...Platform.select({
+        ios: {
+          shadowColor: theme.shadow,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.8,
+          shadowRadius: 20,
+        },
+        android: {
+          elevation: 10, 
+        },
+      }),
     },
     circleContent: {
       width: 90,

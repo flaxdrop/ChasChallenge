@@ -3,16 +3,22 @@ export const buildCustomTheme = (baseTheme, isDark) => ({
     colors: {
         primary: baseTheme.primary,
         secondary: baseTheme.secondary,
-        accent: baseTheme.accent,
+        textAccentPrimary: baseTheme.textAccentPrimary,
+        textAccentSecondary: baseTheme.textAccentSecondary,
 
         backgroundPrimary: baseTheme.backgroundPrimary,
         backgroundSecondary: baseTheme.backgroundSecondary,
 
         textPrimary: baseTheme.textPrimary,
         textSecondary: baseTheme.textSecondary,
-        textAccent: baseTheme.textAccent,
+        iconAccent: baseTheme.iconAccent,
 
         notification: baseTheme.notification,
+        dotPrimary: baseTheme.dotPrimary,
+        dotSecondary: baseTheme.dotSecondary,
+        circleBackground: baseTheme.circleBackground,
+        shadow: baseTheme.shadow,
+        textBox: baseTheme.textBox,
 
         tabBar: baseTheme.tabBar,
         tabBarIcon: baseTheme.tabBarIcon,

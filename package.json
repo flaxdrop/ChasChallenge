@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "expo": "^53.0.9",
+    "react-native-screens": "~4.11.1"
+  }
+}
