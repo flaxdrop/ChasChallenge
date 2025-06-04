@@ -45,7 +45,6 @@ const CurrentAQI = ({ title }) => {
     if (currentAQI !== null) {
       const newColor = aqiDescriptions[currentAQI]?.color || "black";
       setWarningColor(newColor);
-      console.log("New color: ", newColor);
     }
   }, [currentAQI]);
 

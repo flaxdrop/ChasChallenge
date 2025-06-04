@@ -1,17 +1,24 @@
 import React from "react";
+import { useTheme } from "../theme/ThemeContext";
 import { Pressable, View, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const PowerButton = ({ isOn, togglePower }) => {
-  const styles = createStyles(); 
+  const { theme } = useTheme();
+  const styles = createStyles(theme);
 
   return (
     <View style={styles.circleWrapper}>
       <View style={styles.circleShadow}>
-        <Pressable 
-          onPress={togglePower} 
+        <Pressable
+          onPress={togglePower}
           style={styles.circleButton}
-          >
+          accessible={true}
+          accessibilityLabel="Power button"
+          accessibilityRole="button"
+          accessibilityState={{ pressed: isOn }}
+          accessibilityHint="Toggles power on or off"
+        >
           <MaterialCommunityIcons
             name="power"
             size={60}
@@ -23,7 +30,7 @@ const PowerButton = ({ isOn, togglePower }) => {
   );
 };
 
-const createStyles = () =>
+const createStyles = (theme) =>
   StyleSheet.create({
     circleWrapper: {
       alignItems: "center",
@@ -31,7 +38,7 @@ const createStyles = () =>
       marginBottom: 20,
     },
     circleShadow: {
-      shadowColor: "#00BAFF",
+      shadowColor: theme.shadow,
       shadowOffset: { width: 0, height: 0 },
       shadowOpacity: 1,
       shadowRadius: 30,
@@ -44,7 +51,7 @@ const createStyles = () =>
       borderWidth: 4,
       justifyContent: "center",
       alignItems: "center",
-      backgroundColor: "rgba(217, 217, 217, 0.1)",
+      backgroundColor: theme.circleBackground,
       borderColor: "#000",
     },
   });

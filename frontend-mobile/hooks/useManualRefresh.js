@@ -5,7 +5,6 @@ const useManualRefresh = () => {
 
     const triggerRefresh = useCallback(() => {
         setRefresh(prev => !prev);
-        console.log("triggered manual refresh");
         
     }, []);
 
