@@ -48,27 +48,29 @@ const CurrentAQI = ({ title }) => {
     }
   }, [currentAQI]);
 
-  if (loading) return <ActivityIndicator size="large" />;
+  if (loading) return <ActivityIndicator size="large" 
+  accessibilityLabel="Loading current air quality information"/>;
 
   return (
     <View style={styles.elevation}>
       <LinearGradient
         style={styles.container}
         colors={[theme.graphFrom, theme.graphTo]}
+        accessible={false}
+        importantForAccessibility="no"
       >
-        <Text style={styles.title}>{title}</Text>
-        <View style={styles.AQIValueContainer}>
-          <Text style={styles.AQIValue}>{currentAQI}</Text>
-          {/* <ReusableCurrentValue
-          valuePath={"measurements"}
-          value={"aqi"}
-          /> */}
-          <Text style={[styles.AQIWarningText, { color: warningColor }]}>
-            {aqiInfo.warning}
-          </Text>
-          <View style={styles.adviceContainer}>
-            <Text style={styles.headerText}>Advice:</Text>
-            <Text style={styles.text}>{aqiInfo.advice}</Text>
+        <View accessible={true}
+        accessibilityLabel={`Current Air Quality Index is ${currentAQI}. Levels are ${aqiInfo.warning}. Advice: ${aqiInfo.advice}`}>
+          <Text style={styles.title}>{title}</Text>
+          <View style={styles.AQIValueContainer}>
+            <Text style={styles.AQIValue}>{currentAQI}</Text>
+            <Text style={[styles.AQIWarningText, { color: warningColor }]}>
+              {aqiInfo.warning}
+            </Text>
+            <View style={styles.adviceContainer}>
+              <Text style={styles.headerText}>Advice:</Text>
+              <Text style={styles.text}>{aqiInfo.advice}</Text>
+            </View>
           </View>
         </View>
       </LinearGradient>

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import ReusableChart from "../components/ReusableChart";
 import ReusableCurrentValue from "../components/ReusableCurrentValue";

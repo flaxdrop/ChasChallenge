@@ -3,13 +3,18 @@ import React from 'react'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
 
-const CustomSwitch = ({onToggle, isOn, onIcon, offIcon }) => {
+const CustomSwitch = ({onToggle, isOn, onIcon, offIcon, accessibilityLabel, accessibilityHint }) => {
       const { theme, isDark } = useTheme();
       const styles = createStyles(theme);
   return (
     <Pressable
     onPress={onToggle}
     style={styles.container}
+    accessible={true}
+    accessibilityRole='switch'
+    accessibilityState={{checked: isOn}}
+    accessibilityLabel={accessibilityLabel}
+    accessibilityHint={accessibilityHint}
     >
         <View style={[ styles.track, isOn && styles.trackOn ]}>
             <View style={[ styles.thumb, isOn && styles.thumbOn ]}>

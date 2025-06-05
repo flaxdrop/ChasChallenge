@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Dimensions, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { useTheme } from '../theme/ThemeContext'
+import { useTheme } from '../../theme/ThemeContext'
 import {LineChart} from 'react-native-chart-kit'
 
 const AqiChart = ({title}) => {

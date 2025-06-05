@@ -10,6 +10,7 @@ const Background = ({ children }) => {
         <LinearGradient
           colors={[theme.backgroundPrimary, theme.backgroundSecondary]}
           style={styles.background}
+          importantForAccessibility='no'
         >{children}
             </LinearGradient>
   )

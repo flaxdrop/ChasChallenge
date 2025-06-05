@@ -11,7 +11,7 @@ const ReusableCurrentValue = ({
   value,
   valueSize,
   textSize,
-  affix
+  affix,
 }) => {
   const apiURL = process.env.EXPO_PUBLIC_RENDER_URL;
   const { theme } = useTheme();
@@ -34,18 +34,20 @@ const ReusableCurrentValue = ({
         const data = json.map((item) => item[value]);
         const timedata = json.map((item) => item["timestamp"]);
 
-        const lastIndex = data.length - data.length;               
-        
+        const lastIndex = data.length - data.length;
+
         // console.log(data[lastIndex]);
-        const formattedTime = new Date(timedata[lastIndex]).toLocaleString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-        });
-        
-        
+        const formattedTime = new Date(timedata[lastIndex]).toLocaleString(
+          "en-US",
+          {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          }
+        );
+
         setCurrentValue(data[lastIndex].toFixed(1));
         setTimestamp(formattedTime);
       } catch (error) {
@@ -58,29 +60,40 @@ const ReusableCurrentValue = ({
   }, [refresh]);
 
   const handlePress = () => {
-  // console.log(`${value}`);
-  setModalVisible(true);
-  }
+    // console.log(`${value}`);
+    setModalVisible(true);
+  };
 
-  if (loading) return <ActivityIndicator size="large" />;
+  if (loading) return <ActivityIndicator size="large" 
+  accessibilityLabel="Loading current value"/>;
 
   return (
     <View>
       <View style={styles.header}>
-      <Text style={styles.title}>{title}</Text>
-      <MaterialCommunityIcons
-                  name="information-outline"
-                  size={20}
-                  style={styles.infoIcon}
-                  onPress={handlePress}
-                />
+        <Text style={styles.title}>{title}</Text>
+        <MaterialCommunityIcons
+          name="information-outline"
+          size={20}
+          style={styles.infoIcon}
+          onPress={handlePress}
+          accessibilityRole="button"
+          accessibilityLabel={`Description of what ${title} is`}
+        />
       </View>
-      <Text style={styles.currentValue}>{currentValue}{affix}</Text>
-      <Text style={styles.timestamp}>Updated: {timestamp}</Text>
+      <View
+      accessible={true}
+      accessibilityLabel={`Current ${title} is ${currentValue} and was last updated on ${timestamp}`}>
+        <Text style={styles.currentValue}>
+          {currentValue}
+          {affix}
+        </Text>
+        <Text style={styles.timestamp}>Updated: {timestamp}</Text>
+      </View>
       <ValueInfoModal
-      value={value}
-      visible={modalVisible}
-      onClose={() => setModalVisible(false)}/>
+        value={value}
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </View>
   );
 };
@@ -94,7 +107,7 @@ const createStyles = (theme, valueSize, textSize) =>
       fontSize: valueSize || 70,
       color: theme.textPrimary,
       alignSelf: "center",
-      paddingBottom: 10
+      paddingBottom: 10,
     },
     title: {
       color: theme.textPrimary,
@@ -104,11 +117,11 @@ const createStyles = (theme, valueSize, textSize) =>
     },
     infoIcon: {
       padding: 10,
-      color: theme.accent
+      color: theme.accent,
     },
     header: {
       flexDirection: "row",
-      justifyContent: "space-between"
+      justifyContent: "space-between",
     },
     timestamp: {
       justifyContent: "center",
@@ -116,5 +129,5 @@ const createStyles = (theme, valueSize, textSize) =>
       fontSize: 12,
       marginBottom: 5,
       color: theme.timestamp,
-    }
+    },
   });

@@ -57,8 +57,8 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
           return parseFloat(avg.toFixed(2));
         });
 
-        console.log("Chart Labels:", labels);
-        console.log("Chart Data:", data);
+        // console.log("Chart Labels:", labels);
+        // console.log("Chart Data:", data);
 
         // Sätter in labels och data korrekt till chart
         setChartData({
@@ -81,12 +81,17 @@ const WeeklyAverageChart = ({ title, valuePath, value, limit }) => {
     fetchData();
   }, [valuePath, value, refresh]);
 
-  if (loading) return <ActivityIndicator size="large" />;
+  if (loading) return <ActivityIndicator size="large" 
+  accessible={true}
+  accessibilityLabel="Loading weekly average chart data"/>;
   if (!chartData || !chartData.labels)
     return <Text style={styles.header}>Ingen data tillgänglig</Text>;
 
   return (
-    <View>
+    <View
+    accessible={true}
+    accessibilityRole="summary"
+    accessibilityLabel={`Weekly ${title} average of the past seven days.`}>
       <LineChart
   data={chartData}
   width={screenWidth - 36}

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import ContainerGradient from './ContainerGradient'
-import { useTheme } from '../theme/ThemeContext'
+import ContainerGradient from '../ContainerGradient'
+import { useTheme } from '../../theme/ThemeContext'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TemperatureSmall = () => {

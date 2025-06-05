@@ -10,6 +10,7 @@ const BoxGradient = ({ children }) => {
     <LinearGradient
       style={styles.container}
       colors={[theme.graphFrom, theme.graphTo]}
+      importantForAccessibility="no"
     >
       {children}
     </LinearGradient>

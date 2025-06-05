@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
-import { useTheme } from "../theme/ThemeContext";
-import Background from "../components/Background";
+import { useTheme } from "../../theme/ThemeContext";
+import Background from "../../components/Background";
 import Banner from "../components/Banner";
-import AqiDisplay from "../components/AqiDisplay";
+import AqiDisplay from "../../components/AqiDisplay";
 import TemperatureSmall from "../components/TemperatureSmall";
 import HumiditySmall from "../components/HumiditySmall";
 

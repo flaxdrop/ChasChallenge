@@ -18,8 +18,13 @@ const ValueInfoModal = ({ visible, onClose, value }) => {
       visible={visible}
       onRequestClose={onClose}
     >
-      <View style={styles.backdrop}>
-        <View style={styles.container}>
+      <View style={styles.backdrop}
+      accessible={false}
+      importantForAccessibility="no">
+        <View style={styles.container}
+        accessible={true}
+        accessibilityViewIsModal={true}
+        accessibilityLabel={`${title}. ${description}. Press the close button to go back.`}>
           <View style={styles.header}>
             <Text style={styles.headerText}>{title}</Text>
             <MaterialCommunityIcons
@@ -27,6 +32,8 @@ const ValueInfoModal = ({ visible, onClose, value }) => {
               size={20}
               style={styles.icon}
               onPress={onClose}
+              accessibilityRole="button"
+              accessibilityLabel="Close information popup"
             />
           </View>
 

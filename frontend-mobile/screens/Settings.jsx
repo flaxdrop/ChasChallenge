@@ -1,7 +1,6 @@
-import { StyleSheet, Pressable, Text, View, Switch } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { useTheme } from "../theme/ThemeContext";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ContainerGradient from "../components/ContainerGradient";
 import Background from "../components/Background";
 import CustomSwitch from "../components/CustomSwitch";
@@ -17,37 +16,50 @@ const Settings = () => {
   const toggleSwitch = async () => {
     const newValue = !isEnabled;
     setIsEnabled(newValue);
-    if (newValue) {
-      //Anropa shownotification
-      console.log(newValue);
-    }
   };
 
   return (
     <Background>
       <ContainerGradient>
         <BoxGradient>
-        <View>
-          <View style={styles.option}>
-            <Text style={styles.text}>Notifications:</Text>
-          <CustomSwitch
-            isOn={isEnabled}
-            onToggle={toggleSwitch}
-            onIcon={"bell"}
-            offIcon={"bell-off"}
-          />
-          
+          <View>
+            <View style={styles.option}>
+              <Text
+                style={styles.text}
+                accessible={false}
+                importantForAccessibility="no"
+              >
+                Notifications:
+              </Text>
+              <CustomSwitch
+                isOn={isEnabled}
+                onToggle={toggleSwitch}
+                onIcon={"bell"}
+                offIcon={"bell-off"}
+                accessibilityLabel="Notifications toggle"
+                accessibilityHint="Turn notifications on or off"
+              />
+            </View>
+            <View style={styles.option}>
+              <Text
+                style={styles.text}
+                accessible={false}
+                importantForAccessibility="no"
+              >
+                Dark/Light theme:
+              </Text>
+              <CustomSwitch
+                isOn={isDark}
+                onToggle={toggleTheme}
+                onIcon={"weather-night"}
+                offIcon={"weather-sunny"}
+                accessibilityLabel="Theme toggle"
+                accessibilityHint="Switch between dark and light theme"
+              />
+            </View>
           </View>
-<View style={styles.option}>
-  <Text style={styles.text}>Dark/Light theme:</Text>
-          <CustomSwitch
-            isOn={isDark}
-            onToggle={toggleTheme}
-            onIcon={"weather-night"}
-            offIcon={"weather-sunny"}
-          /></View>
-        </View></BoxGradient>
-        <Pressable
+        </BoxGradient>
+        {/* <Pressable
           style={styles.toggleButton}
           title={isDark ? "Light theme" : "Dark theme"}
           onPress={toggleTheme}
@@ -62,7 +74,7 @@ const Settings = () => {
             color={theme.themeButton}
             size={50}
           />
-        </Pressable>
+        </Pressable> */}
       </ContainerGradient>
     </Background>
   );
@@ -87,6 +99,6 @@ const createStyles = (theme) =>
       alignItems: "center",
       width: "100%",
       justifyContent: "space-between",
-      padding: 10
-    }
+      padding: 10,
+    },
   });

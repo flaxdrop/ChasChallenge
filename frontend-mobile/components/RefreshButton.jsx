@@ -7,11 +7,14 @@ const RefreshButton = ({ onRefresh }) => {
   const { theme } = useTheme();
   const styles = createStyles(theme);
   return (
-    <View>
-      <Pressable onPress={onRefresh}>
+      <Pressable onPress={onRefresh}
+      accessible={true}
+      accessibilityRole="button"
+      accessibilityLabel="Press to refresh chart"
+      accessibilityHint="Refreshes the chart with the latest data"
+      android_ripple={{ color: theme.tabBarIcon }}>
         <MaterialCommunityIcons name={"refresh"} size={30} color={theme.accent} />
       </Pressable>
-    </View>
   );
 };
 
