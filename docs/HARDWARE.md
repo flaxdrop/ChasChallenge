@@ -72,7 +72,7 @@ För varje PM kategori räknar SPS30 sensor ut ett *masskoncentration* och *part
 * Måttvärdet är *antal partiklar per kubikcentimeter (#/cm³)*. **NOTE:** # är en fortkortning av *antal partiklar*.   
 * Informerar om tätheten och antalet partiklar inom ett utrymme, men inte deras storlek.
 
-### MQ2 Gas sensor
+### MQ2 Gas sensor (*Note:* Är inte aktuellt implementerad vid nuläget)
 MQ2 är en gas sensor som inriktar sig på brandfarliga och skadliga gaser.
 Följande är en lista över de gaser som MQ2 kan upptäcka.
 * Gasol
