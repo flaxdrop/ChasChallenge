@@ -1,7 +1,7 @@
 #include <Wire.h>
 #include "SparkFunBME280.h"
 #include "SparkFunENS160.h"
-#include <ArduinoJson.h> //ladda ner
+#include <ArduinoJson.h> //download 
 
 #if defined(ESP8266)
 #include <ESP8266WiFi.h>
@@ -12,64 +12,64 @@
 #endif
 #include <WiFiClient.h>
 
-// WiFi creds
+// WiFi credentials
 const char *ssid = "YOUR_WIFI_SSID";
 const char *password = "YOUR_WIFI_PASSWORD";
 
-// Express.js server
+// Express.js server URL
 const char *server_url = "http://YOUR_SERVER_IP:3000/api/sensor-data";
 
-// Sensor object
+// Sensor objects
 BME280 bme;
 SparkFunENS160 ens160;
 
-// Variabler för att lagra data
+// Variables to store sensor data
 float temperature, humidity, pressure;
 uint8_t aqi;
 uint16_t tvoc, eco2;
 String air_quality_text;
 
-// Timing variabler
+// Timing variables
 unsigned long lastSensorReadTime = 0;
 unsigned long lastDataSendTime = 0;
 const long sensorReadInterval = 5000; // Read sensors every 5 seconds
 const long dataSendInterval = 60000;  // Send data every 60 seconds (1 minute)
 
-// Device id
-String device_id = "arduino_sensor_1"; // You can set this to whatever you want
+// Device ID
+String device_id = "arduino_sensor_1"; // Can be set to any identifier you want
 
 void setup()
 {
   Serial.begin(115200);
   while (!Serial)
   {
-    // wait for connection
+    // Wait for Serial connection
   }
 
   Serial.println("SparkFun ENS160/BME280 Express.js Data Sender");
 
-  // Setup WiFi
+  // Initialize WiFi connection
   setupWifi();
 
   Wire.begin();
 
-  // Init BME280
+  // Initialize BME280 sensor
   if (bme.beginI2C() == false)
   {
     Serial.println("BME280 sensor did not respond. Check wiring.");
     while (1)
-      ; // Freeze
+      ; // Halt execution
   }
 
-  // Init ENS160
+  // Initialize ENS160 sensor
   if (ens160.begin() == false)
   {
     Serial.println("ENS160 sensor did not respond. Check wiring.");
     while (1)
-      ; // Freeze
+      ; // Halt execution
   }
 
-  // Set up the ENS160
+  // Configure ENS160 operating mode
   ens160.setOperatingMode(ENS160_STANDARD);
 
   Serial.println("Both sensors initialized successfully!");
@@ -77,21 +77,21 @@ void setup()
 
 void loop()
 {
-  // check WiFi connection
+  // Reconnect WiFi if disconnected
   if (WiFi.status() != WL_CONNECTED)
   {
     setupWifi();
   }
 
-  // Read sensor data
+  // Read sensor data at defined intervals
   if (millis() - lastSensorReadTime >= sensorReadInterval)
   {
     readSensorData();
-    printSensorData(); // Print to Serial for debugging
+    printSensorData(); // Output sensor values to Serial for debugging
     lastSensorReadTime = millis();
   }
 
-  // Send data to Express.js server
+  // Send collected data to the Express.js server at defined intervals
   if (millis() - lastDataSendTime >= dataSendInterval)
   {
     sendDataToServer();
@@ -122,27 +122,27 @@ void setupWifi()
 
 void readSensorData()
 {
-  // Read BME280 data
+  // Read environmental data from BME280 sensor
   temperature = bme.readTempC();
   humidity = bme.readFloatHumidity();
-  pressure = bme.readFloatPressure() / 100.0F; // Convert to hPa
+  pressure = bme.readFloatPressure() / 100.0F; // Convert pressure to hPa
 
-  // Send temperature and humidity to ENS160 for compensation
+  // Provide temperature and humidity compensation data to ENS160 sensor
   ens160.setTempCompensation(temperature);
   ens160.setHumidityCompensation(humidity);
 
-  // Give the ENS160 time to use the new temp and humidity data
+  // Allow ENS160 sensor time to adjust to new compensation data
   delay(50);
 
-  // Check if ENS160 data is available and valid
+  // Check if ENS160 data is valid and ready to be read
   if (ens160.checkDataStatus() && ens160.dataAvailable())
   {
-    // Read air quality metrics from ENS160
+    // Read air quality measurements from ENS160
     aqi = ens160.getAQI();   // Air Quality Index
     tvoc = ens160.getTVOC(); // Total Volatile Organic Compounds (ppb)
-    eco2 = ens160.getECO2(); // Equivalent CO2 (ppm)
+    eco2 = ens160.getECO2(); // Equivalent CO2 concentration (ppm)
 
-    // Get text description of air quality
+    // Convert AQI numeric value to descriptive text
     air_quality_text = getAirQualityText(aqi);
   }
   else
@@ -178,7 +178,7 @@ void printSensorData()
 {
   Serial.println("\n----- Sensor Readings -----");
 
-  // BME280 readings
+  // Print BME280 sensor data
   Serial.print("Temperature: ");
   Serial.print(temperature, 1);
   Serial.println(" °C");
@@ -191,7 +191,7 @@ void printSensorData()
   Serial.print(pressure, 1);
   Serial.println(" hPa");
 
-  // ENS160 readings
+  // Print ENS160 air quality data
   Serial.print("Air Quality Index: ");
   Serial.print(aqi);
   Serial.print(" (");
@@ -209,7 +209,7 @@ void printSensorData()
 
 void sendDataToServer()
 {
-  // Check WiFi connection status
+  // Verify WiFi connection status before sending data
   if (WiFi.status() == WL_CONNECTED)
   {
     WiFiClient client;
@@ -218,14 +218,13 @@ void sendDataToServer()
     Serial.print("Connecting to server: ");
     Serial.println(server_url);
 
-    // Start HTTP connection
+    // Initialize HTTP connection
     http.begin(client, server_url);
     http.addHeader("Content-Type", "application/json");
 
-    // Create JSON document
+    // Prepare JSON document with sensor data
     StaticJsonDocument<256> jsonDoc;
 
-    // Add data to JSON document
     jsonDoc["device_id"] = device_id;
     jsonDoc["temperature"] = temperature;
     jsonDoc["humidity"] = humidity;
@@ -236,11 +235,11 @@ void sendDataToServer()
     jsonDoc["eco2"] = eco2;
     jsonDoc["timestamp"] = millis();
 
-    // Serialize JSON to string
+    // Convert JSON document to string
     String jsonString;
     serializeJson(jsonDoc, jsonString);
 
-    // Send HTTP POST request
+    // Send HTTP POST request with JSON payload
     int httpResponseCode = http.POST(jsonString);
 
     if (httpResponseCode > 0)
@@ -256,7 +255,7 @@ void sendDataToServer()
       Serial.println(httpResponseCode);
     }
 
-    // Free
+    // End HTTP connection
     http.end();
   }
   else

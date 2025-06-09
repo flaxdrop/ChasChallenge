@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['averagelast_0',['averageLast',['../class_circular_buffer.html#aeb1dd2036e0f2d8ee2f130da8498a6d1',1,'CircularBuffer::averageLast(uint16_t)'],['../class_circular_buffer.html#aeb1dd2036e0f2d8ee2f130da8498a6d1',1,'CircularBuffer::averageLast(uint16_t)']]]
+  ['getrawresistance_0',['getRawResistance',['../class_qw_dev_e_n_s160.html#a1d169ac85d33a2f2cc5e7e99571be074',1,'QwDevENS160']]]
 ];

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['new_5fdat_0',['new_dat',['../structsfe__ens160__device__status__t.html#a508c2d5b8889e6bae5ee16044b4a8ea9',1,'sfe_ens160_device_status_t']]],
-  ['new_5fgpr_1',['new_gpr',['../structsfe__ens160__device__status__t.html#ac202ec1d89d0a6afe0479acf628cdb99',1,'sfe_ens160_device_status_t']]],
-  ['no_5fwire_2',['NO_WIRE',['../_spark_fun_b_m_e280_8h.html#a477c9c2c2972ca40e72284c442c17d8d',1,'SparkFunBME280.h']]]
+  ['quality_20monitoring_0',['IoT System for Air Quality Monitoring',['../md__r_e_a_d_m_e.html#autotoc_md14',1,'']]],
+  ['qwdevens160_1',['QwDevENS160',['../class_qw_dev_e_n_s160.html',1,'']]],
+  ['qwi2c_2',['QwI2C',['../classsfe___e_n_s160_1_1_qw_i2_c.html',1,'sfe_ENS160']]],
+  ['qwidevicebus_3',['QwIDeviceBus',['../classsfe___e_n_s160_1_1_qw_i_device_bus.html',1,'sfe_ENS160']]]
 ];

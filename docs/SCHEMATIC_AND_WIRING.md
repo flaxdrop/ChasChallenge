@@ -1,28 +1,29 @@
-# Kretsschema och fysisk koppling
+# Circuit Diagram and Physical Wiring
 
-## Inledning
+## Introduction
 
-I detta dokument hittar du kopplingsschema och hur du fysisk kopplar ihop de olika komponenterna för att få en fungerande produkt.
+This document contains the circuit diagram and how to physically wire the various components to create a functioning product.
 
-## Kretsschema
+## Circuit Diagram
 
-### snabb-översikt
+### Quick Overview
 
-De olika färgerna i kopplingsschemat representerar olika egenskaper och vad de ansluter till.
-- **Röd:** VCC
-- **Svart:** GND
-- **Grön:** Digital pins.
-- **Lila:** SCL
-- **Brun:** SDA
+The different colors in the wiring diagram represent different properties and what they connect to:
+- **Red:** VCC  
+- **Black:** GND  
+- **Green:** Digital pins  
+- **Purple:** SCL  
+- **Brown:** SDA  
 
 ![Prototype_Schematic.png](../images/Prototype_Schematic.png)
 
+---
 
-## Fysisk koppling 
+## Physical Wiring
 
-*Note: SPS30 i denna bild är enbart en mock-up för att visa kopplingen.*
+*Note: The SPS30 shown in this image is a mock-up used only for demonstrating the wiring.*  
 ![Prototype_physical_wiring.png](../images/Prototype_physical_wiring.png)
 
-Ni kan hitta .fzz filen för projektet i [Iot/Fritzing](../IoT/Fritzing/), ifall ni skulle vilja ta en närmare titt. 
+You can find the `.fzz` file for the project in [IoT/Fritzing](../IoT/Fritzing/) if you want to take a closer look.
 
-*Note: Då SPS30 komponenten är en mock-up har den ett par logiska kopplingar som inte är tänkt att finnas. Det är bara att ignorera luftledningerna/airwires som finns i .fzz.*
+*Note: Since the SPS30 component is a mock-up, it includes a few logical connections that are not intended to exist. Just ignore the airwires present in the `.fzz` file.*

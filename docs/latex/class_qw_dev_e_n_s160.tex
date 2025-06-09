@@ -1,0 +1,132 @@
+\doxysection{Qw\+Dev\+ENS160 Class Reference}
+\hypertarget{class_qw_dev_e_n_s160}{}\label{class_qw_dev_e_n_s160}\index{QwDevENS160@{QwDevENS160}}
+Inheritance diagram for Qw\+Dev\+ENS160\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_qw_dev_e_n_s160}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ae1c96b960c63de2b3f7eb0087639902f}\label{class_qw_dev_e_n_s160_ae1c96b960c63de2b3f7eb0087639902f} 
+bool {\bfseries init} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_aceabf2a05ed3f525d5e453f1127e7dd9}\label{class_qw_dev_e_n_s160_aceabf2a05ed3f525d5e453f1127e7dd9} 
+bool {\bfseries is\+Connected} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a2312a926a452bb3c846aa07203496015}\label{class_qw_dev_e_n_s160_a2312a926a452bb3c846aa07203496015} 
+int32\+\_\+t {\bfseries write\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a37e5ac08ee408de208461ddefc6fe27c}\label{class_qw_dev_e_n_s160_a37e5ac08ee408de208461ddefc6fe27c} 
+int32\+\_\+t {\bfseries write\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t data, uint16\+\_\+t length)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ac92a4b78f9a1e7fb023c41107575effc}\label{class_qw_dev_e_n_s160_ac92a4b78f9a1e7fb023c41107575effc} 
+int32\+\_\+t {\bfseries read\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a3f98fc464330160f73e0c5b1f0c69a23}\label{class_qw_dev_e_n_s160_a3f98fc464330160f73e0c5b1f0c69a23} 
+void {\bfseries set\+Communication\+Bus} (\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}} \&the\+Bus, uint8\+\_\+t i2c\+Address)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a71c27dd025ebed1f28a8e5270c9c6a41}\label{class_qw_dev_e_n_s160_a71c27dd025ebed1f28a8e5270c9c6a41} 
+void {\bfseries set\+Communication\+Bus} (\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}} \&the\+Bus)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a58c8e8d078b5aced49e378a2f406ca1d}\label{class_qw_dev_e_n_s160_a58c8e8d078b5aced49e378a2f406ca1d} 
+bool {\bfseries set\+Operating\+Mode} (uint8\+\_\+t)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a7573d4febbc74ada7914c21cc621ae0f}\label{class_qw_dev_e_n_s160_a7573d4febbc74ada7914c21cc621ae0f} 
+int8\+\_\+t {\bfseries get\+Operating\+Mode} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ab02759b142f3c435e8181eec473fa530}\label{class_qw_dev_e_n_s160_ab02759b142f3c435e8181eec473fa530} 
+uint32\+\_\+t {\bfseries get\+App\+Ver} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ac748ed8cf76e7dc2d805f4da0572c7a6}\label{class_qw_dev_e_n_s160_ac748ed8cf76e7dc2d805f4da0572c7a6} 
+uint16\+\_\+t {\bfseries get\+Unique\+ID} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a964ab00e8be7ac5773391e00ac6eb931}\label{class_qw_dev_e_n_s160_a964ab00e8be7ac5773391e00ac6eb931} 
+bool {\bfseries configure\+Interrupt} (uint8\+\_\+t)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_abf1c8dbe5ebf862bd7be233e63eb4cf7}\label{class_qw_dev_e_n_s160_abf1c8dbe5ebf862bd7be233e63eb4cf7} 
+bool {\bfseries enable\+Interrupt} (bool enable=true)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a34c2bb50b1ee81faee225d9f9423d977}\label{class_qw_dev_e_n_s160_a34c2bb50b1ee81faee225d9f9423d977} 
+bool {\bfseries set\+Interrupt\+Polarity} (bool active\+High=true)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a0f5c9aceb6dc4a5fbffdfc8c2940d697}\label{class_qw_dev_e_n_s160_a0f5c9aceb6dc4a5fbffdfc8c2940d697} 
+int8\+\_\+t {\bfseries get\+Interrupt\+Polarity} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_acc64a3ad100ccd9f1bc3af0bba08efa5}\label{class_qw_dev_e_n_s160_acc64a3ad100ccd9f1bc3af0bba08efa5} 
+bool {\bfseries set\+Interrupt\+Drive} (bool push\+Pull=true)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a5a1c98dbe4d25bee77d872d5fc44e5c6}\label{class_qw_dev_e_n_s160_a5a1c98dbe4d25bee77d872d5fc44e5c6} 
+bool {\bfseries set\+Data\+Interrupt} (bool enable=true)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ae49b2a0aa33ce4973a2cc78571a346d1}\label{class_qw_dev_e_n_s160_ae49b2a0aa33ce4973a2cc78571a346d1} 
+bool {\bfseries set\+GPRInterrupt} (bool)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a0383fa927f246072b7febf74cd9d232f}\label{class_qw_dev_e_n_s160_a0383fa927f246072b7febf74cd9d232f} 
+bool {\bfseries set\+Temp\+Compensation} (float)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ab33277116d59e8c3d21836903f4758cb}\label{class_qw_dev_e_n_s160_ab33277116d59e8c3d21836903f4758cb} 
+bool {\bfseries set\+Temp\+Compensation\+Celsius} (float)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a8fe8f3b293d5c5edc790f788673c7481}\label{class_qw_dev_e_n_s160_a8fe8f3b293d5c5edc790f788673c7481} 
+bool {\bfseries set\+RHCompensation} (uint16\+\_\+t)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_aa980e1033e8641d81c2d7a0b66f12484}\label{class_qw_dev_e_n_s160_aa980e1033e8641d81c2d7a0b66f12484} 
+bool {\bfseries set\+RHCompensation\+Float} (float)
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a3b4dd1286ab2f96036b55004c69455aa}\label{class_qw_dev_e_n_s160_a3b4dd1286ab2f96036b55004c69455aa} 
+bool {\bfseries check\+Data\+Status} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a586ec3033e4d3808e1a51b1fee29df9f}\label{class_qw_dev_e_n_s160_a586ec3033e4d3808e1a51b1fee29df9f} 
+bool {\bfseries check\+GPRStatus} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_af725e0640c6fde5541ff54ea82f04573}\label{class_qw_dev_e_n_s160_af725e0640c6fde5541ff54ea82f04573} 
+uint8\+\_\+t {\bfseries get\+Flags} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a74abcdcccf6e025b142de9b9d51f1d53}\label{class_qw_dev_e_n_s160_a74abcdcccf6e025b142de9b9d51f1d53} 
+bool {\bfseries check\+Operation\+Status} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_af985875485a906769b37c5bdb4c27aaf}\label{class_qw_dev_e_n_s160_af985875485a906769b37c5bdb4c27aaf} 
+bool {\bfseries get\+Operation\+Error} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a00169cc968d19710909f3373822d2086}\label{class_qw_dev_e_n_s160_a00169cc968d19710909f3373822d2086} 
+uint8\+\_\+t {\bfseries get\+AQI} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a4322e51482363e7ad7c5bcbcdd71e87a}\label{class_qw_dev_e_n_s160_a4322e51482363e7ad7c5bcbcdd71e87a} 
+uint16\+\_\+t {\bfseries get\+TVOC} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a766e465d922dd951f8158de4d3fb237d}\label{class_qw_dev_e_n_s160_a766e465d922dd951f8158de4d3fb237d} 
+uint16\+\_\+t {\bfseries get\+ETOH} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_ac4a3bb71925b540b73c66d58665af390}\label{class_qw_dev_e_n_s160_ac4a3bb71925b540b73c66d58665af390} 
+uint16\+\_\+t {\bfseries get\+ECO2} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a7f8769603520917a107a491a1006306c}\label{class_qw_dev_e_n_s160_a7f8769603520917a107a491a1006306c} 
+float {\bfseries get\+Temp\+Kelvin} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a6bbfd4aa75f6a74743308c81e5592a16}\label{class_qw_dev_e_n_s160_a6bbfd4aa75f6a74743308c81e5592a16} 
+float {\bfseries get\+Temp\+Celsius} ()
+\item 
+\Hypertarget{class_qw_dev_e_n_s160_a1ee3c2e60681fcef61ef76aa59ecadda}\label{class_qw_dev_e_n_s160_a1ee3c2e60681fcef61ef76aa59ecadda} 
+float {\bfseries get\+RH} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074}{get\+Raw\+Resistance}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074}\index{QwDevENS160@{QwDevENS160}!getRawResistance@{getRawResistance}}
+\index{getRawResistance@{getRawResistance}!QwDevENS160@{QwDevENS160}}
+\doxysubsubsection{\texorpdfstring{getRawResistance()}{getRawResistance()}}
+{\footnotesize\ttfamily \label{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074} 
+uint16\+\_\+t Qw\+Dev\+ENS160\+::get\+Raw\+Resistance (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\doxylink{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074}{get\+Raw\+Resistance()}
+
+For certain gases the raw resistance values of the hot plates can be used for post processing. More information can be found within the datasheet. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Spark\+Fun\+\_\+\+Indoor\+\_\+\+Air\+\_\+\+Quality\+\_\+\+Sensor-\/\+ENS160\+\_\+\+Arduino\+\_\+\+Library-\/main/src/sfe\+\_\+ens160.\+h\item 
+lib/\+Spark\+Fun\+\_\+\+Indoor\+\_\+\+Air\+\_\+\+Quality\+\_\+\+Sensor-\/\+ENS160\+\_\+\+Arduino\+\_\+\+Library-\/main/src/sfe\+\_\+ens160.\+cpp\end{DoxyCompactItemize}

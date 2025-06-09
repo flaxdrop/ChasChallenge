@@ -34,19 +34,17 @@ var NAVTREE =
       [ "Code", "md_lib_2_spark_fun___indoor___air___quality___sensor-_e_n_s160___arduino___library-main_2_license.html#autotoc_md8", null ]
     ] ],
     [ "README", "md__r_e_a_d_m_e.html", [
-      [ "IoT System for Air Quality Monitoring", "md__r_e_a_d_m_e.html#autotoc_md13", [
-        [ "Overview", "md__r_e_a_d_m_e.html#autotoc_md14", null ],
-        [ "Hardware Components", "md__r_e_a_d_m_e.html#autotoc_md15", null ],
-        [ "Features", "md__r_e_a_d_m_e.html#autotoc_md16", null ],
-        [ "How It Works", "md__r_e_a_d_m_e.html#autotoc_md17", null ],
-        [ "Repository Structure", "md__r_e_a_d_m_e.html#autotoc_md18", null ],
-        [ "Getting Started", "md__r_e_a_d_m_e.html#autotoc_md19", null ],
-        [ "License", "md__r_e_a_d_m_e.html#autotoc_md20", null ],
-        [ "Contributors", "md__r_e_a_d_m_e.html#autotoc_md21", null ]
+      [ "Demonstration of physical Hardware", "md__r_e_a_d_m_e.html#autotoc_md13", null ],
+      [ "IoT System for Air Quality Monitoring", "md__r_e_a_d_m_e.html#autotoc_md14", [
+        [ "Overview", "md__r_e_a_d_m_e.html#autotoc_md15", null ],
+        [ "Hardware Components", "md__r_e_a_d_m_e.html#autotoc_md16", null ],
+        [ "Features", "md__r_e_a_d_m_e.html#autotoc_md17", null ],
+        [ "How It Works", "md__r_e_a_d_m_e.html#autotoc_md18", null ],
+        [ "Repository Structure", "md__r_e_a_d_m_e.html#autotoc_md19", null ],
+        [ "Getting Started", "md__r_e_a_d_m_e.html#autotoc_md20", null ],
+        [ "License", "md__r_e_a_d_m_e.html#autotoc_md21", null ],
+        [ "Contributors", "md__r_e_a_d_m_e.html#autotoc_md22", null ]
       ] ]
-    ] ],
-    [ "Namespaces", "namespaces.html", [
-      [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -54,8 +52,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Functions", "functions_func.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -63,8 +60,7 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+        [ "Variables", "globals_vars.html", null ]
       ] ]
     ] ]
   ] ]
@@ -72,8 +68,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_example7___relative_altitude_change_2_circular_buffer_8cpp.html",
-"md__r_e_a_d_m_e.html"
+"_example7___relative_altitude_change_2_circular_buffer_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronization';

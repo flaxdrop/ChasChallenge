@@ -1,0 +1,281 @@
+\doxysection{Spark\+Fun\+BME280.\+h}
+\hypertarget{_spark_fun_b_m_e280_8h_source}{}\label{_spark_fun_b_m_e280_8h_source}\index{lib/SparkFun\_BME280\_Arduino\_Library-\/master/src/SparkFunBME280.h@{lib/SparkFun\_BME280\_Arduino\_Library-\/master/src/SparkFunBME280.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{SparkFunBME280.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{BME280\ Arduino\ and\ Teensy\ Driver}}
+\DoxyCodeLine{00004\ \textcolor{comment}{Marshall\ Taylor\ @\ SparkFun\ Electronics}}
+\DoxyCodeLine{00005\ \textcolor{comment}{May\ 20,\ 2015}}
+\DoxyCodeLine{00006\ \textcolor{comment}{https://github.com/sparkfun/BME280\_Breakout}}
+\DoxyCodeLine{00007\ \textcolor{comment}{}}
+\DoxyCodeLine{00008\ \textcolor{comment}{Resources:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{Uses\ Wire.h\ for\ i2c\ operation}}
+\DoxyCodeLine{00010\ \textcolor{comment}{Uses\ SPI.h\ for\ SPI\ operation}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Development\ environment\ specifics:}}
+\DoxyCodeLine{00013\ \textcolor{comment}{Arduino\ IDE\ 1.6.4}}
+\DoxyCodeLine{00014\ \textcolor{comment}{Teensy\ loader\ 1.23}}
+\DoxyCodeLine{00015\ \textcolor{comment}{}}
+\DoxyCodeLine{00016\ \textcolor{comment}{This\ code\ is\ released\ under\ the\ [MIT\ License](http://opensource.org/licenses/MIT).}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Please\ review\ the\ LICENSE.md\ file\ included\ with\ this\ example.\ If\ you\ have\ any\ questions}}
+\DoxyCodeLine{00018\ \textcolor{comment}{or\ concerns\ with\ licensing,\ please\ contact\ techsupport@sparkfun.com.}}
+\DoxyCodeLine{00019\ \textcolor{comment}{Distributed\ as-\/is;\ no\ warranty\ is\ given.}}
+\DoxyCodeLine{00020\ \textcolor{comment}{}}
+\DoxyCodeLine{00021\ \textcolor{comment}{TODO:}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ roll\ library\ ver\ to\ 2.0}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ remove\ hard\ wire.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ write\ escalating\ examples}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Test\ derived\ class\ for\ base\ class\ SparkFunIMU}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ \_\_BME280\_H\_\_}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ \_\_BME280\_H\_\_}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ (ARDUINO\ >=\ 100)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}WProgram.h"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Uncomment\ the\ following\ line\ to\ enable\ software\ I2C}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ You\ will\ need\ to\ have\ the\ SoftwareWire\ library\ installed}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \#include\ <SoftwareWire.h>\ //SoftwareWire\ by\ Testato.\ Installed\ from\ library\ manager.}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ I2C\_MODE\ 0}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SPI\_MODE\ 1}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifndef\ BME280\_SPI\_CLOCK}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ ARDUINO\_ARCH\_ESP32}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ BME280\_SPI\_CLOCK\ 1000000}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ BME280\_SPI\_CLOCK\ 500000}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifndef\ BME280\_SPI\_MODE}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ BME280\_SPI\_MODE\ SPI\_MODE0}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ NO\_WIRE\ 0}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ HARD\_WIRE\ 1}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SOFT\_WIRE\ 2}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ MODE\_SLEEP\ 0b00}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ MODE\_FORCED\ 0b01}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ MODE\_NORMAL\ 0b11}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ Register\ names:}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T1\_LSB\_REG\ 0x88}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T1\_MSB\_REG\ 0x89}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T2\_LSB\_REG\ 0x8A}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T2\_MSB\_REG\ 0x8B}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T3\_LSB\_REG\ 0x8C}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_T3\_MSB\_REG\ 0x8D}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P1\_LSB\_REG\ 0x8E}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P1\_MSB\_REG\ 0x8F}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P2\_LSB\_REG\ 0x90}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P2\_MSB\_REG\ 0x91}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P3\_LSB\_REG\ 0x92}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P3\_MSB\_REG\ 0x93}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P4\_LSB\_REG\ 0x94}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P4\_MSB\_REG\ 0x95}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P5\_LSB\_REG\ 0x96}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P5\_MSB\_REG\ 0x97}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P6\_LSB\_REG\ 0x98}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P6\_MSB\_REG\ 0x99}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P7\_LSB\_REG\ 0x9A}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P7\_MSB\_REG\ 0x9B}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P8\_LSB\_REG\ 0x9C}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P8\_MSB\_REG\ 0x9D}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P9\_LSB\_REG\ 0x9E}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_P9\_MSB\_REG\ 0x9F}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H1\_REG\ 0xA1}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ BME280\_CHIP\_ID\_REG\ 0xD0\ }\textcolor{comment}{//\ Chip\ ID}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ BME280\_RST\_REG\ 0xE0\ \ \ \ \ }\textcolor{comment}{//\ Softreset\ Reg}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H2\_LSB\_REG\ 0xE1}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H2\_MSB\_REG\ 0xE2}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H3\_REG\ 0xE3}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H4\_MSB\_REG\ 0xE4}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H4\_LSB\_REG\ 0xE5}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H5\_MSB\_REG\ 0xE6}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ BME280\_DIG\_H6\_REG\ 0xE7}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ BME280\_CTRL\_HUMIDITY\_REG\ 0xF2\ \ \ \ }\textcolor{comment}{//\ Ctrl\ Humidity\ Reg}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ BME280\_STAT\_REG\ 0xF3\ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Status\ Reg}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ BME280\_CTRL\_MEAS\_REG\ 0xF4\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Ctrl\ Measure\ Reg}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ BME280\_CONFIG\_REG\ 0xF5\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Configuration\ Reg}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ BME280\_MEASUREMENTS\_REG\ 0xF7\ \ \ \ \ }\textcolor{comment}{//\ Measurements\ register\ start}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ BME280\_PRESSURE\_MSB\_REG\ 0xF7\ \ \ \ \ }\textcolor{comment}{//\ Pressure\ MSB}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ BME280\_PRESSURE\_LSB\_REG\ 0xF8\ \ \ \ \ }\textcolor{comment}{//\ Pressure\ LSB}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ BME280\_PRESSURE\_XLSB\_REG\ 0xF9\ \ \ \ }\textcolor{comment}{//\ Pressure\ XLSB}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ BME280\_TEMPERATURE\_MSB\_REG\ 0xFA\ \ }\textcolor{comment}{//\ Temperature\ MSB}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ BME280\_TEMPERATURE\_LSB\_REG\ 0xFB\ \ }\textcolor{comment}{//\ Temperature\ LSB}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ BME280\_TEMPERATURE\_XLSB\_REG\ 0xFC\ }\textcolor{comment}{//\ Temperature\ XLSB}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ BME280\_HUMIDITY\_MSB\_REG\ 0xFD\ \ \ \ \ }\textcolor{comment}{//\ Humidity\ MSB}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#define\ BME280\_HUMIDITY\_LSB\_REG\ 0xFE\ \ \ \ \ }\textcolor{comment}{//\ Humidity\ LSB}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ Class\ BME280\_SensorSettings.\ \ This\ object\ is\ used\ to\ hold\ settings\ data.\ \ The\ application}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ uses\ this\ classes'\ data\ directly.\ \ The\ settings\ are\ adopted\ and\ sent\ to\ the\ sensor}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ at\ special\ times,\ such\ as\ .begin.\ \ Some\ are\ used\ for\ doing\ math.}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ This\ is\ a\ kind\ of\ bloated\ way\ to\ do\ this.\ \ The\ trade-\/off\ is\ that\ the\ user\ doesn't}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ need\ to\ deal\ with\ \#defines\ or\ enums\ with\ bizarre\ names.}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ A\ power\ user\ would\ strip\ out\ BME280\_SensorSettings\ entirely,\ and\ send\ specific\ read\ and}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ write\ command\ directly\ to\ the\ IC.\ (ST\ \#defines\ below)}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{00128\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_b_m_e280___sensor_settings}{BME280\_SensorSettings}}}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ Main\ Interface\ and\ mode\ settings}}
+\DoxyCodeLine{00132\ \ \ \ \ uint8\_t\ commInterface;}
+\DoxyCodeLine{00133\ \ \ \ \ uint8\_t\ I2CAddress;}
+\DoxyCodeLine{00134\ \ \ \ \ uint8\_t\ chipSelectPin;}
+\DoxyCodeLine{00135\ \ \ \ \ SPISettings\ spiSettings\{BME280\_SPI\_CLOCK,\ MSBFIRST,\ BME280\_SPI\_MODE\};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ Deprecated\ settings}}
+\DoxyCodeLine{00138\ \ \ \ \ uint8\_t\ runMode;}
+\DoxyCodeLine{00139\ \ \ \ \ uint8\_t\ tStandby;}
+\DoxyCodeLine{00140\ \ \ \ \ uint8\_t\ filter;}
+\DoxyCodeLine{00141\ \ \ \ \ uint8\_t\ tempOverSample;}
+\DoxyCodeLine{00142\ \ \ \ \ uint8\_t\ pressOverSample;}
+\DoxyCodeLine{00143\ \ \ \ \ uint8\_t\ humidOverSample;}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordtype}{float}\ tempCorrection;\ \textcolor{comment}{//\ correction\ of\ temperature\ -\/\ added\ to\ the\ result}}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ Used\ to\ hold\ the\ calibration\ constants.\ \ These\ are\ used}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ by\ the\ driver\ as\ measurements\ are\ being\ taking}}
+\DoxyCodeLine{00149\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_sensor_calibration}{SensorCalibration}}}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00152\ \ \ \ \ uint16\_t\ dig\_T1;}
+\DoxyCodeLine{00153\ \ \ \ \ int16\_t\ dig\_T2;}
+\DoxyCodeLine{00154\ \ \ \ \ int16\_t\ dig\_T3;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ uint16\_t\ dig\_P1;}
+\DoxyCodeLine{00157\ \ \ \ \ int16\_t\ dig\_P2;}
+\DoxyCodeLine{00158\ \ \ \ \ int16\_t\ dig\_P3;}
+\DoxyCodeLine{00159\ \ \ \ \ int16\_t\ dig\_P4;}
+\DoxyCodeLine{00160\ \ \ \ \ int16\_t\ dig\_P5;}
+\DoxyCodeLine{00161\ \ \ \ \ int16\_t\ dig\_P6;}
+\DoxyCodeLine{00162\ \ \ \ \ int16\_t\ dig\_P7;}
+\DoxyCodeLine{00163\ \ \ \ \ int16\_t\ dig\_P8;}
+\DoxyCodeLine{00164\ \ \ \ \ int16\_t\ dig\_P9;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ uint8\_t\ dig\_H1;}
+\DoxyCodeLine{00167\ \ \ \ \ int16\_t\ dig\_H2;}
+\DoxyCodeLine{00168\ \ \ \ \ uint8\_t\ dig\_H3;}
+\DoxyCodeLine{00169\ \ \ \ \ int16\_t\ dig\_H4;}
+\DoxyCodeLine{00170\ \ \ \ \ int16\_t\ dig\_H5;}
+\DoxyCodeLine{00171\ \ \ \ \ int8\_t\ dig\_H6;}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}}
+\DoxyCodeLine{00175\ \{}
+\DoxyCodeLine{00176\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{float}\ temperature;}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{float}\ pressure;}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{float}\ humidity;}
+\DoxyCodeLine{00180\ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ This\ is\ the\ main\ operational\ class\ of\ the\ driver.}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{class\ }BME280}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ settings}}
+\DoxyCodeLine{00188\ \ \ \ \ \mbox{\hyperlink{struct_b_m_e280___sensor_settings}{BME280\_SensorSettings}}\ settings;}
+\DoxyCodeLine{00189\ \ \ \ \ \mbox{\hyperlink{struct_sensor_calibration}{SensorCalibration}}\ calibration;}
+\DoxyCodeLine{00190\ \ \ \ \ int32\_t\ t\_fine;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{comment}{//\ Constructor\ generates\ default\ BME280\_SensorSettings.}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{comment}{//(over-\/ride\ after\ construction\ if\ desired)}}
+\DoxyCodeLine{00194\ \ \ \ \ BME280(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{comment}{//\string~BME280()\ =\ default;}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ Call\ to\ apply\ BME280\_SensorSettings.}}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\ This\ also\ gets\ the\ SensorCalibration\ constants}}
+\DoxyCodeLine{00199\ \ \ \ \ uint8\_t\ begin(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{bool}\ beginSPI(uint8\_t\ csPin);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Communicate\ using\ SPI}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ beginI2C(TwoWire\ \&wirePort\ =\ Wire);\ \textcolor{comment}{//\ Called\ when\ user\ provides\ Wire\ port}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#ifdef\ SoftwareWire\_h}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{bool}\ beginI2C(SoftwareWire\ \&wirePort);\ \textcolor{comment}{//\ Called\ when\ user\ provides\ a\ softwareWire\ port}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ uint8\_t\ getMode(\textcolor{keywordtype}{void});\ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ current\ mode:\ sleep,\ forced,\ or\ normal}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordtype}{void}\ setMode(uint8\_t\ mode);\ \textcolor{comment}{//\ Set\ the\ current\ mode}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ setTempOverSample(uint8\_t\ overSampleAmount);\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ temperature\ sample\ mode}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{void}\ setPressureOverSample(uint8\_t\ overSampleAmount);\ \textcolor{comment}{//\ Set\ the\ pressure\ sample\ mode}}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ setHumidityOverSample(uint8\_t\ overSampleAmount);\ \textcolor{comment}{//\ Set\ the\ humidity\ sample\ mode}}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ setStandbyTime(uint8\_t\ timeSetting);\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ standby\ time\ between\ measurements}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ setFilter(uint8\_t\ filterSetting);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ filter}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ setI2CAddress(uint8\_t\ i2caddress);\ \textcolor{comment}{//\ Set\ the\ address\ the\ library\ should\ use\ to\ communicate.\ Use\ if\ address\ jumper\ is\ closed\ (0x76).}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ setReferencePressure(\textcolor{keywordtype}{float}\ refPressure);\ \textcolor{comment}{//\ Allows\ user\ to\ set\ local\ sea\ level\ reference\ pressure}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{float}\ getReferencePressure();}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{bool}\ isMeasuring(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ Returns\ true\ while\ the\ device\ is\ taking\ measurement}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ Software\ reset\ routine}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ readAllMeasurements(\mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}\ *measurements,\ uint8\_t\ tempScale\ =\ 0);}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ Returns\ the\ values\ as\ floats.}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{float}\ readFloatPressure(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keywordtype}{float}\ readFloatAltitudeMeters(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{float}\ readFloatAltitudeFeet(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{void}\ readFloatPressureFromBurst(uint8\_t\ buffer[],\ \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}\ *measurements);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ \textcolor{keywordtype}{float}\ readFloatHumidity(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ readFloatHumidityFromBurst(uint8\_t\ buffer[],\ \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}\ *measurements);}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{comment}{//\ Temperature\ related\ methods}}
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ setTemperatureCorrection(\textcolor{keywordtype}{float}\ corr);}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{float}\ readTempC(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{float}\ readTempF(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{float}\ readTempFromBurst(uint8\_t\ buffer[]);}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{comment}{//\ Dewpoint\ related\ methods}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{comment}{//\ From\ Pavel-\/Sayekat:\ https://github.com/sparkfun/SparkFun\_BME280\_Breakout\_Board/pull/6/files}}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{double}\ dewPointC(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{keywordtype}{double}\ dewPointF(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{comment}{//\ The\ following\ utilities\ read\ and\ write}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{comment}{//\ ReadRegisterRegion\ takes\ a\ uint8\ array\ address\ as\ input\ and\ reads}}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{comment}{//\ a\ chunk\ of\ memory\ into\ that\ array.}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{void}\ readRegisterRegion(uint8\_t\ *,\ uint8\_t,\ uint8\_t);}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{comment}{//\ readRegister\ reads\ one\ register}}
+\DoxyCodeLine{00253\ \ \ \ \ uint8\_t\ readRegister(uint8\_t);}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{//\ Reads\ two\ regs,\ LSByte\ then\ MSByte\ order,\ and\ concatenates\ them}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{comment}{//\ Used\ for\ two-\/byte\ reads}}
+\DoxyCodeLine{00256\ \ \ \ \ int16\_t\ readRegisterInt16(uint8\_t\ offset);}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{comment}{//\ Writes\ a\ byte;}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ writeRegister(uint8\_t,\ uint8\_t);}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00261\ \ \ \ \ uint8\_t\ checkSampleValue(uint8\_t\ userValue);\ \textcolor{comment}{//\ Checks\ for\ valid\ over\ sample\ values}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordtype}{void}\ readTempCFromBurst(uint8\_t\ buffer[],\ \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}\ *measurements);}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ readTempFFromBurst(uint8\_t\ buffer[],\ \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\_SensorMeasurements}}\ *measurements);}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ uint8\_t\ \_wireType\ =\ HARD\_WIRE;\ \textcolor{comment}{//\ Default\ to\ Wire.h}}
+\DoxyCodeLine{00266\ \ \ \ \ TwoWire\ *\_hardPort\ =\ NO\_WIRE;\ \ \textcolor{comment}{//\ The\ generic\ connection\ to\ user's\ chosen\ I2C\ hardware}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#ifdef\ SoftwareWire\_h}}
+\DoxyCodeLine{00269\ \ \ \ \ SoftwareWire\ *\_softPort\ =\ NO\_WIRE;\ \textcolor{comment}{//\ Or,\ the\ generic\ connection\ to\ software\ wire\ port}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{float}\ \_referencePressure\ =\ 101325.0;\ \textcolor{comment}{//\ Default\ but\ is\ changeable}}
+\DoxyCodeLine{00273\ \};}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ End\ of\ \_\_BME280\_H\_\_\ definition\ check}}
+
+\end{DoxyCode}

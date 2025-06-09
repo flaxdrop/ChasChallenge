@@ -1,0 +1,206 @@
+\doxysection{sfe\+\_\+ens160\+\_\+regs.\+h}
+\hypertarget{sfe__ens160__regs_8h_source}{}\label{sfe__ens160__regs_8h_source}\index{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_ens160\_regs.h@{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_ens160\_regs.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ sfe\_ens160\_regs.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ This\ is\ a\ library\ written\ for\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ SparkFun\ sells\ these\ boards\ at\ its\ website:\ www.sparkfun.com}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Do\ you\ like\ this\ library?\ Help\ support\ SparkFun.\ Buy\ a\ board!}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)\ \ \ \ https://www.sparkfun.com/products/20844}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Written\ by\ Elias\ Santistevan\ @\ SparkFun\ Electronics,\ October\ 2022}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Repository:}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \ \ \ https://github.com/sparkfun/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ SparkFun\ code,\ firmware,\ and\ software\ is\ released\ under\ the\ MIT}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ License(http://opensource.org/licenses/MIT).}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ Copyright\ (c)\ 2022\ SparkFun\ Electronics}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ copy\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ to\ deal\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ the\ rights\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ and/or\ sell\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ Software\ is\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:\ The}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ copies\ or\ substantial\ portions\ of\ the\ Software.\ THE\ SOFTWARE\ IS\ PROVIDED}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR\ IMPLIED,\ INCLUDING\ BUT}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS\ FOR\ A\ PARTICULAR}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE\ AUTHORS\ OR\ COPYRIGHT}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER\ LIABILITY,\ WHETHER\ IN\ AN}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,\ OUT\ OF\ OR\ IN}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ The\ following\ defines\ the\ bits\ and\ registers\ of\ the\ ENS160.}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_PART\_ID\ 0x00}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ uint8\_t\ part\_id\_msb\ :\ 8;\ \textcolor{comment}{//\ Value\ =\ 0x01}}
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ part\_id\_lsb\ :\ 8;\ \textcolor{comment}{//\ Value\ =\ 0x60}}
+\DoxyCodeLine{00047\ \}\ \mbox{\hyperlink{structsfe__ens160__part__id__t}{sfe\_ens160\_part\_id\_t}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_OP\_MODE\ 0x10}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Possible\ Operating\ Mode\ defines:}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DEEP\_SLEEP\ 0x00}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_IDLE\ 0x01}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_STANDARD\ 0x02}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_RESET\ 0xF0}}
+\DoxyCodeLine{00055\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ uint8\_t\ op\_mode\ :\ 8;}
+\DoxyCodeLine{00058\ \}\ \mbox{\hyperlink{structsfe__ens160__op__mode__t}{sfe\_ens160\_op\_mode\_t}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_CONFIG\ 0x11}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ uint8\_t\ reserved\_three\ :\ 1;}
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ int\_pol\ :\ 1;}
+\DoxyCodeLine{00065\ \ \ \ \ uint8\_t\ int\_cfg\ :\ 1;}
+\DoxyCodeLine{00066\ \ \ \ \ uint8\_t\ reserved\_two\ :\ 1;}
+\DoxyCodeLine{00067\ \ \ \ \ uint8\_t\ int\_gpr\ :\ 1;}
+\DoxyCodeLine{00068\ \ \ \ \ uint8\_t\ reserved\_one\ :\ 1;}
+\DoxyCodeLine{00069\ \ \ \ \ uint8\_t\ int\_dat\ :\ 1;}
+\DoxyCodeLine{00070\ \ \ \ \ uint8\_t\ int\_en\ :\ 1;}
+\DoxyCodeLine{00071\ \}\ \mbox{\hyperlink{structsfe__ens160__config__t}{sfe\_ens160\_config\_t}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_COMMAND\ 0x12}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ All\ commands\ must\ be\ issued\ when\ device\ is\ idle.}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_COMMAND\_NOP\ 0x00}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ Get\ Firwmware\ App\ Version\ -\/\ version\ is\ placed\ in\ General\ Purpose\ Read\ Registers\ as\ follows:}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ GPR\_READ04\ -\/\ Version\ (Major)}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ GPR\_READ05\ -\/\ Version\ (Minor)}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ GPR\_READ06\ -\/\ Version\ (Release)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_COMMAND\_GET\_APPVER\ 0x0E}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ Clear\ General\ Purpose\ Read\ Register}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_COMMAND\_CLRGPR\ 0xCC}}
+\DoxyCodeLine{00083\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00084\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ uint8\_t\ command\ :\ 8;}
+\DoxyCodeLine{00086\ \}\ \mbox{\hyperlink{structsfe__ens160__command__t}{sfe\_ens160\_command\_t}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_TEMP\_IN\ 0x13}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ Temperature\ compensation\ can\ be\ given\ to\ the\ sensor\ for\ more\ accurate}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ readings.}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Temperature\ should\ be\ given\ in\ Kelvin\ in\ the\ following\ format:}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ Value:\ Temperature\ in\ Kelvin\ *\ 64}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Converting\ Celsius\ to\ Kelvin\ =\ Temp\ +\ 273.15}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ Ergo:\ (Temp\ +\ 273.15)\ *\ 64}}
+\DoxyCodeLine{00095\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ uint8\_t\ temp\_in\_msb\ :\ 8;\ \textcolor{comment}{//\ 0x14\ -\/-\/\ Integer\ Part}}
+\DoxyCodeLine{00098\ \ \ \ \ uint8\_t\ temp\_in\_lsb\ :\ 8;\ \textcolor{comment}{//\ 0x13\ -\/-\/\ Fractions\ Part}}
+\DoxyCodeLine{00099\ \}\ \mbox{\hyperlink{structsfe__ens160__temp__in__t}{sfe\_ens160\_temp\_in\_t}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_RH\_IN\ 0x15}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Relative\ Humidity\ compensation\ can\ be\ given\ to\ the\ sensor\ for\ more\ accurate}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ readings.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ RH\ should\ be\ given\ in\ \%rH\ *\ 512}}
+\DoxyCodeLine{00105\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00106\ \{}
+\DoxyCodeLine{00107\ \ \ \ \ uint8\_t\ rh\_in\_msb\ :\ 8;\ \textcolor{comment}{//\ 0x16\ -\/-\/\ Integer\ Part}}
+\DoxyCodeLine{00108\ \ \ \ \ uint8\_t\ rh\_in\_lsb\ :\ 8;\ \textcolor{comment}{//\ 0x15\ -\/-\/\ Fraction\ Part}}
+\DoxyCodeLine{00109\ \}\ \mbox{\hyperlink{structsfe__ens160__rh__in__t}{sfe\_ens160\_rh\_in\_t}};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DEVICE\_STATUS\ 0x20}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ uint8\_t\ stat\_as\ :\ 1;}
+\DoxyCodeLine{00115\ \ \ \ \ uint8\_t\ stat\_er\ :\ 1;}
+\DoxyCodeLine{00116\ \ \ \ \ uint8\_t\ reserved\_two\ :\ 1;}
+\DoxyCodeLine{00117\ \ \ \ \ uint8\_t\ reserved\_one\ :\ 1;}
+\DoxyCodeLine{00118\ \ \ \ \ uint8\_t\ validity\_flag\ :\ 2;}
+\DoxyCodeLine{00119\ \ \ \ \ uint8\_t\ new\_dat\ :\ 1;}
+\DoxyCodeLine{00120\ \ \ \ \ uint8\_t\ new\_gpr\ :\ 1;}
+\DoxyCodeLine{00121\ \}\ \mbox{\hyperlink{structsfe__ens160__device__status__t}{sfe\_ens160\_device\_status\_t}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_AQI\ 0x21}}
+\DoxyCodeLine{00124\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ uint8\_t\ reserved\_one\ :\ 6;}
+\DoxyCodeLine{00127\ \ \ \ \ uint8\_t\ aqi\_uba\ :\ 2;}
+\DoxyCodeLine{00128\ \}\ \mbox{\hyperlink{structsfe__ens160__data__aqi__t}{sfe\_ens160\_data\_aqi\_t}};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_TVOC\ 0x22}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ TVOC\ Data\ -\/\ shares\ register\ with\ ethanol\ data}}
+\DoxyCodeLine{00132\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00133\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ uint8\_t\ tvoc\_msb\ :\ 8;}
+\DoxyCodeLine{00135\ \ \ \ \ uint8\_t\ tvoc\_lsb\ :\ 8;}
+\DoxyCodeLine{00136\ \}\ \mbox{\hyperlink{structsfe__ens160__data__tvoc__t}{sfe\_ens160\_data\_tvoc\_t}};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_ETOH\ 0x22}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ Ethanol\ Data\ -\/\ shares\ register\ with\ TVOC\ data}}
+\DoxyCodeLine{00140\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00141\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ uint8\_t\ etoh\_msb\ :\ 8;}
+\DoxyCodeLine{00143\ \ \ \ \ uint8\_t\ etoh\_lsb\ :\ 8;}
+\DoxyCodeLine{00144\ \}\ \mbox{\hyperlink{structsfe__ens160__data__etho__t}{sfe\_ens160\_data\_etho\_t}};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_ECO2\ 0x24}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ CO2\ Data}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ uint8\_t\ eco2\_msb\ :\ 8;}
+\DoxyCodeLine{00151\ \ \ \ \ uint8\_t\ eco2\_lsb\ :\ 8;}
+\DoxyCodeLine{00152\ \}\ \mbox{\hyperlink{structsfe__ens160__data__eco2__t}{sfe\_ens160\_data\_eco2\_t}};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_T\ 0x30}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ Reports\ the\ temperature\ data\ given\ to\ TEMP\_IN\ in\ the\ following\ manner:}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ Temperature\ in\ Kelvin:\ Register\ Value\ /\ 64}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ Converting\ Kelvin\ to\ Celsius\ =\ \ Temperature\ in\ Kelvin\ -\/\ 273.15}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ Ergo:\ (Register\ Value\ /\ 64)\ -\/\ 273.15}}
+\DoxyCodeLine{00159\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00160\ \{}
+\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ data\_t\_msb\ :\ 8;\ \textcolor{comment}{//\ Fractions\ -\/-\/\ 0x31}}
+\DoxyCodeLine{00162\ \ \ \ \ uint8\_t\ data\_t\_lsb\ :\ 8;\ \textcolor{comment}{//\ Integer\ -\/-\/\ 0x30}}
+\DoxyCodeLine{00163\ \}\ \mbox{\hyperlink{structsfe__ens160__data__t__t}{sfe\_ens160\_data\_t\_t}};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_RH\ 0x32}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ Reports\ the\ Relative\ Humidity\ compensation\ given\ to\ RH\_IN\ in\ the\ following\ manner}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ RH\ =\ Register\ Value\ /\ 512}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ uint8\_t\ data\_rh\_msb\ :\ 8;\ \textcolor{comment}{//\ Fractions\ -\/-\/\ 0x33}}
+\DoxyCodeLine{00171\ \ \ \ \ uint8\_t\ data\_rh\_lsb\ :\ 8;\ \textcolor{comment}{//\ Integer\ -\/-\/\ 0x32}}
+\DoxyCodeLine{00172\ \}\ \mbox{\hyperlink{structsfe__ens160__data__rh__t}{sfe\_ens160\_data\_rh\_t}};}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_DATA\_MISR\ 0x38}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ POLY\ 0x1D}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ Gives\ calculated\ checksum\ of\ "{}DATA\_"{}\ registers}}
+\DoxyCodeLine{00177\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ data\_misr\ :\ 8;}
+\DoxyCodeLine{00180\ \}\ \mbox{\hyperlink{structsfe__ens160__data__misr__t}{sfe\_ens160\_data\_misr\_t}};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ General\ Purpose\ Write\ registers}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE0\ 0x40}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE1\ 0x41}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE2\ 0x42}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE3\ 0x43}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE4\ 0x44}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE5\ 0x45}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE6\ 0x46}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_WRITE7\ 0x47}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ General\ Purpose\ Read\ registers}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ0\ 0x48}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ1\ 0x49}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ2\ 0x4A}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ3\ 0x4B}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ4\ 0x4C}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ5\ 0x4D}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ6\ 0x4E}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#define\ SFE\_ENS160\_GPR\_READ7\ 0x4F}}
+
+\end{DoxyCode}

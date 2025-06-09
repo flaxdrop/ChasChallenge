@@ -1,0 +1,39 @@
+\doxysection{Circular\+Buffer.\+h}
+\hypertarget{_more___advanced_2_l_c_d___delta_altitude_2_circular_buffer_8h_source}{}\label{_more___advanced_2_l_c_d___delta_altitude_2_circular_buffer_8h_source}\index{lib/SparkFun\_BME280\_Arduino\_Library-\/master/examples/More\_Advanced/LCD\_DeltaAltitude/CircularBuffer.h@{lib/SparkFun\_BME280\_Arduino\_Library-\/master/examples/More\_Advanced/LCD\_DeltaAltitude/CircularBuffer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CIRCULARBUFFER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CIRCULARBUFFER\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//****************************************************************************//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Circular\ Buffer}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//****************************************************************************//}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//Class\ CircularBuffer\ is\ int16\_t}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//Does\ not\ care\ about\ over-\/running\ real\ data\ (\ if\ request\ is\ outside\ length's\ bounds\ ).}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//For\ example,\ the\ underlying\ machine\ writes\ [48],\ [49],\ [0],\ [1]\ ...\ }}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_circular_buffer}{CircularBuffer}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ CircularBuffer(\ uint16\_t\ inputSize\ );}
+\DoxyCodeLine{00019\ \ \ \ \ \string~CircularBuffer();}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ getElement(\ uint16\_t\ );\ \textcolor{comment}{//zero\ is\ the\ push\ location}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ pushElement(\ \textcolor{keywordtype}{float}\ );}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ averageLast(\ uint16\_t\ );}
+\DoxyCodeLine{00023\ \ \ \ \ uint16\_t\ recordLength(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ uint16\_t\ cBufferSize;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ *cBufferData;}
+\DoxyCodeLine{00027\ \ \ \ \ int16\_t\ cBufferLastPtr;}
+\DoxyCodeLine{00028\ \ \ \ \ uint8\_t\ cBufferElementsUsed;}
+\DoxyCodeLine{00029\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CIRCULARBUFFER\_H}}
+
+\end{DoxyCode}

@@ -108,221 +108,35 @@ $(function(){initNavTree('classsfe___e_n_s160_1_1_qw_i_device_bus.html',''); ini
   <div class="headertitle"><div class="title">sfe_ENS160::QwIDeviceBus Class Reference<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="sfe__bus_8h_source.html">sfe_bus.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for sfe_ENS160::QwIDeviceBus:</div>
 <div class="dyncontent">
-<div class="center"><img src="classsfe___e_n_s160_1_1_qw_i_device_bus__inherit__graph.png" border="0" usemap="#asfe___e_n_s160_1_1_qw_i_device_bus_inherit__map" alt="Inheritance graph"/></div>
-<map name="asfe___e_n_s160_1_1_qw_i_device_bus_inherit__map" id="asfe___e_n_s160_1_1_qw_i_device_bus_inherit__map">
-<area shape="rect" title=" " alt="" coords="66,5,257,32"/>
-<area shape="rect" href="classsfe___e_n_s160_1_1_qw_i2_c.html" title=" " alt="" coords="5,80,150,107"/>
-<area shape="poly" title=" " alt="" coords="137,45,94,82,90,78,134,40"/>
-<area shape="rect" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html" title=" " alt="" coords="174,80,320,107"/>
-<area shape="poly" title=" " alt="" coords="189,40,234,78,230,82,186,44"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+ <div class="center">
+  <img src="classsfe___e_n_s160_1_1_qw_i_device_bus.png" usemap="#sfe_5FENS160::QwIDeviceBus_map" alt=""/>
+  <map id="sfe_5FENS160::QwIDeviceBus_map" name="sfe_5FENS160::QwIDeviceBus_map">
+<area href="classsfe___e_n_s160_1_1_qw_i2_c.html" alt="sfe_ENS160::QwI2C" shape="rect" coords="0,56,171,80"/>
+<area href="classsfe___e_n_s160_1_1_sfe_s_p_i.html" alt="sfe_ENS160::SfeSPI" shape="rect" coords="181,56,352,80"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2de7cfe5d37495ad3da3b668ade14651" id="r_a2de7cfe5d37495ad3da3b668ade14651"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2de7cfe5d37495ad3da3b668ade14651">ping</a> (uint8_t address)=0</td></tr>
+<tr class="memitem:a2de7cfe5d37495ad3da3b668ade14651" id="r_a2de7cfe5d37495ad3da3b668ade14651"><td class="memItemLeft" align="right" valign="top"><a id="a2de7cfe5d37495ad3da3b668ade14651" name="a2de7cfe5d37495ad3da3b668ade14651"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>ping</b> (uint8_t address)=0</td></tr>
 <tr class="separator:a2de7cfe5d37495ad3da3b668ade14651"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace59ae0a38249606541b71d9a5318fca" id="r_ace59ae0a38249606541b71d9a5318fca"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace59ae0a38249606541b71d9a5318fca">writeRegisterByte</a> (uint8_t address, uint8_t offset, uint8_t data)=0</td></tr>
+<tr class="memitem:ace59ae0a38249606541b71d9a5318fca" id="r_ace59ae0a38249606541b71d9a5318fca"><td class="memItemLeft" align="right" valign="top"><a id="ace59ae0a38249606541b71d9a5318fca" name="ace59ae0a38249606541b71d9a5318fca"></a>
+virtual bool&#160;</td><td class="memItemRight" valign="bottom"><b>writeRegisterByte</b> (uint8_t address, uint8_t offset, uint8_t data)=0</td></tr>
 <tr class="separator:ace59ae0a38249606541b71d9a5318fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a232c7f4f3dd1fa0b822d5c5710e0c502" id="r_a232c7f4f3dd1fa0b822d5c5710e0c502"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a232c7f4f3dd1fa0b822d5c5710e0c502">writeRegisterRegion</a> (uint8_t address, uint8_t offset, const uint8_t *data, uint16_t length)=0</td></tr>
+<tr class="memitem:a232c7f4f3dd1fa0b822d5c5710e0c502" id="r_a232c7f4f3dd1fa0b822d5c5710e0c502"><td class="memItemLeft" align="right" valign="top"><a id="a232c7f4f3dd1fa0b822d5c5710e0c502" name="a232c7f4f3dd1fa0b822d5c5710e0c502"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>writeRegisterRegion</b> (uint8_t address, uint8_t offset, const uint8_t *data, uint16_t length)=0</td></tr>
 <tr class="separator:a232c7f4f3dd1fa0b822d5c5710e0c502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc79c4d75907f093e14ecb69b602bb11" id="r_acc79c4d75907f093e14ecb69b602bb11"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc79c4d75907f093e14ecb69b602bb11">writeRegisterRegion</a> (uint8_t address, uint8_t offset, uint8_t data, uint16_t length)=0</td></tr>
+<tr class="memitem:acc79c4d75907f093e14ecb69b602bb11" id="r_acc79c4d75907f093e14ecb69b602bb11"><td class="memItemLeft" align="right" valign="top"><a id="acc79c4d75907f093e14ecb69b602bb11" name="acc79c4d75907f093e14ecb69b602bb11"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>writeRegisterRegion</b> (uint8_t address, uint8_t offset, uint8_t data, uint16_t length)=0</td></tr>
 <tr class="separator:acc79c4d75907f093e14ecb69b602bb11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a851235625cda788c57a1fd35a49e5b11" id="r_a851235625cda788c57a1fd35a49e5b11"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a851235625cda788c57a1fd35a49e5b11">readRegisterRegion</a> (uint8_t addr, uint8_t reg, uint8_t *data, uint16_t numBytes)=0</td></tr>
+<tr class="memitem:a851235625cda788c57a1fd35a49e5b11" id="r_a851235625cda788c57a1fd35a49e5b11"><td class="memItemLeft" align="right" valign="top"><a id="a851235625cda788c57a1fd35a49e5b11" name="a851235625cda788c57a1fd35a49e5b11"></a>
+virtual int&#160;</td><td class="memItemRight" valign="bottom"><b>readRegisterRegion</b> (uint8_t addr, uint8_t reg, uint8_t *data, uint16_t numBytes)=0</td></tr>
 <tr class="separator:a851235625cda788c57a1fd35a49e5b11"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="a2de7cfe5d37495ad3da3b668ade14651" name="a2de7cfe5d37495ad3da3b668ade14651"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2de7cfe5d37495ad3da3b668ade14651">&#9670;&#160;</a></span>ping()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool sfe_ENS160::QwIDeviceBus::ping </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classsfe___e_n_s160_1_1_qw_i2_c.html#ad28bf93f985d586188c7b162f21fb70b">sfe_ENS160::QwI2C</a>, and <a class="el" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html#a3a7365c4793f2b8e4d3af1828fba7957">sfe_ENS160::SfeSPI</a>.</p>
-
-</div>
-</div>
-<a id="a851235625cda788c57a1fd35a49e5b11" name="a851235625cda788c57a1fd35a49e5b11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a851235625cda788c57a1fd35a49e5b11">&#9670;&#160;</a></span>readRegisterRegion()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int sfe_ENS160::QwIDeviceBus::readRegisterRegion </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>addr</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>reg</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>numBytes</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classsfe___e_n_s160_1_1_qw_i2_c.html#ae0f836343d5d7e4b8152a9675e876c84">sfe_ENS160::QwI2C</a>, and <a class="el" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html#ac5e466e1f50382e07968a53baee438f5">sfe_ENS160::SfeSPI</a>.</p>
-
-</div>
-</div>
-<a id="ace59ae0a38249606541b71d9a5318fca" name="ace59ae0a38249606541b71d9a5318fca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace59ae0a38249606541b71d9a5318fca">&#9670;&#160;</a></span>writeRegisterByte()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual bool sfe_ENS160::QwIDeviceBus::writeRegisterByte </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classsfe___e_n_s160_1_1_qw_i2_c.html#a43a5c2ac4d3f40623b7304a8be34c69b">sfe_ENS160::QwI2C</a>, and <a class="el" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html#a6d8ab78468b6ffed7ded7469867e892b">sfe_ENS160::SfeSPI</a>.</p>
-
-</div>
-</div>
-<a id="a232c7f4f3dd1fa0b822d5c5710e0c502" name="a232c7f4f3dd1fa0b822d5c5710e0c502"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a232c7f4f3dd1fa0b822d5c5710e0c502">&#9670;&#160;</a></span>writeRegisterRegion() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int sfe_ENS160::QwIDeviceBus::writeRegisterRegion </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classsfe___e_n_s160_1_1_qw_i2_c.html#a4fe0ca6825a51f4849d734606a4770fb">sfe_ENS160::QwI2C</a>, and <a class="el" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html#a11d94aecd9f10189bbbed93a9b31d549">sfe_ENS160::SfeSPI</a>.</p>
-
-</div>
-</div>
-<a id="acc79c4d75907f093e14ecb69b602bb11" name="acc79c4d75907f093e14ecb69b602bb11"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc79c4d75907f093e14ecb69b602bb11">&#9670;&#160;</a></span>writeRegisterRegion() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual int sfe_ENS160::QwIDeviceBus::writeRegisterRegion </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>address</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>offset</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classsfe___e_n_s160_1_1_qw_i2_c.html#aefc85da3e1f8d3830d74562468cc3126">sfe_ENS160::QwI2C</a>, and <a class="el" href="classsfe___e_n_s160_1_1_sfe_s_p_i.html#afd2485c94e4cd93811cfcbd5f2a1e123">sfe_ENS160::SfeSPI</a>.</p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>lib/SparkFun_Indoor_Air_Quality_Sensor-ENS160_Arduino_Library-main/src/<a class="el" href="sfe__bus_8h_source.html">sfe_bus.h</a></li>
 </ul>
@@ -331,7 +145,7 @@ Public Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="namespacesfe___e_n_s160.html">sfe_ENS160</a></li><li class="navelem"><a class="el" href="classsfe___e_n_s160_1_1_qw_i_device_bus.html">QwIDeviceBus</a></li>
+    <li class="navelem"><b>sfe_ENS160</b></li><li class="navelem"><a class="el" href="classsfe___e_n_s160_1_1_qw_i_device_bus.html">QwIDeviceBus</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

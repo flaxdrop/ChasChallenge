@@ -1,0 +1,56 @@
+\doxysection{trafficlight.\+h}
+\hypertarget{trafficlight_8h_source}{}\label{trafficlight_8h_source}\index{include/trafficlight.h@{include/trafficlight.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TRAFFICLIGHT\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TRAFFICLIGHT\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ MQ2\_PIN\ A0\ \ \ \ }\textcolor{comment}{//\ MQ-\/2\ sensor\ on\ analog\ pin\ A0}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ RED\_LED\ A3\ \ \ \ }\textcolor{comment}{//\ Red\ LED\ (bad\ air/gas)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ GREEN\_LED\ A1\ \ }\textcolor{comment}{//\ Green\ LED\ (good\ air)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ YELLOW\_LED\ A2\ }\textcolor{comment}{//\ Yellow\ LED\ (low\ level\ bad\ air/gas)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ setup()}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ pinMode(RED\_LED,\ OUTPUT);}
+\DoxyCodeLine{00013\ \ \ \ \ pinMode(GREEN\_LED,\ OUTPUT);}
+\DoxyCodeLine{00014\ \ \ \ \ Serial.begin(9600);}
+\DoxyCodeLine{00015\ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ loop()}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ sensorValue\ =\ analogRead(MQ2\_PIN);}
+\DoxyCodeLine{00020\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}\(\backslash\)nSensor\ value:\ "{}});}
+\DoxyCodeLine{00021\ \ \ \ \ Serial.print(sensorValue);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{comment}{//\ Dangerous\ level}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ (sensorValue\ >\ 450)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ digitalWrite(RED\_LED,\ HIGH);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ digitalWrite(GREEN\_LED,\ LOW);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ digitalWrite(YELLOW\_LED,\ LOW);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ |\ High\ level\ gas\ detected!"{}});}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Medium\ level}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (sensorValue\ >\ 378)}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ digitalWrite(YELLOW\_LED,\ HIGH);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ digitalWrite(RED\_LED,\ LOW);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ digitalWrite(GREEN\_LED,\ LOW);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ |\ Low\ level\ gas\ detected!"{}});}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Safe\ level}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ digitalWrite(RED\_LED,\ LOW);}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ digitalWrite(GREEN\_LED,\ HIGH);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ digitalWrite(YELLOW\_LED,\ LOW);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}\ |\ No\ gas\ detected!"{}});}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ delay(1000);\ \textcolor{comment}{//\ Wait\ one\ second\ before\ next\ reading}}
+\DoxyCodeLine{00048\ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

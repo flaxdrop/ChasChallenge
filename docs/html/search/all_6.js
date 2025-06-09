@@ -1,24 +1,7 @@
 var searchData=
 [
-  ['getairqualitytext_0',['getAirQualityText',['../test_8cpp.html#aafe7204cd9dc4944f7a65efde74aed8d',1,'test.cpp']]],
-  ['getappver_1',['getAppVer',['../class_qw_dev_e_n_s160.html#ab02759b142f3c435e8181eec473fa530',1,'QwDevENS160']]],
-  ['getaqi_2',['getAQI',['../class_qw_dev_e_n_s160.html#a00169cc968d19710909f3373822d2086',1,'QwDevENS160']]],
-  ['geteco2_3',['getECO2',['../class_qw_dev_e_n_s160.html#ac4a3bb71925b540b73c66d58665af390',1,'QwDevENS160']]],
-  ['getelement_4',['getElement',['../class_circular_buffer.html#ad2ad76d7d9107fa7474e61ac6496d21d',1,'CircularBuffer::getElement(uint16_t)'],['../class_circular_buffer.html#ad2ad76d7d9107fa7474e61ac6496d21d',1,'CircularBuffer::getElement(uint16_t)']]],
-  ['getetoh_5',['getETOH',['../class_qw_dev_e_n_s160.html#a766e465d922dd951f8158de4d3fb237d',1,'QwDevENS160']]],
-  ['getflags_6',['getFlags',['../class_qw_dev_e_n_s160.html#af725e0640c6fde5541ff54ea82f04573',1,'QwDevENS160']]],
-  ['getinterruptpolarity_7',['getInterruptPolarity',['../class_qw_dev_e_n_s160.html#a0f5c9aceb6dc4a5fbffdfc8c2940d697',1,'QwDevENS160']]],
-  ['getmode_8',['getMode',['../class_b_m_e280.html#a4ed4e25a18b5016366aea4bddde9eb84',1,'BME280']]],
-  ['getoperatingmode_9',['getOperatingMode',['../class_qw_dev_e_n_s160.html#a7573d4febbc74ada7914c21cc621ae0f',1,'QwDevENS160']]],
-  ['getoperationerror_10',['getOperationError',['../class_qw_dev_e_n_s160.html#af985875485a906769b37c5bdb4c27aaf',1,'QwDevENS160']]],
-  ['getrawresistance_11',['getRawResistance',['../class_qw_dev_e_n_s160.html#a1d169ac85d33a2f2cc5e7e99571be074',1,'QwDevENS160']]],
-  ['getreferencepressure_12',['getReferencePressure',['../class_b_m_e280.html#a9c6eca0574ae73eafc25e2e8d3f6c4af',1,'BME280']]],
-  ['getrh_13',['getRH',['../class_qw_dev_e_n_s160.html#a1ee3c2e60681fcef61ef76aa59ecadda',1,'QwDevENS160']]],
-  ['gettempcelsius_14',['getTempCelsius',['../class_qw_dev_e_n_s160.html#a6bbfd4aa75f6a74743308c81e5592a16',1,'QwDevENS160']]],
-  ['gettempkelvin_15',['getTempKelvin',['../class_qw_dev_e_n_s160.html#a7f8769603520917a107a491a1006306c',1,'QwDevENS160']]],
-  ['getting_20started_16',['Getting Started',['../md__r_e_a_d_m_e.html#autotoc_md19',1,'']]],
-  ['gettvoc_17',['getTVOC',['../class_qw_dev_e_n_s160.html#a4322e51482363e7ad7c5bcbcdd71e87a',1,'QwDevENS160']]],
-  ['getuniqueid_18',['getUniqueID',['../class_qw_dev_e_n_s160.html#ac748ed8cf76e7dc2d805f4da0572c7a6',1,'QwDevENS160']]],
-  ['green_5fled_19',['GREEN_LED',['../trafficlight_8h.html#a01649d652fa50957c6ef3c32b1238038',1,'trafficlight.h']]],
-  ['greenledpin_20',['greenLedPin',['../main_8cpp.html#a81200aafdb16b7b0e636903da608217d',1,'main.cpp']]]
+  ['hardware_0',['Hardware',['../md__r_e_a_d_m_e.html#autotoc_md13',1,'Demonstration of physical Hardware'],['../md_lib_2_spark_fun___b_m_e280___arduino___library-master_2_l_i_c_e_n_s_e.html#autotoc_md0',1,'Hardware'],['../md_lib_2_spark_fun___indoor___air___quality___sensor-_e_n_s160___arduino___library-main_2_license.html#autotoc_md7',1,'Hardware']]],
+  ['hardware_20components_1',['Hardware Components',['../md__r_e_a_d_m_e.html#autotoc_md16',1,'']]],
+  ['history_2',['Version History',['../C:/chas/kurs4/ChasChallenge/IoT/lib/SparkFun_BME280_Arduino_Library-master/README.md#autotoc_md5',1,'']]],
+  ['how_20it_20works_3',['How It Works',['../md__r_e_a_d_m_e.html#autotoc_md18',1,'']]]
 ];

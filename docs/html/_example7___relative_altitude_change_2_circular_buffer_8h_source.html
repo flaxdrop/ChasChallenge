@@ -105,7 +105,7 @@ $(function(){initNavTree('_example7___relative_altitude_change_2_circular_buffer
   <div class="headertitle"><div class="title">CircularBuffer.h</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="_example7___relative_altitude_change_2_circular_buffer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CIRCULARBUFFER_H</span></div>
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CIRCULARBUFFER_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CIRCULARBUFFER_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
@@ -120,15 +120,15 @@ $(function(){initNavTree('_example7___relative_altitude_change_2_circular_buffer
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">//For example, the underlying machine writes [48], [49], [0], [1] ... </span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_circular_buffer.html">   15</a></span><span class="keyword">class </span><a class="code hl_function" href="class_circular_buffer.html#aab836d9fe0cb877b25f66d2698ac629f">CircularBuffer</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="class_circular_buffer.html">   15</a></span><span class="keyword">class </span>CircularBuffer</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_function" href="class_circular_buffer.html#aab836d9fe0cb877b25f66d2698ac629f">CircularBuffer</a>( uint16_t inputSize );</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="class_circular_buffer.html#a916f9506cf86010056d189b51fd72c91">~CircularBuffer</a>();</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_circular_buffer.html#ad2ad76d7d9107fa7474e61ac6496d21d">getElement</a>( uint16_t ); <span class="comment">//zero is the push location</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_circular_buffer.html#a464f14df1850425d6e9129e7e026c5df">pushElement</a>( <span class="keywordtype">float</span> );</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_circular_buffer.html#aeb1dd2036e0f2d8ee2f130da8498a6d1">averageLast</a>( uint16_t );</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    uint16_t <a class="code hl_function" href="class_circular_buffer.html#a2d84b458cf24dad311a7fa6c9855baaf">recordLength</a>( <span class="keywordtype">void</span> );</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    CircularBuffer( uint16_t inputSize );</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    ~CircularBuffer();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">float</span> getElement( uint16_t ); <span class="comment">//zero is the push location</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> pushElement( <span class="keywordtype">float</span> );</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">float</span> averageLast( uint16_t );</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    uint16_t recordLength( <span class="keywordtype">void</span> );</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    uint16_t cBufferSize;</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">float</span> *cBufferData;</div>
@@ -140,18 +140,12 @@ $(function(){initNavTree('_example7___relative_altitude_change_2_circular_buffer
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">// CIRCULARBUFFER_H</span></div>
-<div class="ttc" id="aclass_circular_buffer_html_a2d84b458cf24dad311a7fa6c9855baaf"><div class="ttname"><a href="class_circular_buffer.html#a2d84b458cf24dad311a7fa6c9855baaf">CircularBuffer::recordLength</a></div><div class="ttdeci">uint16_t recordLength(void)</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:101</div></div>
-<div class="ttc" id="aclass_circular_buffer_html_a464f14df1850425d6e9129e7e026c5df"><div class="ttname"><a href="class_circular_buffer.html#a464f14df1850425d6e9129e7e026c5df">CircularBuffer::pushElement</a></div><div class="ttdeci">void pushElement(float)</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:53</div></div>
-<div class="ttc" id="aclass_circular_buffer_html_a916f9506cf86010056d189b51fd72c91"><div class="ttname"><a href="class_circular_buffer.html#a916f9506cf86010056d189b51fd72c91">CircularBuffer::~CircularBuffer</a></div><div class="ttdeci">~CircularBuffer()</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:21</div></div>
-<div class="ttc" id="aclass_circular_buffer_html_aab836d9fe0cb877b25f66d2698ac629f"><div class="ttname"><a href="class_circular_buffer.html#aab836d9fe0cb877b25f66d2698ac629f">CircularBuffer::CircularBuffer</a></div><div class="ttdeci">CircularBuffer(uint16_t inputSize)</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:12</div></div>
-<div class="ttc" id="aclass_circular_buffer_html_ad2ad76d7d9107fa7474e61ac6496d21d"><div class="ttname"><a href="class_circular_buffer.html#ad2ad76d7d9107fa7474e61ac6496d21d">CircularBuffer::getElement</a></div><div class="ttdeci">float getElement(uint16_t)</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:33</div></div>
-<div class="ttc" id="aclass_circular_buffer_html_aeb1dd2036e0f2d8ee2f130da8498a6d1"><div class="ttname"><a href="class_circular_buffer.html#aeb1dd2036e0f2d8ee2f130da8498a6d1">CircularBuffer::averageLast</a></div><div class="ttdeci">float averageLast(uint16_t)</div><div class="ttdef"><b>Definition</b> CircularBuffer.cpp:75</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_607da2331f2c4f1d56860273f7a5f2ff.html">SparkFun_BME280_Arduino_Library-master</a></li><li class="navelem"><a class="el" href="dir_7ebd32f353a4dd62d18b0ea8aac16322.html">examples</a></li><li class="navelem"><a class="el" href="dir_ba46502e90a4ad4c7ce13f02ae3e66c1.html">Example7_RelativeAltitudeChange</a></li><li class="navelem"><a class="el" href="_example7___relative_altitude_change_2_circular_buffer_8h.html">CircularBuffer.h</a></li>
+    <li class="navelem"><a class="el" href="dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="dir_607da2331f2c4f1d56860273f7a5f2ff.html">SparkFun_BME280_Arduino_Library-master</a></li><li class="navelem"><a class="el" href="dir_7ebd32f353a4dd62d18b0ea8aac16322.html">examples</a></li><li class="navelem"><a class="el" href="dir_ba46502e90a4ad4c7ce13f02ae3e66c1.html">Example7_RelativeAltitudeChange</a></li><li class="navelem"><b>CircularBuffer.h</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>

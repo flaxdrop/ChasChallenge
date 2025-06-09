@@ -1,0 +1,169 @@
+\doxysection{sfe\+\_\+ens160.\+h}
+\hypertarget{sfe__ens160_8h_source}{}\label{sfe__ens160_8h_source}\index{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_ens160.h@{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_ens160.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ sfe\_ens160.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ This\ is\ a\ library\ written\ for\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ SparkFun\ sells\ these\ boards\ at\ its\ website:\ www.sparkfun.com}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Do\ you\ like\ this\ library?\ Help\ support\ SparkFun.\ Buy\ a\ board!}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)\ \ \ \ https://www.sparkfun.com/products/20844}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Written\ by\ Elias\ Santistevan\ @\ SparkFun\ Electronics,\ October\ 2022}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Repository:}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \ \ \ https://github.com/sparkfun/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ SparkFun\ code,\ firmware,\ and\ software\ is\ released\ under\ the\ MIT}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ License(http://opensource.org/licenses/MIT).}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ Copyright\ (c)\ 2022\ SparkFun\ Electronics}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ copy\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ to\ deal\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ the\ rights\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ and/or\ sell\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ Software\ is\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:\ The}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ copies\ or\ substantial\ portions\ of\ the\ Software.\ THE\ SOFTWARE\ IS\ PROVIDED}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR\ IMPLIED,\ INCLUDING\ BUT}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS\ FOR\ A\ PARTICULAR}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE\ AUTHORS\ OR\ COPYRIGHT}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER\ LIABILITY,\ WHETHER\ IN\ AN}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,\ OUT\ OF\ OR\ IN}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ The\ following\ class\ implements\ the\ \ \ methods\ to\ set,\ get,\ and\ read\ from\ the\ ENS160\ Air\ Quality}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Sensor.}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}sfe\_bus.h"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}sfe\_ens160\_regs.h"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ENS160\_ADDRESS\_LOW\ 0x52}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ENS160\_ADDRESS\_HIGH\ 0x53}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ENS160\_DEVICE\_ID\ 0x0160}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{class\ }QwDevENS160}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ QwDevENS160()\ :\ \_i2cAddress\{0\},\ \_cs\{0\}\ \{\};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{comment}{//\ init()}}
+\DoxyCodeLine{00058\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ Called\ to\ init\ the\ system.\ Connects\ to\ the\ device\ and\ sets\ it\ up\ for}}
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ operation}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{bool}\ init();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ isConnected()}}
+\DoxyCodeLine{00066\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00067\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ Description}}
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ \ retval\ \ \ \ \ \ true\ if\ device\ is\ connected,\ false\ if\ not\ connected}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{bool}\ isConnected();\ \textcolor{comment}{//\ Checks\ if\ sensor\ ack's\ the\ I2C\ request}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ writeRegisterRegion()}}
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ \ Description}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//\ \ reg\ \ \ \ \ \ \ \ \ \ register\ to\ write\ to}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ \ data\ \ \ \ \ \ \ \ \ Array\ to\ store\ data\ in}}
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ \ length\ \ \ \ \ \ \ Length\ of\ the\ data\ being\ written\ in\ bytes}}
+\DoxyCodeLine{00083\ \ \ \textcolor{comment}{//\ \ retval\ \ \ \ \ \ \ -\/1\ =\ error,\ 0\ =\ success}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ int32\_t\ writeRegisterRegion(uint8\_t\ reg,\ uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00086\ \ \ int32\_t\ writeRegisterRegion(uint8\_t\ reg,\ uint8\_t\ data,\ uint16\_t\ length);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \textcolor{comment}{//\ readRegisterRegion()}}
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ \ Description}}
+\DoxyCodeLine{00093\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00094\ \ \ \textcolor{comment}{//\ \ reg\ \ \ \ \ \ \ \ \ \ register\ to\ read\ from}}
+\DoxyCodeLine{00095\ \ \ \textcolor{comment}{//\ \ data\ \ \ \ \ \ \ \ \ Array\ to\ store\ data\ in}}
+\DoxyCodeLine{00096\ \ \ \textcolor{comment}{//\ \ length\ \ \ \ \ \ \ Length\ of\ the\ data\ to\ read\ in\ bytes}}
+\DoxyCodeLine{00097\ \ \ \textcolor{comment}{//\ \ retval\ \ \ \ \ \ \ -\/1\ =\ error,\ 0\ =\ success}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ int32\_t\ readRegisterRegion(uint8\_t\ reg,\ uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{comment}{//\ setCommunicationBus()}}
+\DoxyCodeLine{00103\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00104\ \ \ \textcolor{comment}{//\ Called\ to\ set\ the\ Communication\ Bus\ object\ to\ use}}
+\DoxyCodeLine{00105\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ \ Description}}
+\DoxyCodeLine{00107\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00108\ \ \ \textcolor{comment}{//\ \ theBus\ \ \ \ \ \ \ The\ Bus\ object\ to\ use}}
+\DoxyCodeLine{00109\ \ \ \textcolor{comment}{//\ \ idBus\ \ \ \ \ \ \ \ The\ bus\ ID\ for\ the\ target\ device.}}
+\DoxyCodeLine{00110\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ setCommunicationBus(\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\_ENS160::QwIDeviceBus}}\ \&theBus,\ uint8\_t\ i2cAddress);}
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{void}\ setCommunicationBus(\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\_ENS160::QwIDeviceBus}}\ \&theBus);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{comment}{//\ General\ Operation}}
+\DoxyCodeLine{00117\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{bool}\ setOperatingMode(uint8\_t);}
+\DoxyCodeLine{00120\ \ \ int8\_t\ getOperatingMode();}
+\DoxyCodeLine{00121\ \ \ uint32\_t\ getAppVer();}
+\DoxyCodeLine{00122\ \ \ uint16\_t\ getUniqueID();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{comment}{//\ Interrupts}}
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordtype}{bool}\ configureInterrupt(uint8\_t);}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{bool}\ enableInterrupt(\textcolor{keywordtype}{bool}\ enable\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{bool}\ setInterruptPolarity(\textcolor{keywordtype}{bool}\ activeHigh\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00129\ \ \ int8\_t\ getInterruptPolarity();}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{bool}\ setInterruptDrive(\textcolor{keywordtype}{bool}\ pushPull\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{bool}\ setDataInterrupt(\textcolor{keywordtype}{bool}\ enable\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00132\ \ \ \textcolor{keywordtype}{bool}\ setGPRInterrupt(\textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{comment}{//\ Temperature\ and\ Humidity\ compensation}}
+\DoxyCodeLine{00136\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{bool}\ setTempCompensation(\textcolor{keywordtype}{float});}
+\DoxyCodeLine{00139\ \ \ \textcolor{comment}{//\ float\ getTempCompensation();}}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{bool}\ setTempCompensationCelsius(\textcolor{keywordtype}{float});}
+\DoxyCodeLine{00141\ \ \ \textcolor{comment}{//\ float\ getTempCompensationCelsius();}}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{bool}\ setRHCompensation(uint16\_t);}
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{bool}\ setRHCompensationFloat(\textcolor{keywordtype}{float});}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00146\ \ \ \textcolor{comment}{//\ Device\ status}}
+\DoxyCodeLine{00147\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordtype}{bool}\ checkDataStatus();}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{bool}\ checkGPRStatus();}
+\DoxyCodeLine{00151\ \ \ uint8\_t\ getFlags();}
+\DoxyCodeLine{00152\ \ \ \textcolor{keywordtype}{bool}\ checkOperationStatus();}
+\DoxyCodeLine{00153\ \ \ \textcolor{keywordtype}{bool}\ getOperationError();}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00156\ \ \ \textcolor{comment}{//\ Data\ registers}}
+\DoxyCodeLine{00157\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ uint8\_t\ getAQI();}
+\DoxyCodeLine{00160\ \ \ uint16\_t\ getTVOC();}
+\DoxyCodeLine{00161\ \ \ uint16\_t\ getETOH();}
+\DoxyCodeLine{00162\ \ \ uint16\_t\ getECO2();}
+\DoxyCodeLine{00163\ \ \ \textcolor{keywordtype}{float}\ getTempKelvin();}
+\DoxyCodeLine{00164\ \ \ \textcolor{keywordtype}{float}\ getTempCelsius();}
+\DoxyCodeLine{00165\ \ \ \textcolor{keywordtype}{float}\ getRH();}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ uint16\_t\ \mbox{\hyperlink{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074}{getRawResistance}}();}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\_ENS160::QwIDeviceBus}}\ *\_sfeBus;}
+\DoxyCodeLine{00171\ \ \ uint8\_t\ \_i2cAddress;}
+\DoxyCodeLine{00172\ \ \ uint8\_t\ \_cs;}
+\DoxyCodeLine{00173\ \};}
+
+\end{DoxyCode}

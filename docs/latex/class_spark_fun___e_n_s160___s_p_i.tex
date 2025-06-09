@@ -1,0 +1,95 @@
+\doxysection{Spark\+Fun\+\_\+\+ENS160\+\_\+\+SPI Class Reference}
+\hypertarget{class_spark_fun___e_n_s160___s_p_i}{}\label{class_spark_fun___e_n_s160___s_p_i}\index{SparkFun\_ENS160\_SPI@{SparkFun\_ENS160\_SPI}}
+Inheritance diagram for Spark\+Fun\+\_\+\+ENS160\+\_\+\+SPI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_spark_fun___e_n_s160___s_p_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_spark_fun___e_n_s160___s_p_i_a21f43bdc90e2eaf5730e7731205dffe3}\label{class_spark_fun___e_n_s160___s_p_i_a21f43bdc90e2eaf5730e7731205dffe3} 
+bool {\bfseries begin} (uint8\+\_\+t cs)
+\item 
+\Hypertarget{class_spark_fun___e_n_s160___s_p_i_a1ba87c57dbb2b027f008cda3f4ae5108}\label{class_spark_fun___e_n_s160___s_p_i_a1ba87c57dbb2b027f008cda3f4ae5108} 
+bool {\bfseries begin} (SPIClass \&spi\+Port, SPISettings ens\+Settings, uint8\+\_\+t cs)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_qw_dev_e_n_s160}{Qw\+Dev\+ENS160}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries init} ()
+\item 
+bool {\bfseries is\+Connected} ()
+\item 
+int32\+\_\+t {\bfseries write\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\item 
+int32\+\_\+t {\bfseries write\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t data, uint16\+\_\+t length)
+\item 
+int32\+\_\+t {\bfseries read\+Register\+Region} (uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\item 
+void {\bfseries set\+Communication\+Bus} (\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}} \&the\+Bus, uint8\+\_\+t i2c\+Address)
+\item 
+void {\bfseries set\+Communication\+Bus} (\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}} \&the\+Bus)
+\item 
+bool {\bfseries set\+Operating\+Mode} (uint8\+\_\+t)
+\item 
+int8\+\_\+t {\bfseries get\+Operating\+Mode} ()
+\item 
+uint32\+\_\+t {\bfseries get\+App\+Ver} ()
+\item 
+uint16\+\_\+t {\bfseries get\+Unique\+ID} ()
+\item 
+bool {\bfseries configure\+Interrupt} (uint8\+\_\+t)
+\item 
+bool {\bfseries enable\+Interrupt} (bool enable=true)
+\item 
+bool {\bfseries set\+Interrupt\+Polarity} (bool active\+High=true)
+\item 
+int8\+\_\+t {\bfseries get\+Interrupt\+Polarity} ()
+\item 
+bool {\bfseries set\+Interrupt\+Drive} (bool push\+Pull=true)
+\item 
+bool {\bfseries set\+Data\+Interrupt} (bool enable=true)
+\item 
+bool {\bfseries set\+GPRInterrupt} (bool)
+\item 
+bool {\bfseries set\+Temp\+Compensation} (float)
+\item 
+bool {\bfseries set\+Temp\+Compensation\+Celsius} (float)
+\item 
+bool {\bfseries set\+RHCompensation} (uint16\+\_\+t)
+\item 
+bool {\bfseries set\+RHCompensation\+Float} (float)
+\item 
+bool {\bfseries check\+Data\+Status} ()
+\item 
+bool {\bfseries check\+GPRStatus} ()
+\item 
+uint8\+\_\+t {\bfseries get\+Flags} ()
+\item 
+bool {\bfseries check\+Operation\+Status} ()
+\item 
+bool {\bfseries get\+Operation\+Error} ()
+\item 
+uint8\+\_\+t {\bfseries get\+AQI} ()
+\item 
+uint16\+\_\+t {\bfseries get\+TVOC} ()
+\item 
+uint16\+\_\+t {\bfseries get\+ETOH} ()
+\item 
+uint16\+\_\+t {\bfseries get\+ECO2} ()
+\item 
+float {\bfseries get\+Temp\+Kelvin} ()
+\item 
+float {\bfseries get\+Temp\+Celsius} ()
+\item 
+float {\bfseries get\+RH} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{class_qw_dev_e_n_s160_a1d169ac85d33a2f2cc5e7e99571be074}{get\+Raw\+Resistance}} ()
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Spark\+Fun\+\_\+\+Indoor\+\_\+\+Air\+\_\+\+Quality\+\_\+\+Sensor-\/\+ENS160\+\_\+\+Arduino\+\_\+\+Library-\/main/src/Spark\+Fun\+\_\+\+ENS160.\+h\end{DoxyCompactItemize}

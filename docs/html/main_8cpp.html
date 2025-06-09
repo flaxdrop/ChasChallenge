@@ -109,110 +109,67 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>Huvud dokumentet i projektet, filen som innehåller <a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Initialiserar systemet och ansluter till sensorer och WiFi.">setup()</a> och <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Huvudloop för att samla in, behandla och skicka mätdata.">loop()</a> för Arduino Mikrokontroller.  
+<p>Main file of the project containing <a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Initializes the system and connects to sensors and WiFi.">setup()</a> and <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Main loop for collecting, processing, and sending measurement data.">loop()</a> for Arduino microcontroller.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;WiFiS3.h&gt;</code><br />
 <code>#include &lt;WiFiSSLClient.h&gt;</code><br />
 <code>#include &lt;ArduinoHttpClient.h&gt;</code><br />
 <code>#include &lt;Wire.h&gt;</code><br />
 <code>#include &lt;sps30.h&gt;</code><br />
-<code>#include &lt;<a class="el" href="_spark_fun_b_m_e280_8h_source.html">SparkFunBME280.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="_spark_fun___e_n_s160_8h_source.html">SparkFun_ENS160.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="secret_8h_source.html">secret.h</a>&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for main.cpp:</div>
-<div class="dyncontent">
-<div class="center"><img src="main_8cpp__incl.png" border="0" usemap="#asrc_2main_8cpp" alt=""/></div>
-<map name="asrc_2main_8cpp" id="asrc_2main_8cpp">
-<area shape="rect" title="Huvud dokumentet i projektet, filen som innehåller setup() och loop() för Arduino Mikrokontroller." alt="" coords="398,5,494,32"/>
-<area shape="rect" title=" " alt="" coords="5,80,81,107"/>
-<area shape="poly" title=" " alt="" coords="398,30,266,51,96,82,95,77,265,46,397,25"/>
-<area shape="rect" title=" " alt="" coords="105,80,224,107"/>
-<area shape="poly" title=" " alt="" coords="398,35,229,78,227,73,397,30"/>
-<area shape="rect" title=" " alt="" coords="247,80,383,107"/>
-<area shape="poly" title=" " alt="" coords="424,35,353,74,350,70,422,30"/>
-<area shape="rect" title=" " alt="" coords="444,304,503,331"/>
-<area shape="poly" title=" " alt="" coords="449,32,474,288,468,289,444,33"/>
-<area shape="rect" title=" " alt="" coords="676,80,743,107"/>
-<area shape="poly" title=" " alt="" coords="492,30,661,76,660,81,491,35"/>
-<area shape="rect" href="_spark_fun_b_m_e280_8h.html" title=" " alt="" coords="508,229,647,256"/>
-<area shape="poly" title=" " alt="" coords="455,31,499,105,564,215,560,217,494,108,451,34"/>
-<area shape="rect" href="_spark_fun___e_n_s160_8h.html" title=" " alt="" coords="508,80,652,107"/>
-<area shape="poly" title=" " alt="" coords="470,30,545,70,542,75,468,35"/>
-<area shape="rect" href="secret_8h.html" title=" " alt="" coords="768,80,836,107"/>
-<area shape="poly" title=" " alt="" coords="495,26,753,77,752,82,494,31"/>
-<area shape="poly" title=" " alt="" coords="561,259,506,297,503,293,558,254"/>
-<area shape="rect" title=" " alt="" coords="530,304,625,331"/>
-<area shape="poly" title=" " alt="" coords="580,257,580,288,575,288,575,257"/>
-<area shape="rect" title=" " alt="" coords="682,304,737,331"/>
-<area shape="poly" title=" " alt="" coords="602,254,675,294,672,299,599,259"/>
-<area shape="poly" title=" " alt="" coords="573,109,537,160,499,230,481,290,476,288,494,228,532,158,568,106"/>
-<area shape="poly" title=" " alt="" coords="613,105,650,123,692,150,732,185,749,205,763,228,766,246,762,264,739,295,735,292,757,262,761,246,758,230,745,208,728,188,689,154,648,128,611,110"/>
-<area shape="rect" href="sfe__ens160_8h.html" title=" " alt="" coords="823,155,922,181"/>
-<area shape="poly" title=" " alt="" coords="632,105,808,148,807,153,631,110"/>
-<area shape="rect" href="sfe__bus_8h.html" title=" " alt="" coords="670,229,749,256"/>
-<area shape="poly" title=" " alt="" coords="593,105,691,216,687,219,589,109"/>
-<area shape="poly" title=" " alt="" coords="845,184,753,225,751,220,843,179"/>
-<area shape="rect" href="sfe__ens160__regs_8h.html" title=" " alt="" coords="892,229,1023,256"/>
-<area shape="poly" title=" " alt="" coords="889,180,933,217,930,221,885,184"/>
-<area shape="rect" title=" " alt="" coords="874,304,938,331"/>
-<area shape="poly" title=" " alt="" coords="875,182,877,215,883,255,895,289,890,291,878,257,871,216,870,182"/>
-<area shape="poly" title=" " alt="" coords="671,259,519,305,518,300,669,254"/>
-<area shape="poly" title=" " alt="" coords="712,257,712,288,707,288,707,257"/>
-<area shape="poly" title=" " alt="" coords="951,258,926,293,921,290,946,255"/>
-</map>
-</div>
+<code>#include &lt;SparkFunBME280.h&gt;</code><br />
+<code>#include &lt;SparkFun_ENS160.h&gt;</code><br />
+<code>#include &lt;secret.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
-<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialiserar systemet och ansluter till sensorer och WiFi.  <br /></td></tr>
+<tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the system and connects to sensors and WiFi.  <br /></td></tr>
 <tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
-<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Huvudloop för att samla in, behandla och skicka mätdata.  <br /></td></tr>
+<tr class="memdesc:afe461d27b9c48d5921c00d521181f12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Main loop for collecting, processing, and sending measurement data.  <br /></td></tr>
 <tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a587ba0cb07f02913598610049a3bbb79" id="r_a587ba0cb07f02913598610049a3bbb79"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a587ba0cb07f02913598610049a3bbb79">ssid</a> = <a class="el" href="secret_8h.html#a42d6df2730b91795365dae903f258ac5">hidden_ssid</a></td></tr>
-<tr class="memdesc:a587ba0cb07f02913598610049a3bbb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namnet på Wifi nätverket som programmet försöker ansluta sig till.  <br /></td></tr>
+<tr class="memitem:a587ba0cb07f02913598610049a3bbb79" id="r_a587ba0cb07f02913598610049a3bbb79"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a587ba0cb07f02913598610049a3bbb79">ssid</a> = hidden_ssid</td></tr>
+<tr class="memdesc:a587ba0cb07f02913598610049a3bbb79"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of the WiFi network the program attempts to connect to.  <br /></td></tr>
 <tr class="separator:a587ba0cb07f02913598610049a3bbb79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4a2ebcb494493f648ae1e6975672575" id="r_aa4a2ebcb494493f648ae1e6975672575"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a2ebcb494493f648ae1e6975672575">password</a> = <a class="el" href="secret_8h.html#acfdd9e5d44b7286b4ccdac090676fed7">hidden_password</a></td></tr>
-<tr class="memdesc:aa4a2ebcb494493f648ae1e6975672575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lösenordet på Wifi nätverket som programmet försöker ansluta sig till.  <br /></td></tr>
+<tr class="memitem:aa4a2ebcb494493f648ae1e6975672575" id="r_aa4a2ebcb494493f648ae1e6975672575"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4a2ebcb494493f648ae1e6975672575">password</a> = hidden_password</td></tr>
+<tr class="memdesc:aa4a2ebcb494493f648ae1e6975672575"><td class="mdescLeft">&#160;</td><td class="mdescRight">The password of the WiFi network the program attempts to connect to.  <br /></td></tr>
 <tr class="separator:aa4a2ebcb494493f648ae1e6975672575"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acaf3e428b69fccc0e6330677471be4ea" id="r_acaf3e428b69fccc0e6330677471be4ea"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaf3e428b69fccc0e6330677471be4ea">serverHost</a> = &quot;chaschallenge-backend.onrender.com&quot;</td></tr>
-<tr class="memdesc:acaf3e428b69fccc0e6330677471be4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namnet på backend servern som koden ansluter sig till.  <br /></td></tr>
+<tr class="memdesc:acaf3e428b69fccc0e6330677471be4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hostname of the backend server that the code connects to.  <br /></td></tr>
 <tr class="separator:acaf3e428b69fccc0e6330677471be4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2decc483ae2d615cfc10308e8a10ee85" id="r_a2decc483ae2d615cfc10308e8a10ee85"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2decc483ae2d615cfc10308e8a10ee85">serverPort</a> = 443</td></tr>
-<tr class="memdesc:a2decc483ae2d615cfc10308e8a10ee85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Portnummer som används för att ansluta till backend-servern.  <br /></td></tr>
+<tr class="memdesc:a2decc483ae2d615cfc10308e8a10ee85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Port number used to connect to the backend server.  <br /></td></tr>
 <tr class="separator:a2decc483ae2d615cfc10308e8a10ee85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67966c75d1bb9def32d5aace26fb2317" id="r_a67966c75d1bb9def32d5aace26fb2317"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67966c75d1bb9def32d5aace26fb2317">serverPath</a> = &quot;/measurements&quot;</td></tr>
-<tr class="memdesc:a67966c75d1bb9def32d5aace26fb2317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sökvägen till endpointen på backend-servern för mätdata.  <br /></td></tr>
+<tr class="memdesc:a67966c75d1bb9def32d5aace26fb2317"><td class="mdescLeft">&#160;</td><td class="mdescRight">Endpoint path on the backend server for measurement data.  <br /></td></tr>
 <tr class="separator:a67966c75d1bb9def32d5aace26fb2317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff9b1c6929580cf9d0b978798a5754a6" id="r_aff9b1c6929580cf9d0b978798a5754a6"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff9b1c6929580cf9d0b978798a5754a6">redLedPin</a> = 5</td></tr>
-<tr class="memdesc:aff9b1c6929580cf9d0b978798a5754a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin-nummer för den röda LED:en på trafikljusmodulen.  <br /></td></tr>
+<tr class="memdesc:aff9b1c6929580cf9d0b978798a5754a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin number for the red LED on the traffic light module.  <br /></td></tr>
 <tr class="separator:aff9b1c6929580cf9d0b978798a5754a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca0e82344f3a8630aa811193e1e59b1e" id="r_aca0e82344f3a8630aa811193e1e59b1e"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca0e82344f3a8630aa811193e1e59b1e">yellowLedPin</a> = 6</td></tr>
-<tr class="memdesc:aca0e82344f3a8630aa811193e1e59b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin-nummer för den gula LED:en på trafikljusmodulen.  <br /></td></tr>
+<tr class="memdesc:aca0e82344f3a8630aa811193e1e59b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin number for the yellow LED on the traffic light module.  <br /></td></tr>
 <tr class="separator:aca0e82344f3a8630aa811193e1e59b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81200aafdb16b7b0e636903da608217d" id="r_a81200aafdb16b7b0e636903da608217d"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81200aafdb16b7b0e636903da608217d">greenLedPin</a> = 7</td></tr>
-<tr class="memdesc:a81200aafdb16b7b0e636903da608217d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin-nummer för den gröna LED:en på trafikljusmodulen.  <br /></td></tr>
+<tr class="memdesc:a81200aafdb16b7b0e636903da608217d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pin number for the green LED on the traffic light module.  <br /></td></tr>
 <tr class="separator:a81200aafdb16b7b0e636903da608217d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfe7e6107f25339e44619d1f0727e274" id="r_abfe7e6107f25339e44619d1f0727e274"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_b_m_e280.html">BME280</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfe7e6107f25339e44619d1f0727e274">mySensor</a></td></tr>
-<tr class="memdesc:abfe7e6107f25339e44619d1f0727e274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Objekt av BME280-klassen för att läsa temperatur, luftfuktighet och lufttryck.  <br /></td></tr>
+<tr class="memdesc:abfe7e6107f25339e44619d1f0727e274"><td class="mdescLeft">&#160;</td><td class="mdescRight">Object of the <a class="el" href="class_b_m_e280.html">BME280</a> class for reading temperature, humidity, and air pressure.  <br /></td></tr>
 <tr class="separator:abfe7e6107f25339e44619d1f0727e274"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad55854a124227cde549073acfc9e3df7" id="r_ad55854a124227cde549073acfc9e3df7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad55854a124227cde549073acfc9e3df7">myENS</a></td></tr>
-<tr class="memdesc:ad55854a124227cde549073acfc9e3df7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ENS160-sensor för luftkvalitetsanalys (AQI, TVOC, eCO2).  <br /></td></tr>
+<tr class="memdesc:ad55854a124227cde549073acfc9e3df7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ENS160 sensor for air quality analysis (AQI, TVOC, eCO2).  <br /></td></tr>
 <tr class="separator:ad55854a124227cde549073acfc9e3df7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7a52c141e84f170fc495e70da1ce8b6" id="r_af7a52c141e84f170fc495e70da1ce8b6"><td class="memItemLeft" align="right" valign="top">WiFiSSLClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7a52c141e84f170fc495e70da1ce8b6">wifi</a></td></tr>
-<tr class="memdesc:af7a52c141e84f170fc495e70da1ce8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL-krypterad WiFi-klient för HTTPS-kommunikation.  <br /></td></tr>
+<tr class="memdesc:af7a52c141e84f170fc495e70da1ce8b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">SSL-encrypted WiFi client for HTTPS communication.  <br /></td></tr>
 <tr class="separator:af7a52c141e84f170fc495e70da1ce8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90635ff3c75be497dbac96d5536b378e" id="r_a90635ff3c75be497dbac96d5536b378e"><td class="memItemLeft" align="right" valign="top">HttpClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90635ff3c75be497dbac96d5536b378e">client</a> = HttpClient(<a class="el" href="#af7a52c141e84f170fc495e70da1ce8b6">wifi</a>, <a class="el" href="#acaf3e428b69fccc0e6330677471be4ea">serverHost</a>, <a class="el" href="#a2decc483ae2d615cfc10308e8a10ee85">serverPort</a>)</td></tr>
-<tr class="memdesc:a90635ff3c75be497dbac96d5536b378e"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP-klient som skickar data till ChasChallenge-backend via POST-request.  <br /></td></tr>
+<tr class="memdesc:a90635ff3c75be497dbac96d5536b378e"><td class="mdescLeft">&#160;</td><td class="mdescRight">HTTP client that sends data to the Chas Challenge backend via a POST request.  <br /></td></tr>
 <tr class="separator:a90635ff3c75be497dbac96d5536b378e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Huvud dokumentet i projektet, filen som innehåller <a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Initialiserar systemet och ansluter till sensorer och WiFi.">setup()</a> och <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Huvudloop för att samla in, behandla och skicka mätdata.">loop()</a> för Arduino Mikrokontroller. </p>
+<div class="textblock"><p>Main file of the project containing <a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d" title="Initializes the system and connects to sensors and WiFi.">setup()</a> and <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Main loop for collecting, processing, and sending measurement data.">loop()</a> for Arduino microcontroller. </p>
 <dl class="section author"><dt>Author</dt><dd>SyntaxSquad (<a href="https://github.com/flaxdrop/ChasChallenge">https://github.com/flaxdrop/ChasChallenge</a>) </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025-05-30</dd></dl>
@@ -233,42 +190,42 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Huvudloop för att samla in, behandla och skicka mätdata. </p>
-<p>Utför följande steg i varje iteration:</p><ul>
-<li>Läser temperatur, luftfuktighet och lufttryck från <a class="el" href="class_b_m_e280.html">BME280</a></li>
-<li>Justerar temperaturkompensation för ENS160</li>
-<li>Hämtar luftkvalitetsvärden (AQI, TVOC, eCO2) från ENS160</li>
-<li>Styr LED-indikatorerna baserat på AQI</li>
-<li>Läser partikeldata från SPS30 om tillgängligt</li>
-<li>Formaterar och skickar JSON-payload via en HTTP POST-request </li>
+<p>Main loop for collecting, processing, and sending measurement data. </p>
+<p>Each iteration performs the following steps:</p><ul>
+<li>Reads temperature, humidity, and pressure from <a class="el" href="class_b_m_e280.html">BME280</a></li>
+<li>Applies temperature compensation to ENS160</li>
+<li>Retrieves air quality values (AQI, TVOC, eCO2) from ENS160</li>
+<li>Controls LED indicators based on AQI</li>
+<li>Reads particle data from SPS30 if available</li>
+<li>Formats and sends JSON payload via HTTP POST request </li>
 </ul>
-<p>Lagrar värdet från readTempC() från <a class="el" href="class_b_m_e280.html">BME280</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Lagrar värdet från readFloatHumidity() från <a class="el" href="class_b_m_e280.html">BME280</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Lagrar värdet från readFloatPressure() från <a class="el" href="class_b_m_e280.html">BME280</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Lagrar värdet från getAQI() från <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Lagrar värdet från getTVOC() från <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Lagrar värdet från getECO2() från <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> klassen</p>
-<p>Samverkar med String json.</p>
-<p>Strukt för att lagra mätdata från SPS30-partikelsensorn.</p>
-<p>Innehåller information om masskoncentration (μg/m³), antal partiklar per volymenhet, och typisk partikelstorlek. Fylls med data om sps30_read_measurement() lyckas.</p>
-<p>Indikerar om SPS30-sensorn har ny mätdata att hämta.</p>
-<p>Hämtas från sps30_read_data_ready(). Om värdet är 1, finns ny data.</p>
-<p>Flagga som anger om giltig SPS30-data kunde hämtas.</p>
-<p>Sätts till true om både:</p><ul>
-<li>sensorn har ny data (data_ready = 1)</li>
-<li>och mätdata kunde läsas utan fel (sps30_read_measurement() == 0)</li>
+<p>Stores value from readTempC() of <a class="el" href="class_b_m_e280.html">BME280</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Stores value from readFloatHumidity() of <a class="el" href="class_b_m_e280.html">BME280</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Stores value from readFloatPressure() of <a class="el" href="class_b_m_e280.html">BME280</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Stores value from getAQI() of <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Stores value from getTVOC() of <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Stores value from getECO2() of <a class="el" href="class_spark_fun___e_n_s160.html">SparkFun_ENS160</a> class</p>
+<p>Used in building the JSON string.</p>
+<p>Struct to store measurement data from the SPS30 particle sensor.</p>
+<p>Contains mass concentration (μg/m³), particle count per volume, and typical particle size. Populated if sps30_read_measurement() succeeds.</p>
+<p>Indicates if new data is available from the SPS30 sensor.</p>
+<p>Retrieved from sps30_read_data_ready(). If value is 1, new data is available.</p>
+<p>Flag indicating if valid SPS30 data was read.</p>
+<p>Set to true if both:</p><ul>
+<li>the sensor has new data (data_ready = 1), and</li>
+<li>measurement was read successfully (sps30_read_measurement() == 0)</li>
 </ul>
-<p>JSON-sträng som innehåller alla insamlade sensorvärden.</p>
-<p>Byggs upp i <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Huvudloop för att samla in, behandla och skicka mätdata.">loop()</a> och används som payload i POST-förfrågan till backend-servern. Innehåller temperatur, luftfuktighet, tryck, luftkvalitet (AQI, TVOC, eCO2) samt partikeldensiteter om tillgängligt.</p>
-<p>HTTP-statuskod som returneras av backend-servern efter POST-förfrågan.</p>
-<p>Exempel: 200 (OK), 400 (Bad Request), 500 (Server Error) osv. Används för att kontrollera om dataskick lyckades.</p>
-<p>Svarskroppen från backend-servern i textformat.</p>
-<p>Innehåller eventuellt felmeddelanden eller bekräftelser från API:et. Används för felsökning och loggning.</p>
+<p>JSON string containing all collected sensor data.</p>
+<p>Constructed in <a class="el" href="#afe461d27b9c48d5921c00d521181f12f" title="Main loop for collecting, processing, and sending measurement data.">loop()</a> and used as the payload in the POST request to the backend server. Includes temperature, humidity, pressure, air quality (AQI, TVOC, eCO2), and particle densities if available.</p>
+<p>HTTP status code returned by the backend server after the POST request.</p>
+<p>Example: 200 (OK), 400 (Bad Request), 500 (Server Error), etc. Used to verify if the data submission was successful.</p>
+<p>Response body from the backend server in text format.</p>
+<p>May contain error messages or confirmations from the API. Used for debugging and logging.</p>
 
 </div>
 </div>
@@ -287,13 +244,13 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialiserar systemet och ansluter till sensorer och WiFi. </p>
-<p>Utför följande steg:</p><ul>
-<li>Startar seriekommunikation</li>
-<li>Konfigurerar I2C-bussen</li>
-<li>Initierar LED-pinnar för luftkvalitetsindikering</li>
-<li>Ansluter till WiFi</li>
-<li>Initierar sensorerna <a class="el" href="class_b_m_e280.html">BME280</a>, ENS160 och SPS30 </li>
+<p>Initializes the system and connects to sensors and WiFi. </p>
+<p>Executes the following steps:</p><ul>
+<li>Starts serial communication</li>
+<li>Configures the I2C bus</li>
+<li>Initializes LED pins for air quality indication</li>
+<li>Connects to WiFi</li>
+<li>Initializes the <a class="el" href="class_b_m_e280.html">BME280</a>, ENS160, and SPS30 sensors </li>
 </ul>
 
 </div>
@@ -311,8 +268,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>HTTP-klient som skickar data till ChasChallenge-backend via POST-request. </p>
-<p>Använder WiFiSSLClient som transportlager och skickar JSON-data till servern. </p>
+<p>HTTP client that sends data to the Chas Challenge backend via a POST request. </p>
+<p>Uses WiFiSSLClient as the transport layer and sends JSON data to the server. </p>
 
 </div>
 </div>
@@ -328,8 +285,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pin-nummer för den gröna LED:en på trafikljusmodulen. </p>
-<p>Standard-värde är D7 på mikrokontrollen. </p>
+<p>Pin number for the green LED on the traffic light module. </p>
+<p>Default value is D7 on the microcontroller. </p>
 
 </div>
 </div>
@@ -345,8 +302,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>ENS160-sensor för luftkvalitetsanalys (AQI, TVOC, eCO2). </p>
-<p>Används för att indikera luftkvalitet och kompensera med temperatur/humidity. </p>
+<p>ENS160 sensor for air quality analysis (AQI, TVOC, eCO2). </p>
+<p>Used to indicate air quality and compensate using temperature/humidity data. </p>
 
 </div>
 </div>
@@ -362,8 +319,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Objekt av BME280-klassen för att läsa temperatur, luftfuktighet och lufttryck. </p>
-<p>Används för att hämta miljödata inomhus. </p>
+<p>Object of the <a class="el" href="class_b_m_e280.html">BME280</a> class for reading temperature, humidity, and air pressure. </p>
+<p>Used to collect indoor environmental data. </p>
 
 </div>
 </div>
@@ -374,13 +331,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* password = <a class="el" href="secret_8h.html#acfdd9e5d44b7286b4ccdac090676fed7">hidden_password</a></td>
+          <td class="memname">const char* password = hidden_password</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Lösenordet på Wifi nätverket som programmet försöker ansluta sig till. </p>
-<p>Värdet "hidden_password" som den kopierar hittar man i <a class="el" href="secret_8h.html">secret.h</a> </p>
+<p>The password of the WiFi network the program attempts to connect to. </p>
+<p>The value "hidden_password" is retrieved from <a class="el" href="secret_8h_source.html">secret.h</a> </p>
 
 </div>
 </div>
@@ -396,8 +353,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pin-nummer för den röda LED:en på trafikljusmodulen. </p>
-<p>Standard-värde är D5 på mikrokontrollen. </p>
+<p>Pin number for the red LED on the traffic light module. </p>
+<p>Default value is D5 on the microcontroller. </p>
 
 </div>
 </div>
@@ -413,8 +370,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Namnet på backend servern som koden ansluter sig till. </p>
-<p>Detta är adressen som används för att ansluta till Chas Challenge-backend-API:et. Den används av nätverksmodulen för att skicka och ta emot data. </p>
+<p>Hostname of the backend server that the code connects to. </p>
+<p>This is the address used to connect to the Chas Challenge backend API. It is used by the networking module to send and receive data. </p>
 
 </div>
 </div>
@@ -430,8 +387,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sökvägen till endpointen på backend-servern för mätdata. </p>
-<p>Används av klienten för att skicka eller hämta mätvärden via API:et. Kombineras vanligtvis med serverHost och serverPort för att bygga hela URL:en. </p>
+<p>Endpoint path on the backend server for measurement data. </p>
+<p>Used by the client to send or retrieve measurements via the API. Typically combined with serverHost and serverPort to construct the full URL. </p>
 
 </div>
 </div>
@@ -447,8 +404,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Portnummer som används för att ansluta till backend-servern. </p>
-<p>Standardporten för HTTPS (443) används för att skicka och ta emot data via en säker anslutning till Chas Challenge-backend. </p>
+<p>Port number used to connect to the backend server. </p>
+<p>The default port for HTTPS (443) is used to send and receive data via a secure connection to the Chas Challenge backend. </p>
 
 </div>
 </div>
@@ -459,13 +416,13 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const char* ssid = <a class="el" href="secret_8h.html#a42d6df2730b91795365dae903f258ac5">hidden_ssid</a></td>
+          <td class="memname">const char* ssid = hidden_ssid</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Namnet på Wifi nätverket som programmet försöker ansluta sig till. </p>
-<p>Värdet "hidden_ssid" som den kopierar hittar man i <a class="el" href="secret_8h.html">secret.h</a> </p>
+<p>The name of the WiFi network the program attempts to connect to. </p>
+<p>The value "hidden_ssid" is retrieved from <a class="el" href="secret_8h_source.html">secret.h</a> </p>
 
 </div>
 </div>
@@ -481,8 +438,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>SSL-krypterad WiFi-klient för HTTPS-kommunikation. </p>
-<p>Används av HttpClient för att säkert kommunicera med backend-servern. </p>
+<p>SSL-encrypted WiFi client for HTTPS communication. </p>
+<p>Used by HttpClient to securely communicate with the backend server. </p>
 
 </div>
 </div>
@@ -498,8 +455,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Pin-nummer för den gula LED:en på trafikljusmodulen. </p>
-<p>Standard-värde är D6 på mikrokontrollen. </p>
+<p>Pin number for the yellow LED on the traffic light module. </p>
+<p>Default value is D6 on the microcontroller. </p>
 
 </div>
 </div>

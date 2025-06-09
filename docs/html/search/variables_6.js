@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['greenledpin_0',['greenLedPin',['../main_8cpp.html#a81200aafdb16b7b0e636903da608217d',1,'main.cpp']]]
+  ['wifi_0',['wifi',['../main_8cpp.html#af7a52c141e84f170fc495e70da1ce8b6',1,'main.cpp']]]
 ];

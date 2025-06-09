@@ -1,0 +1,119 @@
+\doxysection{BME280 Class Reference}
+\hypertarget{class_b_m_e280}{}\label{class_b_m_e280}\index{BME280@{BME280}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_m_e280_a994c102f010547f9c740a338ef9905c7}\label{class_b_m_e280_a994c102f010547f9c740a338ef9905c7} 
+uint8\+\_\+t {\bfseries begin} (void)
+\item 
+\Hypertarget{class_b_m_e280_a94349cf163caf14eb1cc2383bb24765f}\label{class_b_m_e280_a94349cf163caf14eb1cc2383bb24765f} 
+bool {\bfseries begin\+SPI} (uint8\+\_\+t cs\+Pin)
+\item 
+\Hypertarget{class_b_m_e280_aedb6352e601cb101c7892482aaecf557}\label{class_b_m_e280_aedb6352e601cb101c7892482aaecf557} 
+bool {\bfseries begin\+I2C} (Two\+Wire \&wire\+Port=Wire)
+\item 
+\Hypertarget{class_b_m_e280_a4ed4e25a18b5016366aea4bddde9eb84}\label{class_b_m_e280_a4ed4e25a18b5016366aea4bddde9eb84} 
+uint8\+\_\+t {\bfseries get\+Mode} (void)
+\item 
+\Hypertarget{class_b_m_e280_a813473f0d626781df90c55983ef34da7}\label{class_b_m_e280_a813473f0d626781df90c55983ef34da7} 
+void {\bfseries set\+Mode} (uint8\+\_\+t mode)
+\item 
+\Hypertarget{class_b_m_e280_aacfa87c5d984758a632a92077a666193}\label{class_b_m_e280_aacfa87c5d984758a632a92077a666193} 
+void {\bfseries set\+Temp\+Over\+Sample} (uint8\+\_\+t over\+Sample\+Amount)
+\item 
+\Hypertarget{class_b_m_e280_ad4fcffc37a415406da21d0ed489b5912}\label{class_b_m_e280_ad4fcffc37a415406da21d0ed489b5912} 
+void {\bfseries set\+Pressure\+Over\+Sample} (uint8\+\_\+t over\+Sample\+Amount)
+\item 
+\Hypertarget{class_b_m_e280_aaf4476482060b5c95bec1212faded5a8}\label{class_b_m_e280_aaf4476482060b5c95bec1212faded5a8} 
+void {\bfseries set\+Humidity\+Over\+Sample} (uint8\+\_\+t over\+Sample\+Amount)
+\item 
+\Hypertarget{class_b_m_e280_ac2068a8fafdc582cac57b5b9c74ee6b6}\label{class_b_m_e280_ac2068a8fafdc582cac57b5b9c74ee6b6} 
+void {\bfseries set\+Standby\+Time} (uint8\+\_\+t time\+Setting)
+\item 
+\Hypertarget{class_b_m_e280_a67eca2840e9b93e27059839c0ec5867c}\label{class_b_m_e280_a67eca2840e9b93e27059839c0ec5867c} 
+void {\bfseries set\+Filter} (uint8\+\_\+t filter\+Setting)
+\item 
+\Hypertarget{class_b_m_e280_a769e37c5a3b0ba6bf4929448a1bcccab}\label{class_b_m_e280_a769e37c5a3b0ba6bf4929448a1bcccab} 
+void {\bfseries set\+I2\+CAddress} (uint8\+\_\+t i2caddress)
+\item 
+\Hypertarget{class_b_m_e280_ac4ba38a35d5d41eb45d47559dd3c831c}\label{class_b_m_e280_ac4ba38a35d5d41eb45d47559dd3c831c} 
+void {\bfseries set\+Reference\+Pressure} (float ref\+Pressure)
+\item 
+\Hypertarget{class_b_m_e280_a9c6eca0574ae73eafc25e2e8d3f6c4af}\label{class_b_m_e280_a9c6eca0574ae73eafc25e2e8d3f6c4af} 
+float {\bfseries get\+Reference\+Pressure} ()
+\item 
+\Hypertarget{class_b_m_e280_a9609ea5993a0c1b4f8035d38c12f97b0}\label{class_b_m_e280_a9609ea5993a0c1b4f8035d38c12f97b0} 
+bool {\bfseries is\+Measuring} (void)
+\item 
+\Hypertarget{class_b_m_e280_aeec5deb6daace6ae390108b4210e9df7}\label{class_b_m_e280_aeec5deb6daace6ae390108b4210e9df7} 
+void {\bfseries reset} (void)
+\item 
+\Hypertarget{class_b_m_e280_a6638a8944b728fdbf1217aba3870e9d1}\label{class_b_m_e280_a6638a8944b728fdbf1217aba3870e9d1} 
+void {\bfseries read\+All\+Measurements} (\mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\+\_\+\+Sensor\+Measurements}} \texorpdfstring{$\ast$}{*}measurements, uint8\+\_\+t temp\+Scale=0)
+\item 
+\Hypertarget{class_b_m_e280_ada6e799917afb4f228e6253bc56ffe75}\label{class_b_m_e280_ada6e799917afb4f228e6253bc56ffe75} 
+float {\bfseries read\+Float\+Pressure} (void)
+\item 
+\Hypertarget{class_b_m_e280_af67b56ba50760ee1d116acc6c5010221}\label{class_b_m_e280_af67b56ba50760ee1d116acc6c5010221} 
+float {\bfseries read\+Float\+Altitude\+Meters} (void)
+\item 
+\Hypertarget{class_b_m_e280_a6525c8a26f887b52596c86bed99343cb}\label{class_b_m_e280_a6525c8a26f887b52596c86bed99343cb} 
+float {\bfseries read\+Float\+Altitude\+Feet} (void)
+\item 
+\Hypertarget{class_b_m_e280_a0d95506b732ce3670f249dbea6deb882}\label{class_b_m_e280_a0d95506b732ce3670f249dbea6deb882} 
+void {\bfseries read\+Float\+Pressure\+From\+Burst} (uint8\+\_\+t buffer\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\+\_\+\+Sensor\+Measurements}} \texorpdfstring{$\ast$}{*}measurements)
+\item 
+\Hypertarget{class_b_m_e280_a42ea7232039eebf5aadb391ef6132c35}\label{class_b_m_e280_a42ea7232039eebf5aadb391ef6132c35} 
+float {\bfseries read\+Float\+Humidity} (void)
+\item 
+\Hypertarget{class_b_m_e280_a4613da4078c1688afabfd5e2a155f8a2}\label{class_b_m_e280_a4613da4078c1688afabfd5e2a155f8a2} 
+void {\bfseries read\+Float\+Humidity\+From\+Burst} (uint8\+\_\+t buffer\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{struct_b_m_e280___sensor_measurements}{BME280\+\_\+\+Sensor\+Measurements}} \texorpdfstring{$\ast$}{*}measurements)
+\item 
+\Hypertarget{class_b_m_e280_aa57f1d7c4334ac3e0de5e70946c687a1}\label{class_b_m_e280_aa57f1d7c4334ac3e0de5e70946c687a1} 
+void {\bfseries set\+Temperature\+Correction} (float corr)
+\item 
+\Hypertarget{class_b_m_e280_afffdd1d7ded9e1f92200e70669019d97}\label{class_b_m_e280_afffdd1d7ded9e1f92200e70669019d97} 
+float {\bfseries read\+TempC} (void)
+\item 
+\Hypertarget{class_b_m_e280_a9648b496f6b4700550782a715a98b3c7}\label{class_b_m_e280_a9648b496f6b4700550782a715a98b3c7} 
+float {\bfseries read\+TempF} (void)
+\item 
+\Hypertarget{class_b_m_e280_a6b0fe7d3209cac9a498f2d7189a046ce}\label{class_b_m_e280_a6b0fe7d3209cac9a498f2d7189a046ce} 
+float {\bfseries read\+Temp\+From\+Burst} (uint8\+\_\+t buffer\mbox{[}$\,$\mbox{]})
+\item 
+\Hypertarget{class_b_m_e280_a9b534960cfb3285ec5c4197913b6f771}\label{class_b_m_e280_a9b534960cfb3285ec5c4197913b6f771} 
+double {\bfseries dew\+PointC} (void)
+\item 
+\Hypertarget{class_b_m_e280_aaf09979b6b6c560911ff56e7d2c21fb1}\label{class_b_m_e280_aaf09979b6b6c560911ff56e7d2c21fb1} 
+double {\bfseries dew\+PointF} (void)
+\item 
+\Hypertarget{class_b_m_e280_aecca87c2c40a7f2bcabcea921bdc6124}\label{class_b_m_e280_aecca87c2c40a7f2bcabcea921bdc6124} 
+void {\bfseries read\+Register\+Region} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}, uint8\+\_\+t, uint8\+\_\+t)
+\item 
+\Hypertarget{class_b_m_e280_a1bbd14c8591966df531e40085342ff71}\label{class_b_m_e280_a1bbd14c8591966df531e40085342ff71} 
+uint8\+\_\+t {\bfseries read\+Register} (uint8\+\_\+t)
+\item 
+\Hypertarget{class_b_m_e280_ac43c30f9b321d301694094d6b4bebe7e}\label{class_b_m_e280_ac43c30f9b321d301694094d6b4bebe7e} 
+int16\+\_\+t {\bfseries read\+Register\+Int16} (uint8\+\_\+t offset)
+\item 
+\Hypertarget{class_b_m_e280_afcff21c342725246bf415d7f0e4d04f0}\label{class_b_m_e280_afcff21c342725246bf415d7f0e4d04f0} 
+void {\bfseries write\+Register} (uint8\+\_\+t, uint8\+\_\+t)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_b_m_e280_a81d76b1afc8d7a8137542a69001de67c}\label{class_b_m_e280_a81d76b1afc8d7a8137542a69001de67c} 
+\mbox{\hyperlink{struct_b_m_e280___sensor_settings}{BME280\+\_\+\+Sensor\+Settings}} {\bfseries settings}
+\item 
+\Hypertarget{class_b_m_e280_aa7a28484b6f5eb6f43261ea25016fbf8}\label{class_b_m_e280_aa7a28484b6f5eb6f43261ea25016fbf8} 
+\mbox{\hyperlink{struct_sensor_calibration}{Sensor\+Calibration}} {\bfseries calibration}
+\item 
+\Hypertarget{class_b_m_e280_ad20f44914b78395f4d4bc64f4a68b369}\label{class_b_m_e280_ad20f44914b78395f4d4bc64f4a68b369} 
+int32\+\_\+t {\bfseries t\+\_\+fine}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Spark\+Fun\+\_\+\+BME280\+\_\+\+Arduino\+\_\+\+Library-\/master/src/Spark\+Fun\+BME280.\+h\item 
+lib/\+Spark\+Fun\+\_\+\+BME280\+\_\+\+Arduino\+\_\+\+Library-\/master/src/Spark\+Fun\+BME280.\+cpp\end{DoxyCompactItemize}
