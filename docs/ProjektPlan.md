@@ -13,11 +13,8 @@
 [Erik Torres Puente](https://github.com/ErikTP)
 
 **Fullstack**  
-[Benjamin Stenlund](https://github.com/benjamin762)  
-[Idris Ahmed](https://github.com/derainted)  
+[Benjamin Stenlund](https://github.com/benjamin762)    
 [Anton Athley](https://github.com/AntonAthley)  
-[Abbas Al-Naema](https://github.com/Abbaln)  
-[Jonas Fakhro](https://github.com/Jonas262901)  
 [Rebecca Lindman](https://github.com/rebeccalindman)
 
 ## Product Codename: AirAware

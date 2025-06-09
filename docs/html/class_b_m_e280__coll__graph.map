@@ -1,7 +1,0 @@
-<map id="BME280" name="BME280">
-<area shape="rect" id="Node000001" title=" " alt="" coords="137,96,209,123"/>
-<area shape="rect" id="Node000002" href="$struct_b_m_e280___sensor_settings.html" title=" " alt="" coords="5,5,173,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="114,42,163,94,159,97,110,46"/>
-<area shape="rect" id="Node000003" href="$struct_sensor_calibration.html" title=" " alt="" coords="196,5,320,32"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,45,187,97,183,94,234,41"/>
-</map>

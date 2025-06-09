@@ -181,7 +181,6 @@ void loop()
     float pressure = mySensor.readFloatPressure();
 
     myENS.setTempCompensation(temperature);
-    // myENS.setHumidityCompensation(humidity); // Uncomment if supported and no error
 
     /**
      * @brief Stores value from getAQI() of SparkFun_ENS160 class

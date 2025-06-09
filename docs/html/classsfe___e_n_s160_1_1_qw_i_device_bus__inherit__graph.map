@@ -1,7 +1,0 @@
-<map id="sfe_ENS160::QwIDeviceBus" name="sfe_ENS160::QwIDeviceBus">
-<area shape="rect" id="Node000001" title=" " alt="" coords="66,5,257,32"/>
-<area shape="rect" id="Node000002" href="$classsfe___e_n_s160_1_1_qw_i2_c.html" title=" " alt="" coords="5,80,150,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,45,94,82,90,78,134,40"/>
-<area shape="rect" id="Node000003" href="$classsfe___e_n_s160_1_1_sfe_s_p_i.html" title=" " alt="" coords="174,80,320,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,40,234,78,230,82,186,44"/>
-</map>
