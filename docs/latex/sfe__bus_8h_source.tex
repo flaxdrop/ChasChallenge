@@ -1,0 +1,131 @@
+\doxysection{sfe\+\_\+bus.\+h}
+\hypertarget{sfe__bus_8h_source}{}\label{sfe__bus_8h_source}\index{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_bus.h@{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/sfe\_bus.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ sfe\_bus.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ This\ is\ a\ library\ written\ for\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ (Qwiic)}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ SparkFun\ sells\ these\ boards\ at\ its\ website:\ www.sparkfun.com}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Do\ you\ like\ this\ library?\ Help\ support\ SparkFun.\ Buy\ a\ board!}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ https://www.sparkfun.com/products/20844}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Written\ by\ Elias\ Santistevan\ @\ SparkFun\ Electronics,\ October\ 2022}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Repository:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ \ \ \ https://github.com/sparkfun/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ SparkFun\ code,\ firmware,\ and\ software\ is\ released\ under\ the\ MIT}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ License(http://opensource.org/licenses/MIT).}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ Copyright\ (c)\ 2022\ SparkFun\ Electronics}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ copy\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ to\ deal\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ the\ rights\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ and/or\ sell\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ Software\ is\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:\ The}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ copies\ or\ substantial\ portions\ of\ the\ Software.\ THE\ SOFTWARE\ IS\ PROVIDED}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR\ IMPLIED,\ INCLUDING\ BUT}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS\ FOR\ A\ PARTICULAR}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE\ AUTHORS\ OR\ COPYRIGHT}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ \ \ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER\ LIABILITY,\ WHETHER\ IN\ AN}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \ \ \ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,\ OUT\ OF\ OR\ IN}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ \ \ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ The\ following\ classes\ specify\ the\ behavior\ for\ communicating}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ over\ the\ respective\ data\ buses:\ Inter-\/Integrated\ Circuit\ (I2C)}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ and\ Serial\ Peripheral\ Interface\ (SPI).\ For\ ease\ of\ implementation}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ an\ abstract\ interface\ (QwIDeviceBus)\ is\ used.}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{namespace\ }sfe\_ENS160}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \textcolor{comment}{//\ The\ following\ abstract\ class\ is\ used\ an\ interface\ for\ upstream}}
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ implementation.}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{QwIDeviceBus}}}
+\DoxyCodeLine{00057\ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ ping(uint8\_t\ address)\ =\ 0;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ writeRegisterByte(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data)\ =\ 0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ uint16\_t\ length)\ =\ 0;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data,\ uint16\_t\ length)\ =\ 0;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ readRegisterRegion(uint8\_t\ addr,\ uint8\_t\ reg,\ uint8\_t\ *data,\ uint16\_t\ numBytes)\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ The\ QwI2C\ device\ defines\ behavior\ for\ I2C\ implementation\ based\ around\ the}}
+\DoxyCodeLine{00071\ \ \ \textcolor{comment}{//\ TwoWire\ class\ (Wire).\ This\ is\ Arduino\ specific.}}
+\DoxyCodeLine{00072\ \ \ \textcolor{keyword}{class\ }QwI2C\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{QwIDeviceBus}}}
+\DoxyCodeLine{00073\ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ QwI2C(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ init();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ init(TwoWire\ \&wirePort,\ \textcolor{keywordtype}{bool}\ bInit\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ ping(uint8\_t\ address);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ writeRegisterByte(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data,\ uint16\_t\ length);}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{int}\ readRegisterRegion(uint8\_t\ addr,\ uint8\_t\ reg,\ uint8\_t\ *data,\ uint16\_t\ numBytes);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00092\ \ \ \ \ TwoWire\ *\_i2cPort;}
+\DoxyCodeLine{00093\ \ \ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{comment}{//\ The\ SfeSPI\ class\ defines\ behavior\ for\ SPI\ implementation\ based\ around\ the}}
+\DoxyCodeLine{00096\ \ \ \textcolor{comment}{//\ SPIClass\ class\ (SPI).\ This\ is\ Arduino\ specific.\ Paramaters\ like\ "{}address"{}\ are}}
+\DoxyCodeLine{00097\ \ \ \textcolor{comment}{//\ kept\ although\ irrelevant\ to\ SPI\ due\ to\ the\ use\ of\ the\ abstract\ class\ as}}
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{//\ interface,\ QwIDeviceBus.}}
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{class\ }SfeSPI\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{QwIDeviceBus}}}
+\DoxyCodeLine{00100\ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00102\ \ \ \ \ SfeSPI(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{bool}\ init(uint8\_t\ cs,\ \textcolor{keywordtype}{bool}\ bInit\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ init(SPIClass\ \&spiPort,\ SPISettings\ \&ensSPISettings,\ uint8\_t\ cs,\ \textcolor{keywordtype}{bool}\ bInit\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ ping(uint8\_t\ address);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ writeRegisterByte(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data);}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ \textcolor{keyword}{const}\ uint8\_t\ *data,\ uint16\_t\ length);}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{int}\ writeRegisterRegion(uint8\_t\ address,\ uint8\_t\ offset,\ uint8\_t\ data,\ uint16\_t\ length);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{int}\ readRegisterRegion(uint8\_t\ addr,\ uint8\_t\ reg,\ uint8\_t\ *data,\ uint16\_t\ numBytes);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ SPIClass\ *\_spiPort;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ Settings\ are\ used\ for\ every\ transaction.}}
+\DoxyCodeLine{00121\ \ \ \ \ SPISettings\ \_sfeSPISettings;}
+\DoxyCodeLine{00122\ \ \ \ \ uint8\_t\ \_cs;}
+\DoxyCodeLine{00123\ \ \ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \};\ \textcolor{comment}{//\ namespace\ sfe\_ENS160}}
+
+\end{DoxyCode}

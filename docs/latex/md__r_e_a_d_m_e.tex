@@ -1,0 +1,78 @@
+\chapter{README}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{README@{README}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{IoT/}
+\DoxyCodeLine{├──\ .pio/}
+\DoxyCodeLine{│\ \ \ ├──\ build/}
+\DoxyCodeLine{│\ \ \ └──\ libdeps/}
+\DoxyCodeLine{├──\ .vscode/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{│\ \ \ ├──\ c\_cpp\_properties.json}
+\DoxyCodeLine{│\ \ \ ├──\ extensions.json}
+\DoxyCodeLine{│\ \ \ └──\ launch.json}
+\DoxyCodeLine{├──\ fritzing/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{│\ \ \ └──\ Chas\_challenge\_G8.fzz}
+\DoxyCodeLine{├──\ include/}
+\DoxyCodeLine{│\ \ \ ├──\ README}
+\DoxyCodeLine{│\ \ \ ├──\ secret.h}
+\DoxyCodeLine{│\ \ \ └──\ trafficlight.h\ \ \ \ \ \ \ }
+\DoxyCodeLine{├──\ lib/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{│\ \ \ ├──\ SparkFun\_BME280\_Arduino\_Library-\/master/}
+\DoxyCodeLine{│\ \ \ ├──\ SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main}
+\DoxyCodeLine{│\ \ \ └──\ README}
+\DoxyCodeLine{├──\ src/\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{│\ \ \ └──\ main.cpp\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{├──\ test/}
+\DoxyCodeLine{│\ \ \ ├──\ README}
+\DoxyCodeLine{│\ \ \ ├──\ sensortests.cpp}
+\DoxyCodeLine{│\ \ \ ├──\ test.cpp}
+\DoxyCodeLine{│\ \ \ └──\ test2.cpp}
+\DoxyCodeLine{├──\ platformio.ini\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{└──\ README.md\ \ \ \ \ \ \ \ \ \ \ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysection{\texorpdfstring{Demonstration of physical Hardware}{Demonstration of physical Hardware}}\label{md__r_e_a_d_m_e_autotoc_md13}
+
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysection{\texorpdfstring{IoT System for Air Quality Monitoring}{IoT System for Air Quality Monitoring}}\label{md__r_e_a_d_m_e_autotoc_md14}
+This project is part of the {\bfseries{Chas Challenge}} and focuses on the IoT system responsible for collecting air quality data using sensors and sending it to the backend for processing and storage.\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysubsection{\texorpdfstring{Overview}{Overview}}\label{md__r_e_a_d_m_e_autotoc_md15}
+The IoT system is built around an Arduino-\/based microcontroller and various environmental sensors. It collects real-\/time data on air quality, including metrics such as temperature, humidity, pressure, CO₂ levels, and volatile organic compounds (VOCs). The data is transmitted to the backend for further analysis and integration with the mobile app.\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxysubsection{\texorpdfstring{Hardware Components}{Hardware Components}}\label{md__r_e_a_d_m_e_autotoc_md16}
+
+\begin{DoxyItemize}
+\item {\bfseries{Microcontroller}}\+: Arduino UNO REV 4 Wi\+Fi
+\item {\bfseries{Sensors}}\+:
+\begin{DoxyItemize}
+\item Spark\+Fun ENS160/\+BME280 Environmental Combo Breakout
+\item SPS30 Particulate Matter (PM) Sensor
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysubsection{\texorpdfstring{Features}{Features}}\label{md__r_e_a_d_m_e_autotoc_md17}
+
+\begin{DoxyItemize}
+\item Real-\/time air quality monitoring
+\item Data transmission to the backend via Wi\+Fi
+\item Compensation for temperature and humidity in sensor readings
+\item Integration with backend APIs for data storage and analysis
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md18}{}\doxysubsection{\texorpdfstring{How It Works}{How It Works}}\label{md__r_e_a_d_m_e_autotoc_md18}
+
+\begin{DoxyEnumerate}
+\item The Arduino collects data from the connected sensors.
+\item The data is processed locally, including compensation for environmental factors.
+\item The processed data is sent to the backend using HTTP POST requests.
+\item The backend stores the data and makes it available for the mobile app.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md19}{}\doxysubsection{\texorpdfstring{Repository Structure}{Repository Structure}}\label{md__r_e_a_d_m_e_autotoc_md19}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/src\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Source code for the Arduino, including sensor drivers and data transmission logic.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/examples\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Example sketches demonstrating sensor usage and data collection.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/docs\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}\+: Documentation for hardware setup and system integration.
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md20}{}\doxysubsection{\texorpdfstring{Getting Started}{Getting Started}}\label{md__r_e_a_d_m_e_autotoc_md20}
+
+\begin{DoxyEnumerate}
+\item Clone this repository.
+\item Set up the hardware as described in the HARDWARE.md file, visit the SCHEMATIC\+\_\+\+AND\+\_\+\+WIRING.md for the wiring process.
+\item Upload the Arduino code from the {\ttfamily /src} directory to the microcontroller.
+\item Ensure the backend is running and accessible.
+\item Power on the system and monitor the serial output for data transmission logs.
+\end{DoxyEnumerate}\hypertarget{md__r_e_a_d_m_e_autotoc_md21}{}\doxysubsection{\texorpdfstring{License}{License}}\label{md__r_e_a_d_m_e_autotoc_md21}
+This project is licensed under the \href{http://creativecommons.org/licenses/by-sa/4.0/}{\texttt{ Creative Commons Share-\/alike 4.\+0 International}}.\hypertarget{md__r_e_a_d_m_e_autotoc_md22}{}\doxysubsection{\texorpdfstring{Contributors}{Contributors}}\label{md__r_e_a_d_m_e_autotoc_md22}
+This project is developed by the IoT team as part of the Chas Challenge. 
