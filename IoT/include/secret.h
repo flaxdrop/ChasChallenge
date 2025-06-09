@@ -2,16 +2,19 @@
 #define SECRET_H
 
 /**
- * @brief SSID (nätverksnamn) för det WiFi-nätverk som enheten ska ansluta till.
+ * @brief SSID (name of the wireless network) that the microcontroller will attempt to connect to.
  * 
- * Används av WiFi.begin() i main.cpp. Ska hållas privat och inte laddas upp till Git.
+ * This value is used by the WiFi.begin() function in main.cpp to initiate the network connection.
+ * It should be kept private and excluded from version control (e.g., via .gitignore) to protect sensitive information.
  */
 const char* hidden_ssid = "";
+
 /**
- * @brief Lösenord för det WiFi-nätverk som enheten ska ansluta till.
+ * @brief Password for the specified WiFi network.
  * 
- * Används tillsammans med SSID för att etablera WiFi-anslutning. Ska hållas hemligt.
+ * Required together with the SSID to authenticate and establish a secure connection to the network.
+ * This value should be handled confidentially and not included in public codebases.
  */
-const char* hidden_password = ""; 
+const char* hidden_password = "";
 
 #endif

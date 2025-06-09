@@ -1,86 +1,100 @@
 # Hardware
 
-I detta dokument hittar du all hårdvara som används i projekten, samt en kort förklaring av deras funktion.
+This document contains all the hardware used in the projects, along with a brief explanation of their functions.
 
-## Hårdvaru-lista:
+## Hardware List:
 
-### Mikrokontroller:
-* Arduino UNO REV 4 WiFi
+### Microcontroller:
+- **Arduino UNO REV 4 WiFi**
 
-### Sensorer:
-* SparkFun ENS160/BME280 Environmental Combo Breakout
-* SPS30 Particulate Matter (PM) sensor
-* MQ2 Gas sensor
+### Sensors:
+- **SparkFun ENS160/BME280 Environmental Combo Breakout**
+- **SPS30 Particulate Matter (PM) sensor**
+- **MQ2 Gas sensor (currently not implemented)**
 
-### Ytterligare komponenter:
-* LED-trafikljusmodul 
+### Additional Components:
+- **LED Traffic Light Module**
 
+---
 
-## Förklaring av hårdvara:
+## Hardware Explanation:
 
 ### Arduino UNO REV 4 WiFi
-En mikrokontroller från Arduino. Används för att programmera de olika komponenterna, styra deras beteende samt förse de med ström. Har bland annat inbyggd WiFi funktionalitet, så väl som en QWIIC-anslutning.
+A microcontroller from Arduino. It is used to program various components, control their behavior, and provide them with power. It includes built-in WiFi functionality as well as a QWIIC connection.
 
-För ytterligare information kan du besöka Arduinos hemsida. 
-[Länk till Arduino UNO REV 4 WiFi hos Arduino](https://docs.arduino.cc/hardware/uno-r4-wifi/)
+For more information, visit the Arduino website:  
+[Link to Arduino UNO REV 4 WiFi at Arduino](https://docs.arduino.cc/hardware/uno-r4-wifi/)
 
-## Sensorer:
+---
+
+## Sensors:
 
 ### SparkFun ENS160/BME280 Environmental Combo Breakout
-Komponenten är egentligen en kombination av två olika sensorer, *ENS160* och *BME280*.
+
+This component is a combination of two sensors: **ENS160** and **BME280**.
 
 #### ENS160
-* Beräknar luftkvaliteten inomhus med standardiserade skalan *AQI (Air Quality Index)* från 5 till 1, därav 1 innebär bästa luftkvaliteten.
-* Läser av *TVOC (Total Volatile Organic Compounds)* i form av måttet *ppb (Parts Per Billion)*, ju lägre ppb värdet desto färre VOC (Volatile Organic Compounds) finns i luften. 
-* Utifrån ppb värdet av TVOC beräknas även *eCO2 (equivalent Carbon Dioxide)*, som är uppskattade mängden koldioxid i luften.
-* Utöver att läsa av TVOC producerar även ENS160s *MOX (Metal Oxide)* sensorer råa värden i *ohms (Ω)*, som kan användas för att exemepelvis räkna ut andra värden i kombination med andra sensorer.
+- Calculates indoor air quality using the standardized **AQI (Air Quality Index)** scale from 5 to 1, where 1 represents the best air quality.
+- Measures **TVOC (Total Volatile Organic Compounds)** in **ppb (Parts Per Billion)** — the lower the ppb value, the fewer VOCs are present in the air.
+- Based on the ppb value of TVOC, it also estimates **eCO₂ (equivalent Carbon Dioxide)** — an approximation of the CO₂ concentration.
+- In addition to reading TVOC, the ENS160’s **MOX (Metal Oxide)** sensors produce raw values in **ohms (Ω)**, which can be used for further calculations in combination with other sensors.
 
 #### BME280
-* Räknar ut lufttryck genom *hPa* eller *Pa (hectoPascal / Pascal)*.
-* Beräknar Temperatur i *°C (Celcius)*, med en räckvid mellan -40°C och +85°C.
-* Luftens fuktighet beräknas i *RH (Relative humidity)*, som sträcker sig mellan 0-100%.
+- Measures air pressure in **hPa** or **Pa (hectopascal / pascal)**.
+- Measures temperature in **°C (Celsius)**, with a range from -40°C to +85°C.
+- Measures relative humidity in **RH (Relative Humidity)**, ranging from 0% to 100%.
 
-### SPS30 Particulate Matter (PM) sensor
-Mäter *PM (Particulate Matter)* koncentrationen i luften genom laserbaserad ljusspridning.
-PM består av ett flertal kategorier baserat på storlek i *µm (Mikrometer). 
+---
 
-SPS30 Upptäcker och avläser följande PM.
+### SPS30 Particulate Matter (PM) Sensor
+
+Measures **PM (Particulate Matter)** concentration in the air using laser-based light scattering.  
+PM is divided into several categories based on particle size in **µm (micrometers)**.
+
+SPS30 detects and reads the following PM categories:
+
 #### PM1.0
-* Partiklar med ett mått av ≤ 1 µm.
-* Består av ultrafina partiklar såsom de från avgaser.
+- Particles ≤ 1 µm.
+- Includes ultrafine particles such as those from vehicle exhaust.
 
-#### PM2.5 
-* Partiklar med ett mått av ≤ 2.5 µm.
-* Består av exempelvis rök, sot, mindre pollen.
+#### PM2.5
+- Particles ≤ 2.5 µm.
+- Includes smoke, soot, and smaller pollen particles.
 
 #### PM4.0
-* Partiklar med ett mått av ≤ 4 µm.
-* Kan bestå av större eller mindre material från övriga PM kategorier, exempelvis sot eller damm.
+- Particles ≤ 4 µm.
+- May include a mix of particles from other PM categories, such as soot or dust.
 
 #### PM10
-* Partiklar med ett mått av ≤ 10 µm.
-* Består av bland annat damm, större sporer eller pollen.
+- Particles ≤ 10 µm.
+- Includes dust, larger spores, or pollen.
 
-För varje PM kategori räknar SPS30 sensor ut ett *masskoncentration* och *partikelantal* värde.
+For each PM category, the SPS30 sensor provides both **mass concentration** and **particle count** values.
 
-#### Masskoncentration
-* Måttvärdet är *mikrogram per kubikmeter (µg/m³)*.
-* Masskoncentrationen informerar om den sammanlagda vikten av partiklar inom en kvadratmeter volym luft. 
-* Desto högre masskoncentrations värde, desto fler partiklar finns i utrymmet. 
+#### Mass Concentration
+- Measured in **micrograms per cubic meter (µg/m³)**.
+- Indicates the total weight of particles in one cubic meter of air.
+- The higher the mass concentration value, the more particles are present in the air.
 
-#### Partikelantal 
-* Måttvärdet är *antal partiklar per kubikcentimeter (#/cm³)*. **NOTE:** # är en fortkortning av *antal partiklar*.   
-* Informerar om tätheten och antalet partiklar inom ett utrymme, men inte deras storlek.
+#### Particle Count
+- Measured in **number of particles per cubic centimeter (#/cm³)**.  
+  **NOTE:** `#` denotes the number of particles.
+- Indicates how densely packed the particles are in a given space, without accounting for their size.
 
-### MQ2 Gas sensor (*note:* Är inte implementerat vid nuläget)
-MQ2 är en gas sensor som inriktar sig på brandfarliga och skadliga gaser.
-Följande är en lista över de gaser som MQ2 kan upptäcka.
-* Gasol
-* Butan
-* Propangas
-* CH₄ (Metan)
-* H₂ (Vätgas)
-* CO (Kolmonoxid)
-* Alkohol (Exempelvis Etanol)
+---
 
-Spänningen som skapas när MQ2s reagerar på gaserna kan sedan omvandlas till ett *ppm (Parts Per Million)* värde. MQ2 kan dock inte automatiskt skilja på vilken gas den har upptäck, och kräver därmed kalibrering för vad som vore lämpligast i sammanhanget sensorn befinner sig i. 
+### MQ2 Gas Sensor *(Note: Not implemented at this stage)*
+
+The MQ2 is a gas sensor that detects flammable and harmful gases.
+
+**Detected gases:**
+- Liquefied Petroleum Gas (LPG)
+- Butane
+- Propane
+- CH₄ (Methane)
+- H₂ (Hydrogen)
+- CO (Carbon Monoxide)
+- Alcohol (e.g., Ethanol)
+
+The voltage generated when MQ2 reacts to these gases can be converted into a **ppm (Parts Per Million)** value.  
+However, MQ2 cannot automatically distinguish between the different gases and requires calibration depending on the intended environment or use case.
