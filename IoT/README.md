@@ -28,6 +28,12 @@ IoT/
 └── README.md           
 ```
 
+# Demonstration of physical Hardware
+
+![hardware_topview.jpeg](../images/hardware_topview.jpeg)
+
+![hardware_sideview.jpeg](../images/hardware_sideview.jpeg)
+
 # IoT System for Air Quality Monitoring
 
 This project is part of the **Chas Challenge** and focuses on the IoT system responsible for collecting air quality data using sensors and sending it to the backend for processing and storage.
