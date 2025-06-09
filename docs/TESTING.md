@@ -44,13 +44,11 @@ This document outlines the testing approach used for the Air Quality Monitoring 
 
 
 ### Long-Term Reliability
-- **24-hour continuous operation**: Monitored system for a full day of continuous readings
 - **Data consistency**: Analyzed long-term data for drift or sensor degradation
 
 ## User Interface Testing
 - **Serial output**: Verified readability and usefulness of serial monitor output
 - **Error messaging**: Confirmed clear communication of error states
-- **Debug mode**: Tested additional debugging output functionality
 
 ## Security Testing
 - **Credentials storage**: Verified secure handling of WiFi credentials
