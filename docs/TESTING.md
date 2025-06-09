@@ -8,7 +8,7 @@ This document outlines the testing approach used for the Air Quality Monitoring 
 ### Sensor Testing
 
 #### BME280 Temperature, Humidity, and Pressure Sensor
-- **Unit tests**: Validated sensor initialization and basic reading functions
+- **Functionality tests**: Validated sensor initialization and basic reading functions
 - **Stress tests**: Evaluated performance under high reading frequency
 
 #### ENS160 Air Quality Sensor
