@@ -61,7 +61,7 @@ Komponent / Funktion	Beskrivning
 
 - SPS30 - bibliotek https://github.com/Sensirion/arduino-sps
 
-## MQ2
+## MQ2 (*note:* Är inte aktuellt implementerad vid nuläget)
 
 ### Intro 
 
