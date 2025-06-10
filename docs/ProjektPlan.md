@@ -1,132 +1,149 @@
-## Gruppnamn : SyntaxSquad
+# Team Name: SyntaxSquad
 
-## Deltagare
+## Members
 
-**Systemutveckling**\
-[Alexander Arvedson](https://github.com/alexanderchasacademy)\
-[John Collinder](https://github.com/flaxdrop)\
-[Robert Bagunda](https://github.com/robag1137)\
+**System Development**  
+[Alexander Arvedson](https://github.com/alexanderchasacademy)  
+[John Collinder](https://github.com/flaxdrop)  
+[Robert Bagunda](https://github.com/robag1137)  
 [Emanuela Aseidu](https://github.com/ema-asi)
 
-**Frontend**\
-[Jesper Olsson](https://github.com/jesperolsson89)\
+**Frontend**  
+[Jesper Olsson](https://github.com/jesperolsson89)  
 [Erik Torres Puente](https://github.com/ErikTP)
 
-**Fullstack**\
-[Benjamin Stenlund](https://github.com/benjamin762)\
-[Idris Ahmed](https://github.com/derainted)\
-[Anton Athley](https://github.com/AntonAthley)\
-[Abbas Al-Naema](https://github.com/Abbaln)\
-[Jonas Fakhro](https://github.com/Jonas262901)\
+**Fullstack**  
+[Benjamin Stenlund](https://github.com/benjamin762)    
+[Anton Athley](https://github.com/AntonAthley)  
 [Rebecca Lindman](https://github.com/rebeccalindman)
 
+## Product Codename: AirAware
 
-## Kodnamn för produkten : AirAware
+- [Introduction](#introduction)
+- [Technology and Architecture Choices](#technology-and-architecture-choices)
+- [Team Structure and Responsibilities](#team-structure-and-responsibilities)
+- [Minimum Requirements for the Final Product](#minimum-requirements-for-the-final-product)
+- [Timeline and Milestones](#timeline-and-milestones)
+- [Problem Handling](#problem-handling)
+- [List of Required Hardware, Especially Sensors](#list-of-required-hardware-especially-sensors)
 
-- [Introduktion](#introduktion)
-- [Val av teknologi och arkitektur](#val-av-teknologi-och-arkitektur)
-- [Teamstruktur och ansvarsområden](#teamstruktur-och-ansvarsområden)
-- [Minimikrav för slutprodukten](#minimikrav-för-slutprodukten)
-- [Tidsplan och milstolpar](#tidsplan-och-milstolpar)
-- [Problemhantering](#problemhantering)
-- [Lista av hårdvara som kan behövas, Framförallt sensorer](#lista-av-hårdvara-som-kan-behövas-framförallt-sensorer)
+---
 
-### Introduktion : I dagens samhälle blir luftkvalitet en allt viktigare aspekt av vår hälsa och välmående. Dålig inomhusluft kan påverka vår koncentration, produktivitet och långsiktiga hälsa, och därför är det av stor vikt att vi har möjlighet att mäta och övervaka luftkvaliteten där vi spenderar mest tid – i hemmet och på kontoret.
+### Introduction
 
-Vårt projekt syftar till att utveckla en smart produkt som kontinuerligt övervakar luftkvaliteten och ger användaren realtidsinformation om olika miljöfaktorer, såsom koldioxidnivåer, flyktiga organiska föreningar (VOC), partikelkoncentrationer (PM2.5 och PM10), temperatur och luftfuktighet. Genom att använda en kombination av sensorer och en användarvänlig app, kan användaren få detaljerad insikt i den inomhusluft de andas och vidta åtgärder för att förbättra miljön när det behövs.
+In today’s society, air quality is becoming an increasingly important aspect of our health and well-being. Poor indoor air can affect our concentration, productivity, and long-term health. Therefore, it is crucial to have the ability to measure and monitor the air quality where we spend the most time – at home and at the office.
 
-Vi väljer att skapa en tillhörande app då man snabbt och enkelt kan få fram informationen som man vill ha. En hemsida skulle inte ge mycket värde mot vad en välproducerad och specialiserad app kan ge.
+Our project aims to develop a smart product that continuously monitors air quality and provides users with real-time information on environmental factors such as CO2 levels, volatile organic compounds (VOC), particulate concentrations (PM2.5 and PM10), temperature, and humidity. By using a combination of sensors and a user-friendly app, users gain detailed insight into the indoor air they breathe and can take action to improve the environment when needed.
 
-Vår produkt kommer att vara enkel att använda och installera, och syftet är att skapa en hälsosammare och mer produktiv inomhusmiljö. Vi tror att detta verktyg kan hjälpa både privatpersoner och kontor att ta kontroll över sin inomhusmiljö, vilket leder till bättre luftkvalitet, ökad trivsel och hälsa.
+We choose to create a mobile app to allow users to quickly and easily access the desired information. A website would not provide the same value as a well-produced and specialized app.
 
-Denna produktplan beskriver de tekniska specifikationerna, användarflödet och de resurser som krävs för att utveckla vår luftkvalitetsmonitor, från sensorval och hårdvarudesign till apputveckling och marknadsföring.
+Our product will be easy to use and install, and its purpose is to create a healthier and more productive indoor environment. We believe this tool can help both individuals and offices take control of their indoor environment, leading to better air quality, increased comfort, and health.
 
-## Val av teknologi och arkitektur
+This product plan outlines the technical specifications, user flow, and resources needed to develop our air quality monitor – from sensor selection and hardware design to app development and marketing.
 
-- Frontend – Användargränssnitt Mobilapp : React Native
-- Backend – Server och API : Node.js
-- IoT – Sensorer, Mikrokontroller och Kommunikation : Arduino
-- Databas- och API-struktur : PostgreSQL.
-- Arduino
+---
 
-## Teamstruktur och ansvarsområden.
+## Technology and Architecture Choices
 
-Frontend (Frontendutvecklare)
+- **Frontend – Mobile App UI:** React Native  
+- **Backend – Server and API:** Node.js  
+- **IoT – Sensors, Microcontroller, and Communication:** Arduino  
+- **Database and API Structure:** PostgreSQL  
+- **Microcontroller Programming:** Arduino  
 
-- Mobilapp för användare
-- Dashboard som visar realtidsdata om luftkvalitet, temperatur och luftfuktighet.
-- Notifikationer vid dålig luftkvalitet eller hög luftfuktighet (ex. risk för mögel).
-- Manuell styrning av ventilationen och val av önskade luftkvalitetsinställningar.
-- Historisk data och trendanalys för att identifiera luftkvalitetsmönster.
-- Integrering med smarta hem-system (ex. Google Home, Home Assistant).
+---
 
-Backend (Fullstackutvecklare)
+## Team Structure and Responsibilities
 
-- Datainsamling och analys:
-- Insamling av data från IoT-sensorer som mäter luftkvalitet och
-  klimatparametrar.
-- Algoritmer för att analysera luftkvalitet och generera rekommendationer.
-- Lagring av historiska mätvärden för att analysera luftkvalitetsförändringar.
-- Realtidsuppdateringar via WebSockets för smidig dataöverföring till appen.
-- Säkerhet och systemintegration
-- Autentisering av användare för personlig konfiguration.
-- API för att styra smart ventilation baserat på användarens inställningar.
-- Integration med externa system såsom väderdata för att justera ventilation vid
-  externt höga föroreningar.
+### Frontend Developers
 
-Inbyggda system (Systemutvecklare)
+- Mobile app for users  
+- Dashboard showing real-time data on air quality, temperature, and humidity  
+- Notifications for poor air quality or high humidity (e.g., risk of mold)  
+- Manual ventilation control and preferred air quality settings  
+- Historical data and trend analysis  
+- Integration with smart home systems (e.g., Google Home, Home Assistant)
 
-- IoT-sensorer och smart kommunikation:
-- Sensorer för luftkvalitet (CO2, partiklar, VOC), temperatur och luftfuktighet.
-- Kommunikation via WiFi, Bluetooth eller Zigbee för att interagera med
-  mobilappen.
-- Möjlighet att koppla till befintliga smarta hem-system (ex. Google Home,
-  Apple HomeKit).
-- Låg strömförbrukning och energieffektiv design för batteridriven drift.
-- Automatiserad ventilationskontroll:
-- Luftflödereglering baserat på sensordata.
-- Integration med ventilationen i hemmet för att förbättra luftflödet.
-- Failsafe-lösning för att säkerställa att systemet fungerar även vid
-  nätverksbortfall.
+### Backend (Fullstack Developers)
 
-## Minimikrav för slutprodukten
+- **Data Collection and Analysis:**  
+  - Collect data from IoT sensors  
+  - Algorithms to analyze air quality and generate recommendations  
+  - Store historical data to analyze air quality changes  
+  - Real-time updates via WebSockets  
 
-För att slutprodukten ska vara fullt funktionell och användbar bör de minimikrav som ställs inkludera:
+- **Security and System Integration:**  
+  - User authentication for personal configurations  
+  - API to control smart ventilation based on user settings  
+  - Integration with external systems (e.g., weather data) to adjust ventilation
 
-- Sensorövervakning av luftkvalitet (CO2, VOC, PM2.5/PM10) samt temperatur och luftfuktighet.
-- Real-time datauppdatering och visning via en användarvänlig mobilapp.
-- Larmfunktioner och varningar baserat på användardefinierade tröskelvärden.
-- Databaslagring och historik för att visa data över tid.
-- Säker dataöverföring och användarautentisering vid behov.
-- Genom att uppfylla dessa krav kommer er produkt att vara användbar, pålitlig och lättanvänd för att mäta och övervaka luftkvaliteten i hemmet eller på kontoret.
+### Embedded Systems (System Developers)
 
-## Tidsplan och milstolpar
+- **IoT Sensors and Smart Communication:**  
+  - Sensors for CO2, particulates, VOC, temperature, and humidity  
+  - Communication via WiFi, Bluetooth, or Zigbee  
+  - Compatibility with smart home systems (e.g., Google Home, Apple HomeKit)  
+  - Low power consumption and energy-efficient design  
 
-- Vecka 1: Planering, krav och design.
-- Vecka 2: Hårdvaruuppbyggnad och prototyp.
-- Vecka 3: Mjukvaruutveckling (app/webb).
-- Vecka 4: Integration och testning.
-- Vecka 5: Förbättringar och felsökning.
-- Vecka 6: Sluttestning och optimering.
-- Vecka 7: Marknadsföring och presentation.
-- Vecka 8: Dokumentation och avslutning.
+- **Automated Ventilation Control:**  
+  - Airflow control based on sensor data  
+  - Integration with home ventilation systems  
+  - Fail-safe solution to ensure operation during network outages  
 
-## Problemhantering
+---
 
-Alla ska vara medvetna att saker kommer gå fel, och det viktigaste är att försöka möta problemen på rätt sätt. Så länge alla försöker sitt bästa så kommer saker att lösa sig. Kommunikation är viktigast. Vi kommer lösa problem genom att vara öppna med varandra och tala så mycket öppet språk mellan varandra som möjligt. Om man inte pratar med varandra kan de snabbt bildas dålig stämning och det vill vi undvika till aldra högsta grad.
+## Minimum Requirements for the Final Product
 
-För mer information om problemhantering och spelregler kan du hitta vårt [Gruppkontrakt genom att klicka här](https://docs.google.com/document/d/1EWehsIZdjVD1zrrV2AYrWF8tX78TgLg2jFfP-Z-giwM/edit?usp=sharing).
+To be fully functional and useful, the final product should meet the following minimum requirements:
 
-## Lista av hårdvara som kan behövas, Framförallt sensorer.
+- Air quality monitoring (CO2, VOC, PM2.5/PM10), as well as temperature and humidity  
+- Real-time data updates and display through a user-friendly mobile app  
+- Alarm functions and alerts based on user-defined thresholds  
+- Database storage and history to show data over time  
+- Secure data transfer and user authentication when needed  
 
-1. CO2-sensor – För att mäta koldioxidkoncentration.
-2. VOC-sensor – För att mäta flyktiga organiska föreningar.
-3. PM-sensor – För att mäta partiklar i luften (PM2.5 och PM10).
-4. Temperatur- och fuktighetssensor – För att mäta och ge kontext till luftens fysiska egenskaper.
-5. Lufttryckssensor – För att mäta trycket, vilket kan påverka ventilationen.
-6. DHT11 temperatur- och fuktighetssensormodul
-7. GY-68 BMP180 barometer- och temperatursensormodul
+By meeting these requirements, the product will be useful, reliable, and user-friendly for monitoring and managing air quality at home or in the office.
 
-# Verktyg för kommunication
+---
 
-kommer framförallt vara : Discord, Github, Slack, TinkerCAD, VS Code.
+## Timeline and Milestones
+
+- **Week 1:** Planning, requirements, and design  
+- **Week 2:** Hardware setup and prototype  
+- **Week 3:** Software development (app/web)  
+- **Week 4:** Integration and testing  
+- **Week 5:** Improvements and debugging  
+- **Week 6:** Final testing and optimization  
+- **Week 7:** Marketing and presentation  
+- **Week 8:** Documentation and finalization  
+
+---
+
+## Problem Handling
+
+Everyone should be aware that things will go wrong, and the most important thing is to address issues the right way. As long as everyone does their best, problems will be resolved. Communication is key. We will handle problems by being open and speaking as transparently with each other as possible. A lack of communication can quickly lead to bad morale, which we aim to avoid at all costs.
+
+For more details on problem handling and team rules, see our [Group Contract (click here)](https://docs.google.com/document/d/1EWehsIZdjVD1zrrV2AYrWF8tX78TgLg2jFfP-Z-giwM/edit?usp=sharing).
+
+---
+
+## List of Required Hardware, Especially Sensors
+
+1. **CO2 sensor** – To measure carbon dioxide concentration  
+2. **VOC sensor** – To detect volatile organic compounds  
+3. **PM sensor** – To measure particulate matter (PM2.5 and PM10)  
+4. **Temperature and humidity sensor** – For measuring air’s physical properties  
+5. **Air pressure sensor** – To measure pressure which can affect ventilation  
+6. **DHT11 temperature and humidity sensor module**  
+7. **GY-68 BMP180 barometer and temperature sensor module**  
+
+---
+
+## Communication Tools
+
+Primary tools used:  
+- **Discord**  
+- **GitHub**  
+- **Slack**  
+- **Fritzing**  
+- **VS Code**

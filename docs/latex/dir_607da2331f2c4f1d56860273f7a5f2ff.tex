@@ -1,0 +1,85 @@
+\doxysection{lib/\+Spark\+Fun\+\_\+\+BME280\+\_\+\+Arduino\+\_\+\+Library-\/master Directory Reference}
+\hypertarget{dir_607da2331f2c4f1d56860273f7a5f2ff}{}\label{dir_607da2331f2c4f1d56860273f7a5f2ff}\index{lib/SparkFun\_BME280\_Arduino\_Library-\/master Directory Reference@{lib/SparkFun\_BME280\_Arduino\_Library-\/master Directory Reference}}
+\doxysubsubsection*{Directories}
+\begin{DoxyCompactItemize}
+\item 
+directory \mbox{\hyperlink{dir_1751597dd6aa87700c4f76f0b97f5390}{src}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+\href{https://www.sparkfun.com/products/14348}{\texttt{ {\itshape Spark\+Fun CCS811/\+BME280 Combo (SEN-\/14348)}}}
+
+This library allows the user to\+:
+
+
+\begin{DoxyItemize}
+\item Read pressure in Pa
+\item Read temperature in C
+\item Read humidity in RH
+\end{DoxyItemize}
+
+It also provides the following mathematical functions based from the above.
+
+
+\begin{DoxyItemize}
+\item Read temperature in F
+\item Read altitude in meters
+\item Read altitude in feet
+\end{DoxyItemize}
+
+Some examples include a circular buffer class for averaging.
+
+Thanks to\+:
+\begin{DoxyItemize}
+\item calvin1564 for \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/pull/34}{\texttt{ fixing a name collision}}
+\item Luka\+HitH for adding \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/pull/23}{\texttt{ BMP280 support}}
+\item cdonate for adding \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/pull/50}{\texttt{ burst read}}
+\item jdavid for integrating \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/pull/49}{\texttt{ math.\+h}}
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md2}{}\doxysubsection{\texorpdfstring{Repository Contents}{Repository Contents}}\label{README.md_autotoc_md2}
+
+\begin{DoxyItemize}
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/examples\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/ Example sketches for the library (.ino). Run these from the Arduino IDE.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/extras\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/ Additional documentation for the user. These files are ignored by the IDE.
+\item \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}/src\texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*} -\/ Source files for the library (.cpp, .h).
+\item {\bfseries{keywords.\+txt}} -\/ Keywords from this library that will be highlighted in the Arduino IDE.
+\item {\bfseries{library.\+properties}} -\/ General library properties for the Arduino package manager.
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md3}{}\doxysubsection{\texorpdfstring{Documentation}{Documentation}}\label{README.md_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{\href{https://learn.sparkfun.com/tutorials/installing-an-arduino-library}{\texttt{ Installing an Arduino Library Guide}}}} -\/ Basic information on how to install an Arduino library.
+\item {\bfseries{Product Repositories\+:}} (including hardware files)
+\begin{DoxyItemize}
+\item \href{https://github.com/sparkfun/BME280-Breakout-Board}{\texttt{ Spark\+Fun BME280 Breakout}} -\/ Original product repository
+\item \href{https://www.sparkfun.com/products/14348}{\texttt{ Spark\+Fun Environmental Combo Breakout -\/ CCS811/\+BME280 (Qwiic)}}
+\item \href{https://github.com/sparkfun/Qwiic_Atmospheric_Sensor_Breakout_BME280}{\texttt{ Spark\+Fun Atmospheric Sensor Breakout -\/ BME280 (Qwiic)}}
+\end{DoxyItemize}
+\item {\bfseries{\href{https://learn.sparkfun.com/tutorials/sparkfun-bme280-breakout-hookup-guide}{\texttt{ Hookup Guide}}}} -\/ Basic hookup guide for the Spark\+Fun \doxylink{class_b_m_e280}{BME280} Breakout.
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md4}{}\doxysubsection{\texorpdfstring{Products that use this Library}{Products that use this Library}}\label{README.md_autotoc_md4}
+
+\begin{DoxyItemize}
+\item \href{https://www.sparkfun.com/products/15440}{\texttt{ {\itshape SEN-\/15440}}}
+\item \href{https://www.sparkfun.com/products/14348}{\texttt{ {\itshape SEN-\/14348}}}
+\item \href{https://www.sparkfun.com/products/13676}{\texttt{ {\itshape SEN-\/13676}}}
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md5}{}\doxysubsection{\texorpdfstring{Version History}{Version History}}\label{README.md_autotoc_md5}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/tree/V_1.0.0}{\texttt{ V\+\_\+1.\+0.\+0}} -\/ Public release.
+\item \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/tree/V_1.1.0}{\texttt{ V\+\_\+1.\+1.\+0}} -\/ Pulled request to add decimal precision to read\+Float\+Pressure() and read\+Float\+Humidity().
+\item \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/tree/V_1.2.0}{\texttt{ V\+\_\+1.\+2.\+0}} -\/ Added ESP32 architecture directives to modify begin operation.
+\item \href{https://github.com/sparkfun/SparkFun_BME280_Arduino_Library/tree/V_2.0.0}{\texttt{ V\+\_\+2.\+0.\+0}} -\/ Major update. Generalized wire port. Functionalized oversampling, standby time, etc. Added set\+Mode.
+\end{DoxyItemize}\hypertarget{README.md_autotoc_md6}{}\doxysubsection{\texorpdfstring{License Information}{License Information}}\label{README.md_autotoc_md6}
+This product is {\itshape {\bfseries{open source}}}!
+
+Please review the LICENSE.\+md file for license information.
+
+If you have any questions or concerns on licensing, please contact \href{mailto:techsupport@sparkfun.com}{\texttt{ techsupport@sparkfun.\+com}}.
+
+Distributed as-\/is; no warranty is given.
+
+
+\begin{DoxyItemize}
+\item Your friends at Spark\+Fun. 
+\end{DoxyItemize}

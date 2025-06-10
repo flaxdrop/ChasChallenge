@@ -1,0 +1,278 @@
+\doxysection{src/main.cpp File Reference}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Main file of the project containing \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()} and \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()} for Arduino microcontroller.  
+
+
+{\ttfamily \#include $<$Wi\+Fi\+S3.\+h$>$}\newline
+{\ttfamily \#include $<$Wi\+Fi\+SSLClient.\+h$>$}\newline
+{\ttfamily \#include $<$Arduino\+Http\+Client.\+h$>$}\newline
+{\ttfamily \#include $<$Wire.\+h$>$}\newline
+{\ttfamily \#include $<$sps30.\+h$>$}\newline
+{\ttfamily \#include $<$Spark\+Fun\+BME280.\+h$>$}\newline
+{\ttfamily \#include $<$Spark\+Fun\+\_\+\+ENS160.\+h$>$}\newline
+{\ttfamily \#include $<$secret.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the system and connects to sensors and Wi\+Fi. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop}} ()
+\begin{DoxyCompactList}\small\item\em Main loop for collecting, processing, and sending measurement data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a587ba0cb07f02913598610049a3bbb79}{ssid}} = hidden\+\_\+ssid
+\begin{DoxyCompactList}\small\item\em The name of the Wi\+Fi network the program attempts to connect to. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_aa4a2ebcb494493f648ae1e6975672575}{password}} = hidden\+\_\+password
+\begin{DoxyCompactList}\small\item\em The password of the Wi\+Fi network the program attempts to connect to. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_acaf3e428b69fccc0e6330677471be4ea}{server\+Host}} = "{}chaschallenge-\/backend.\+onrender.\+com"{}
+\begin{DoxyCompactList}\small\item\em Hostname of the backend server that the code connects to. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{main_8cpp_a2decc483ae2d615cfc10308e8a10ee85}{server\+Port}} = 443
+\begin{DoxyCompactList}\small\item\em Port number used to connect to the backend server. \end{DoxyCompactList}\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{main_8cpp_a67966c75d1bb9def32d5aace26fb2317}{server\+Path}} = "{}/measurements"{}
+\begin{DoxyCompactList}\small\item\em Endpoint path on the backend server for measurement data. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{main_8cpp_aff9b1c6929580cf9d0b978798a5754a6}{red\+Led\+Pin}} = 5
+\begin{DoxyCompactList}\small\item\em Pin number for the red LED on the traffic light module. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{main_8cpp_aca0e82344f3a8630aa811193e1e59b1e}{yellow\+Led\+Pin}} = 6
+\begin{DoxyCompactList}\small\item\em Pin number for the yellow LED on the traffic light module. \end{DoxyCompactList}\item 
+const int \mbox{\hyperlink{main_8cpp_a81200aafdb16b7b0e636903da608217d}{green\+Led\+Pin}} = 7
+\begin{DoxyCompactList}\small\item\em Pin number for the green LED on the traffic light module. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_b_m_e280}{BME280}} \mbox{\hyperlink{main_8cpp_abfe7e6107f25339e44619d1f0727e274}{my\+Sensor}}
+\begin{DoxyCompactList}\small\item\em Object of the \doxylink{class_b_m_e280}{BME280} class for reading temperature, humidity, and air pressure. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_spark_fun___e_n_s160}{Spark\+Fun\+\_\+\+ENS160}} \mbox{\hyperlink{main_8cpp_ad55854a124227cde549073acfc9e3df7}{my\+ENS}}
+\begin{DoxyCompactList}\small\item\em ENS160 sensor for air quality analysis (AQI, TVOC, e\+CO2). \end{DoxyCompactList}\item 
+Wi\+Fi\+SSLClient \mbox{\hyperlink{main_8cpp_af7a52c141e84f170fc495e70da1ce8b6}{wifi}}
+\begin{DoxyCompactList}\small\item\em SSL-\/encrypted Wi\+Fi client for HTTPS communication. \end{DoxyCompactList}\item 
+Http\+Client \mbox{\hyperlink{main_8cpp_a90635ff3c75be497dbac96d5536b378e}{client}} = Http\+Client(\mbox{\hyperlink{main_8cpp_af7a52c141e84f170fc495e70da1ce8b6}{wifi}}, \mbox{\hyperlink{main_8cpp_acaf3e428b69fccc0e6330677471be4ea}{server\+Host}}, \mbox{\hyperlink{main_8cpp_a2decc483ae2d615cfc10308e8a10ee85}{server\+Port}})
+\begin{DoxyCompactList}\small\item\em HTTP client that sends data to the Chas Challenge backend via a POST request. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main file of the project containing \doxylink{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}{setup()} and \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()} for Arduino microcontroller. 
+
+\begin{DoxyAuthor}{Author}
+Syntax\+Squad (\href{https://github.com/flaxdrop/ChasChallenge}{\texttt{ https\+://github.\+com/flaxdrop/\+Chas\+Challenge}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2025-\/05-\/30
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2025 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{main_8cpp_afe461d27b9c48d5921c00d521181f12f}\index{main.cpp@{main.cpp}!loop@{loop}}
+\index{loop@{loop}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily \label{main_8cpp_afe461d27b9c48d5921c00d521181f12f} 
+void loop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Main loop for collecting, processing, and sending measurement data. 
+
+Each iteration performs the following steps\+:
+\begin{DoxyItemize}
+\item Reads temperature, humidity, and pressure from \doxylink{class_b_m_e280}{BME280}
+\item Applies temperature compensation to ENS160
+\item Retrieves air quality values (AQI, TVOC, e\+CO2) from ENS160
+\item Controls LED indicators based on AQI
+\item Reads particle data from SPS30 if available
+\item Formats and sends JSON payload via HTTP POST request 
+\end{DoxyItemize}Stores value from read\+Temp\+C() of \doxylink{class_b_m_e280}{BME280} class
+
+Used in building the JSON string.
+
+Stores value from read\+Float\+Humidity() of \doxylink{class_b_m_e280}{BME280} class
+
+Used in building the JSON string.
+
+Stores value from read\+Float\+Pressure() of \doxylink{class_b_m_e280}{BME280} class
+
+Used in building the JSON string.
+
+Stores value from get\+AQI() of \doxylink{class_spark_fun___e_n_s160}{Spark\+Fun\+\_\+\+ENS160} class
+
+Used in building the JSON string.
+
+Stores value from get\+TVOC() of \doxylink{class_spark_fun___e_n_s160}{Spark\+Fun\+\_\+\+ENS160} class
+
+Used in building the JSON string.
+
+Stores value from get\+ECO2() of \doxylink{class_spark_fun___e_n_s160}{Spark\+Fun\+\_\+\+ENS160} class
+
+Used in building the JSON string.
+
+Struct to store measurement data from the SPS30 particle sensor.
+
+Contains mass concentration (μg/m³), particle count per volume, and typical particle size. Populated if sps30\+\_\+read\+\_\+measurement() succeeds.
+
+Indicates if new data is available from the SPS30 sensor.
+
+Retrieved from sps30\+\_\+read\+\_\+data\+\_\+ready(). If value is 1, new data is available.
+
+Flag indicating if valid SPS30 data was read.
+
+Set to true if both\+:
+\begin{DoxyItemize}
+\item the sensor has new data (data\+\_\+ready = 1), and
+\item measurement was read successfully (sps30\+\_\+read\+\_\+measurement() == 0)
+\end{DoxyItemize}
+
+JSON string containing all collected sensor data.
+
+Constructed in \doxylink{main_8cpp_afe461d27b9c48d5921c00d521181f12f}{loop()} and used as the payload in the POST request to the backend server. Includes temperature, humidity, pressure, air quality (AQI, TVOC, e\+CO2), and particle densities if available.
+
+HTTP status code returned by the backend server after the POST request.
+
+Example\+: 200 (OK), 400 (Bad Request), 500 (Server Error), etc. Used to verify if the data submission was successful.
+
+Response body from the backend server in text format.
+
+May contain error messages or confirmations from the API. Used for debugging and logging.\Hypertarget{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d}\index{main.cpp@{main.cpp}!setup@{setup}}
+\index{setup@{setup}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{main_8cpp_a4fc01d736fe50cf5b977f755b675f11d} 
+void setup (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the system and connects to sensors and Wi\+Fi. 
+
+Executes the following steps\+:
+\begin{DoxyItemize}
+\item Starts serial communication
+\item Configures the I2C bus
+\item Initializes LED pins for air quality indication
+\item Connects to Wi\+Fi
+\item Initializes the \doxylink{class_b_m_e280}{BME280}, ENS160, and SPS30 sensors 
+\end{DoxyItemize}
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{main_8cpp_a90635ff3c75be497dbac96d5536b378e}\index{main.cpp@{main.cpp}!client@{client}}
+\index{client@{client}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily \label{main_8cpp_a90635ff3c75be497dbac96d5536b378e} 
+Http\+Client client = Http\+Client(\mbox{\hyperlink{main_8cpp_af7a52c141e84f170fc495e70da1ce8b6}{wifi}}, \mbox{\hyperlink{main_8cpp_acaf3e428b69fccc0e6330677471be4ea}{server\+Host}}, \mbox{\hyperlink{main_8cpp_a2decc483ae2d615cfc10308e8a10ee85}{server\+Port}})}
+
+
+
+HTTP client that sends data to the Chas Challenge backend via a POST request. 
+
+Uses Wi\+Fi\+SSLClient as the transport layer and sends JSON data to the server. \Hypertarget{main_8cpp_a81200aafdb16b7b0e636903da608217d}\index{main.cpp@{main.cpp}!greenLedPin@{greenLedPin}}
+\index{greenLedPin@{greenLedPin}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{greenLedPin}{greenLedPin}}
+{\footnotesize\ttfamily \label{main_8cpp_a81200aafdb16b7b0e636903da608217d} 
+const int green\+Led\+Pin = 7}
+
+
+
+Pin number for the green LED on the traffic light module. 
+
+Default value is D7 on the microcontroller. \Hypertarget{main_8cpp_ad55854a124227cde549073acfc9e3df7}\index{main.cpp@{main.cpp}!myENS@{myENS}}
+\index{myENS@{myENS}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{myENS}{myENS}}
+{\footnotesize\ttfamily \label{main_8cpp_ad55854a124227cde549073acfc9e3df7} 
+\mbox{\hyperlink{class_spark_fun___e_n_s160}{Spark\+Fun\+\_\+\+ENS160}} my\+ENS}
+
+
+
+ENS160 sensor for air quality analysis (AQI, TVOC, e\+CO2). 
+
+Used to indicate air quality and compensate using temperature/humidity data. \Hypertarget{main_8cpp_abfe7e6107f25339e44619d1f0727e274}\index{main.cpp@{main.cpp}!mySensor@{mySensor}}
+\index{mySensor@{mySensor}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{mySensor}{mySensor}}
+{\footnotesize\ttfamily \label{main_8cpp_abfe7e6107f25339e44619d1f0727e274} 
+\mbox{\hyperlink{class_b_m_e280}{BME280}} my\+Sensor}
+
+
+
+Object of the \doxylink{class_b_m_e280}{BME280} class for reading temperature, humidity, and air pressure. 
+
+Used to collect indoor environmental data. \Hypertarget{main_8cpp_aa4a2ebcb494493f648ae1e6975672575}\index{main.cpp@{main.cpp}!password@{password}}
+\index{password@{password}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily \label{main_8cpp_aa4a2ebcb494493f648ae1e6975672575} 
+const char\texorpdfstring{$\ast$}{*} password = hidden\+\_\+password}
+
+
+
+The password of the Wi\+Fi network the program attempts to connect to. 
+
+The value "{}hidden\+\_\+password"{} is retrieved from \doxylink{secret_8h_source}{secret.\+h} \Hypertarget{main_8cpp_aff9b1c6929580cf9d0b978798a5754a6}\index{main.cpp@{main.cpp}!redLedPin@{redLedPin}}
+\index{redLedPin@{redLedPin}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{redLedPin}{redLedPin}}
+{\footnotesize\ttfamily \label{main_8cpp_aff9b1c6929580cf9d0b978798a5754a6} 
+const int red\+Led\+Pin = 5}
+
+
+
+Pin number for the red LED on the traffic light module. 
+
+Default value is D5 on the microcontroller. \Hypertarget{main_8cpp_acaf3e428b69fccc0e6330677471be4ea}\index{main.cpp@{main.cpp}!serverHost@{serverHost}}
+\index{serverHost@{serverHost}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{serverHost}{serverHost}}
+{\footnotesize\ttfamily \label{main_8cpp_acaf3e428b69fccc0e6330677471be4ea} 
+const char\texorpdfstring{$\ast$}{*} server\+Host = "{}chaschallenge-\/backend.\+onrender.\+com"{}}
+
+
+
+Hostname of the backend server that the code connects to. 
+
+This is the address used to connect to the Chas Challenge backend API. It is used by the networking module to send and receive data. \Hypertarget{main_8cpp_a67966c75d1bb9def32d5aace26fb2317}\index{main.cpp@{main.cpp}!serverPath@{serverPath}}
+\index{serverPath@{serverPath}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{serverPath}{serverPath}}
+{\footnotesize\ttfamily \label{main_8cpp_a67966c75d1bb9def32d5aace26fb2317} 
+const char\texorpdfstring{$\ast$}{*} server\+Path = "{}/measurements"{}}
+
+
+
+Endpoint path on the backend server for measurement data. 
+
+Used by the client to send or retrieve measurements via the API. Typically combined with server\+Host and server\+Port to construct the full URL. \Hypertarget{main_8cpp_a2decc483ae2d615cfc10308e8a10ee85}\index{main.cpp@{main.cpp}!serverPort@{serverPort}}
+\index{serverPort@{serverPort}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{serverPort}{serverPort}}
+{\footnotesize\ttfamily \label{main_8cpp_a2decc483ae2d615cfc10308e8a10ee85} 
+const int server\+Port = 443}
+
+
+
+Port number used to connect to the backend server. 
+
+The default port for HTTPS (443) is used to send and receive data via a secure connection to the Chas Challenge backend. \Hypertarget{main_8cpp_a587ba0cb07f02913598610049a3bbb79}\index{main.cpp@{main.cpp}!ssid@{ssid}}
+\index{ssid@{ssid}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ssid}{ssid}}
+{\footnotesize\ttfamily \label{main_8cpp_a587ba0cb07f02913598610049a3bbb79} 
+const char\texorpdfstring{$\ast$}{*} ssid = hidden\+\_\+ssid}
+
+
+
+The name of the Wi\+Fi network the program attempts to connect to. 
+
+The value "{}hidden\+\_\+ssid"{} is retrieved from \doxylink{secret_8h_source}{secret.\+h} \Hypertarget{main_8cpp_af7a52c141e84f170fc495e70da1ce8b6}\index{main.cpp@{main.cpp}!wifi@{wifi}}
+\index{wifi@{wifi}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{wifi}{wifi}}
+{\footnotesize\ttfamily \label{main_8cpp_af7a52c141e84f170fc495e70da1ce8b6} 
+Wi\+Fi\+SSLClient wifi}
+
+
+
+SSL-\/encrypted Wi\+Fi client for HTTPS communication. 
+
+Used by Http\+Client to securely communicate with the backend server. \Hypertarget{main_8cpp_aca0e82344f3a8630aa811193e1e59b1e}\index{main.cpp@{main.cpp}!yellowLedPin@{yellowLedPin}}
+\index{yellowLedPin@{yellowLedPin}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{yellowLedPin}{yellowLedPin}}
+{\footnotesize\ttfamily \label{main_8cpp_aca0e82344f3a8630aa811193e1e59b1e} 
+const int yellow\+Led\+Pin = 6}
+
+
+
+Pin number for the yellow LED on the traffic light module. 
+
+Default value is D6 on the microcontroller. 

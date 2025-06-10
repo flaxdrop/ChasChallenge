@@ -12,10 +12,6 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "updates": {
-      "enabled": true,
-      "runtimeVersion": "1.0.0"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.jesperolsson89.frontendmobile",

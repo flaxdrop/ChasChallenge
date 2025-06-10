@@ -1,0 +1,162 @@
+\doxysection{Spark\+Fun\+\_\+\+ENS160.\+h}
+\hypertarget{_spark_fun___e_n_s160_8h_source}{}\label{_spark_fun___e_n_s160_8h_source}\index{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/SparkFun\_ENS160.h@{lib/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library-\/main/src/SparkFun\_ENS160.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ SparkFun\_ENS160.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ This\ is\ a\ library\ written\ for\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ SparkFun\ sells\ these\ boards\ at\ its\ website:\ www.sparkfun.com}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Do\ you\ like\ this\ library?\ Help\ support\ SparkFun.\ Buy\ a\ board!}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ SparkFun\ Indoor\ Air\ Quality\ Sensor\ -\/\ ENS160\ (Qwiic)\ \ \ \ https://www.sparkfun.com/products/20844}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Written\ by\ Elias\ Santistevan\ @\ SparkFun\ Electronics,\ October\ 2022}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ Repository:}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \ \ \ https://github.com/sparkfun/SparkFun\_Indoor\_Air\_Quality\_Sensor-\/ENS160\_Arduino\_Library}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ SparkFun\ code,\ firmware,\ and\ software\ is\ released\ under\ the\ MIT}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ License(http://opensource.org/licenses/MIT).}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ The\ MIT\ License\ (MIT)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ Copyright\ (c)\ 2022\ SparkFun\ Electronics}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ Permission\ is\ hereby\ granted,\ free\ of\ charge,\ to\ any\ person\ obtaining\ a}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ copy\ of\ this\ software\ and\ associated\ documentation\ files\ (the\ "{}Software"{}),}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ to\ deal\ in\ the\ Software\ without\ restriction,\ including\ without\ limitation}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ the\ rights\ to\ use,\ copy,\ modify,\ merge,\ publish,\ distribute,\ sublicense,}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ and/or\ sell\ copies\ of\ the\ Software,\ and\ to\ permit\ persons\ to\ whom\ the}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \ \ \ Software\ is\ furnished\ to\ do\ so,\ subject\ to\ the\ following\ conditions:\ The}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ \ \ \ above\ copyright\ notice\ and\ this\ permission\ notice\ shall\ be\ included\ in\ all}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ \ \ copies\ or\ substantial\ portions\ of\ the\ Software.\ THE\ SOFTWARE\ IS\ PROVIDED}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ \ \ "{}AS\ IS"{},\ WITHOUT\ WARRANTY\ OF\ ANY\ KIND,\ EXPRESS\ OR\ IMPLIED,\ INCLUDING\ BUT}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \ \ \ NOT\ LIMITED\ TO\ THE\ WARRANTIES\ OF\ MERCHANTABILITY,\ FITNESS\ FOR\ A\ PARTICULAR}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ PURPOSE\ AND\ NONINFRINGEMENT.\ IN\ NO\ EVENT\ SHALL\ THE\ AUTHORS\ OR\ COPYRIGHT}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ \ \ HOLDERS\ BE\ LIABLE\ FOR\ ANY\ CLAIM,\ DAMAGES\ OR\ OTHER\ LIABILITY,\ WHETHER\ IN\ AN}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ ACTION\ OF\ CONTRACT,\ TORT\ OR\ OTHERWISE,\ ARISING\ FROM,\ OUT\ OF\ OR\ IN}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ \ \ \ CONNECTION\ WITH\ THE\ SOFTWARE\ OR\ THE\ USE\ OR\ OTHER\ DEALINGS\ IN\ THE\ SOFTWARE.}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ The\ following\ classes\ act\ as\ the\ interface\ between\ Arduino\ and\ the}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Air\ Quality\ Sensor\ source\ files.}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}sfe\_ens160.h"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ "{}sfe\_bus.h"{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{class\ }SparkFun\_ENS160\ :\ \textcolor{keyword}{public}\ QwDevENS160}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ SparkFun\_ENS160()\ \{\};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ begin()}}
+\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00057\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00058\ \ \ \textcolor{comment}{//\ This\ method\ follows\ the\ standard\ startup\ pattern\ in\ SparkFun\ Arduino}}
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ libraries.}}
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ Description}}
+\DoxyCodeLine{00062\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ \ wirePort\ \ \ \ optional.\ The\ Wire\ port.\ If\ not\ provided,\ the\ default\ port\ is\ used}}
+\DoxyCodeLine{00064\ \ \ \textcolor{comment}{//\ \ address\ \ \ \ \ optional.\ I2C\ Address.\ If\ not\ provided,\ the\ default\ address\ is\ used.}}
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ \ retval\ \ \ \ \ \ true\ on\ success,\ false\ on\ startup\ failure}}
+\DoxyCodeLine{00066\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00067\ \ \ \textcolor{comment}{//\ This\ method\ is\ overridden,\ implementing\ two\ versions.}}
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ Version\ 1:}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ User\ skips\ passing\ in\ an\ I2C\ object\ which\ then\ defaults\ to\ Wire.}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{bool}\ begin(uint8\_t\ deviceAddress\ =\ ENS160\_ADDRESS\_HIGH)}
+\DoxyCodeLine{00072\ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ Setup\ \ I2C\ object\ and\ pass\ into\ the\ superclass}}
+\DoxyCodeLine{00074\ \ \ \ \ setCommunicationBus(\_i2cBus,\ deviceAddress);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ I2C\ buss\ class\ i.e.\ setup\ default\ Wire\ port}}
+\DoxyCodeLine{00077\ \ \ \ \ \_i2cBus.init();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ system\ -\/\ return\ results}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>QwDevENS160::init();}
+\DoxyCodeLine{00081\ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{comment}{//\ Version\ 2:}}
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{//\ \ User\ passes\ in\ an\ I2C\ object\ and\ an\ address\ (optional).}}
+\DoxyCodeLine{00085\ \ \ \textcolor{keywordtype}{bool}\ begin(TwoWire\ \&wirePort,\ uint8\_t\ deviceAddress\ =\ ENS160\_ADDRESS\_HIGH)}
+\DoxyCodeLine{00086\ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Setup\ \ I2C\ object\ and\ pass\ into\ the\ superclass}}
+\DoxyCodeLine{00088\ \ \ \ \ setCommunicationBus(\_i2cBus,\ deviceAddress);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Give\ the\ I2C\ port\ provided\ by\ the\ user\ to\ the\ I2C\ bus\ class.}}
+\DoxyCodeLine{00091\ \ \ \ \ \_i2cBus.init(wirePort,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ system\ -\/\ return\ results}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>QwDevENS160::init();}
+\DoxyCodeLine{00095\ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{//\ I2C\ bus\ class}}
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c}{sfe\_ENS160::QwI2C}}\ \_i2cBus;}
+\DoxyCodeLine{00100\ \};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{class\ }SparkFun\_ENS160\_SPI\ :\ \textcolor{keyword}{public}\ QwDevENS160}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00105\ \ \ SparkFun\_ENS160\_SPI()\ \{\};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{comment}{//\ begin()}}
+\DoxyCodeLine{00109\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00110\ \ \ \textcolor{comment}{//\ This\ method\ is\ called\ to\ initialize\ the\ ISM330DHCX\ library\ and\ connect\ to}}
+\DoxyCodeLine{00111\ \ \ \textcolor{comment}{//\ the\ ISM330DHCX\ device.\ This\ method\ must\ be\ called\ before\ calling\ any\ other\ method}}
+\DoxyCodeLine{00112\ \ \ \textcolor{comment}{//\ that\ interacts\ with\ the\ device.}}
+\DoxyCodeLine{00113\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00114\ \ \ \textcolor{comment}{//\ This\ method\ follows\ the\ standard\ startup\ pattern\ in\ SparkFun\ Arduino}}
+\DoxyCodeLine{00115\ \ \ \textcolor{comment}{//\ libraries.}}
+\DoxyCodeLine{00116\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00117\ \ \ \textcolor{comment}{//\ \ Parameter\ \ \ Description}}
+\DoxyCodeLine{00118\ \ \ \textcolor{comment}{//\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00119\ \ \ \textcolor{comment}{//\ \ spiPort\ \ \ \ \ optional.\ The\ SPI\ port.\ If\ not\ provided,\ the\ default\ port\ is\ used}}
+\DoxyCodeLine{00120\ \ \ \textcolor{comment}{//\ \ SPISettings\ optional.\ SPI\ "{}transaction"{}\ settings\ are\ need\ for\ every\ data\ transfer.}}
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Default\ used\ if\ not\ provided.}}
+\DoxyCodeLine{00122\ \ \ \textcolor{comment}{//\ \ Chip\ Select\ mandatory.\ The\ chip\ select\ pin\ ("{}CS"{})\ can't\ be\ guessed,\ so\ must\ be\ provided.}}
+\DoxyCodeLine{00123\ \ \ \textcolor{comment}{//\ \ retval\ \ \ \ \ \ true\ on\ success,\ false\ on\ startup\ failure}}
+\DoxyCodeLine{00124\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \ \ \textcolor{comment}{//\ This\ methond\ is\ overridden,\ implementing\ two\ versions.}}
+\DoxyCodeLine{00126\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00127\ \ \ \textcolor{comment}{//\ Version\ 1:}}
+\DoxyCodeLine{00128\ \ \ \textcolor{comment}{//\ User\ skips\ passing\ in\ an\ SPI\ object\ which\ then\ defaults\ to\ SPI.}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{bool}\ begin(uint8\_t\ cs)}
+\DoxyCodeLine{00131\ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ Setup\ a\ SPI\ object\ and\ pass\ into\ the\ superclass}}
+\DoxyCodeLine{00133\ \ \ \ \ setCommunicationBus(\_spiBus);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ SPI\ bus\ class\ with\ the\ chip\ select\ pin,\ SPI\ port\ defaults\ to\ SPI,}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ and\ SPI\ settings\ are\ set\ to\ class\ defaults.}}
+\DoxyCodeLine{00137\ \ \ \ \ \_spiBus.init(cs,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ system\ -\/\ return\ results}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>QwDevENS160::init();}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keywordtype}{bool}\ begin(SPIClass\ \&spiPort,\ SPISettings\ ensSettings,\ uint8\_t\ cs)}
+\DoxyCodeLine{00144\ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ Setup\ a\ SPI\ object\ and\ pass\ into\ the\ superclass}}
+\DoxyCodeLine{00146\ \ \ \ \ setCommunicationBus(\_spiBus);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ SPI\ bus\ class\ with\ provided\ SPI\ port,\ SPI\ setttings,\ and\ chip\ select\ pin.}}
+\DoxyCodeLine{00149\ \ \ \ \ \_spiBus.init(spiPort,\ ensSettings,\ cs,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ Initialize\ the\ system\ -\/\ return\ results}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>QwDevENS160::init();}
+\DoxyCodeLine{00153\ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00156\ \ \ \textcolor{comment}{//\ SPI\ bus\ class}}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{classsfe___e_n_s160_1_1_sfe_s_p_i}{sfe\_ENS160::SfeSPI}}\ \_spiBus;}
+\DoxyCodeLine{00158\ \};}
+
+\end{DoxyCode}

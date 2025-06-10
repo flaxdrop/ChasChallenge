@@ -1,0 +1,86 @@
+\doxysection{sfe\+\_\+\+ENS160\+::Qw\+I2C Class Reference}
+\hypertarget{classsfe___e_n_s160_1_1_qw_i2_c}{}\label{classsfe___e_n_s160_1_1_qw_i2_c}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+Inheritance diagram for sfe\+\_\+\+ENS160\+::Qw\+I2C\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classsfe___e_n_s160_1_1_qw_i2_c}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_a7a9e4771cdf9668b2fb1e8ec3a269c90}\label{classsfe___e_n_s160_1_1_qw_i2_c_a7a9e4771cdf9668b2fb1e8ec3a269c90} 
+bool {\bfseries init} ()
+\item 
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_a3158bf06348489d281a1d0e2c00302c3}\label{classsfe___e_n_s160_1_1_qw_i2_c_a3158bf06348489d281a1d0e2c00302c3} 
+bool {\bfseries init} (Two\+Wire \&wire\+Port, bool b\+Init=false)
+\item 
+bool \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c_ad28bf93f985d586188c7b162f21fb70b}{ping}} (uint8\+\_\+t address)
+\item 
+bool \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c_a43a5c2ac4d3f40623b7304a8be34c69b}{write\+Register\+Byte}} (uint8\+\_\+t address, uint8\+\_\+t offset, uint8\+\_\+t data)
+\item 
+int \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c_a4fe0ca6825a51f4849d734606a4770fb}{write\+Register\+Region}} (uint8\+\_\+t address, uint8\+\_\+t offset, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t length)
+\item 
+int \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c_aefc85da3e1f8d3830d74562468cc3126}{write\+Register\+Region}} (uint8\+\_\+t address, uint8\+\_\+t offset, uint8\+\_\+t data, uint16\+\_\+t length)
+\item 
+int \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i2_c_ae0f836343d5d7e4b8152a9675e876c84}{read\+Register\+Region}} (uint8\+\_\+t addr, uint8\+\_\+t reg, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t num\+Bytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_ad28bf93f985d586188c7b162f21fb70b}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}!ping@{ping}}
+\index{ping@{ping}!sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+\doxysubsubsection{\texorpdfstring{ping()}{ping()}}
+{\footnotesize\ttfamily \label{classsfe___e_n_s160_1_1_qw_i2_c_ad28bf93f985d586188c7b162f21fb70b} 
+bool sfe\+\_\+\+ENS160\+::\+Qw\+I2\+C\+::ping (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}}.
+
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_ae0f836343d5d7e4b8152a9675e876c84}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}!readRegisterRegion@{readRegisterRegion}}
+\index{readRegisterRegion@{readRegisterRegion}!sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+\doxysubsubsection{\texorpdfstring{readRegisterRegion()}{readRegisterRegion()}}
+{\footnotesize\ttfamily \label{classsfe___e_n_s160_1_1_qw_i2_c_ae0f836343d5d7e4b8152a9675e876c84} 
+int sfe\+\_\+\+ENS160\+::\+Qw\+I2\+C\+::read\+Register\+Region (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{addr}{, }\item[{uint8\+\_\+t}]{reg}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{num\+Bytes}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}}.
+
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_a43a5c2ac4d3f40623b7304a8be34c69b}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}!writeRegisterByte@{writeRegisterByte}}
+\index{writeRegisterByte@{writeRegisterByte}!sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+\doxysubsubsection{\texorpdfstring{writeRegisterByte()}{writeRegisterByte()}}
+{\footnotesize\ttfamily \label{classsfe___e_n_s160_1_1_qw_i2_c_a43a5c2ac4d3f40623b7304a8be34c69b} 
+bool sfe\+\_\+\+ENS160\+::\+Qw\+I2\+C\+::write\+Register\+Byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address}{, }\item[{uint8\+\_\+t}]{offset}{, }\item[{uint8\+\_\+t}]{data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}}.
+
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_a4fe0ca6825a51f4849d734606a4770fb}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}!writeRegisterRegion@{writeRegisterRegion}}
+\index{writeRegisterRegion@{writeRegisterRegion}!sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+\doxysubsubsection{\texorpdfstring{writeRegisterRegion()}{writeRegisterRegion()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classsfe___e_n_s160_1_1_qw_i2_c_a4fe0ca6825a51f4849d734606a4770fb} 
+int sfe\+\_\+\+ENS160\+::\+Qw\+I2\+C\+::write\+Register\+Region (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address}{, }\item[{uint8\+\_\+t}]{offset}{, }\item[{const uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint16\+\_\+t}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}}.
+
+\Hypertarget{classsfe___e_n_s160_1_1_qw_i2_c_aefc85da3e1f8d3830d74562468cc3126}\index{sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}!writeRegisterRegion@{writeRegisterRegion}}
+\index{writeRegisterRegion@{writeRegisterRegion}!sfe\_ENS160::QwI2C@{sfe\_ENS160::QwI2C}}
+\doxysubsubsection{\texorpdfstring{writeRegisterRegion()}{writeRegisterRegion()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classsfe___e_n_s160_1_1_qw_i2_c_aefc85da3e1f8d3830d74562468cc3126} 
+int sfe\+\_\+\+ENS160\+::\+Qw\+I2\+C\+::write\+Register\+Region (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{address}{, }\item[{uint8\+\_\+t}]{offset}{, }\item[{uint8\+\_\+t}]{data}{, }\item[{uint16\+\_\+t}]{length}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classsfe___e_n_s160_1_1_qw_i_device_bus}{sfe\+\_\+\+ENS160\+::\+Qw\+IDevice\+Bus}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+Spark\+Fun\+\_\+\+Indoor\+\_\+\+Air\+\_\+\+Quality\+\_\+\+Sensor-\/\+ENS160\+\_\+\+Arduino\+\_\+\+Library-\/main/src/sfe\+\_\+bus.\+h\item 
+lib/\+Spark\+Fun\+\_\+\+Indoor\+\_\+\+Air\+\_\+\+Quality\+\_\+\+Sensor-\/\+ENS160\+\_\+\+Arduino\+\_\+\+Library-\/main/src/sfe\+\_\+bus.\+cpp\end{DoxyCompactItemize}
