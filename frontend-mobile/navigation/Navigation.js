@@ -20,7 +20,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const Tabs = () => {
-  const { theme } = useTheme(); 
+  const { theme } = useTheme();
 
   return (
     <Tab.Navigator
@@ -37,18 +37,25 @@ const Tabs = () => {
         component={Dashboard}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="home" color={color} size={size} accessible={false}/>
           ),
+          tabBarAccessibilityLabel: "Dashboard tab",
         }}
       />
-      
+
       <Tab.Screen
         name="Overview"
         component={Overview}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="view-list" color={color} size={size} />
+            <MaterialCommunityIcons
+              name="view-list"
+              color={color}
+              size={size}
+              accessible={false}
+            />
           ),
+          tabBarAccessibilityLabel: "Overview tab",
         }}
       />
       <Tab.Screen
@@ -60,8 +67,10 @@ const Tabs = () => {
               name="weather-hazy"
               color={color}
               size={size}
+              accessible={false}
             />
           ),
+          tabBarAccessibilityLabel: "Air quality tab",
         }}
       />
       <Tab.Screen
@@ -73,8 +82,10 @@ const Tabs = () => {
               name="weather-fog"
               color={color}
               size={size}
+              accessible={false}
             />
           ),
+          tabBarAccessibilityLabel: "Humidity tab",
         }}
       />
       <Tab.Screen
@@ -86,8 +97,10 @@ const Tabs = () => {
               name="thermometer"
               color={color}
               size={size}
+              accessible={false}
             />
           ),
+          tabBarAccessibilityLabel: "Temperature tab",
         }}
       />
       <Tab.Screen
@@ -95,8 +108,9 @@ const Tabs = () => {
         component={Settings}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="cog" color={color} size={size} />
+            <MaterialCommunityIcons name="cog" color={color} size={size} accessible={false}/>
           ),
+          tabBarAccessibilityLabel: "Settings tab",
         }}
       />
     </Tab.Navigator>
@@ -116,6 +130,5 @@ const Navigation = () => {
     </NavigationContainer>
   );
 };
-
 
 export default Navigation;
