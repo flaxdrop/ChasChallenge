@@ -20,6 +20,7 @@ export default Background
 
 const createStyles = (theme) => StyleSheet.create({
     background: {
-        flex: 1
+        flex: 1,
+        paddingTop: 25
       }
 })

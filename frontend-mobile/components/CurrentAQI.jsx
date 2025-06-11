@@ -135,7 +135,7 @@ const createStyles = (theme) =>
     },
     text: {
       color: theme.textPrimary,
-      textAlign: "left",
+      textAlign: "center",
       paddingLeft: 20,
       paddingRight: 20,
       paddingTop: 10,

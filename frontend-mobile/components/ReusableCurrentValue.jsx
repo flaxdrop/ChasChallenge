@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ActivityIndicator } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useTheme } from "../theme/ThemeContext";
@@ -71,14 +71,16 @@ const ReusableCurrentValue = ({
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
+        <Pressable android_ripple={{color: theme.tabBarIcon, radius: 15}}
+        onPress={handlePress}>
         <MaterialCommunityIcons
           name="information-outline"
-          size={20}
+          size={22}
           style={styles.infoIcon}
-          onPress={handlePress}
+          
           accessibilityRole="button"
           accessibilityLabel={`Description of what ${title} is`}
-        />
+        /></Pressable>
       </View>
       <View
       accessible={true}
@@ -117,7 +119,7 @@ const createStyles = (theme, valueSize, textSize) =>
     },
     infoIcon: {
       padding: 10,
-      color: theme.accent,
+      color: theme.tabBarIcon,
     },
     header: {
       flexDirection: "row",
