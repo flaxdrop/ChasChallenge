@@ -8,6 +8,9 @@ const useManualRefresh = () => {
         
     }, []);
 
+    console.log("test");
+    
+
     return [refresh, triggerRefresh];
 }
 
