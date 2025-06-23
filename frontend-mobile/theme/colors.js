@@ -37,7 +37,7 @@ export const darkTheme = {
   primary: "#000E21",
   secondary: "#000916",
   accent: "#40FD00",
-  timestamp: "#676767",
+  timestamp: "#46a6ff",
   
   backgroundPrimary: "#000711",
   backgroundSecondary: "#000000",
@@ -45,7 +45,7 @@ export const darkTheme = {
   graphTo: "#001A3F",
   graphPoint: "#00BAFF",
 
-  textPrimary: "#FFFFFF",
+  textPrimary: "#9bd7ff",
   textSecondary: "#000000",
   textAccentPrimary: "#00BAFF",
   textAccentSecondary:"#00FF1A",
@@ -65,5 +65,5 @@ export const darkTheme = {
   headerBackground: "#000000",
 
   themeButton: "#f9f089",
-  modalBackground: "black",
+  modalBackground: "#001D45",
 };

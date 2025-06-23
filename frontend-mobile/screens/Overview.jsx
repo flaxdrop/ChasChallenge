@@ -189,6 +189,8 @@ const createStyles = (theme) =>
       marginBottom: 10,
     },
     header: {
-      color: theme.textPrimary
+      color: theme.textPrimary,
+      paddingBottom: 10,
+      fontSize: 16
     }
   });

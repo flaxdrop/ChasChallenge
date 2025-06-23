@@ -46,7 +46,7 @@ const createStyles = (theme) => StyleSheet.create({
         borderWidth: 1,
         padding: 2,
         justifyContent: "center",
-        borderColor: theme.accent
+        borderColor: theme.tabBarIcon
 
     },
     trackOn: {
@@ -63,6 +63,6 @@ const createStyles = (theme) => StyleSheet.create({
     },
     thumbOn: {
         alignSelf: "flex-end",
-        backgroundColor: theme.tabBarIconActive
+        backgroundColor: theme.tabBarIcon
     }
 })

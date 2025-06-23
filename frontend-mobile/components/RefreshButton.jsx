@@ -12,8 +12,8 @@ const RefreshButton = ({ onRefresh }) => {
       accessibilityRole="button"
       accessibilityLabel="Press to refresh chart"
       accessibilityHint="Refreshes the chart with the latest data"
-      android_ripple={{ color: theme.tabBarIcon }}>
-        <MaterialCommunityIcons name={"refresh"} size={30} color={theme.accent} />
+      android_ripple={{ color: theme.tabBarIcon, radius: 15 }}>
+        <MaterialCommunityIcons name={"refresh"} size={30} color={theme.tabBarIcon} />
       </Pressable>
   );
 };
